@@ -121,10 +121,6 @@ The web interface includes four main sections:
 - Hands-free interaction capability
 
 
-## ⚠️ Important Notice
-
-This system is designed for wellness support and should not replace professional medical advice. Always consult healthcare professionals for serious health concerns.
-
 ## 📄 License
 
 This project is licensed under the MIT License. This means you are free to use, modify, and distribute the code, but the original ownership and attribution must be maintained. See the [LICENSE](LICENSE) file for details.
