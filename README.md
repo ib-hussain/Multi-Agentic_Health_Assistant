@@ -1,5 +1,5 @@
 <h1 align="center">Multi-Agentic Health Assistant</h1>
-<p align="center">A comprehensive wellness platform powered by AI agents for personalised health management.</em></p>
+<p align="center">A comprehensive wellness platform powered by AI agents for personalised health management.</p>
 
 <hr />
 
@@ -138,5 +138,4 @@ This project is maintained and owned by **Ibrahim Hussain**
 For questions, suggestions, or collaboration opportunities, feel free to reach out!
 
 ---
-
-*Built for better health and wellness | © 2025 Multi-Agentic Health Assistant*
+<p align="center"><i>Built for better health and wellness | © 2025 Multi-Agentic Health Assistant</i></p>
