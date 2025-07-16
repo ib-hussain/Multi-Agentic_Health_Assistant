@@ -40,12 +40,12 @@ The platform utilises a multi-agent architecture with three specialised LLM agen
 
 ## 🌟 Key Features
 
-✅ **Unified Web Interface:** Streamlit-based frontend with intuitive navigation  
-✅ **Multi-Modal AI:** Integration of text and vision models for comprehensive analysis  
-✅ **Personalised Recommendations:** Tailored advice based on individual profiles and goals  
-✅ **Persistent Memory:** Secure storage of user interactions and progress  
-✅ **Real-time Analysis:** Instant feedback on meals, workouts, and mental health  
-✅ **Privacy-Focused:** Secure data handling with user control over information  
+**Unified Web Interface:** Streamlit-based frontend with intuitive navigation  
+**Multi-Modal AI:** Integration of text and vision models for comprehensive analysis  
+**Personalised Recommendations:** Tailored advice based on individual profiles and goals  
+**Persistent Memory:** Secure storage of user interactions and progress  
+**Real-time Analysis:** Instant feedback on meals, workouts, and mental health  
+**Privacy-Focused:** Secure data handling with user control over information  
 
 ## 🔧 Tech Stack
 
