@@ -3,11 +3,6 @@
 
 <hr />
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
-![Streamlit](https://img.shields.io/badge/streamlit-latest-red.svg)
-![AI](https://img.shields.io/badge/AI-LLaMA%203.1-purple.svg)
-
 ## 📋 Overview
 
 The Multi-Agentic Health Assistant is an innovative wellness platform that combines the power of multiple Large Language Models (LLMs) and vision models to provide personalized support for physical and mental well-being. The system integrates three specialised AI agents that work together to deliver comprehensive health management through diet tracking, exercise planning, and mental health support.
