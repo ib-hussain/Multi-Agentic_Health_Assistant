@@ -53,7 +53,7 @@ The platform utilises a multi-agent architecture with three specialised LLM agen
 - **Text Model:** DeepSeek V3 671B Text
 - **Vision Model:** LLaMA 3.2 11B Vision
 - **Frontend:** Streamlit
-- **Database:** SQLite/PostgreSQL
+- **Database:** PostgreSQL & Pinecone
 - **API:** Together.ai
 - **Language:** Python 3.12.7
 

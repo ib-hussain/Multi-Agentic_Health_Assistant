@@ -1,5 +1,6 @@
 *~$lti-Agentic Health Assistant.docx
 *.tmp
+ignore/
 # Ignore virtual environments
 venv/
 .vscode
