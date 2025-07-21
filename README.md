@@ -50,7 +50,7 @@ The platform utilises a multi-agent architecture with three specialised LLM agen
 
 ## 🔧 Tech Stack
 
-- **Text Model:** Deepseek V3 671B Text
+- **Text Model:** DeepSeek V3 671B Text
 - **Vision Model:** LLaMA 3.2 11B Vision
 - **Frontend:** Streamlit
 - **Database:** SQLite/PostgreSQL
@@ -62,7 +62,7 @@ The platform utilises a multi-agent architecture with three specialised LLM agen
 ### Prerequisites
 
 - Python 3.12.7 or higher
-- Together.ai API key (get $1 free credit at [together.ai](https://www.together.ai/))
+- [together.ai](https://www.together.ai/) API key 
 - Basic understanding of health and wellness concepts
 
 ### Installation
@@ -70,7 +70,7 @@ The platform utilises a multi-agent architecture with three specialised LLM agen
 1. **Clone the repository:**
 ```bash
 git clone https://github.com/ib-hussain/Multi-Agentic_Health_Assistant
-cd multi-agentic-health-assistant
+cd Multi-Agentic_Health_Assistant
 ```
 
 2. **Install dependencies:**
@@ -83,7 +83,6 @@ pip install -r requirements.txt
 streamlit run site.py
 ```
 
-> 💡 **Pro Tip:** The $1 credit from Together.ai should be sufficient for testing and initial development. The system is designed to be cost-effective while maintaining high performance.
 
 ## 📱 User Interface
 
