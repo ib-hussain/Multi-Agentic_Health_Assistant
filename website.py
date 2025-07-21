@@ -10,4 +10,3 @@ st.title("Virtual Health Assistant")
 #     if submitted:
 #         db.user_registration(name=name, Age=age, Weight_kg=weight)
 #         st.success(f"User '{name}' added successfully!")
-

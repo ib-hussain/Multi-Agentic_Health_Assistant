@@ -1,5 +1,6 @@
 import streamlit as st
 import psycopg2
+import os
 from datetime import datetime, timedelta
 debug =True 
 last19477491_query = """
@@ -56,7 +57,7 @@ def close_db(conn, cur):
         if debug: print("Database connection closed.")
 
 #functions ----------------------------------------------------------------------------------------------
-# Helper: Compute 20-minute availability range
+# Helper: Compute 20-minute availability range 
 def get_time_window(start_time_str):
     try:
         start = datetime.strptime(start_time_str, "%H:%M")
@@ -139,6 +140,24 @@ def change_age(name: str, new_age: float):
             if debug: print(f"Age updated to {new_age} for '{name}'.")
     except Exception as e:
         if debug: print("Error updating age:", e)
+    close_db(conn, cur)
+def change_gender(name: str, new_gender: bool):
+    # Connect to database
+    conn, cur = connect_db()
+    try:
+        update_query = """
+            UPDATE user_health_info
+            SET gender = %s
+            WHERE name = %s
+        """
+        cur.execute(update_query, ('Female' if new_gender else 'Male', name))
+        conn.commit()
+        if cur.rowcount == 0:
+            if debug: print(f"No user found with the name '{name}'.")
+        else:
+            if debug: print(f"Gender updated for '{name}'.")
+    except Exception as e:
+        if debug: print("Error updating gender:", e)
     close_db(conn, cur)
 def change_weight(name: str, new_weight: float):
     # Connect to database
