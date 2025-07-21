@@ -1,0 +1,16 @@
+*~$lti-Agentic Health Assistant.docx
+*.tmp
+# Ignore virtual environments
+venv/
+.vscode
+# Ignore Python cache
+__pycache__/
+# Ignore IDE settings
+.vscode/
+# Ignore OS files
+.DS_Store
+# Ignore compiled files
+*.pyc
+*.pyo
+*.pyd
+First\ Version/*.txt

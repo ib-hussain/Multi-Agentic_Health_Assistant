@@ -3,6 +3,7 @@
 
 <hr />
 
+
 ## 📋 Overview
 
 The Multi-Agentic Health Assistant is an innovative wellness platform that combines the power of multiple Large Language Models (LLMs) and vision models to provide personalized support for physical and mental well-being. The system integrates three specialised AI agents that work together to deliver comprehensive health management through diet tracking, exercise planning, and mental health support.
@@ -49,18 +50,18 @@ The platform utilises a multi-agent architecture with three specialised LLM agen
 
 ## 🔧 Tech Stack
 
-- **Text Model:** LLaMA 3.1 8B
+- **Text Model:** Deepseek V3 671B Text
 - **Vision Model:** LLaMA 3.2 11B Vision
 - **Frontend:** Streamlit
 - **Database:** SQLite/PostgreSQL
 - **API:** Together.ai
-- **Language:** Python 3.8+
+- **Language:** Python 3.12.7
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Python 3.8 or higher
+- Python 3.12.7 or higher
 - Together.ai API key (get $1 free credit at [together.ai](https://www.together.ai/))
 - Basic understanding of health and wellness concepts
 
@@ -77,19 +78,9 @@ cd multi-agentic-health-assistant
 pip install -r requirements.txt
 ```
 
-3. **Set up your API key:**
+3. **Run the application:**
 ```bash
-export TOGETHER_API_KEY="your-api-key-here"
-```
-
-4. **Initialise the database:**
-```bash
-python setup_db.py
-```
-
-5. **Run the application:**
-```bash
-streamlit run app.py
+streamlit run site.py
 ```
 
 > 💡 **Pro Tip:** The $1 credit from Together.ai should be sufficient for testing and initial development. The system is designed to be cost-effective while maintaining high performance.
