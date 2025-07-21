@@ -1,5 +1,5 @@
 import streamlit as st
-from data import database_handler as db
+# from data import database_handler as db
 st.title("Virtual Health Assistant")
 
 # with st.form("user_form"):

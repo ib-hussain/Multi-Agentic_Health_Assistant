@@ -80,7 +80,7 @@ pip install -r requirements.txt
 
 3. **Run the application:**
 ```bash
-streamlit run site.py
+streamlit run website.py
 ```
 
 
