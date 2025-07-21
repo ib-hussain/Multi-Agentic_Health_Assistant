@@ -1,5 +1,6 @@
 *~$lti-Agentic Health Assistant.docx
 *.tmp
+.streamlit/
 ignore/
 # Ignore virtual environments
 venv/
@@ -14,6 +15,5 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
-.streamlit/
 
 First\ Version/*.txt
