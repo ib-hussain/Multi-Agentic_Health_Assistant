@@ -89,8 +89,10 @@ def get_id(name: str, password: str):
     conn, cur = connect_db()
     try:
         cur.execute("""
-            SELECT id FROM user_profile
-            WHERE user_information.name = %s AND password = %s;
+            SELECT * FROM user_profile 
+            WHERE (user_information).name = %s 
+            AND 
+            password = %s;
         """, (name, password))
         result = cur.fetchone()
         if result:
@@ -166,9 +168,9 @@ def change_name(old_name: str, new_name: str):
     try:
         cur.execute("""
             UPDATE user_profile
-            SET user_information = ROW(%s, user_information.age, user_information.gender,
-                                       user_information.height, user_information.weight)
-            WHERE user_information.name = %s;
+            SET user_information = ROW(%s, (user_information).age, (user_information).gender,
+                                       (user_information).height, (user_information).weight)
+            WHERE (user_information).name = %s;
         """, (new_name, old_name))
         conn.commit()
         if debug: print("Name changed successfully.")
@@ -182,9 +184,9 @@ def change_age(name: str, new_age: float):
     try:
         cur.execute("""
             UPDATE user_profile
-            SET user_information = ROW(user_information.name, %s, user_information.gender,
-                                       user_information.height, user_information.weight)
-            WHERE user_information.name = %s;
+            SET user_information = ROW((user_information).name, %s, (user_information).gender,
+                                       (user_information).height, (user_information).weight)
+            WHERE (user_information).name = %s;
         """, (new_age, name))
         conn.commit()
         if debug: print("Age updated successfully.")
@@ -199,9 +201,9 @@ def change_gender(name: str, new_gender: bool):
         gender_value = 'Female' if new_gender else 'Male'
         cur.execute("""
             UPDATE user_profile
-            SET user_information = ROW(user_information.name, user_information.age, %s,
-                                       user_information.height, user_information.weight)
-            WHERE user_information.name = %s;
+            SET user_information = ROW((user_information).name, (user_information).age, %s,
+                                       (user_information).height, (user_information).weight)
+            WHERE (user_information).name = %s;
         """, (gender_value, name))
         conn.commit()
         if debug: print("Gender updated successfully.")
@@ -215,9 +217,9 @@ def change_weight(name: str, new_weight: float):
     try:
         cur.execute("""
             UPDATE user_profile
-            SET user_information = ROW(user_information.name, user_information.age, user_information.gender,
-                                       user_information.height, %s)
-            WHERE user_information.name = %s;
+            SET user_information = ROW((user_information).name, (user_information).age, (user_information).gender,
+                                       (user_information).height, %s)
+            WHERE (user_information).name = %s;
         """, (new_weight, name))
         conn.commit()
         if debug: print("Weight updated successfully.")
@@ -231,9 +233,9 @@ def change_height(name: str, new_height: float):
     try:
         cur.execute("""
             UPDATE user_profile
-            SET user_information = ROW(user_information.name, user_information.age, user_information.gender,
-                                       %s, user_information.weight)
-            WHERE user_information.name = %s;
+            SET user_information = ROW((user_information).name, (user_information).age, (user_information).gender,
+                                       %s, (user_information).weight)
+            WHERE (user_information).name = %s;
         """, (new_height, name))
         conn.commit()
         if debug: print("Height updated successfully.")
@@ -249,7 +251,7 @@ def change_dietary_pref(name: str, new_pref: str):
         cur.execute("""
             UPDATE user_profile
             SET diet_pref = %s
-            WHERE user_information.name = %s;
+            WHERE (user_information).name = %s;
         """, (new_pref, name))
         conn.commit()
         if debug: print("Dietary preference updated successfully.")
@@ -264,7 +266,7 @@ def change_time_deadline(name: str, days: int):
         cur.execute("""
             UPDATE user_profile
             SET time_deadline = %s
-            WHERE user_information.name = %s;
+            WHERE (user_information).name = %s;
         """, (days, name))
         conn.commit()
         if debug: print("Time deadline updated successfully.")
@@ -289,7 +291,7 @@ def change_time_available(name: str, start_time: str):
         cur.execute("""
             UPDATE user_profile
             SET time_arr = %s
-            WHERE user_information.name = %s;
+            WHERE (user_information).name = %s;
         """, (arr, name))
         conn.commit()
         if debug: print("Time availability changed successfully.")
@@ -303,7 +305,7 @@ def append_time_available(name: str, start_time: str):
     try:
         cur.execute("""
             SELECT time_arr FROM user_profile
-            WHERE user_information.name = %s;
+            WHERE (user_information).name = %s;
         """, (name,))
         result = cur.fetchone()
         
@@ -330,7 +332,7 @@ def append_time_available(name: str, start_time: str):
         cur.execute("""
             UPDATE user_profile
             SET time_arr = %s
-            WHERE user_information.name = %s;
+            WHERE (user_information).name = %s;
         """, (arr, name))
         
         conn.commit()
@@ -347,7 +349,7 @@ def change_fitness_goal(name: str, new_goal: str):
         cur.execute("""
             UPDATE user_profile
             SET fitness_goal = %s
-            WHERE user_information.name = %s;
+            WHERE (user_information).name = %s;
         """, (new_goal, name))
         conn.commit()
         if debug: print("Fitness goal updated successfully.")
@@ -361,7 +363,7 @@ def append_fitness_goal(name: str, additional_goal: str):
     try:
         cur.execute("""
             SELECT fitness_goal FROM user_profile
-            WHERE user_information.name = %s;
+            WHERE (user_information).name = %s;
         """, (name,))
         result = cur.fetchone()
         if not result:
@@ -375,7 +377,7 @@ def append_fitness_goal(name: str, additional_goal: str):
         cur.execute("""
             UPDATE user_profile
             SET fitness_goal = %s
-            WHERE user_information.name = %s;
+            WHERE (user_information).name = %s;
         """, (goals, name))
         conn.commit()
         if debug: print("Fitness goal appended successfully.")
@@ -391,7 +393,7 @@ def change_mental_health_notes(name: str, notes: str):
         cur.execute("""
             UPDATE user_profile
             SET mental_health_background = %s
-            WHERE user_information.name = %s;
+            WHERE (user_information).name = %s;
         """, (notes, name))
         conn.commit()
         if debug: print("Mental health notes updated successfully.")
@@ -405,7 +407,7 @@ def append_mental_health_notes(name: str, note: str):
     try:
         cur.execute("""
             SELECT mental_health_background FROM user_profile
-            WHERE user_information.name = %s;
+            WHERE (user_information).name = %s;
         """, (name,))
         result = cur.fetchone()
         if not result:
@@ -419,7 +421,7 @@ def append_mental_health_notes(name: str, note: str):
         cur.execute("""
             UPDATE user_profile
             SET mental_health_background = %s
-            WHERE user_information.name = %s;
+            WHERE (user_information).name = %s;
         """, (notes, name))
         conn.commit()
         if debug: print("Mental health note appended successfully.")
@@ -435,7 +437,7 @@ def change_medical_conditions(name: str, condition: str):
         cur.execute("""
             UPDATE user_profile
             SET medical_conditions = %s
-            WHERE user_information.name = %s;
+            WHERE (user_information).name = %s;
         """, (condition, name))
         conn.commit()
         if debug: print("Medical condition updated successfully.")
@@ -449,7 +451,7 @@ def append_medical_conditions(name: str, condition: str):
     try:
         cur.execute("""
             SELECT medical_conditions FROM user_profile
-            WHERE user_information.name = %s;
+            WHERE (user_information).name = %s;
         """, (name,))
         result = cur.fetchone()
         if not result:
@@ -463,7 +465,7 @@ def append_medical_conditions(name: str, condition: str):
         cur.execute("""
             UPDATE user_profile
             SET medical_conditions = %s
-            WHERE user_information.name = %s;
+            WHERE (user_information).name = %s;
         """, (conditions, name))
         conn.commit()
         if debug: print("Medical condition appended successfully.")
@@ -479,11 +481,11 @@ def get_user_profile_by_id(user_id: int):
         cur.execute("""
             SELECT 
                 id,
-                user_information.name,
-                user_information.age,
-                user_information.gender,
-                user_information.height,
-                user_information.weight,
+                (user_information).name,
+                (user_information).age,
+                (user_information).gender,
+                (user_information).height,
+                (user_information).weight,
                 fitness_goal,
                 diet_pref,
                 time_arr,

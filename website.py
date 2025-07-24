@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit.components.v1 as components
 from data import database_handler as db
 
 st.set_page_config(layout="wide")
@@ -15,6 +14,9 @@ st.markdown("""
             padding: 1rem;
             display: flex;
             justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 999;
         }
         .nav-bar a {
             color: white;
@@ -28,18 +30,18 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Session state to persist login
+# Maintain session state
 if "user_id" not in st.session_state:
     st.session_state.user_id = None
 if "page" not in st.session_state:
     st.session_state.page = "Login"
 
-# Top navigation bar (visible only after login)
+# Top Navigation
 def navbar():
     st.markdown("""
         <div class="nav-bar">
-            <a href="#" onclick="window.location.reload();">Chatbot</a>
-            <a href="#" onclick="window.location.href='?page=Profile';">Profile Management</a>
+            <a href="?page=Chatbot">Chatbot</a>
+            <a href="?page=Profile">Profile Management</a>
         </div>
     """, unsafe_allow_html=True)
 
@@ -53,9 +55,12 @@ def login_page():
         if user_id:
             st.session_state.user_id = user_id
             st.session_state.page = "Chatbot"
-            st.experimental_rerun()
+            st.rerun()
         else:
             st.error("Invalid credentials")
+    if st.button("Signup"):
+        st.session_state.page = "Signup"
+        st.rerun()
 
 # Signup Page
 def signup_page():
@@ -77,7 +82,7 @@ def signup_page():
         db.user_registration(name, age, gender, height, weight, goal, diet, times, mh_notes, conditions, deadline, password)
         st.success("Registration complete. Please login.")
         st.session_state.page = "Login"
-        st.experimental_rerun()
+        st.rerun()
 
 # Chatbot Page
 def chatbot_page():
@@ -85,7 +90,7 @@ def chatbot_page():
     st.title("Chatbot")
     st.info("Chatbot interface coming soon...")
 
-# Profile Management Page
+# Profile Page
 def profile_page():
     navbar()
     st.title("Profile Management")
@@ -119,11 +124,14 @@ def profile_page():
             db.change_mental_health_notes(new_name, new_mh)
             db.change_medical_conditions(new_name, new_cond)
             st.success("Profile updated.")
+            st.rerun()
 
 # Routing Logic
 page = st.query_params.get("page")
 
-if page == "Profile" and st.session_state.user_id:
+if page == "Chatbot" and st.session_state.user_id:
+    chatbot_page()
+elif page == "Profile" and st.session_state.user_id:
     profile_page()
 elif st.session_state.page == "Signup":
     signup_page()
@@ -133,4 +141,4 @@ elif st.session_state.page == "Login":
     login_page()
 else:
     st.session_state.page = "Login"
-    st.experimental_rerun()
+    st.rerun()
