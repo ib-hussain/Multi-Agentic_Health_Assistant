@@ -26,6 +26,9 @@ WHERE medical_conditions IS NULL;
 UPDATE user_profile
 SET time_deadline = 90
 WHERE time_deadline IS NULL;
+UPDATE user_profile
+SET password = ''
+WHERE password IS NULL;
 
 -- daily_stats table
 UPDATE daily_stats
@@ -82,9 +85,27 @@ def close_db(conn, cur):
         cur.close()
         conn.close()
         if debug: print("Database connection closed.")
-
+def get_id(name: str, password: str):
+    conn, cur = connect_db()
+    try:
+        cur.execute("""
+            SELECT id FROM user_profile
+            WHERE user_information.name = %s AND password = %s;
+        """, (name, password))
+        result = cur.fetchone()
+        if result:
+            if debug: print(f"ID found for user '{name}'.")
+            return result[0]
+        else:
+            if debug: print("Invalid name or password.")
+            return None
+    except Exception as e:
+        if debug: print("Error validating user:", e)
+        return None
+    finally:
+        close_db(conn, cur)
 #functions ----------------------------------------------------------------------------------------------
-def user_registration(
+def user_registration (
     name: str,
     Age: float,
     gender: str = 'Female',
@@ -92,10 +113,11 @@ def user_registration(
     Weight_kg: float = 66.400,
     fitness_goal: str = "Get into better shape",
     dietary_pref: str = "any",
-    time_available: list = None,  # Expecting list of 1-3 time strings like ["11:40", "23:20"]
+    time_available: list = None,
     mental_health_notes: str = None,
     medical_conditions: str = None,
-    time_deadline: int = 90):
+    time_deadline: int = 90,
+    password: str = ''  ):
     conn, cur = connect_db()
     # Build time_arr 2D array
     if not time_available:
@@ -120,7 +142,8 @@ def user_registration(
         cur.execute("""
             INSERT INTO user_profile (
                 user_information, fitness_goal, diet_pref, time_arr,
-                mental_health_background, medical_conditions, time_deadline
+                mental_health_background, medical_conditions, time_deadline,
+                password 
             ) VALUES (
                 ROW(%s, %s, %s, %s, %s),
                 %s, %s, %s, %s, %s, %s
@@ -129,13 +152,9 @@ def user_registration(
         """, (
             name, Age, gender, height_m, Weight_kg,
             fitness_goal, dietary_pref, time_arr,
-            mental_health_notes, medical_conditions, time_deadline
+            mental_health_notes, medical_conditions, time_deadline,
+            password  # Include here
         ))
-        user_id = cur.fetchone()[0]
-        cur.execute("INSERT INTO other_storage (id) VALUES (%s);", (user_id,))
-        cur.execute("INSERT INTO daily_stats (id) VALUES (%s);", (user_id,))
-        conn.commit()
-        if debug: print(f"User registered with ID {user_id}")
     except Exception as e:
         conn.rollback()
         if debug: print("Registration failed:", e)
@@ -454,8 +473,163 @@ def append_medical_conditions(name: str, condition: str):
     finally:
         close_db(conn, cur)
 
+def get_user_profile_by_id(user_id: int):
+    conn, cur = connect_db()
+    try:
+        cur.execute("""
+            SELECT 
+                id,
+                user_information.name,
+                user_information.age,
+                user_information.gender,
+                user_information.height,
+                user_information.weight,
+                fitness_goal,
+                diet_pref,
+                time_arr,
+                mental_health_background,
+                medical_conditions,
+                time_deadline,
+                password  -- explicitly selecting password
+            FROM user_profile
+            WHERE id = %s;
+        """, (user_id,))
+        result = cur.fetchone()
+        if not result:
+            if debug: print("No user found with that ID.")
+            return None
+        profile = {
+            "id": result[0],
+            "name": result[1],
+            "age": result[2],
+            "gender": result[3],
+            "height": result[4],
+            "weight": result[5],
+            "fitness_goal": result[6],
+            "diet_pref": result[7],
+            "time_arr": result[8],
+            "mental_health_background": result[9],
+            "medical_conditions": result[10],
+            "time_deadline": result[11],
+            "password": result[12]  # Include password here
+        }
+        if debug:
+            print("User profile fetched:", profile)
+        return profile
+    except Exception as e:
+        if debug: print("Error fetching user profile:", e)
+        return None
+    finally:
+        close_db(conn, cur)
 # daily_stats table functions
-
+def insert_daily_stats_entry(user_id: int, activity_level: str, progress_condition: str):
+    conn, cur = connect_db()
+    try:
+        cur.execute("""
+            SELECT insert_daily_stats(%s, %s, %s);
+        """, (user_id, activity_level, progress_condition))
+        conn.commit()
+        if debug: print(f"Daily stats inserted for user ID {user_id}")
+    except Exception as e:
+        conn.rollback()
+        if debug: print("Error inserting daily stats:", e)
+    finally:
+        close_db(conn, cur)
+def get_daily_stats_by_id(user_id: int):
+    conn, cur = connect_db()
+    try:
+        cur.execute("SELECT * FROM daily_stats WHERE id = %s;", (user_id,))
+        result = cur.fetchone()
+        if debug:
+            print("Daily stats fetched:", result)
+        return result
+    except Exception as e:
+        if debug: print("Error fetching daily stats:", e)
+        return None
+    finally:
+        close_db(conn, cur)
 # other_storage table functions
+def get_picture_analysis(user_id: int):
+    conn, cur = connect_db()
+    try:
+        cur.execute("SELECT picture_analysis FROM other_storage WHERE id = %s;", (user_id,))
+        result = cur.fetchone()
+        if debug: print("Picture analysis fetched:", result)
+        return result[0] if result else None
+    except Exception as e:
+        if debug: print("Error fetching picture analysis:", e)
+        return None
+    finally:
+        close_db(conn, cur)
+def set_picture_analysis(user_id: int, text: str):##maybe promt engineer this later to add something to the standard prompt provided by the llama model
+    conn, cur = connect_db()
+    try:
+        cur.execute("UPDATE other_storage SET picture_analysis = %s WHERE id = %s;", (text, user_id))
+        conn.commit()
+        if debug: print("Picture analysis updated.")
+    except Exception as e:
+        conn.rollback()
+        if debug: print("Error updating picture analysis:", e)
+    finally:
+        close_db(conn, cur)
+def remove_picture_analysis(user_id: int):
+    conn, cur = connect_db()
+    try:
+        cur.execute("UPDATE other_storage SET picture_analysis = NULL WHERE id = %s;", (user_id,))
+        conn.commit()
+        if debug: print("Picture analysis removed.")
+    except Exception as e:
+        conn.rollback()
+        if debug: print("Error removing picture analysis:", e)
+    finally:
+        close_db(conn, cur)
 
+def get_audio_transcript(user_id: int):
+    conn, cur = connect_db()
+    try:
+        cur.execute("SELECT audio_transcript FROM other_storage WHERE id = %s;", (user_id,))
+        result = cur.fetchone()
+        if debug: print("Audio transcript fetched:", result)
+        return result[0] if result else None
+    except Exception as e:
+        if debug: print("Error fetching audio transcript:", e)
+        return None
+    finally:
+        close_db(conn, cur)
+def set_audio_transcript(user_id: int, text: str):
+    conn, cur = connect_db()
+    try:
+        cur.execute("UPDATE other_storage SET audio_transcript = %s WHERE id = %s;", (text, user_id))
+        conn.commit()
+        if debug: print("Audio transcript updated.")
+    except Exception as e:
+        conn.rollback()
+        if debug: print("Error updating audio transcript:", e)
+    finally:
+        close_db(conn, cur)
+def remove_audio_transcript(user_id: int):
+    conn, cur = connect_db()
+    try:
+        cur.execute("UPDATE other_storage SET audio_transcript = NULL WHERE id = %s;", (user_id,))
+        conn.commit()
+        if debug: print("Audio transcript removed.")
+    except Exception as e:
+        conn.rollback()
+        if debug: print("Error removing audio transcript:", e)
+    finally:
+        close_db(conn, cur)
+
+def get_other_storage_by_id(user_id: int):
+    conn, cur = connect_db()
+    try:
+        cur.execute("SELECT * FROM other_storage WHERE id = %s;", (user_id,))
+        result = cur.fetchone()
+        if debug:
+            print("Other storage fetched:", result)
+        return result
+    except Exception as e:
+        if debug: print("Error fetching other storage:", e)
+        return None
+    finally:
+        close_db(conn, cur)
 #functions ----------------------------------------------------------------------------------------------
