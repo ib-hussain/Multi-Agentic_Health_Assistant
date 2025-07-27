@@ -6,7 +6,7 @@ from data.database_handler import (
     change_mental_health_notes, change_medical_conditions,
     insert_daily_stats_entry, get_daily_stats_by_id
 )
-from temp.audio import transcribe_audio, convert_to_wav
+# from temp.audio import transcribe_audio, convert_to_wav
 debug = st.secrets["DEBUGGING_MODE"]
 st.set_page_config(
     page_title="Virtual Health Assistant", 
