@@ -4,9 +4,9 @@ from data.database_handler import (
     change_name, change_age, change_weight, change_height, change_gender,
     change_fitness_goal, change_dietary_pref, change_time_deadline,
     change_mental_health_notes, change_medical_conditions,
-    insert_daily_stats_entry, get_daily_stats_by_id, debug
+    insert_daily_stats_entry, get_daily_stats_by_id
 )
-
+debug = st.secrets["DEBUGGING_MODE"]
 st.set_page_config(
     page_title="Virtual Health Assistant", 
     layout="wide",
@@ -25,67 +25,21 @@ st.markdown("""
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
-    
     /* Custom navbar */
     .custom-navbar {
-        background-color: #171a1f;
-        padding: 15px 20px;
-        margin: -1rem -1rem 2rem -1rem;
-        display: flex;
-        justify-content: space-between;
+        background-color: #171a1f; /* Dark gray background */
+        padding: 15px 20px; /* Vertical and horizontal padding */
+        margin: -1rem -1rem 2rem -1rem; /* Adjust margins */
+        display: flex; /* Add this to enable align-items and justify-content */
         align-items: center;
-        border-radius: 0;
+        justify-content: center;
+        border-radius: 14px; /* Rounded corners */
+        color: white; /* Text color */
+        font-family: 'Anaheim', sans-serif; /* Font family */
+        font-size: 24px; /* Font size */
+        font-weight: bold; /* Bold text */
+        text-decoration: none; /* Remove underline */
     }
-    
-    .navbar-brand {
-        color: white !important;
-        font-family: 'Anaheim', sans-serif;
-        font-size: 24px;
-        font-weight: bold;
-        text-decoration: none;
-    }
-    
-    .nav-center {
-        display: flex;
-        gap: 30px;
-        align-items: center;
-    }
-    
-    .nav-center a {
-        color: white;
-        text-decoration: none;
-        font-size: 16px;
-        padding: 8px 16px;
-        border-radius: 5px;
-        transition: all 0.3s;
-    }
-    
-    .nav-center a:hover {
-        color: #98db2e;
-        background-color: rgba(152, 219, 46, 0.1);
-    }
-    
-    .nav-center a.active {
-        color: #98db2e;
-        background-color: rgba(152, 219, 46, 0.2);
-        font-weight: bold;
-    }
-    
-    .nav-right {
-        color: white;
-        text-decoration: none;
-        font-size: 16px;
-        padding: 8px 16px;
-        border-radius: 5px;
-        transition: all 0.3s;
-        cursor: pointer;
-    }
-    
-    .nav-right:hover {
-        color: #98db2e;
-        background-color: rgba(152, 219, 46, 0.1);
-    }
-    
     /* Login/Signup containers */
     .auth-container {
         background-color: #171a1f;
@@ -225,7 +179,6 @@ if "current_page" not in st.session_state:
     st.session_state.current_page = "login"
 if "user_profile" not in st.session_state:
     st.session_state.user_profile = None
-
 # Navigation Functions
 def set_page(page_name):
     st.session_state.current_page = page_name
@@ -236,46 +189,36 @@ def logout():
     st.session_state.user_profile = None
     st.session_state.current_page = "login"
     st.rerun()
-
 # Navbar for authenticated pages
 def render_navbar():
     if st.session_state.user_id:
         current_page = st.session_state.current_page
-        
         # Create active class for current page
         chatbot_class = "active" if current_page == "chatbot" else ""
         daily_class = "active" if current_page == "daily_progress" else ""
         profile_class = "active" if current_page == "profile" else ""
-        
-        st.markdown(f"""
-        <div class="custom-navbar">
-            <div class="navbar-brand">Virtual Health Assistant🥀</div>
-            <div class="nav-center">
-                <a href="#" class="{chatbot_class}" onclick="return false;">Chatbot</a>
-                <a href="#" class="{daily_class}" onclick="return false;">Daily Progress</a>
-                <a href="#" class="{profile_class}" onclick="return false;">Profile</a>
-            </div>
-            <div class="nav-right" onclick="return false;">Logout</div>
-        </div>
-        """, unsafe_allow_html=True)
-        
+        st.markdown(f"""<div class="custom-navbar">Virtual Health Assistant🥀</div>""", unsafe_allow_html=True)
         # Navigation buttons (invisible but functional)
-        col1, col2, col3, col4, col5 = st.columns([1,1,1,1,1])
-        with col1:
+        col1, col2, col3, col4, col5,col6,col7, col8, col9  = st.columns([1,1,1,1,1,1,1,1,1])
+        with col1:st.empty()  # Spacer
+        with col2:st.empty()  # Spacer
+        with col3:
             if st.button("Chatbot", key="nav_chatbot"):
                 set_page("chatbot")
-        with col2:
-            if st.button("Daily Progress", key="nav_daily"):
-                set_page("daily_progress")
-        with col3:
-            if st.button("Profile", key="nav_profile"):
-                set_page("profile")
         with col4:
             st.empty()  # Spacer
         with col5:
+            if st.button("Progress", key="nav_daily"):
+                set_page("daily_progress")
+        with col6:st.empty()  # Spacer
+        with col7:
+            if st.button("Profile", key="nav_profile"):
+                set_page("profile")
+        with col8:st.empty()  # Spacer
+        with col9:
             if st.button("Logout", key="nav_logout"):
                 logout()
-
+        st.markdown("---")
 # Login Page
 def login_page():
     st.markdown('<h1 class="auth-title">Virtual Health Assistant🥀</h1>', unsafe_allow_html=True)
@@ -306,10 +249,8 @@ def login_page():
                 st.error("Please fill in all fields.")
     
     st.markdown('</div>', unsafe_allow_html=True)
-
 # Signup Page
 def signup_page():
-    st.markdown('<div class="auth-container">', unsafe_allow_html=True)
     st.markdown('<h1 class="auth-title">Create Your Account</h1>', unsafe_allow_html=True)
     st.markdown('<p class="auth-subtitle">Join us and start your health journey!</p>', unsafe_allow_html=True)
     
@@ -342,14 +283,13 @@ def signup_page():
         available_times = st.multiselect("Preferred Workout Times", 
                                        ['06:00', '07:00', '08:00', '09:00', '10:00', '11:00', 
                                         '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', 
-                                        '18:00', '19:00', '20:00', '21:00'])
-        
+                                        '18:00', '19:00', '20:00', '21:00'], max_selections=3)
         # Health Information
         st.subheader("Health Information")
         mental_health_notes = st.text_area("Mental Health Notes (Optional)", 
-                                         placeholder="Any mental health considerations...")
+                                         placeholder="Any mental health conditions from past or present that you may have...")
         medical_conditions = st.text_area("Medical Conditions (Optional)", 
-                                        placeholder="Any medical conditions or medications...")
+                                        placeholder="Any medical conditions you may have...")
         
         # Terms checkbox
         terms_agreed = st.checkbox("I agree with Terms & Conditions")
@@ -389,7 +329,6 @@ def signup_page():
                     st.error(f"Registration failed: {str(e)}")
     
     st.markdown('</div>', unsafe_allow_html=True)
-
 # Chatbot Page (Home Page)
 def chatbot_page():
     render_navbar()
@@ -397,18 +336,13 @@ def chatbot_page():
         st.session_state.user_profile = get_user_profile_by_id(st.session_state.user_id)
     profile = st.session_state.user_profile
     st.markdown(f'<h1 class="profile-title">Coming soon...</h1>', unsafe_allow_html=True)
-    
 
 # Daily Progress Page (Combined viewing and logging)
 def daily_progress_page():
     render_navbar()
-    
-    st.markdown('<div class="profile-container">', unsafe_allow_html=True)
     st.markdown('<h1 class="profile-title">Daily Progress</h1>', unsafe_allow_html=True)
-    
     # Current Stats Display
     daily_stats = get_daily_stats_by_id(st.session_state.user_id)
-    
     if daily_stats:
         st.subheader("Current Progress")
         col1, col2 = st.columns(2)
@@ -483,8 +417,6 @@ def profile_page():
         st.session_state.user_profile = get_user_profile_by_id(st.session_state.user_id)
     
     profile = st.session_state.user_profile
-    
-    st.markdown('<div class="profile-container">', unsafe_allow_html=True)
     st.markdown('<h1 class="profile-title">Profile Management</h1>', unsafe_allow_html=True)
     
     # Display current profile info

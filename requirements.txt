@@ -20,3 +20,10 @@ pillow
 nltk
 matplotlib
 seaborn
+os
+wave
+json
+pandas
+vosk 
+subprocess
+imageio_ffmpeg

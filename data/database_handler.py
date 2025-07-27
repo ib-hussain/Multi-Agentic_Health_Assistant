@@ -2,7 +2,7 @@ import streamlit as st
 import psycopg2
 from datetime import datetime, timedelta
 import os
-debug =True 
+debug = st.secrets["DEBUGGING_MODE"]
 last19477491_query = """
 -- user_profile table
 UPDATE user_profile
