@@ -12,6 +12,7 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed"
 )
+
 # CSS Styling inspired by your HTML files
 st.markdown("""
 <style>
@@ -24,36 +25,67 @@ st.markdown("""
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
+    
     /* Custom navbar */
     .custom-navbar {
         background-color: #171a1f;
-        padding: 15px 0;
+        padding: 15px 20px;
         margin: -1rem -1rem 2rem -1rem;
-        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         border-radius: 0;
     }
+    
     .navbar-brand {
         color: white !important;
         font-family: 'Anaheim', sans-serif;
         font-size: 24px;
         font-weight: bold;
         text-decoration: none;
-        margin-right: 40px;
     }
-    .nav-links {
-        display: inline-block;
-        margin: 0 20px;
+    
+    .nav-center {
+        display: flex;
+        gap: 30px;
+        align-items: center;
     }
-    .nav-links a {
+    
+    .nav-center a {
         color: white;
         text-decoration: none;
         font-size: 16px;
-        margin: 0 15px;
-        transition: color 0.3s;
+        padding: 8px 16px;
+        border-radius: 5px;
+        transition: all 0.3s;
     }
-    .nav-links a:hover {
+    
+    .nav-center a:hover {
         color: #98db2e;
+        background-color: rgba(152, 219, 46, 0.1);
     }
+    
+    .nav-center a.active {
+        color: #98db2e;
+        background-color: rgba(152, 219, 46, 0.2);
+        font-weight: bold;
+    }
+    
+    .nav-right {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        padding: 8px 16px;
+        border-radius: 5px;
+        transition: all 0.3s;
+        cursor: pointer;
+    }
+    
+    .nav-right:hover {
+        color: #98db2e;
+        background-color: rgba(152, 219, 46, 0.1);
+    }
+    
     /* Login/Signup containers */
     .auth-container {
         background-color: #171a1f;
@@ -172,8 +204,20 @@ st.markdown("""
         text-align: center;
         margin-top: 20px;
     }
+    
+    /* Chatbot container */
+    .chatbot-container {
+        background-color: rgba(23, 26, 31, 0.9);
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        margin: 20px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        min-height: 400px;
+    }
 </style>
 """, unsafe_allow_html=True)
+
 # Session State Initialization
 if "user_id" not in st.session_state:
     st.session_state.user_id = None
@@ -181,6 +225,7 @@ if "current_page" not in st.session_state:
     st.session_state.current_page = "login"
 if "user_profile" not in st.session_state:
     st.session_state.user_profile = None
+
 # Navigation Functions
 def set_page(page_name):
     st.session_state.current_page = page_name
@@ -195,41 +240,45 @@ def logout():
 # Navbar for authenticated pages
 def render_navbar():
     if st.session_state.user_id:
-        if debug: print("st.session_state.user_id:", st.session_state.user_id)
-        st.markdown("""
+        current_page = st.session_state.current_page
+        
+        # Create active class for current page
+        chatbot_class = "active" if current_page == "chatbot" else ""
+        daily_class = "active" if current_page == "daily_progress" else ""
+        profile_class = "active" if current_page == "profile" else ""
+        
+        st.markdown(f"""
         <div class="custom-navbar">
-            <span class="navbar-brand">Virtual Health Assistant</span>
-            <div class="nav-links">
-                <a href="#" onclick="return false;">Dashboard</a>
-                <a href="#" onclick="return false;">Profile</a>
-                <a href="#" onclick="return false;">Daily Stats</a>
-                <a href="#" onclick="return false;">Settings</a>
+            <div class="navbar-brand">Virtual Health Assistant🥀</div>
+            <div class="nav-center">
+                <a href="#" class="{chatbot_class}" onclick="return false;">Chatbot</a>
+                <a href="#" class="{daily_class}" onclick="return false;">Daily Progress</a>
+                <a href="#" class="{profile_class}" onclick="return false;">Profile</a>
             </div>
+            <div class="nav-right" onclick="return false;">Logout</div>
         </div>
         """, unsafe_allow_html=True)
         
-        # Navigation buttons
+        # Navigation buttons (invisible but functional)
         col1, col2, col3, col4, col5 = st.columns([1,1,1,1,1])
         with col1:
-            if st.button("Dashboard"):
-                set_page("dashboard")
+            if st.button("Chatbot", key="nav_chatbot"):
+                set_page("chatbot")
         with col2:
-            if st.button("Profile"):
-                set_page("profile")
+            if st.button("Daily Progress", key="nav_daily"):
+                set_page("daily_progress")
         with col3:
-            if st.button("Daily Stats"):
-                set_page("daily_stats")
+            if st.button("Profile", key="nav_profile"):
+                set_page("profile")
         with col4:
-            if st.button("Settings"):
-                set_page("settings")
+            st.empty()  # Spacer
         with col5:
-            if st.button("Logout"):
+            if st.button("Logout", key="nav_logout"):
                 logout()
 
 # Login Page
 def login_page():
-    st.markdown('<div class="auth-container">', unsafe_allow_html=True)
-    st.markdown('<h1 class="auth-title">Virtual Health Assistant</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="auth-title">Virtual Health Assistant🥀</h1>', unsafe_allow_html=True)
     st.markdown('<p class="auth-subtitle">Welcome back! Log in to continue your health journey</p>', unsafe_allow_html=True)
     
     with st.form("login_form", clear_on_submit=False):
@@ -250,7 +299,7 @@ def login_page():
                     st.session_state.user_id = user_id
                     st.session_state.user_profile = get_user_profile_by_id(user_id)
                     st.success("Login successful!")
-                    set_page("dashboard")
+                    set_page("chatbot")
                 else:
                     st.error("Invalid credentials. Please try again.")
             else:
@@ -341,59 +390,73 @@ def signup_page():
     
     st.markdown('</div>', unsafe_allow_html=True)
 
-# Dashboard Page
-def dashboard_page():
+# Chatbot Page (Home Page)
+def chatbot_page():
     render_navbar()
-    
     if not st.session_state.user_profile:
         st.session_state.user_profile = get_user_profile_by_id(st.session_state.user_id)
-    
     profile = st.session_state.user_profile
+    st.markdown(f'<h1 class="profile-title">Coming soon...</h1>', unsafe_allow_html=True)
     
-    st.markdown(f'<h1 class="profile-title">Welcome back, {profile["name"]}!</h1>', unsafe_allow_html=True)
-    
-    # Quick Stats
-    col1, col2, col3, col4 = st.columns(4)
-    
-    with col1:
-        st.markdown("""
-        <div class="stats-card">
-            <div class="stats-value">{:.1f} kg</div>
-            <div class="stats-label">Current Weight</div>
-        </div>
-        """.format(profile["weight"]), unsafe_allow_html=True)
-    
-    with col2:
-        bmi = profile["weight"] / (profile["height"] ** 2)
-        st.markdown(f"""
-        <div class="stats-card">
-            <div class="stats-value">{bmi:.1f}</div>
-            <div class="stats-label">BMI</div>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    with col3:
-        st.markdown(f"""
-        <div class="stats-card">
-            <div class="stats-value">{profile["time_deadline"]}</div>
-            <div class="stats-label">Goal Deadline (days)</div>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    with col4:
-        daily_stats = get_daily_stats_by_id(st.session_state.user_id)
-        days_done = daily_stats[4] if daily_stats else 0
-        st.markdown(f"""
-        <div class="stats-card">
-            <div class="stats-value">{days_done}</div>
-            <div class="stats-label">Days Completed</div>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    # Daily Stats Entry
-    st.markdown('<div class="profile-container">', unsafe_allow_html=True)
-    st.markdown('<h2 class="profile-title">Today\'s Stats</h2>', unsafe_allow_html=True)
 
+# Daily Progress Page (Combined viewing and logging)
+def daily_progress_page():
+    render_navbar()
+    
+    st.markdown('<div class="profile-container">', unsafe_allow_html=True)
+    st.markdown('<h1 class="profile-title">Daily Progress</h1>', unsafe_allow_html=True)
+    
+    # Current Stats Display
+    daily_stats = get_daily_stats_by_id(st.session_state.user_id)
+    
+    if daily_stats:
+        st.subheader("Current Progress")
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown(f"""
+            <div class="stats-card">
+                <div class="stats-value">{daily_stats[1]}</div>
+                <div class="stats-label">Last Update</div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            st.markdown(f"""
+            <div class="stats-card">
+                <div class="stats-value">{daily_stats[2].title()}</div>
+                <div class="stats-label">Activity Level</div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        with col2:
+            st.markdown(f"""
+            <div class="stats-card">
+                <div class="stats-value">{daily_stats[4]}</div>
+                <div class="stats-label">Days Completed</div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            progress_emoji = "📈" if daily_stats[5] == "positive" else "📉" if daily_stats[5] == "negative" else "➡️"
+            st.markdown(f"""
+            <div class="stats-card">
+                <div class="stats-value">{progress_emoji} {daily_stats[5].title()}</div>
+                <div class="stats-label">Progress Feeling</div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        if daily_stats[6] is not None:
+            st.markdown(f"""
+            <div class="stats-card">
+                <div class="stats-value">{daily_stats[6]}</div>
+                <div class="stats-label">Days Remaining</div>
+            </div>
+            """, unsafe_allow_html=True)
+    else:
+        st.info("No daily stats recorded yet. Log your first entry below!")
+    
+    # Daily Stats Logging
+    st.subheader("Log Today's Progress")
+    
     col1, col2 = st.columns(2)
     with col1:
         activity_level = st.selectbox("Activity Level Today", 
@@ -423,6 +486,60 @@ def profile_page():
     
     st.markdown('<div class="profile-container">', unsafe_allow_html=True)
     st.markdown('<h1 class="profile-title">Profile Management</h1>', unsafe_allow_html=True)
+    
+    # Display current profile info
+    st.subheader("Current Profile Information")
+    
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.markdown(f"""
+        <div class="stats-card">
+            <div class="stats-value">{profile["name"]}</div>
+            <div class="stats-label">Name</div>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown(f"""
+        <div class="stats-card">
+            <div class="stats-value">{profile["age"]} years</div>
+            <div class="stats-label">Age</div>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col2:
+        st.markdown(f"""
+        <div class="stats-card">
+            <div class="stats-value">{profile["weight"]} kg</div>
+            <div class="stats-label">Weight</div>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown(f"""
+        <div class="stats-card">
+            <div class="stats-value">{profile["height"]} m</div>
+            <div class="stats-label">Height</div>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col3:
+        st.markdown(f"""
+        <div class="stats-card">
+            <div class="stats-value">{profile["gender"]}</div>
+            <div class="stats-label">Gender</div>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown(f"""
+        <div class="stats-card">
+            <div class="stats-value">{profile["diet_pref"].title()}</div>
+            <div class="stats-label">Diet Preference</div>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    st.markdown("---")
+    
+    # Edit profile form
+    st.subheader("Edit Profile")
     
     with st.form("profile_form"):
         st.subheader("Basic Information")
@@ -479,91 +596,6 @@ def profile_page():
     
     st.markdown('</div>', unsafe_allow_html=True)
 
-# Daily Stats Page
-def daily_stats_page():
-    render_navbar()
-    
-    st.markdown('<div class="profile-container">', unsafe_allow_html=True)
-    st.markdown('<h1 class="profile-title">Daily Progress</h1>', unsafe_allow_html=True)
-    
-    daily_stats = get_daily_stats_by_id(st.session_state.user_id)
-    
-    if daily_stats:
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            st.markdown(f"""
-            <div class="stats-card">
-                <div class="stats-value">{daily_stats[1]}</div>
-                <div class="stats-label">Last Update</div>
-            </div>
-            """, unsafe_allow_html=True)
-            
-            st.markdown(f"""
-            <div class="stats-card">
-                <div class="stats-value">{daily_stats[2].title()}</div>
-                <div class="stats-label">Activity Level</div>
-            </div>
-            """, unsafe_allow_html=True)
-        
-        with col2:
-            st.markdown(f"""
-            <div class="stats-card">
-                <div class="stats-value">{daily_stats[4]}</div>
-                <div class="stats-label">Days Completed</div>
-            </div>
-            """, unsafe_allow_html=True)
-            
-            progress_emoji = "📈" if daily_stats[5] == "positive" else "📉" if daily_stats[5] == "negative" else "➡️"
-            st.markdown(f"""
-            <div class="stats-card">
-                <div class="stats-value">{progress_emoji} {daily_stats[5].title()}</div>
-                <div class="stats-label">Progress Feeling</div>
-            </div>
-            """, unsafe_allow_html=True)
-        
-        if daily_stats[6] is not None:
-            st.markdown(f"""
-            <div class="stats-card">
-                <div class="stats-value">{daily_stats[6]}</div>
-                <div class="stats-label">Days Remaining</div>
-            </div>
-            """, unsafe_allow_html=True)
-    else:
-        st.info("No daily stats recorded yet. Go to Dashboard to log your first entry!")
-    
-    st.markdown('</div>', unsafe_allow_html=True)
-
-# Settings Page
-def settings_page():
-    render_navbar()
-    
-    st.markdown('<div class="profile-container">', unsafe_allow_html=True)
-    st.markdown('<h1 class="profile-title">Settings</h1>', unsafe_allow_html=True)
-    
-    st.subheader("Account Settings")
-    
-    if st.button("Logout"):
-        logout()
-    
-    if st.button("Delete Account", type="secondary"):
-        st.warning("This feature is not implemented yet.")
-    
-    st.subheader("App Information")
-    st.info("""
-    **Virtual Health Assistant v1.0**
-    
-    This application helps you track your health and fitness journey.
-    
-    Features:
-    - Profile Management
-    - Daily Statistics Tracking
-    - Goal Setting
-    - Progress Monitoring
-    """)
-    
-    st.markdown('</div>', unsafe_allow_html=True)
-
 # Main App Router
 def main():
     # Route to appropriate page based on authentication and current page
@@ -575,12 +607,10 @@ def main():
     else:
         if st.session_state.current_page == "profile":
             profile_page()
-        elif st.session_state.current_page == "daily_stats":
-            daily_stats_page()
-        elif st.session_state.current_page == "settings":
-            settings_page()
+        elif st.session_state.current_page == "daily_progress":
+            daily_progress_page()
         else:
-            dashboard_page()
+            chatbot_page()  # Default to chatbot (home page)
 
 if __name__ == "__main__":
     main()
