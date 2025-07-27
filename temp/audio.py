@@ -1,4 +1,3 @@
-import os
 import wave
 import json
 import pandas as pd
@@ -37,10 +36,7 @@ def convert_to_wav(input_path: str = "temp_audio.mp3", output_path: str = "temp_
         input_path (str): Path to input audio file
         output_path (str): Path for output WAV file
     """
-    # Check if input file exists
-    if not os.path.exists(input_path):
-        raise FileNotFoundError(f"Input file not found: {input_path}")
-    # Optional: Add audio normalization for better preprocessing
+    # Add audio normalization for better preprocessing
     cmd = [
         ffmpeg_path,
         "-i", input_path,

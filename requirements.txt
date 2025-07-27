@@ -20,7 +20,6 @@ pillow
 nltk
 matplotlib
 seaborn
-os
 wave
 json
 pandas
