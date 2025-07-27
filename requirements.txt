@@ -20,9 +20,6 @@ pillow
 nltk
 matplotlib
 seaborn
-wave
-json
-pandas
 vosk 
 subprocess
 imageio_ffmpeg
