@@ -1,7 +1,7 @@
 import wave
 import json
 import pandas as pd
-from vosk import Model, KaldiRecognizer
+from voski.vosk import Model, KaldiRecognizer
 import streamlit as st
 import subprocess
 from imageio_ffmpeg import get_ffmpeg_exe
