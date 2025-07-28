@@ -1,0 +1,1001 @@
+id,word,sentiment,category
+1,healing,positive,Relief and Recovery
+2,improving,positive,Relief and Recovery
+3,better,positive,Relief and Recovery
+4,recovered,positive,Relief and Recovery
+5,recovery,positive,Relief and Recovery
+6,remission,positive,Relief and Recovery
+7,manageable,positive,Relief and Recovery
+8,stable,positive,Relief and Recovery
+9,controlled,positive,Relief and Recovery
+10,progressing,positive,Relief and Recovery
+11,progress,positive,Relief and Recovery
+12,improvement,positive,Relief and Recovery
+13,relieved,positive,Relief and Recovery
+14,relief,positive,Relief and Recovery
+15,alleviated,positive,Relief and Recovery
+16,eased,positive,Relief and Recovery
+17,diminished,positive,Relief and Recovery
+18,subsided,positive,Relief and Recovery
+19,resolved,positive,Relief and Recovery
+20,healed,positive,Relief and Recovery
+21,effective,positive,Treatment Response
+22,working,positive,Treatment Response
+23,helpful,positive,Treatment Response
+24,responsive,positive,Treatment Response
+25,successful,positive,Treatment Response
+26,beneficial,positive,Treatment Response
+27,positive,positive,Treatment Response
+28,encouraging,positive,Treatment Response
+29,promising,positive,Treatment Response
+30,optimistic,positive,Treatment Response
+31,hopeful,positive,Treatment Response
+32,reassuring,positive,Treatment Response
+33,confident,positive,Treatment Response
+34,convinced,positive,Treatment Response
+35,satisfied,positive,Treatment Response
+36,comfortable,positive,Treatment Response
+37,tolerable,positive,Treatment Response
+38,bearable,positive,Treatment Response
+39,endurable,positive,Treatment Response
+40,withstandable,positive,Treatment Response
+41,happy,positive,Emotional Wellbeing
+42,calm,positive,Emotional Wellbeing
+43,peaceful,positive,Emotional Wellbeing
+44,relaxed,positive,Emotional Wellbeing
+45,content,positive,Emotional Wellbeing
+46,grateful,positive,Emotional Wellbeing
+47,thankful,positive,Emotional Wellbeing
+48,appreciative,positive,Emotional Wellbeing
+49,optimistic,positive,Emotional Wellbeing
+50,hopeful,positive,Emotional Wellbeing
+51,encouraged,positive,Emotional Wellbeing
+52,uplifted,positive,Emotional Wellbeing
+53,inspired,positive,Emotional Wellbeing
+54,motivated,positive,Emotional Wellbeing
+55,determined,positive,Emotional Wellbeing
+56,resilient,positive,Emotional Wellbeing
+57,strong,positive,Emotional Wellbeing
+58,brave,positive,Emotional Wellbeing
+59,courageous,positive,Emotional Wellbeing
+60,fearless,positive,Emotional Wellbeing
+61,trust,positive,Trust in Healthcare
+62,trusting,positive,Trust in Healthcare
+63,confident,positive,Trust in Healthcare
+64,assured,positive,Trust in Healthcare
+65,secure,positive,Trust in Healthcare
+66,safe,positive,Trust in Healthcare
+67,protected,positive,Trust in Healthcare
+68,cared,positive,Trust in Healthcare
+69,supported,positive,Trust in Healthcare
+70,understood,positive,Trust in Healthcare
+71,heard,positive,Trust in Healthcare
+72,validated,positive,Trust in Healthcare
+73,acknowledged,positive,Trust in Healthcare
+74,respected,positive,Trust in Healthcare
+75,valued,positive,Trust in Healthcare
+76,empowered,positive,Trust in Healthcare
+77,informed,positive,Trust in Healthcare
+78,educated,positive,Trust in Healthcare
+79,enlightened,positive,Trust in Healthcare
+80,knowledgeable,positive,Trust in Healthcare
+81,clear,positive,Communication
+82,informative,positive,Communication
+83,thorough,positive,Communication
+84,detailed,positive,Communication
+85,comprehensive,positive,Communication
+86,understandable,positive,Communication
+87,transparent,positive,Communication
+88,honest,positive,Communication
+89,straightforward,positive,Communication
+90,direct,positive,Communication
+91,precise,positive,Communication
+92,specific,positive,Communication
+93,explicit,positive,Communication
+94,articulate,positive,Communication
+95,coherent,positive,Communication
+96,logical,positive,Communication
+97,sensible,positive,Communication
+98,reasonable,positive,Communication
+99,rational,positive,Communication
+100,consistent,positive,Communication
+101,cooperative,positive,Cooperation
+102,compliant,positive,Cooperation
+103,adherent,positive,Cooperation
+104,following,positive,Cooperation
+105,committed,positive,Cooperation
+106,dedicated,positive,Cooperation
+107,diligent,positive,Cooperation
+108,careful,positive,Cooperation
+109,attentive,positive,Cooperation
+110,vigilant,positive,Cooperation
+111,observant,positive,Cooperation
+112,mindful,positive,Cooperation
+113,conscientious,positive,Cooperation
+114,responsible,positive,Cooperation
+115,reliable,positive,Cooperation
+116,dependable,positive,Cooperation
+117,trustworthy,positive,Cooperation
+118,honest,positive,Cooperation
+119,forthcoming,positive,Cooperation
+120,participative,positive,Cooperation
+121,energetic,positive,Physical Improvement
+122,active,positive,Physical Improvement
+123,mobile,positive,Physical Improvement
+124,functional,positive,Physical Improvement
+125,capable,positive,Physical Improvement
+126,able,positive,Physical Improvement
+127,strong,positive,Physical Improvement
+128,vigorous,positive,Physical Improvement
+129,vibrant,positive,Physical Improvement
+130,vital,positive,Physical Improvement
+131,lively,positive,Physical Improvement
+132,animated,positive,Physical Improvement
+133,spirited,positive,Physical Improvement
+134,dynamic,positive,Physical Improvement
+135,robust,positive,Physical Improvement
+136,hardy,positive,Physical Improvement
+137,durable,positive,Physical Improvement
+138,resilient,positive,Physical Improvement
+139,tough,positive,Physical Improvement
+140,enduring,positive,Physical Improvement
+141,independent,positive,Independence
+142,self-sufficient,positive,Independence
+143,autonomous,positive,Independence
+144,self-reliant,positive,Independence
+145,capable,positive,Independence
+146,competent,positive,Independence
+147,adept,positive,Independence
+148,skilled,positive,Independence
+149,proficient,positive,Independence
+150,accomplished,positive,Independence
+151,masterful,positive,Independence
+152,expert,positive,Independence
+153,adroit,positive,Independence
+154,dexterous,positive,Independence
+155,nimble,positive,Independence
+156,agile,positive,Independence
+157,spry,positive,Independence
+158,flexible,positive,Independence
+159,adaptable,positive,Independence
+160,versatile,positive,Independence
+161,supported,positive,Social Support
+162,accompanied,positive,Social Support
+163,assisted,positive,Social Support
+164,helped,positive,Social Support
+165,aided,positive,Social Support
+166,backed,positive,Social Support
+167,bolstered,positive,Social Support
+168,reinforced,positive,Social Support
+169,strengthened,positive,Social Support
+170,fortified,positive,Social Support
+171,empowered,positive,Social Support
+172,enabled,positive,Social Support
+173,facilitated,positive,Social Support
+174,encouraged,positive,Social Support
+175,championed,positive,Social Support
+176,advocated,positive,Social Support
+177,defended,positive,Social Support
+178,protected,positive,Social Support
+179,sheltered,positive,Social Support
+180,safeguarded,positive,Social Support
+181,hopeful,positive,Hope for Future
+182,optimistic,positive,Hope for Future
+183,positive,positive,Hope for Future
+184,encouraged,positive,Hope for Future
+185,expectant,positive,Hope for Future
+186,anticipating,positive,Hope for Future
+187,looking-forward,positive,Hope for Future
+188,excited,positive,Hope for Future
+189,eager,positive,Hope for Future
+190,keen,positive,Hope for Future
+191,enthusiastic,positive,Hope for Future
+192,zealous,positive,Hope for Future
+193,fervent,positive,Hope for Future
+194,ardent,positive,Hope for Future
+195,passionate,positive,Hope for Future
+196,devoted,positive,Hope for Future
+197,dedicated,positive,Hope for Future
+198,committed,positive,Hope for Future
+199,determined,positive,Hope for Future
+200,resolved,positive,Hope for Future
+201,grateful,positive,Gratitude Toward Healthcare
+202,thankful,positive,Gratitude Toward Healthcare
+203,appreciative,positive,Gratitude Toward Healthcare
+204,indebted,positive,Gratitude Toward Healthcare
+205,obliged,positive,Gratitude Toward Healthcare
+206,beholden,positive,Gratitude Toward Healthcare
+207,acknowledging,positive,Gratitude Toward Healthcare
+208,recognizing,positive,Gratitude Toward Healthcare
+209,praising,positive,Gratitude Toward Healthcare
+210,commending,positive,Gratitude Toward Healthcare
+211,complimenting,positive,Gratitude Toward Healthcare
+212,approving,positive,Gratitude Toward Healthcare
+213,endorsing,positive,Gratitude Toward Healthcare
+214,supporting,positive,Gratitude Toward Healthcare
+215,advocating,positive,Gratitude Toward Healthcare
+216,promoting,positive,Gratitude Toward Healthcare
+217,advancing,positive,Gratitude Toward Healthcare
+218,furthering,positive,Gratitude Toward Healthcare
+219,fostering,positive,Gratitude Toward Healthcare
+220,nurturing,positive,Gratitude Toward Healthcare
+221,comfortable,positive,Comfort
+222,cozy,positive,Comfort
+223,snug,positive,Comfort
+224,restful,positive,Comfort
+225,relaxed,positive,Comfort
+226,at-ease,positive,Comfort
+227,serene,positive,Comfort
+228,tranquil,positive,Comfort
+229,peaceful,positive,Comfort
+230,placid,positive,Comfort
+231,calm,positive,Comfort
+232,quiet,positive,Comfort
+233,still,positive,Comfort
+234,undisturbed,positive,Comfort
+235,untroubled,positive,Comfort
+236,unworried,positive,Comfort
+237,carefree,positive,Comfort
+238,lighthearted,positive,Comfort
+239,easygoing,positive,Comfort
+240,laid-back,positive,Comfort
+241,clear,positive,Clarity
+242,understood,positive,Clarity
+243,comprehended,positive,Clarity
+244,grasped,positive,Clarity
+245,apprehended,positive,Clarity
+246,fathomed,positive,Clarity
+247,discerned,positive,Clarity
+248,perceived,positive,Clarity
+249,recognized,positive,Clarity
+250,realized,positive,Clarity
+251,appreciated,positive,Clarity
+252,acknowledged,positive,Clarity
+253,accepted,positive,Clarity
+254,embraced,positive,Clarity
+255,welcomed,positive,Clarity
+256,received,positive,Clarity
+257,adopted,positive,Clarity
+258,internalized,positive,Clarity
+259,assimilated,positive,Clarity
+260,integrated,positive,Clarity
+261,manageable,positive,Additional Positive Terms
+262,controlled,positive,Additional Positive Terms
+263,regulated,positive,Additional Positive Terms
+264,moderated,positive,Additional Positive Terms
+265,moderate,positive,Additional Positive Terms
+266,temperate,positive,Additional Positive Terms
+267,balanced,positive,Additional Positive Terms
+268,equilibrated,positive,Additional Positive Terms
+269,harmonious,positive,Additional Positive Terms
+270,concordant,positive,Additional Positive Terms
+271,congruent,positive,Additional Positive Terms
+272,consistent,positive,Additional Positive Terms
+273,coherent,positive,Additional Positive Terms
+274,unified,positive,Additional Positive Terms
+275,integrated,positive,Additional Positive Terms
+276,whole,positive,Additional Positive Terms
+277,complete,positive,Additional Positive Terms
+278,fulfilled,positive,Additional Positive Terms
+279,satisfied,positive,Additional Positive Terms
+280,content,positive,Additional Positive Terms
+281,thriving,positive,Additional Positive Terms
+282,flourishing,positive,Additional Positive Terms
+283,prospering,positive,Additional Positive Terms
+284,succeeding,positive,Additional Positive Terms
+285,achieving,positive,Additional Positive Terms
+286,accomplishing,positive,Additional Positive Terms
+287,attaining,positive,Additional Positive Terms
+288,reaching,positive,Additional Positive Terms
+289,realizing,positive,Additional Positive Terms
+290,fulfilling,positive,Additional Positive Terms
+291,adaptive,positive,Additional Positive Terms
+292,receptive,positive,Additional Positive Terms
+293,responsive,positive,Additional Positive Terms
+294,amenable,positive,Additional Positive Terms
+295,willing,positive,Additional Positive Terms
+296,ready,positive,Additional Positive Terms
+297,prepared,positive,Additional Positive Terms
+298,equipped,positive,Additional Positive Terms
+299,furnished,positive,Additional Positive Terms
+300,outfitted,positive,Additional Positive Terms
+301,normal,positive,Additional Positive Terms
+302,regular,positive,Additional Positive Terms
+303,routine,positive,Additional Positive Terms
+304,ordinary,positive,Additional Positive Terms
+305,usual,positive,Additional Positive Terms
+306,customary,positive,Additional Positive Terms
+307,habitual,positive,Additional Positive Terms
+308,familiar,positive,Additional Positive Terms
+309,accustomed,positive,Additional Positive Terms
+310,traditional,positive,Additional Positive Terms
+311,grateful,positive,Additional Positive Terms
+312,thankful,positive,Additional Positive Terms
+313,appreciative,positive,Additional Positive Terms
+314,indebted,positive,Additional Positive Terms
+315,obliged,positive,Additional Positive Terms
+316,beholden,positive,Additional Positive Terms
+317,regenerative,positive,Additional Positive Terms
+318,restorative,positive,Additional Positive Terms
+319,rehabilitative,positive,Additional Positive Terms
+320,therapeutic,positive,Additional Positive Terms
+321,curative,positive,Additional Positive Terms
+322,remedial,positive,Additional Positive Terms
+323,medicinal,positive,Additional Positive Terms
+324,salutary,positive,Additional Positive Terms
+325,salubrious,positive,Additional Positive Terms
+326,wholesome,positive,Additional Positive Terms
+327,nutritious,positive,Additional Positive Terms
+328,nourishing,positive,Additional Positive Terms
+329,strengthening,positive,Additional Positive Terms
+330,fortifying,positive,Additional Positive Terms
+331,invigorating,positive,Additional Positive Terms
+332,refreshing,positive,Additional Positive Terms
+333,rejuvenating,positive,Additional Positive Terms
+334,revitalizing,positive,Additional Positive Terms
+335,reviving,positive,Additional Positive Terms
+336,reanimating,positive,Additional Positive Terms
+337,resuscitating,positive,Additional Positive Terms
+338,revivifying,positive,Additional Positive Terms
+339,renewing,positive,Additional Positive Terms
+340,restoring,positive,Additional Positive Terms
+341,positive,positive,Additional Positive Terms
+342,affirmative,positive,Additional Positive Terms
+343,constructive,positive,Additional Positive Terms
+344,productive,positive,Additional Positive Terms
+345,fruitful,positive,Additional Positive Terms
+346,beneficial,positive,Additional Positive Terms
+347,advantageous,positive,Additional Positive Terms
+348,favorable,positive,Additional Positive Terms
+349,propitious,positive,Additional Positive Terms
+350,auspicious,positive,Additional Positive Terms
+351,promising,positive,Additional Positive Terms
+352,encouraging,positive,Additional Positive Terms
+353,heartening,positive,Additional Positive Terms
+354,reassuring,positive,Additional Positive Terms
+355,comforting,positive,Additional Positive Terms
+356,consoling,positive,Additional Positive Terms
+357,soothing,positive,Additional Positive Terms
+358,alleviating,positive,Additional Positive Terms
+359,mitigating,positive,Additional Positive Terms
+360,relieving,positive,Additional Positive Terms
+361,sufficient,positive,Additional Positive Terms
+362,adequate,positive,Additional Positive Terms
+363,enough,positive,Additional Positive Terms
+364,ample,positive,Additional Positive Terms
+365,abundant,positive,Additional Positive Terms
+366,plentiful,positive,Additional Positive Terms
+367,copious,positive,Additional Positive Terms
+368,profuse,positive,Additional Positive Terms
+369,plenty,positive,Additional Positive Terms
+370,bountiful,positive,Additional Positive Terms
+371,excellent,positive,Additional Positive Terms
+372,superb,positive,Additional Positive Terms
+373,superior,positive,Additional Positive Terms
+374,outstanding,positive,Additional Positive Terms
+375,exceptional,positive,Additional Positive Terms
+376,extraordinary,positive,Additional Positive Terms
+377,remarkable,positive,Additional Positive Terms
+378,notable,positive,Additional Positive Terms
+379,noteworthy,positive,Additional Positive Terms
+380,significant,positive,Additional Positive Terms
+381,gentle,positive,Additional Positive Terms
+382,mild,positive,Additional Positive Terms
+383,light,positive,Additional Positive Terms
+384,soft,positive,Additional Positive Terms
+385,tender,positive,Additional Positive Terms
+386,delicate,positive,Additional Positive Terms
+387,subtle,positive,Additional Positive Terms
+388,nuanced,positive,Additional Positive Terms
+389,refined,positive,Additional Positive Terms
+390,sophisticated,positive,Additional Positive Terms
+391,collaborative,positive,Additional Positive Terms
+392,cooperative,positive,Additional Positive Terms
+393,united,positive,Additional Positive Terms
+394,allied,positive,Additional Positive Terms
+395,affiliated,positive,Additional Positive Terms
+396,associated,positive,Additional Positive Terms
+397,connected,positive,Additional Positive Terms
+398,linked,positive,Additional Positive Terms
+399,related,positive,Additional Positive Terms
+400,kindred,positive,Additional Positive Terms
+401,approachable,positive,Additional Positive Terms
+402,accessible,positive,Additional Positive Terms
+403,available,positive,Additional Positive Terms
+404,obtainable,positive,Additional Positive Terms
+405,attainable,positive,Additional Positive Terms
+406,reachable,positive,Additional Positive Terms
+407,contactable,positive,Additional Positive Terms
+408,responsive,positive,Additional Positive Terms
+409,receptive,positive,Additional Positive Terms
+410,open,positive,Additional Positive Terms
+411,respectful,positive,Additional Positive Terms
+412,courteous,positive,Additional Positive Terms
+413,polite,positive,Additional Positive Terms
+414,civil,positive,Additional Positive Terms
+415,mannerly,positive,Additional Positive Terms
+416,considerate,positive,Additional Positive Terms
+417,thoughtful,positive,Additional Positive Terms
+418,mindful,positive,Additional Positive Terms
+419,attentive,positive,Additional Positive Terms
+420,observant,positive,Additional Positive Terms
+421,friendly,positive,Additional Positive Terms
+422,amicable,positive,Additional Positive Terms
+423,amiable,positive,Additional Positive Terms
+424,cordial,positive,Additional Positive Terms
+425,genial,positive,Additional Positive Terms
+426,affable,positive,Additional Positive Terms
+427,congenial,positive,Additional Positive Terms
+428,sociable,positive,Additional Positive Terms
+429,neighborly,positive,Additional Positive Terms
+430,hospitable,positive,Additional Positive Terms
+431,kind,positive,Additional Positive Terms
+432,benevolent,positive,Additional Positive Terms
+433,benign,positive,Additional Positive Terms
+434,humane,positive,Additional Positive Terms
+435,humanitarian,positive,Additional Positive Terms
+436,philanthropic,positive,Additional Positive Terms
+437,altruistic,positive,Additional Positive Terms
+438,selfless,positive,Additional Positive Terms
+439,unselfish,positive,Additional Positive Terms
+440,generous,positive,Additional Positive Terms
+441,empathetic,positive,Additional Positive Terms
+442,compassionate,positive,Additional Positive Terms
+443,sympathetic,positive,Additional Positive Terms
+444,understanding,positive,Additional Positive Terms
+445,caring,positive,Additional Positive Terms
+446,concerned,positive,Additional Positive Terms
+447,solicitous,positive,Additional Positive Terms
+448,attentive,positive,Additional Positive Terms
+449,mindful,positive,Additional Positive Terms
+450,thoughtful,positive,Additional Positive Terms
+451,adaptive,positive,Additional Positive Terms
+452,adjustable,positive,Additional Positive Terms
+453,flexible,positive,Additional Positive Terms
+454,pliable,positive,Additional Positive Terms
+455,malleable,positive,Additional Positive Terms
+456,versatile,positive,Additional Positive Terms
+457,supple,positive,Additional Positive Terms
+458,accommodating,positive,Additional Positive Terms
+459,compliant,positive,Additional Positive Terms
+460,amenable,positive,Additional Positive Terms
+461,resilient,positive,Additional Positive Terms
+462,buoyant,positive,Additional Positive Terms
+463,bouncy,positive,Additional Positive Terms
+464,elastic,positive,Additional Positive Terms
+465,springy,positive,Additional Positive Terms
+466,flexible,positive,Additional Positive Terms
+467,adaptable,positive,Additional Positive Terms
+468,adjustable,positive,Additional Positive Terms
+469,accommodating,positive,Additional Positive Terms
+470,versatile,positive,Additional Positive Terms
+471,certain,positive,Additional Positive Terms
+472,sure,positive,Additional Positive Terms
+473,positive,positive,Additional Positive Terms
+474,convinced,positive,Additional Positive Terms
+475,confident,positive,Additional Positive Terms
+476,assured,positive,Additional Positive Terms
+477,definite,positive,Additional Positive Terms
+478,undoubted,positive,Additional Positive Terms
+479,undeniable,positive,Additional Positive Terms
+480,indisputable,positive,Additional Positive Terms
+481,knowledgeable,positive,Additional Positive Terms
+482,informed,positive,Additional Positive Terms
+483,educated,positive,Additional Positive Terms
+484,erudite,positive,Additional Positive Terms
+485,scholarly,positive,Additional Positive Terms
+486,learned,positive,Additional Positive Terms
+487,wise,positive,Additional Positive Terms
+488,sage,positive,Additional Positive Terms
+489,sapient,positive,Additional Positive Terms
+490,judicious,positive,Additional Positive Terms
+491,prudent,positive,Additional Positive Terms
+492,sensible,positive,Additional Positive Terms
+493,reasonable,positive,Additional Positive Terms
+494,rational,positive,Additional Positive Terms
+495,logical,positive,Additional Positive Terms
+496,sound,positive,Additional Positive Terms
+497,solid,positive,Additional Positive Terms
+498,substantial,positive,Additional Positive Terms
+499,robust,positive,Additional Positive Terms
+500,strong,positive,Additional Positive Terms
+501,pain,negative,Pain and Discomfort
+502,painful,negative,Pain and Discomfort
+503,hurting,negative,Pain and Discomfort
+504,aching,negative,Pain and Discomfort
+505,soreness,negative,Pain and Discomfort
+506,tenderness,negative,Pain and Discomfort
+507,discomfort,negative,Pain and Discomfort
+508,uncomfortable,negative,Pain and Discomfort
+509,agony,negative,Pain and Discomfort
+510,suffering,negative,Pain and Discomfort
+511,throbbing,negative,Pain and Discomfort
+512,stabbing,negative,Pain and Discomfort
+513,shooting,negative,Pain and Discomfort
+514,burning,negative,Pain and Discomfort
+515,stinging,negative,Pain and Discomfort
+516,piercing,negative,Pain and Discomfort
+517,sharp,negative,Pain and Discomfort
+518,severe,negative,Pain and Discomfort
+519,intense,negative,Pain and Discomfort
+520,excruciating,negative,Pain and Discomfort
+521,worse,negative,Worsening Condition
+522,worsening,negative,Worsening Condition
+523,deteriorating,negative,Worsening Condition
+524,declining,negative,Worsening Condition
+525,regressing,negative,Worsening Condition
+526,failing,negative,Worsening Condition
+527,aggravated,negative,Worsening Condition
+528,exacerbated,negative,Worsening Condition
+529,intensified,negative,Worsening Condition
+530,amplified,negative,Worsening Condition
+531,increased,negative,Worsening Condition
+532,heightened,negative,Worsening Condition
+533,deepened,negative,Worsening Condition
+534,elevated,negative,Worsening Condition
+535,escalated,negative,Worsening Condition
+536,progressed,negative,Worsening Condition
+537,advanced,negative,Worsening Condition
+538,developed,negative,Worsening Condition
+539,evolved,negative,Worsening Condition
+540,metastasized,negative,Worsening Condition
+541,worried,negative,Emotional Distress
+542,anxious,negative,Emotional Distress
+543,nervous,negative,Emotional Distress
+544,apprehensive,negative,Emotional Distress
+545,concerned,negative,Emotional Distress
+546,troubled,negative,Emotional Distress
+547,distressed,negative,Emotional Distress
+548,upset,negative,Emotional Distress
+549,frightened,negative,Emotional Distress
+550,scared,negative,Emotional Distress
+551,terrified,negative,Emotional Distress
+552,petrified,negative,Emotional Distress
+553,horrified,negative,Emotional Distress
+554,panicked,negative,Emotional Distress
+555,alarmed,negative,Emotional Distress
+556,disturbed,negative,Emotional Distress
+557,unsettled,negative,Emotional Distress
+558,uneasy,negative,Emotional Distress
+559,uncomfortable,negative,Emotional Distress
+560,restless,negative,Emotional Distress
+561,sad,negative,Depression and Hopelessness
+562,depressed,negative,Depression and Hopelessness
+563,melancholy,negative,Depression and Hopelessness
+564,gloomy,negative,Depression and Hopelessness
+565,downcast,negative,Depression and Hopelessness
+566,downhearted,negative,Depression and Hopelessness
+567,dejected,negative,Depression and Hopelessness
+568,disheartened,negative,Depression and Hopelessness
+569,discouraged,negative,Depression and Hopelessness
+570,dispirited,negative,Depression and Hopelessness
+571,despondent,negative,Depression and Hopelessness
+572,desperate,negative,Depression and Hopelessness
+573,hopeless,negative,Depression and Hopelessness
+574,helpless,negative,Depression and Hopelessness
+575,powerless,negative,Depression and Hopelessness
+576,worthless,negative,Depression and Hopelessness
+577,useless,negative,Depression and Hopelessness
+578,ineffective,negative,Depression and Hopelessness
+579,inadequate,negative,Depression and Hopelessness
+580,insufficient,negative,Depression and Hopelessness
+581,frustrated,negative,Frustration
+582,annoyed,negative,Frustration
+583,irritated,negative,Frustration
+584,aggravated,negative,Frustration
+585,exasperated,negative,Frustration
+586,impatient,negative,Frustration
+587,discontented,negative,Frustration
+588,dissatisfied,negative,Frustration
+589,disappointed,negative,Frustration
+590,displeased,negative,Frustration
+591,unhappy,negative,Frustration
+592,disgruntled,negative,Frustration
+593,resentful,negative,Frustration
+594,bitter,negative,Frustration
+595,indignant,negative,Frustration
+596,outraged,negative,Frustration
+597,angry,negative,Frustration
+598,furious,negative,Frustration
+599,enraged,negative,Frustration
+600,incensed,negative,Frustration
+601,confused,negative,Confusion
+602,bewildered,negative,Confusion
+603,perplexed,negative,Confusion
+604,puzzled,negative,Confusion
+605,baffled,negative,Confusion
+606,mystified,negative,Confusion
+607,disoriented,negative,Confusion
+608,lost,negative,Confusion
+609,uncertain,negative,Confusion
+610,unsure,negative,Confusion
+611,doubtful,negative,Confusion
+612,skeptical,negative,Confusion
+613,suspicious,negative,Confusion
+614,mistrustful,negative,Confusion
+615,distrustful,negative,Confusion
+616,wary,negative,Confusion
+617,cautious,negative,Confusion
+618,hesitant,negative,Confusion
+619,reluctant,negative,Confusion
+620,resistant,negative,Confusion
+621,fatigued,negative,Physical Symptoms
+622,exhausted,negative,Physical Symptoms
+623,tired,negative,Physical Symptoms
+624,drained,negative,Physical Symptoms
+625,lethargic,negative,Physical Symptoms
+626,weak,negative,Physical Symptoms
+627,feeble,negative,Physical Symptoms
+628,frail,negative,Physical Symptoms
+629,fragile,negative,Physical Symptoms
+630,delicate,negative,Physical Symptoms
+631,sickly,negative,Physical Symptoms
+632,ill,negative,Physical Symptoms
+633,sick,negative,Physical Symptoms
+634,unwell,negative,Physical Symptoms
+635,poor,negative,Physical Symptoms
+636,nauseous,negative,Physical Symptoms
+637,queasy,negative,Physical Symptoms
+638,dizzy,negative,Physical Symptoms
+639,lightheaded,negative,Physical Symptoms
+640,faint,negative,Physical Symptoms
+641,limited,negative,Limitations
+642,restricted,negative,Limitations
+643,constrained,negative,Limitations
+644,confined,negative,Limitations
+645,hindered,negative,Limitations
+646,hampered,negative,Limitations
+647,impeded,negative,Limitations
+648,obstructed,negative,Limitations
+649,blocked,negative,Limitations
+650,barred,negative,Limitations
+651,prevented,negative,Limitations
+652,disabled,negative,Limitations
+653,incapacitated,negative,Limitations
+654,immobilized,negative,Limitations
+655,paralyzed,negative,Limitations
+656,crippled,negative,Limitations
+657,handicapped,negative,Limitations
+658,impaired,negative,Limitations
+659,deficient,negative,Limitations
+660,defective,negative,Limitations
+661,ineffective,negative,Treatment Concerns
+662,unsuccessful,negative,Treatment Concerns
+663,failing,negative,Treatment Concerns
+664,useless,negative,Treatment Concerns
+665,pointless,negative,Treatment Concerns
+666,worthless,negative,Treatment Concerns
+667,futile,negative,Treatment Concerns
+668,fruitless,negative,Treatment Concerns
+669,unavailing,negative,Treatment Concerns
+670,unproductive,negative,Treatment Concerns
+671,counterproductive,negative,Treatment Concerns
+672,adverse,negative,Treatment Concerns
+673,allergic,negative,Treatment Concerns
+674,sensitive,negative,Treatment Concerns
+675,intolerant,negative,Treatment Concerns
+676,resistant,negative,Treatment Concerns
+677,unresponsive,negative,Treatment Concerns
+678,refractory,negative,Treatment Concerns
+679,recalcitrant,negative,Treatment Concerns
+680,stubborn,negative,Treatment Concerns
+681,side-effect,negative,Side Effects
+682,side-effects,negative,Side Effects
+683,reaction,negative,Side Effects
+684,reactions,negative,Side Effects
+685,complication,negative,Side Effects
+686,complications,negative,Side Effects
+687,consequence,negative,Side Effects
+688,consequences,negative,Side Effects
+689,aftereffect,negative,Side Effects
+690,aftereffects,negative,Side Effects
+691,sequela,negative,Side Effects
+692,sequelae,negative,Side Effects
+693,repercussion,negative,Side Effects
+694,repercussions,negative,Side Effects
+695,fallout,negative,Side Effects
+696,ramification,negative,Side Effects
+697,ramifications,negative,Side Effects
+698,outcome,negative,Side Effects
+699,outcomes,negative,Side Effects
+700,result,negative,Side Effects
+701,afraid,negative,Fear of Future
+702,fearful,negative,Fear of Future
+703,frightened,negative,Fear of Future
+704,scared,negative,Fear of Future
+705,terrified,negative,Fear of Future
+706,petrified,negative,Fear of Future
+707,horror-struck,negative,Fear of Future
+708,horrified,negative,Fear of Future
+709,aghast,negative,Fear of Future
+710,appalled,negative,Fear of Future
+711,dreading,negative,Fear of Future
+712,anxious,negative,Fear of Future
+713,worried,negative,Fear of Future
+714,concerned,negative,Fear of Future
+715,troubled,negative,Fear of Future
+716,disturbed,negative,Fear of Future
+717,perturbed,negative,Fear of Future
+718,unsettled,negative,Fear of Future
+719,uneasy,negative,Fear of Future
+720,disquieted,negative,Fear of Future
+721,mistrustful,negative,Mistrust
+722,distrustful,negative,Mistrust
+723,untrusting,negative,Mistrust
+724,suspicious,negative,Mistrust
+725,skeptical,negative,Mistrust
+726,doubtful,negative,Mistrust
+727,dubious,negative,Mistrust
+728,uncertain,negative,Mistrust
+729,unsure,negative,Mistrust
+730,hesitant,negative,Mistrust
+731,reluctant,negative,Mistrust
+732,unwilling,negative,Mistrust
+733,disinclined,negative,Mistrust
+734,averse,negative,Mistrust
+735,loath,negative,Mistrust
+736,resistant,negative,Mistrust
+737,opposed,negative,Mistrust
+738,contrary,negative,Mistrust
+739,antagonistic,negative,Mistrust
+740,hostile,negative,Mistrust
+741,expensive,negative,Financial Concerns
+742,costly,negative,Financial Concerns
+743,pricey,negative,Financial Concerns
+744,high-priced,negative,Financial Concerns
+745,overpriced,negative,Financial Concerns
+746,exorbitant,negative,Financial Concerns
+747,excessive,negative,Financial Concerns
+748,extravagant,negative,Financial Concerns
+749,steep,negative,Financial Concerns
+750,prohibitive,negative,Financial Concerns
+751,unaffordable,negative,Financial Concerns
+752,bankrupt,negative,Financial Concerns
+753,impoverished,negative,Financial Concerns
+754,destitute,negative,Financial Concerns
+755,indigent,negative,Financial Concerns
+756,needy,negative,Financial Concerns
+757,poor,negative,Financial Concerns
+758,broke,negative,Financial Concerns
+759,insolvent,negative,Financial Concerns
+760,indebted,negative,Financial Concerns
+761,misunderstood,negative,Communication Issues
+762,misinterpreted,negative,Communication Issues
+763,misconstrued,negative,Communication Issues
+764,misconceived,negative,Communication Issues
+765,misapprehended,negative,Communication Issues
+766,misjudged,negative,Communication Issues
+767,mischaracterized,negative,Communication Issues
+768,misevaluated,negative,Communication Issues
+769,misestimated,negative,Communication Issues
+770,misgauged,negative,Communication Issues
+771,unclear,negative,Communication Issues
+772,vague,negative,Communication Issues
+773,ambiguous,negative,Communication Issues
+774,equivocal,negative,Communication Issues
+775,obscure,negative,Communication Issues
+776,opaque,negative,Communication Issues
+777,cryptic,negative,Communication Issues
+778,enigmatic,negative,Communication Issues
+779,puzzling,negative,Communication Issues
+780,confusing,negative,Communication Issues
+781,overwhelming,negative,Additional Negative Terms
+782,overpowering,negative,Additional Negative Terms
+783,overcoming,negative,Additional Negative Terms
+784,defeating,negative,Additional Negative Terms
+785,conquering,negative,Additional Negative Terms
+786,prevailing,negative,Additional Negative Terms
+787,dominating,negative,Additional Negative Terms
+788,commanding,negative,Additional Negative Terms
+789,controlling,negative,Additional Negative Terms
+790,subduing,negative,Additional Negative Terms
+791,unbearable,negative,Additional Negative Terms
+792,intolerable,negative,Additional Negative Terms
+793,unsupportable,negative,Additional Negative Terms
+794,insupportable,negative,Additional Negative Terms
+795,unendurable,negative,Additional Negative Terms
+796,insufferable,negative,Additional Negative Terms
+797,unacceptable,negative,Additional Negative Terms
+798,impermissible,negative,Additional Negative Terms
+799,inadmissible,negative,Additional Negative Terms
+800,prohibited,negative,Additional Negative Terms
+801,abnormal,negative,Additional Negative Terms
+802,irregular,negative,Additional Negative Terms
+803,unusual,negative,Additional Negative Terms
+804,uncommon,negative,Additional Negative Terms
+805,strange,negative,Additional Negative Terms
+806,odd,negative,Additional Negative Terms
+807,peculiar,negative,Additional Negative Terms
+808,weird,negative,Additional Negative Terms
+809,bizarre,negative,Additional Negative Terms
+810,outlandish,negative,Additional Negative Terms
+811,neglected,negative,Additional Negative Terms
+812,ignored,negative,Additional Negative Terms
+813,disregarded,negative,Additional Negative Terms
+814,overlooked,negative,Additional Negative Terms
+815,dismissed,negative,Additional Negative Terms
+816,discounted,negative,Additional Negative Terms
+817,depreciated,negative,Additional Negative Terms
+818,devalued,negative,Additional Negative Terms
+819,undervalued,negative,Additional Negative Terms
+820,underestimated,negative,Additional Negative Terms
+821,degenerative,negative,Additional Negative Terms
+822,deteriorative,negative,Additional Negative Terms
+823,regressive,negative,Additional Negative Terms
+824,retrograde,negative,Additional Negative Terms
+825,backward,negative,Additional Negative Terms
+826,retreating,negative,Additional Negative Terms
+827,receding,negative,Additional Negative Terms
+828,subsiding,negative,Additional Negative Terms
+829,declining,negative,Additional Negative Terms
+830,decreasing,negative,Additional Negative Terms
+831,debilitating,negative,Additional Negative Terms
+832,weakening,negative,Additional Negative Terms
+833,enfeebling,negative,Additional Negative Terms
+834,enervating,negative,Additional Negative Terms
+835,draining,negative,Additional Negative Terms
+836,sapping,negative,Additional Negative Terms
+837,depleting,negative,Additional Negative Terms
+838,exhausting,negative,Additional Negative Terms
+839,tiring,negative,Additional Negative Terms
+840,fatiguing,negative,Additional Negative Terms
+841,negative,negative,Additional Negative Terms
+842,adversative,negative,Additional Negative Terms
+843,adverse,negative,Additional Negative Terms
+844,unfavorable,negative,Additional Negative Terms
+845,disadvantageous,negative,Additional Negative Terms
+846,detrimental,negative,Additional Negative Terms
+847,harmful,negative,Additional Negative Terms
+848,injurious,negative,Additional Negative Terms
+849,damaging,negative,Additional Negative Terms
+850,deleterious,negative,Additional Negative Terms
+851,despairing,negative,Additional Negative Terms
+852,despondent,negative,Additional Negative Terms
+853,disheartened,negative,Additional Negative Terms
+854,discouraged,negative,Additional Negative Terms
+855,downhearted,negative,Additional Negative Terms
+856,downcast,negative,Additional Negative Terms
+857,dejected,negative,Additional Negative Terms
+858,depressed,negative,Additional Negative Terms
+859,melancholy,negative,Additional Negative Terms
+860,gloomy,negative,Additional Negative Terms
+861,insufficient,negative,Additional Negative Terms
+862,inadequate,negative,Additional Negative Terms
+863,deficient,negative,Additional Negative Terms
+864,lacking,negative,Additional Negative Terms
+865,wanting,negative,Additional Negative Terms
+866,scarce,negative,Additional Negative Terms
+867,scanty,negative,Additional Negative Terms
+868,meager,negative,Additional Negative Terms
+869,sparse,negative,Additional Negative Terms
+870,skimpy,negative,Additional Negative Terms
+871,terrible,negative,Additional Negative Terms
+872,awful,negative,Additional Negative Terms
+873,dreadful,negative,Additional Negative Terms
+874,horrible,negative,Additional Negative Terms
+875,horrendous,negative,Additional Negative Terms
+876,horrific,negative,Additional Negative Terms
+877,appalling,negative,Additional Negative Terms
+878,atrocious,negative,Additional Negative Terms
+879,abominable,negative,Additional Negative Terms
+880,abhorrent,negative,Additional Negative Terms
+881,severe,negative,Additional Negative Terms
+882,harsh,negative,Additional Negative Terms
+883,intense,negative,Additional Negative Terms
+884,extreme,negative,Additional Negative Terms
+885,acute,negative,Additional Negative Terms
+886,critical,negative,Additional Negative Terms
+887,serious,negative,Additional Negative Terms
+888,grave,negative,Additional Negative Terms
+889,dire,negative,Additional Negative Terms
+890,urgent,negative,Additional Negative Terms
+891,adversarial,negative,Additional Negative Terms
+892,antagonistic,negative,Additional Negative Terms
+893,hostile,negative,Additional Negative Terms
+894,inimical,negative,Additional Negative Terms
+895,unfriendly,negative,Additional Negative Terms
+896,belligerent,negative,Additional Negative Terms
+897,bellicose,negative,Additional Negative Terms
+898,aggressive,negative,Additional Negative Terms
+899,combative,negative,Additional Negative Terms
+900,confrontational,negative,Additional Negative Terms
+901,unapproachable,negative,Additional Negative Terms
+902,inaccessible,negative,Additional Negative Terms
+903,unavailable,negative,Additional Negative Terms
+904,unreachable,negative,Additional Negative Terms
+905,unattainable,negative,Additional Negative Terms
+906,uncontactable,negative,Additional Negative Terms
+907,unresponsive,negative,Additional Negative Terms
+908,unreceptive,negative,Additional Negative Terms
+909,closed,negative,Additional Negative Terms
+910,shut,negative,Additional Negative Terms
+911,disrespectful,negative,Additional Negative Terms
+912,discourteous,negative,Additional Negative Terms
+913,impolite,negative,Additional Negative Terms
+914,uncivil,negative,Additional Negative Terms
+915,rude,negative,Additional Negative Terms
+916,ill-mannered,negative,Additional Negative Terms
+917,inconsiderate,negative,Additional Negative Terms
+918,thoughtless,negative,Additional Negative Terms
+919,unmindful,negative,Additional Negative Terms
+920,inattentive,negative,Additional Negative Terms
+921,unfriendly,negative,Additional Negative Terms
+922,hostile,negative,Additional Negative Terms
+923,antagonistic,negative,Additional Negative Terms
+924,cold,negative,Additional Negative Terms
+925,aloof,negative,Additional Negative Terms
+926,distant,negative,Additional Negative Terms
+927,remote,negative,Additional Negative Terms
+928,detached,negative,Additional Negative Terms
+929,withdrawn,negative,Additional Negative Terms
+930,reserved,negative,Additional Negative Terms
+931,cruel,negative,Additional Negative Terms
+932,malevolent,negative,Additional Negative Terms
+933,malign,negative,Additional Negative Terms
+934,inhumane,negative,Additional Negative Terms
+935,barbaric,negative,Additional Negative Terms
+936,brutal,negative,Additional Negative Terms
+937,savage,negative,Additional Negative Terms
+938,fierce,negative,Additional Negative Terms
+939,ferocious,negative,Additional Negative Terms
+940,vicious,negative,Additional Negative Terms
+941,apathetic,negative,Additional Negative Terms
+942,indifferent,negative,Additional Negative Terms
+943,uncaring,negative,Additional Negative Terms
+944,unsympathetic,negative,Additional Negative Terms
+945,insensitive,negative,Additional Negative Terms
+946,unconcerned,negative,Additional Negative Terms
+947,uninterested,negative,Additional Negative Terms
+948,uninvolved,negative,Additional Negative Terms
+949,disengaged,negative,Additional Negative Terms
+950,detached,negative,Additional Negative Terms
+951,inflexible,negative,Additional Negative Terms
+952,rigid,negative,Additional Negative Terms
+953,stiff,negative,Additional Negative Terms
+954,unyielding,negative,Additional Negative Terms
+955,unbending,negative,Additional Negative Terms
+956,inflexible,negative,Additional Negative Terms
+957,intransigent,negative,Additional Negative Terms
+958,adamant,negative,Additional Negative Terms
+959,obstinate,negative,Additional Negative Terms
+960,stubborn,negative,Additional Negative Terms
+961,brittle,negative,Additional Negative Terms
+962,fragile,negative,Additional Negative Terms
+963,breakable,negative,Additional Negative Terms
+964,delicate,negative,Additional Negative Terms
+965,frail,negative,Additional Negative Terms
+966,weak,negative,Additional Negative Terms
+967,feeble,negative,Additional Negative Terms
+968,insubstantial,negative,Additional Negative Terms
+969,flimsy,negative,Additional Negative Terms
+970,uncertain,negative,Additional Negative Terms
+971,unsure,negative,Additional Negative Terms
+972,dubious,negative,Additional Negative Terms
+973,doubtful,negative,Additional Negative Terms
+974,unconvinced,negative,Additional Negative Terms
+975,unconfident,negative,Additional Negative Terms
+976,insecure,negative,Additional Negative Terms
+977,hesitant,negative,Additional Negative Terms
+978,vacillating,negative,Additional Negative Terms
+979,wavering,negative,Additional Negative Terms
+980,undecided,negative,Additional Negative Terms
+981,ignorant,negative,Additional Negative Terms
+982,uninformed,negative,Additional Negative Terms
+983,uneducated,negative,Additional Negative Terms
+984,unlearned,negative,Additional Negative Terms
+985,untaught,negative,Additional Negative Terms
+986,untutored,negative,Additional Negative Terms
+987,unschooled,negative,Additional Negative Terms
+988,illiterate,negative,Additional Negative Terms
+989,unlettered,negative,Additional Negative Terms
+990,unread,negative,Additional Negative Terms
+991,imprudent,negative,Additional Negative Terms
+992,injudicious,negative,Additional Negative Terms
+993,insensible,negative,Additional Negative Terms
+994,unreasonable,negative,Additional Negative Terms
+995,irrational,negative,Additional Negative Terms
+996,illogical,negative,Additional Negative Terms
+997,unsound,negative,Additional Negative Terms
+998,insubstantial,negative,Additional Negative Terms
+999,unsubstantial,negative,Additional Negative Terms
+1000,weak,negative,Additional Negative Terms

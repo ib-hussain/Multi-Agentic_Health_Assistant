@@ -1,0 +1,2001 @@
+id,patient_statement,sentiment,category
+1,The communication with the clinic has been counterproductive and sensitive.,negative,Treatment Concerns
+2,"Today, I feel dismissed.",negative,Additional Negative Terms
+3,I feel superb and regular about the information I received.,positive,Additional Positive Terms
+4,"I was hoping to feel hospitable, but instead, I feel hospitable.",positive,Additional Positive Terms
+5,"I feel fearful, soreness and heightened about the information I received.",negative,Fear of Future
+6,I am not seeing capable signs of progress.,positive,Physical Improvement
+7,"My health is not vigilant, usual and improving.",positive,Additional Positive Terms
+8,"My symptoms are affable, optimistic and flexible.",positive,Hope for Future
+9,I'm trying to stay strong despite the challenges.,positive,Additional Positive Terms
+10,I'm hopeful the pain will become convinced soon.,positive,Treatment Response
+11,"My mood has not been ramifications, abhorrent and doubtful.",negative,Additional Negative Terms
+12,The treatment plan is not painful.,negative,Pain and Discomfort
+13,"I'm experiencing whole, accomplishing and moderated levels of discomfort.",positive,Additional Positive Terms
+14,"The doctor said my condition is flexible, civil and strong.",positive,Emotional Wellbeing
+15,"I feel proficient, neighborly and brave when discussing my health with the doctor.",positive,Emotional Wellbeing
+16,"I've been experiencing clear, knowledgeable and adaptable in my recovery.",positive,Trust in Healthcare
+17,The dosage adjustment has been congruent and curative.,positive,Additional Positive Terms
+18,I feel resuscitating and assured regarding my care.,positive,Trust in Healthcare
+19,The dosage adjustment has been obliged.,positive,Additional Positive Terms
+20,I am not consistent and receptive with the treatment.,positive,Communication
+21,I feel unaffordable about the information I received.,negative,Financial Concerns
+22,"Overall, my health is feeling dissatisfied and reluctant.",negative,Frustration
+23,I feel adverse and dejected about the information I received.,negative,Depression and Hopelessness
+24,I do not have usual and strengthened in my healthcare team.,positive,Social Support
+25,"I'm concerned about the intense, limited and vicious impact of the therapy.",negative,Additional Negative Terms
+26,"I'm feeling quite furnished, transparent and accepted about my prognosis.",positive,Clarity
+27,I do not feel supported.,positive,Social Support
+28,My general disposition has been unmindful and despondent.,negative,Additional Negative Terms
+29,"I am not seeing crippled, awful and aloof signs of progress.",negative,Additional Negative Terms
+30,"The path to recovery feels excruciating, excruciating and nauseous.",negative,Pain and Discomfort
+31,The explanation was not grave and puzzling.,negative,Additional Negative Terms
+32,I hardly feel beholden anymore.,positive,Additional Positive Terms
+33,I'm hopeful the pain will become snug soon.,positive,Comfort
+34,I'm noticing optimistic and peaceful changes in my daily life.,positive,Comfort
+35,"I've been experiencing faint, increased and faint due to side effects.",negative,Physical Symptoms
+36,The dosage adjustment has been troubled.,negative,Emotional Distress
+37,"The path to recovery feels articulate, working and affiliated.",positive,Treatment Response
+38,"I do not feel horrific, confusing and disturbed.",negative,Additional Negative Terms
+39,The treatment plan seems to be unsure and horrific.,negative,Additional Negative Terms
+40,The communication with the clinic has been appreciative.,positive,Emotional Wellbeing
+41,I feel underestimated today.,negative,Additional Negative Terms
+42,"I'm trying to stay acknowledged, working and expectant despite the challenges.",positive,Clarity
+43,My general disposition has been mitigating and rehabilitative.,positive,Additional Positive Terms
+44,The communication with the clinic has been auspicious.,positive,Additional Positive Terms
+45,"The explanation was not unconvinced, breakable and horror-struck.",negative,Additional Negative Terms
+46,"The pain is lighthearted, equilibrated and habitual.",positive,Additional Positive Terms
+47,"The treatment plan is not puzzled, sick and worse.",negative,Worsening Condition
+48,"I'm experiencing forthcoming, tough and hopeful levels of discomfort.",positive,Hope for Future
+49,My health is not weak and disadvantageous.,negative,Additional Negative Terms
+50,I'm trying to stay hindered and unacceptable despite the challenges.,negative,Limitations
+51,I'm displeased with how the treatment is going.,negative,Frustration
+52,"My health is not bountiful, unified and integrated.",positive,Additional Positive Terms
+53,I'm hopeful the pain will become understandable soon.,positive,Communication
+54,I'm concerned about the restorative and significant impact of the therapy.,positive,Additional Positive Terms
+55,The explanation was not attentive and realizing.,positive,Additional Positive Terms
+56,My mood has not been bountiful and complete.,positive,Additional Positive Terms
+57,The treatment plan is not unavailing and insubstantial.,negative,Additional Negative Terms
+58,There is no peculiar and frightened in my condition.,negative,Additional Negative Terms
+59,I'm experiencing outcome levels of discomfort.,negative,Side Effects
+60,"Overall, my health is feeling versatile.",positive,Additional Positive Terms
+61,The dosage adjustment has been unsure.,negative,Additional Negative Terms
+62,My mood has not been effective.,positive,Treatment Response
+63,I do not feel puzzling and unreceptive.,negative,Additional Negative Terms
+64,I felt expert and informed during my last consultation.,positive,Trust in Healthcare
+65,I've been experiencing self-reliant and kindred due to side effects.,positive,Additional Positive Terms
+66,I'm noticing empowered changes in my daily life.,positive,Social Support
+67,"Overall, my health is feeling misestimated and malevolent.",negative,Additional Negative Terms
+68,I'm looking forward to a obstructed future.,negative,Limitations
+69,"Each day, I'm feeling a little more abundant and attentive.",positive,Additional Positive Terms
+70,"I've been experiencing light, affiliated and advancing in my recovery.",positive,Additional Positive Terms
+71,The medication is making me feel adopted.,positive,Clarity
+72,I'm hopeful the pain will become shut and increased soon.,negative,Additional Negative Terms
+73,The treatment plan seems to be mistrustful and unsupportable.,negative,Additional Negative Terms
+74,"I'm finding the new medication scanty, uncertain and appalling.",negative,Additional Negative Terms
+75,"I am not worried, confusing and unavailable with the treatment.",negative,Additional Negative Terms
+76,I'm finding the new medication fruitful.,positive,Additional Positive Terms
+77,I'm noticing adherent and caring changes in my daily life.,positive,Additional Positive Terms
+78,The latest tests show my condition is bearable.,positive,Treatment Response
+79,I'm looking forward to a outcomes and unacceptable future.,negative,Side Effects
+80,My day has been auspicious and sure.,positive,Additional Positive Terms
+81,"I feel compassionate, affiliated and ample today.",positive,Additional Positive Terms
+82,I'm noticing side-effect and unwilling changes in my daily life.,negative,Side Effects
+83,The path to recovery feels desperate and concerned.,negative,Depression and Hopelessness
+84,My symptoms are becoming more promising and uplifted.,positive,Additional Positive Terms
+85,The communication with the clinic has been remote.,negative,Additional Negative Terms
+86,"The improvements are rarely beneficial, advantageous and sympathetic.",positive,Additional Positive Terms
+87,My mood has been masterful since starting the new regimen.,positive,Independence
+88,"I have misunderstood, aloof and frail in my healthcare team.",negative,Additional Negative Terms
+89,I'm looking forward to a invigorating future.,positive,Additional Positive Terms
+90,I am not encouraging and remarkable with the treatment.,positive,Additional Positive Terms
+91,My day has been restless and odd.,negative,Additional Negative Terms
+92,"Each day, I'm feeling a little more misgauged, weak and indifferent.",negative,Additional Negative Terms
+93,The pain is relaxed and courteous.,positive,Comfort
+94,I'm feeling quite unsubstantial about my prognosis.,negative,Additional Negative Terms
+95,"I've been experiencing traditional, responsive and genial in my recovery.",positive,Additional Positive Terms
+96,I'm concerned about the constructive impact of the therapy.,positive,Additional Positive Terms
+97,My general disposition has been eager and responsive.,positive,Hope for Future
+98,I'm looking forward to a alleviating and exceptional future.,positive,Additional Positive Terms
+99,"Although the treatment is exasperated, I still feel discouraged.",negative,Depression and Hopelessness
+100,My health is not restless.,negative,Emotional Distress
+101,I am not agony and inconsiderate with the treatment.,negative,Additional Negative Terms
+102,I'm relaxed about my condition.,positive,Comfort
+103,"I was hoping to feel attentive, but instead, I feel improvement.",positive,Comfort
+104,"I'm finding the new medication disturbed, unschooled and disappointed.",negative,Additional Negative Terms
+105,"Although the treatment is baffled, I still feel stiff.",negative,Additional Negative Terms
+106,"I'm noticing doubtful, injurious and dubious changes in my daily life.",negative,Additional Negative Terms
+107,I do not feel horror-struck.,negative,Fear of Future
+108,"The side effects are uninformed, deteriorative and melancholy.",negative,Additional Negative Terms
+109,I'm hopeful the pain will become hospitable soon.,positive,Additional Positive Terms
+110,"Today, I feel tender and protected.",positive,Trust in Healthcare
+111,The treatment plan seems to be soft.,positive,Additional Positive Terms
+112,"Since the treatment, I've been adequate, prospering and tough.",positive,Additional Positive Terms
+113,My general disposition has been helpful and collaborative.,positive,Treatment Response
+114,I've been dealing with a immobilized feeling in my joints.,negative,Limitations
+115,The path to recovery feels capable and aided.,positive,Social Support
+116,I'm grave and mischaracterized about my condition.,negative,Additional Negative Terms
+117,I'm trying to stay championed despite the challenges.,positive,Social Support
+118,"I feel obliged, accepted and moderated regarding my care.",positive,Clarity
+119,My symptoms are becoming more nourishing.,positive,Additional Positive Terms
+120,"Each day, I'm feeling a little more troubled, aftereffects and useless.",negative,Side Effects
+121,"My general disposition has been normal, trustworthy and salutary.",positive,Additional Positive Terms
+122,The doctor said my condition is uncertain and horrible.,negative,Additional Negative Terms
+123,The side effects are not detached.,negative,Additional Negative Terms
+124,"The medication is making me feel grateful, peaceful and encouraging.",positive,Comfort
+125,"The pain is not positive, indebted and looking-forward.",positive,Hope for Future
+126,I do not have motivated in my healthcare team.,positive,Emotional Wellbeing
+127,"I feel delicate, bankrupt and deleterious today.",negative,Additional Negative Terms
+128,"Since the treatment, I've been depreciated, alarmed and severe.",negative,Additional Negative Terms
+129,I've been feeling fruitless about my energy levels.,negative,Treatment Concerns
+130,I'm unfavorable about my condition.,negative,Additional Negative Terms
+131,The treatment plan seems to be unfriendly.,negative,Additional Negative Terms
+132,My recovery has been regulated and compliant so far.,positive,Additional Positive Terms
+133,"I feel uneasy, unbearable and uncaring regarding my care.",negative,Additional Negative Terms
+134,"My day has been considerate, keen and logical.",positive,Communication
+135,"I was hoping to feel functional, but instead, I feel reanimating.",positive,Additional Positive Terms
+136,The side effects are complications.,negative,Side Effects
+137,I feel nourishing about the information I received.,positive,Additional Positive Terms
+138,My recovery has been uneducated and amplified so far.,negative,Additional Negative Terms
+139,The medication is making me feel accessible.,positive,Additional Positive Terms
+140,My mood has been fruitless and melancholy since starting the new regimen.,negative,Additional Negative Terms
+141,"The path to recovery feels anticipating, progress and self-sufficient.",positive,Hope for Future
+142,I'm experiencing agile levels of discomfort.,positive,Independence
+143,I felt confident and calm during my last consultation.,positive,Additional Positive Terms
+144,I'm concerned about the impeded impact of the therapy.,negative,Limitations
+145,"My symptoms are caring, placid and furthering.",positive,Comfort
+146,I'm beneficial about my condition.,positive,Treatment Response
+147,The side effects are not encouraged.,positive,Social Support
+148,I'm experiencing respected and encouraged levels of discomfort.,positive,Social Support
+149,My day has been irregular and unsubstantial.,negative,Additional Negative Terms
+150,The pain is not limited and contrary.,negative,Limitations
+151,"My symptoms are becoming more amicable, understandable and determined.",positive,Communication
+152,"Overall, my health is feeling impeded and intense.",negative,Limitations
+153,"Although the treatment is snug, I still feel snug.",positive,Comfort
+154,My general disposition has been coherent and supporting.,positive,Communication
+155,"I'm looking forward to a light, adjustable and sound future.",positive,Additional Positive Terms
+156,I am not seeing routine signs of progress.,positive,Additional Positive Terms
+157,There is no throbbing in my condition.,negative,Pain and Discomfort
+158,I've been experiencing grateful in my recovery.,positive,Gratitude Toward Healthcare
+159,My symptoms are not mindful.,positive,Additional Positive Terms
+160,I do not feel healed.,positive,Relief and Recovery
+161,"My health is not regressive, nauseous and enfeebling.",negative,Additional Negative Terms
+162,I hardly feel dreading and consequence anymore.,negative,Side Effects
+163,I've been experiencing insensitive in my recovery.,negative,Additional Negative Terms
+164,The side effects are plenty and advantageous.,positive,Additional Positive Terms
+165,"I'm hopeful the pain will become approving, snug and indebted soon.",positive,Gratitude Toward Healthcare
+166,The doctor said my condition is eased.,positive,Relief and Recovery
+167,My recovery has not been helpful.,positive,Treatment Response
+168,The pain is not unconvinced.,negative,Additional Negative Terms
+169,There is no wise and enabled in my condition.,positive,Social Support
+170,I hardly feel opaque anymore.,negative,Communication Issues
+171,"My general disposition has been aghast, disturbed and frail.",negative,Fear of Future
+172,I feel conquering when discussing my health with the doctor.,negative,Additional Negative Terms
+173,"I'm feeling quite detached, ferocious and unaffordable about my prognosis.",negative,Additional Negative Terms
+174,The treatment plan seems to be confusing.,negative,Communication Issues
+175,The improvements are rarely courageous.,positive,Emotional Wellbeing
+176,"Today, I feel costly, futile and defeating.",negative,Additional Negative Terms
+177,"I was hoping to feel unreachable, but instead, I feel ill-mannered.",negative,Additional Negative Terms
+178,This whole situation has made me feel active.,positive,Physical Improvement
+179,My symptoms are not unusual and malevolent.,negative,Additional Negative Terms
+180,"I have doubtful, withdrawn and terrified in my healthcare team.",negative,Additional Negative Terms
+181,"I have repercussions, worsening and reserved in my healthcare team.",negative,Side Effects
+182,"I feel detailed, manageable and supple today.",positive,Communication
+183,"I do not feel invigorating, content and undoubted.",positive,Additional Positive Terms
+184,I'm concerned about the intense and complications impact of the therapy.,negative,Side Effects
+185,I am not seeing consistent and looking-forward signs of progress.,positive,Communication
+186,"My symptoms are counterproductive, prohibitive and dispirited.",negative,Depression and Hopelessness
+187,The doctor said my condition is equipped.,positive,Additional Positive Terms
+188,The explanation was not injurious.,negative,Additional Negative Terms
+189,"I felt illogical, illogical and horrific during my last consultation.",negative,Additional Negative Terms
+190,"Although the treatment is stiff, I still feel stiff.",negative,Additional Negative Terms
+191,My health is not antagonistic.,negative,Additional Negative Terms
+192,The pain is intensified.,negative,Worsening Condition
+193,I'm experiencing outraged and nervous levels of discomfort.,negative,Emotional Distress
+194,I'm finding the new medication horror-struck and sequela.,negative,Side Effects
+195,My general disposition has been afraid and abnormal.,negative,Fear of Future
+196,I feel fortified and kind today.,positive,Social Support
+197,The pain is apprehensive and steep.,negative,Emotional Distress
+198,I've been feeling self-reliant and straightforward about my energy levels.,positive,Communication
+199,"The treatment plan is not nourishing, rejuvenating and safeguarded.",positive,Additional Positive Terms
+200,"I'm experiencing untutored, bitter and lost levels of discomfort.",negative,Additional Negative Terms
+201,The treatment plan seems to be angry and sparse.,negative,Additional Negative Terms
+202,I found the doctor's explanation very pain and useless.,negative,Depression and Hopelessness
+203,"I'm dynamic, enthusiastic and bolstered with how the treatment is going.",positive,Social Support
+204,I'm finding the new medication perturbed.,negative,Fear of Future
+205,I found the doctor's explanation very forthcoming.,positive,Cooperation
+206,I feel unclear when discussing my health with the doctor.,negative,Communication Issues
+207,"I'm finding the new medication uneasy, illogical and disoriented.",negative,Fear of Future
+208,The side effects are lively.,positive,Physical Improvement
+209,"The explanation was not despondent, strange and deficient.",negative,Additional Negative Terms
+210,I'm looking forward to a capable future.,positive,Independence
+211,I've been dealing with a responsive feeling in my joints.,positive,Additional Positive Terms
+212,I'm looking forward to a moderated and polite future.,positive,Additional Positive Terms
+213,"I do not have promoting, equilibrated and following in my healthcare team.",positive,Gratitude Toward Healthcare
+214,I'm humanitarian about my condition.,positive,Additional Positive Terms
+215,The improvements are rarely indebted.,negative,Financial Concerns
+216,I've been feeling malleable about my energy levels.,positive,Additional Positive Terms
+217,My recovery has been discounted so far.,negative,Additional Negative Terms
+218,I feel rude today.,negative,Additional Negative Terms
+219,"I am not seeing ineffective, defeating and faint signs of progress.",negative,Additional Negative Terms
+220,"Since the treatment, I've been excited, amenable and promoting.",positive,Gratitude Toward Healthcare
+221,"I was hoping to feel assimilated, but instead, I feel promising.",positive,Clarity
+222,"I am not competent, working and adaptive about my condition.",positive,Treatment Response
+223,My symptoms are not subsided.,positive,Relief and Recovery
+224,The path to recovery feels confused.,negative,Confusion
+225,"I am not lightheaded, horror-struck and neglected about my condition.",negative,Fear of Future
+226,"My mood has not been supporting, profuse and wise.",positive,Additional Positive Terms
+227,"The pain is not ambiguous, undervalued and degenerative.",negative,Additional Negative Terms
+228,The side effects are not resistant.,negative,Treatment Concerns
+229,"I am not frightened, horrified and malevolent about my condition.",negative,Fear of Future
+230,"I've been dealing with a selfless, able and attentive feeling in my joints.",positive,Additional Positive Terms
+231,"I'm looking forward to a cooperative, safeguarded and normal future.",positive,Social Support
+232,The path to recovery feels sensible.,positive,Communication
+233,The treatment plan is not powerless and regressing.,negative,Depression and Hopelessness
+234,"Today, I feel ordinary and content.",positive,Additional Positive Terms
+235,I'm finding the new medication obstinate.,negative,Additional Negative Terms
+236,I'm uncertain about my condition.,negative,Confusion
+237,"I felt subduing, sequela and crippled during my last consultation.",negative,Side Effects
+238,I do not have agony in my healthcare team.,negative,Pain and Discomfort
+239,I've been feeling brutal and sapping about my energy levels.,negative,Additional Negative Terms
+240,"I found the doctor's explanation very assimilated, benign and compliant.",positive,Clarity
+241,I feel secure and stable when discussing my health with the doctor.,positive,Trust in Healthcare
+242,My recovery has not been revivifying.,positive,Additional Positive Terms
+243,I feel enigmatic regarding my care.,negative,Communication Issues
+244,"I am not satisfied, nimble and moderated about my condition.",positive,Treatment Response
+245,"I'm trying to stay accommodating, committed and adjustable despite the challenges.",positive,Additional Positive Terms
+246,"I feel logical, certain and reviving today.",positive,Additional Positive Terms
+247,"I found the doctor's explanation very accommodating, secure and remission.",positive,Trust in Healthcare
+248,"The explanation was not puzzled, dejected and handicapped.",negative,Depression and Hopelessness
+249,My health is not tiring and aching.,negative,Additional Negative Terms
+250,I'm finding the new medication honest.,positive,Cooperation
+251,"I've been feeling unfavorable, injudicious and resistant about my energy levels.",negative,Additional Negative Terms
+252,"Although the treatment is stabbing, I still feel irregular.",negative,Additional Negative Terms
+253,I hardly feel unreceptive anymore.,negative,Additional Negative Terms
+254,My mood has been dreadful and unsettled since starting the new regimen.,negative,Additional Negative Terms
+255,I'm finding the new medication insufficient.,negative,Depression and Hopelessness
+256,"I'm looking forward to a withdrawn, repercussion and delicate future.",negative,Additional Negative Terms
+257,"Today, I feel determined, related and reassuring.",positive,Treatment Response
+258,"I feel backed, protected and amenable today.",positive,Social Support
+259,"I'm noticing adaptable, satisfied and dexterous changes in my daily life.",positive,Independence
+260,"I was hoping to feel suspicious, but instead, I feel anxious.",negative,Fear of Future
+261,I've been experiencing lighthearted in my recovery.,positive,Comfort
+262,I'm trying to stay piercing and escalated despite the challenges.,negative,Worsening Condition
+263,I'm looking forward to a resistant future.,negative,Confusion
+264,The pain is suffering and awful.,negative,Additional Negative Terms
+265,I'm looking forward to a detached and misunderstood future.,negative,Additional Negative Terms
+266,The medication is making me feel impeded.,negative,Limitations
+267,My general disposition has been impoverished and resistant.,negative,Mistrust
+268,I'm feeling quite inadmissible about my prognosis.,negative,Additional Negative Terms
+269,"I'm finding the new medication coherent, reassuring and internalized.",positive,Clarity
+270,"The medication is making me feel defective, escalated and insensitive.",negative,Limitations
+271,I've been dealing with a pointless feeling in my joints.,negative,Treatment Concerns
+272,"I found the doctor's explanation very accomplished, attentive and affiliated.",positive,Cooperation
+273,My recovery has not been hesitant and uncertain.,negative,Additional Negative Terms
+274,The path to recovery feels balanced.,positive,Additional Positive Terms
+275,"The pain is sociable, adopted and ready.",positive,Additional Positive Terms
+276,The communication with the clinic has been temperate.,positive,Additional Positive Terms
+277,I feel determined and reinforced when discussing my health with the doctor.,positive,Social Support
+278,"I was hoping to feel zealous, but instead, I feel reaching.",positive,Hope for Future
+279,I'm experiencing bellicose levels of discomfort.,negative,Additional Negative Terms
+280,I'm feeling quite protected about my prognosis.,positive,Trust in Healthcare
+281,"I am not empathetic, functional and flourishing with the treatment.",positive,Additional Positive Terms
+282,I feel delicate and autonomous about the information I received.,positive,Additional Positive Terms
+283,The improvements are rarely disquieted and unsympathetic.,negative,Fear of Future
+284,"Since the treatment, I've been pliable, mild and indebted.",positive,Additional Positive Terms
+285,I feel hopeful and resilient when discussing my health with the doctor.,positive,Treatment Response
+286,"The explanation was not unreasonable, sequela and ramifications.",negative,Side Effects
+287,I'm feeling fulfilling and integrated about continuing this course of treatment.,positive,Additional Positive Terms
+288,There is no committed and notable in my condition.,positive,Hope for Future
+289,I feel thankful and commending today.,positive,Gratitude Toward Healthcare
+290,"The dosage adjustment has been scanty, indebted and ambiguous.",negative,Additional Negative Terms
+291,I am not altruistic and independent with the treatment.,positive,Additional Positive Terms
+292,The treatment plan is not adversative.,negative,Additional Negative Terms
+293,"The pain is not revivifying, nourishing and delicate.",positive,Additional Positive Terms
+294,"I do not have bountiful, affiliated and scholarly in my healthcare team.",positive,Additional Positive Terms
+295,"The pain is not hopeful, protected and unified.",positive,Social Support
+296,"The path to recovery feels discerned, alleviating and available.",positive,Additional Positive Terms
+297,"The dosage adjustment has been temperate, learned and adaptable.",positive,Additional Positive Terms
+298,"I'm feeling quite reassuring, spirited and springy about my prognosis.",positive,Additional Positive Terms
+299,"My mood has not been atrocious, misconstrued and extreme.",negative,Additional Negative Terms
+300,"Since the treatment, I've been untroubled and eager.",positive,Comfort
+301,"The doctor said my condition is fragile, lost and intense.",negative,Additional Negative Terms
+302,I'm finding the new medication scared and anxious.,negative,Fear of Future
+303,I've been feeling internalized and competent about my energy levels.,positive,Clarity
+304,I have calm and trust in my healthcare team.,positive,Trust in Healthcare
+305,The medication is making me feel immobilized and skeptical.,negative,Limitations
+306,My recovery has not been futile.,negative,Treatment Concerns
+307,I've been dealing with a plentiful feeling in my joints.,positive,Additional Positive Terms
+308,My symptoms are not consistent and encouraged.,positive,Additional Positive Terms
+309,I do not feel energetic and restful.,positive,Comfort
+310,The latest tests show my condition is dejected and excessive.,negative,Additional Negative Terms
+311,My mood has been bellicose since starting the new regimen.,negative,Additional Negative Terms
+312,"My mood has not been inhumane, ineffective and lost.",negative,Depression and Hopelessness
+313,"The doctor said my condition is developed, loath and wanting.",negative,Worsening Condition
+314,The medication is making me feel passionate.,positive,Hope for Future
+315,"The path to recovery feels horrendous, hopeless and depressed.",negative,Depression and Hopelessness
+316,The side effects are not dubious.,negative,Additional Negative Terms
+317,I'm allied and eased with how the treatment is going.,positive,Additional Positive Terms
+318,I'm looking forward to a commending and reanimating future.,positive,Gratitude Toward Healthcare
+319,"I feel received, tender and anticipating regarding my care.",positive,Clarity
+320,"Although the treatment is rational, I still feel positive.",positive,Additional Positive Terms
+321,I'm noticing polite and exceptional changes in my daily life.,positive,Additional Positive Terms
+322,My symptoms are becoming more sparse and destitute.,negative,Additional Negative Terms
+323,The explanation was not protected.,positive,Social Support
+324,I'm experiencing uplifted levels of discomfort.,positive,Emotional Wellbeing
+325,I am not seeing unsubstantial and fragile signs of progress.,negative,Additional Negative Terms
+326,"This whole situation has made me feel beneficial, committed and assured.",positive,Treatment Response
+327,"Although the treatment is complete, I still feel complete.",positive,Additional Positive Terms
+328,"The side effects are accessible, soft and optimistic.",positive,Additional Positive Terms
+329,I feel misconstrued regarding my care.,negative,Communication Issues
+330,I'm seeing exacerbated signs of progress.,negative,Worsening Condition
+331,I'm exhausted and commanding about my condition.,negative,Additional Negative Terms
+332,My symptoms are reasonable and thankful.,positive,Gratitude Toward Healthcare
+333,I'm angry and frustrated with how the treatment is going.,negative,Frustration
+334,The pain is not sparse and antagonistic.,negative,Additional Negative Terms
+335,My mood has not been fearless and helped.,positive,Social Support
+336,The explanation was not renewing and significant.,positive,Additional Positive Terms
+337,"Although the treatment is hostile, I still feel appalled.",negative,Additional Negative Terms
+338,"Since the treatment, I've been concordant and altruistic.",positive,Additional Positive Terms
+339,My recovery has been enraged so far.,negative,Frustration
+340,I do not have resolved in my healthcare team.,positive,Hope for Future
+341,My recovery has not been congruent.,positive,Additional Positive Terms
+342,"The dosage adjustment has been balanced, malleable and complimenting.",positive,Additional Positive Terms
+343,I felt lightheaded during my last consultation.,negative,Physical Symptoms
+344,I feel angry about the information I received.,negative,Frustration
+345,The medication is not making me feel misapprehended.,negative,Communication Issues
+346,I'm self-sufficient and adjustable with how the treatment is going.,positive,Additional Positive Terms
+347,The latest tests show my condition is obliged.,positive,Gratitude Toward Healthcare
+348,I'm looking forward to a discerned future.,positive,Clarity
+349,"I found the doctor's explanation very reactions, conquering and discontented.",negative,Side Effects
+350,I do not feel allied and explicit.,positive,Communication
+351,The medication is not making me feel wanting.,negative,Additional Negative Terms
+352,"My symptoms are not reassuring, alleviating and positive.",positive,Additional Positive Terms
+353,I'm looking forward to a damaging and fallout future.,negative,Side Effects
+354,The communication with the clinic has been manageable and trusting.,positive,Trust in Healthcare
+355,I'm seeing endurable signs of progress.,positive,Treatment Response
+356,The side effects are sensible.,positive,Additional Positive Terms
+357,The improvements are rarely diminished.,positive,Relief and Recovery
+358,"I am not tenderness, resistant and cautious with the treatment.",negative,Confusion
+359,"I do not feel equivocal, misinterpreted and dizzy.",negative,Communication Issues
+360,"The latest tests show my condition is harmful, uninformed and restless.",negative,Additional Negative Terms
+361,The side effects are not misapprehended.,negative,Communication Issues
+362,My health is not concerned and extreme.,negative,Fear of Future
+363,My recovery has been misinterpreted and cryptic so far.,negative,Communication Issues
+364,I'm soothing and informed with how the treatment is going.,positive,Trust in Healthcare
+365,I feel assimilated and obliged when discussing my health with the doctor.,positive,Clarity
+366,The medication is making me feel brittle.,negative,Additional Negative Terms
+367,I've been dealing with a injudicious feeling in my joints.,negative,Additional Negative Terms
+368,"The treatment plan seems to be hurting, underestimated and resistant.",negative,Additional Negative Terms
+369,I am not restoring with the treatment.,positive,Additional Positive Terms
+370,I am not seeing sensible signs of progress.,positive,Communication
+371,"My symptoms are becoming more inflexible, unsound and untrusting.",negative,Additional Negative Terms
+372,"The improvements are rarely mindful, anticipating and ardent.",positive,Hope for Future
+373,"I am not intense, weak and dubious about my condition.",negative,Additional Negative Terms
+374,I feel complication and frail when discussing my health with the doctor.,negative,Side Effects
+375,I am not relieving and passionate about my condition.,positive,Hope for Future
+376,I feel concerned when discussing my health with the doctor.,negative,Emotional Distress
+377,The path to recovery feels accommodating.,positive,Additional Positive Terms
+378,"My day has been accustomed, solicitous and progress.",positive,Additional Positive Terms
+379,I hardly feel internalized anymore.,positive,Clarity
+380,"I felt medicinal, mindful and ready during my last consultation.",positive,Additional Positive Terms
+381,"I'm feeling sure, anticipating and appreciative about continuing this course of treatment.",positive,Hope for Future
+382,I'm hopeful the pain will become sophisticated and strong soon.,positive,Additional Positive Terms
+383,My symptoms are not untaught and awful.,negative,Additional Negative Terms
+384,The pain is not praising.,positive,Gratitude Toward Healthcare
+385,The side effects are sapient and embraced.,positive,Clarity
+386,I found the doctor's explanation very substantial.,positive,Additional Positive Terms
+387,The medication is making me feel accustomed.,positive,Additional Positive Terms
+388,"The dosage adjustment has been grateful, cared and responsible.",positive,Trust in Healthcare
+389,I'm noticing intense and reluctant changes in my daily life.,negative,Additional Negative Terms
+390,The explanation was not bountiful and concerned.,positive,Additional Positive Terms
+391,I found the doctor's explanation very impaired.,negative,Limitations
+392,I felt prudent during my last consultation.,positive,Additional Positive Terms
+393,The explanation was not adaptable.,positive,Additional Positive Terms
+394,I feel prepared and abundant when discussing my health with the doctor.,positive,Additional Positive Terms
+395,I've been feeling appreciative and unified about my energy levels.,positive,Additional Positive Terms
+396,"The side effects are not outlandish, hindered and tenderness.",negative,Additional Negative Terms
+397,The treatment plan is not ardent.,positive,Hope for Future
+398,"I found the doctor's explanation very unapproachable, weakening and stubborn.",negative,Additional Negative Terms
+399,"Each day, I'm feeling a little more noteworthy.",positive,Additional Positive Terms
+400,The medication is not making me feel impolite.,negative,Additional Negative Terms
+401,I am not useless with the treatment.,negative,Treatment Concerns
+402,The dosage adjustment has been distrustful.,negative,Confusion
+403,"My health is not tender, fruitful and accommodating.",positive,Additional Positive Terms
+404,"Each day, I'm feeling a little more appreciated, tender and revivifying.",positive,Additional Positive Terms
+405,I feel useless and deficient about the information I received.,negative,Depression and Hopelessness
+406,I've been experiencing extravagant and limited in my recovery.,negative,Limitations
+407,The explanation was not distrustful.,negative,Confusion
+408,"Since the treatment, I've been desperate and throbbing.",negative,Depression and Hopelessness
+409,"Each day, I'm feeling a little more sufficient.",positive,Additional Positive Terms
+410,"Today, I feel irregular.",negative,Additional Negative Terms
+411,I am not seeing uncertain signs of progress.,negative,Confusion
+412,I'm feeling quite adaptive about my prognosis.,positive,Additional Positive Terms
+413,"Although the treatment is discouraged, I still feel overlooked.",negative,Additional Negative Terms
+414,I'm seeing damaging signs of progress.,negative,Additional Negative Terms
+415,My day has been nurturing.,positive,Gratitude Toward Healthcare
+416,"Today, I feel adept, fostering and benign.",positive,Gratitude Toward Healthcare
+417,I'm seeing disregarded and expensive signs of progress.,negative,Additional Negative Terms
+418,"I'm trying to stay unconfident, tiring and anxious despite the challenges.",negative,Additional Negative Terms
+419,I do not feel complication.,negative,Side Effects
+420,"I'm finding the new medication prevailing, indignant and doubtful.",negative,Additional Negative Terms
+421,My symptoms are becoming more cordial.,positive,Additional Positive Terms
+422,The dosage adjustment has been indifferent and exorbitant.,negative,Additional Negative Terms
+423,"I do not feel sensible, independent and safe.",positive,Trust in Healthcare
+424,This whole situation has made me feel resistant and unreceptive.,negative,Additional Negative Terms
+425,The treatment plan is not vital.,positive,Physical Improvement
+426,The treatment plan is not shut and apprehensive.,negative,Additional Negative Terms
+427,The pain is successful and adaptable.,positive,Treatment Response
+428,"I feel inflexible, disadvantageous and extravagant regarding my care.",negative,Additional Negative Terms
+429,I have relieved in my healthcare team.,positive,Relief and Recovery
+430,I am not reassuring and fathomed with the treatment.,positive,Clarity
+431,"My symptoms are routine, allied and accepted.",positive,Additional Positive Terms
+432,"I was hoping to feel horrible, but instead, I feel horrible.",negative,Additional Negative Terms
+433,I have at-ease in my healthcare team.,positive,Comfort
+434,The latest tests show my condition is downcast.,negative,Additional Negative Terms
+435,I feel declining and abnormal today.,negative,Worsening Condition
+436,I'm hopeful the pain will become enigmatic soon.,negative,Communication Issues
+437,"I do not have apprehended, confident and contactable in my healthcare team.",positive,Clarity
+438,My symptoms are horrendous.,negative,Additional Negative Terms
+439,I do not have outraged and distressed in my healthcare team.,negative,Emotional Distress
+440,I am not competent with the treatment.,positive,Independence
+441,"My mood has not been strong, empowered and reassuring.",positive,Additional Positive Terms
+442,"This whole situation has made me feel succeeding, dynamic and better.",positive,Relief and Recovery
+443,My recovery has not been detailed and encouraging.,positive,Communication
+444,"Each day, I'm feeling a little more affable, beholden and careful.",positive,Gratitude Toward Healthcare
+445,"I am not unsuccessful, perturbed and wanting about my condition.",negative,Fear of Future
+446,"I feel optimistic, articulate and nuanced about the information I received.",positive,Treatment Response
+447,"Today, I feel regenerative, dynamic and consoling.",positive,Additional Positive Terms
+448,I've been experiencing affable and progressing due to side effects.,positive,Additional Positive Terms
+449,"The treatment plan seems to be disgruntled, refractory and hindered.",negative,Limitations
+450,I'm looking forward to a inattentive future.,negative,Additional Negative Terms
+451,"I'm feeling undecided, lost and adverse about continuing this course of treatment.",negative,Additional Negative Terms
+452,I feel restful regarding my care.,positive,Comfort
+453,The medication is making me feel lively.,positive,Physical Improvement
+454,There is no productive and informative in my condition.,positive,Communication
+455,The treatment plan is not affable.,positive,Additional Positive Terms
+456,My symptoms are not fruitful.,positive,Additional Positive Terms
+457,The pain is not open and specific.,positive,Communication
+458,I'm prudent about my condition.,positive,Additional Positive Terms
+459,I'm seeing remote signs of progress.,negative,Additional Negative Terms
+460,I found the doctor's explanation very delicate.,negative,Physical Symptoms
+461,The communication with the clinic has been progressed.,negative,Worsening Condition
+462,"The explanation was not advantageous, encouraged and committed.",positive,Cooperation
+463,"I'm exacerbated, abhorrent and unconfident with how the treatment is going.",negative,Additional Negative Terms
+464,"I felt strengthening, remarkable and empowered during my last consultation.",positive,Additional Positive Terms
+465,The pain is affirmative.,positive,Additional Positive Terms
+466,"I do not feel versatile, explicit and understandable.",positive,Communication
+467,My general disposition has been superior and encouraged.,positive,Additional Positive Terms
+468,"I was hoping to feel ardent, but instead, I feel accomplished.",positive,Cooperation
+469,I'm feeling thorough and renewing about continuing this course of treatment.,positive,Communication
+470,"I'm mindful, expectant and participative about my condition.",positive,Hope for Future
+471,"Although the treatment is unresponsive, I still feel shut.",negative,Additional Negative Terms
+472,"The pain is not encouraged, confident and remedial.",positive,Trust in Healthcare
+473,I'm looking forward to a unattainable future.,negative,Additional Negative Terms
+474,My recovery has been outstanding and lively so far.,positive,Additional Positive Terms
+475,"I found the doctor's explanation very rejuvenating, revivifying and reassuring.",positive,Additional Positive Terms
+476,"Since the treatment, I've been unbearable, delicate and weakening.",negative,Additional Negative Terms
+477,I'm finding the new medication hostile and insubstantial.,negative,Additional Negative Terms
+478,I feel mindful when discussing my health with the doctor.,positive,Additional Positive Terms
+479,"Since the treatment, I've been compliant, comprehended and obliged.",positive,Additional Positive Terms
+480,I'm concerned about the mobile and thankful impact of the therapy.,positive,Physical Improvement
+481,"I was hoping to feel conscientious, but instead, I feel peaceful.",positive,Emotional Wellbeing
+482,The dosage adjustment has been heard.,positive,Trust in Healthcare
+483,I am not seeing doubtful and apathetic signs of progress.,negative,Additional Negative Terms
+484,I found the doctor's explanation very mischaracterized.,negative,Communication Issues
+485,The pain is relaxed.,positive,Emotional Wellbeing
+486,"I am not metastasized, worried and obstructed with the treatment.",negative,Worsening Condition
+487,The treatment plan is not prevented.,negative,Limitations
+488,"I'm experiencing fortified, receptive and articulate levels of discomfort.",positive,Social Support
+489,"I'm feeling inadequate, skeptical and anxious about continuing this course of treatment.",negative,Additional Negative Terms
+490,I feel neglected about the information I received.,negative,Additional Negative Terms
+491,"Overall, my health is feeling dubious, lethargic and uneasy.",negative,Fear of Future
+492,I'm inadmissible and discomfort with how the treatment is going.,negative,Additional Negative Terms
+493,The path to recovery feels independent.,positive,Independence
+494,I felt sophisticated and springy during my last consultation.,positive,Additional Positive Terms
+495,The medication is not making me feel unread.,negative,Additional Negative Terms
+496,"I feel responsible, receptive and relieving about the information I received.",positive,Additional Positive Terms
+497,The pain is not nimble.,positive,Independence
+498,The medication is not making me feel sociable.,positive,Additional Positive Terms
+499,"The treatment plan seems to be informed, balanced and judicious.",positive,Additional Positive Terms
+500,I'm hopeful the pain will become adaptive and respected soon.,positive,Trust in Healthcare
+501,This whole situation has made me feel obliged.,positive,Gratitude Toward Healthcare
+502,The side effects are not fulfilling and traditional.,positive,Additional Positive Terms
+503,I found the doctor's explanation very inattentive and progressed.,negative,Additional Negative Terms
+504,I'm seeing shut and metastasized signs of progress.,negative,Additional Negative Terms
+505,"I've been dealing with a spry, responsible and improving feeling in my joints.",positive,Cooperation
+506,My symptoms are not fatigued and detached.,negative,Additional Negative Terms
+507,The latest tests show my condition is limited and skeptical.,negative,Limitations
+508,My health is not useless.,negative,Treatment Concerns
+509,"I am not enduring, nurturing and complimenting about my condition.",positive,Gratitude Toward Healthcare
+510,"Although the treatment is salutary, I still feel salutary.",positive,Additional Positive Terms
+511,I'm feeling animated and certain about continuing this course of treatment.,positive,Additional Positive Terms
+512,The pain is side-effect.,negative,Side Effects
+513,I am not brutal and confrontational about my condition.,negative,Additional Negative Terms
+514,"I'm feeling prohibited, disturbed and unlettered about continuing this course of treatment.",negative,Additional Negative Terms
+515,"I was hoping to feel aggravated, but instead, I feel powerless.",negative,Depression and Hopelessness
+516,The treatment plan seems to be equipped.,positive,Additional Positive Terms
+517,I do not have received and reviving in my healthcare team.,positive,Clarity
+518,"I've been experiencing prevailing, dubious and fierce due to side effects.",negative,Additional Negative Terms
+519,I'm noticing reserved changes in my daily life.,negative,Additional Negative Terms
+520,The latest tests show my condition is ready.,positive,Additional Positive Terms
+521,"The explanation was not amiable, cordial and educated.",positive,Additional Positive Terms
+522,I felt melancholy and hesitant during my last consultation.,negative,Depression and Hopelessness
+523,There is no outcomes in my condition.,negative,Side Effects
+524,I'm experiencing fervent and amicable levels of discomfort.,positive,Hope for Future
+525,I'm feeling sensitive about continuing this course of treatment.,negative,Treatment Concerns
+526,I'm finding the new medication versatile and selfless.,positive,Additional Positive Terms
+527,"I'm looking forward to a brutal, vicious and appalled future.",negative,Additional Negative Terms
+528,The path to recovery feels undecided and inadequate.,negative,Additional Negative Terms
+529,I feel progressed about the information I received.,negative,Worsening Condition
+530,I'm noticing responsive changes in my daily life.,positive,Additional Positive Terms
+531,I'm feeling quite buoyant and optimistic about my prognosis.,positive,Treatment Response
+532,"Although the treatment is favorable, I still feel capable.",positive,Additional Positive Terms
+533,The latest tests show my condition is refractory and upset.,negative,Emotional Distress
+534,The medication is making me feel withstandable.,positive,Treatment Response
+535,The explanation was not stable.,positive,Relief and Recovery
+536,I am not lightheaded and underestimated about my condition.,negative,Additional Negative Terms
+537,I feel placid and resolved regarding my care.,positive,Comfort
+538,"I have flexible, undoubted and moderate in my healthcare team.",positive,Additional Positive Terms
+539,"I was hoping to feel friendly, but instead, I feel achieving.",positive,Additional Positive Terms
+540,"Each day, I'm feeling a little more realizing, educated and congenial.",positive,Additional Positive Terms
+541,"I'm feeling quite irrational, reserved and bewildered about my prognosis.",negative,Additional Negative Terms
+542,"My general disposition has been unsupportable, enraged and steep.",negative,Additional Negative Terms
+543,"My symptoms are not unfriendly, scared and scanty.",negative,Additional Negative Terms
+544,I feel incapacitated and fierce regarding my care.,negative,Limitations
+545,"My day has been paralyzed, side-effect and insolvent.",negative,Side Effects
+546,I do not have excessive and disappointed in my healthcare team.,negative,Frustration
+547,I'm trying to stay active and mindful despite the challenges.,positive,Additional Positive Terms
+548,The medication is making me feel reaching and energetic.,positive,Additional Positive Terms
+549,I have melancholy and insecure in my healthcare team.,negative,Additional Negative Terms
+550,The treatment plan is not horror-struck and impaired.,negative,Fear of Future
+551,The treatment plan is not fulfilled.,positive,Additional Positive Terms
+552,I'm hopeful the pain will become enlightened soon.,positive,Trust in Healthcare
+553,"I'm feeling doubtful, queasy and petrified about continuing this course of treatment.",negative,Additional Negative Terms
+554,I do not feel responsive.,positive,Additional Positive Terms
+555,The communication with the clinic has been positive and robust.,positive,Treatment Response
+556,I feel controlled about the information I received.,positive,Additional Positive Terms
+557,The side effects are not irritated and savage.,negative,Additional Negative Terms
+558,"I am not seeing unresponsive, pointless and misconceived signs of progress.",negative,Treatment Concerns
+559,I'm feeling ready about continuing this course of treatment.,positive,Additional Positive Terms
+560,There is no self-sufficient and independent in my condition.,positive,Independence
+561,"This whole situation has made me feel discourteous, detached and despondent.",negative,Additional Negative Terms
+562,My symptoms are not horror-struck.,negative,Fear of Future
+563,My symptoms are not awful and insensible.,negative,Additional Negative Terms
+564,I do not have moderated and optimistic in my healthcare team.,positive,Hope for Future
+565,"I've been dealing with a injudicious, untutored and weak feeling in my joints.",negative,Additional Negative Terms
+566,My recovery has not been remission.,positive,Relief and Recovery
+567,The pain is trusting.,positive,Trust in Healthcare
+568,"The explanation was not compassionate, plentiful and assured.",positive,Additional Positive Terms
+569,The treatment plan is not controlling.,negative,Additional Negative Terms
+570,"My mood has not been caring, serene and bouncy.",positive,Additional Positive Terms
+571,"I felt humane, motivated and logical during my last consultation.",positive,Additional Positive Terms
+572,I feel destitute about the information I received.,negative,Financial Concerns
+573,"Since the treatment, I've been enlightened, healing and obliged.",positive,Trust in Healthcare
+574,I've been experiencing misinterpreted and intense due to side effects.,negative,Additional Negative Terms
+575,My health is not reluctant.,negative,Mistrust
+576,"The explanation was not hindered, equivocal and exasperated.",negative,Limitations
+577,I've been feeling committed and regulated about my energy levels.,positive,Additional Positive Terms
+578,My symptoms are becoming more rational.,positive,Additional Positive Terms
+579,"The side effects are informative, determined and empathetic.",positive,Communication
+580,The communication with the clinic has been approving and participative.,positive,Gratitude Toward Healthcare
+581,My recovery has not been affirmative and accepted.,positive,Clarity
+582,"I have calm, associated and accessible in my healthcare team.",positive,Additional Positive Terms
+583,"Each day, I'm feeling a little more mistrustful, destitute and uncontactable.",negative,Additional Negative Terms
+584,I'm amiable and precise about my condition.,positive,Communication
+585,My symptoms are soothing and temperate.,positive,Additional Positive Terms
+586,My recovery has not been terrified.,negative,Emotional Distress
+587,"The doctor said my condition is deepened, inadmissible and worse.",negative,Worsening Condition
+588,"The medication is not making me feel wise, vigilant and promoting.",positive,Gratitude Toward Healthcare
+589,"I was hoping to feel better, but instead, I feel easygoing.",positive,Comfort
+590,"Today, I feel grateful.",positive,Emotional Wellbeing
+591,I do not have resolved in my healthcare team.,positive,Hope for Future
+592,"I've been experiencing disinclined, critical and escalated due to side effects.",negative,Additional Negative Terms
+593,"Overall, my health is feeling dedicated and embraced.",positive,Clarity
+594,The pain is philanthropic and compliant.,positive,Additional Positive Terms
+595,"I have polite, agile and flexible in my healthcare team.",positive,Independence
+596,"I am not unschooled, inaccessible and breakable about my condition.",negative,Additional Negative Terms
+597,"My mood has not been genial, honest and sheltered.",positive,Social Support
+598,The doctor said my condition is diligent.,positive,Cooperation
+599,"Since the treatment, I've been unsure and sparse.",negative,Additional Negative Terms
+600,"I'm looking forward to a prohibited, useless and confused future.",negative,Additional Negative Terms
+601,"Since the treatment, I've been reaching, temperate and customary.",positive,Additional Positive Terms
+602,"The side effects are not savage, depleting and stubborn.",negative,Additional Negative Terms
+603,"I do not feel attentive, discerned and plenty.",positive,Additional Positive Terms
+604,"My health is not wanting, prevented and melancholy.",negative,Depression and Hopelessness
+605,I've been experiencing convinced due to side effects.,positive,Treatment Response
+606,The treatment plan is not extreme and troubled.,negative,Additional Negative Terms
+607,"I was hoping to feel active, but instead, I feel cozy.",positive,Comfort
+608,"The side effects are careful, resolved and refreshing.",positive,Hope for Future
+609,"Today, I feel degenerative, peculiar and odd.",negative,Additional Negative Terms
+610,"I do not feel pain, uninvolved and useless.",negative,Depression and Hopelessness
+611,I'm concerned about the tolerable and accomplished impact of the therapy.,positive,Treatment Response
+612,"Each day, I'm feeling a little more frightened, detached and consequences.",negative,Side Effects
+613,The path to recovery feels insolvent and handicapped.,negative,Limitations
+614,I am not appalled about my condition.,negative,Fear of Future
+615,I've been dealing with a bellicose and vicious feeling in my joints.,negative,Additional Negative Terms
+616,"I hardly feel unfriendly, reaction and uninformed anymore.",negative,Additional Negative Terms
+617,"I have familiar, happy and assured in my healthcare team.",positive,Additional Positive Terms
+618,I feel thoughtful and comforting regarding my care.,positive,Additional Positive Terms
+619,I've been experiencing normal and responsive in my recovery.,positive,Treatment Response
+620,The pain is promising.,positive,Additional Positive Terms
+621,The pain is sound.,positive,Additional Positive Terms
+622,The side effects are not thoughtless.,negative,Additional Negative Terms
+623,I've been experiencing fruitless due to side effects.,negative,Treatment Concerns
+624,The treatment plan is not reluctant.,negative,Mistrust
+625,"The dosage adjustment has been intensified, unsure and opposed.",negative,Worsening Condition
+626,"My mood has been content, responsive and available since starting the new regimen.",positive,Additional Positive Terms
+627,The doctor said my condition is encouraged and assured.,positive,Social Support
+628,I have strange and distrustful in my healthcare team.,negative,Additional Negative Terms
+629,"The improvements are rarely mystified, unreceptive and adverse.",negative,Additional Negative Terms
+630,I've been feeling powerless and adverse about my energy levels.,negative,Depression and Hopelessness
+631,The path to recovery feels weak.,negative,Additional Negative Terms
+632,"I am not detrimental, impatient and useless with the treatment.",negative,Additional Negative Terms
+633,The side effects are not obliged.,positive,Gratitude Toward Healthcare
+634,I'm hopeful the pain will become opaque and pointless soon.,negative,Treatment Concerns
+635,"I'm feeling quite endurable, customary and grateful about my prognosis.",positive,Treatment Response
+636,The dosage adjustment has been unhappy.,negative,Frustration
+637,I'm concerned about the opposed impact of the therapy.,negative,Mistrust
+638,"I'm finding the new medication scanty, insubstantial and disinclined.",negative,Additional Negative Terms
+639,"I'm trying to stay renewing, calm and backed despite the challenges.",positive,Comfort
+640,"Each day, I'm feeling a little more unendurable.",negative,Additional Negative Terms
+641,I found the doctor's explanation very uncertain and cryptic.,negative,Communication Issues
+642,The latest tests show my condition is remarkable and flexible.,positive,Additional Positive Terms
+643,The explanation was not advocating and capable.,positive,Gratitude Toward Healthcare
+644,"Overall, my health is feeling buoyant and fruitful.",positive,Additional Positive Terms
+645,My day has been horrified and elevated.,negative,Fear of Future
+646,"The improvements are rarely deficient, unread and terrified.",negative,Additional Negative Terms
+647,I'm looking forward to a queasy future.,negative,Physical Symptoms
+648,My health is not restorative and routine.,positive,Additional Positive Terms
+649,The communication with the clinic has been accustomed and beholden.,positive,Gratitude Toward Healthcare
+650,My mood has not been restricted and expensive.,negative,Limitations
+651,I'm nervous and unschooled with how the treatment is going.,negative,Additional Negative Terms
+652,"I've been feeling disheartened, uncivil and overpowering about my energy levels.",negative,Additional Negative Terms
+653,I'm feeling adversarial about continuing this course of treatment.,negative,Additional Negative Terms
+654,I've been dealing with a calm and nimble feeling in my joints.,positive,Independence
+655,I feel soreness today.,negative,Pain and Discomfort
+656,I'm looking forward to a amenable future.,positive,Additional Positive Terms
+657,The pain is hopeless.,negative,Depression and Hopelessness
+658,I felt amicable and clear during my last consultation.,positive,Clarity
+659,"I was hoping to feel limited, but instead, I feel frightened.",negative,Limitations
+660,"My day has been salubrious, zealous and valued.",positive,Trust in Healthcare
+661,My symptoms are becoming more dynamic and controlled.,positive,Additional Positive Terms
+662,I found the doctor's explanation very reviving and scholarly.,positive,Additional Positive Terms
+663,I do not feel adaptive and adroit.,positive,Additional Positive Terms
+664,"My recovery has not been unwell, uneasy and unacceptable.",negative,Additional Negative Terms
+665,I feel skimpy and sapping about the information I received.,negative,Additional Negative Terms
+666,I felt ill and complications during my last consultation.,negative,Side Effects
+667,The side effects are not manageable and connected.,positive,Additional Positive Terms
+668,My recovery has been noteworthy so far.,positive,Additional Positive Terms
+669,"Overall, my health is feeling savage, stiff and adverse.",negative,Additional Negative Terms
+670,My symptoms are unusual.,negative,Additional Negative Terms
+671,"I found the doctor's explanation very adaptable, tough and wholesome.",positive,Additional Positive Terms
+672,My symptoms are not eased and informed.,positive,Trust in Healthcare
+673,The side effects are not retrograde.,negative,Additional Negative Terms
+674,There is no appreciative in my condition.,positive,Additional Positive Terms
+675,"I feel intolerant, impeded and limited about the information I received.",negative,Limitations
+676,I'm hopeful the pain will become nourishing and affable soon.,positive,Additional Positive Terms
+677,"The medication is not making me feel realizing, relaxed and mild.",positive,Additional Positive Terms
+678,My health is not harmful.,negative,Additional Negative Terms
+679,"I am not superior, reaching and serene about my condition.",positive,Additional Positive Terms
+680,"Today, I feel unsupportable and hindered.",negative,Additional Negative Terms
+681,"I'm hopeful the pain will become malign, panicked and insubstantial soon.",negative,Additional Negative Terms
+682,"There is no articulate, prudent and positive in my condition.",positive,Communication
+683,"I was hoping to feel insupportable, but instead, I feel misestimated.",negative,Additional Negative Terms
+684,I'm seeing heartening and tolerable signs of progress.,positive,Treatment Response
+685,My recovery has not been averse.,negative,Mistrust
+686,"I'm trying to stay abominable, suspicious and adverse despite the challenges.",negative,Additional Negative Terms
+687,"The pain is obscure, resistant and steep.",negative,Confusion
+688,I'm seeing accommodating and tough signs of progress.,positive,Additional Positive Terms
+689,The medication is making me feel tranquil and allied.,positive,Comfort
+690,I have amiable and mindful in my healthcare team.,positive,Additional Positive Terms
+691,I am not affable and placid about my condition.,positive,Comfort
+692,"The path to recovery feels uninterested, useless and disabled.",negative,Additional Negative Terms
+693,"I'm noticing bolstered, extraordinary and buoyant changes in my daily life.",positive,Additional Positive Terms
+694,"My mood has been definite, cared and equilibrated since starting the new regimen.",positive,Additional Positive Terms
+695,"The path to recovery feels receptive, untroubled and mild.",positive,Additional Positive Terms
+696,"I'm seeing downcast, sad and uncertain signs of progress.",negative,Depression and Hopelessness
+697,"I've been experiencing ramification, concerned and savage in my recovery.",negative,Side Effects
+698,"Overall, my health is feeling restorative.",positive,Additional Positive Terms
+699,"I'm rehabilitative, relaxed and satisfied about my condition.",positive,Additional Positive Terms
+700,The pain is not brutal.,negative,Additional Negative Terms
+701,I'm noticing commending and extraordinary changes in my daily life.,positive,Gratitude Toward Healthcare
+702,"Overall, my health is feeling obscure and excruciating.",negative,Pain and Discomfort
+703,My mood has not been bolstered and strong.,positive,Social Support
+704,"My mood has not been trusting, satisfied and neighborly.",positive,Treatment Response
+705,"I've been experiencing ferocious, cold and inadmissible due to side effects.",negative,Additional Negative Terms
+706,"My health is not dexterous, recognized and receptive.",positive,Clarity
+707,I'm feeling quite uninterested about my prognosis.,negative,Additional Negative Terms
+708,I'm experiencing heartening and positive levels of discomfort.,positive,Treatment Response
+709,My health is not strong.,positive,Physical Improvement
+710,"My symptoms are not harmonious, outstanding and prudent.",positive,Additional Positive Terms
+711,"My recovery has been pointless, feeble and outcome so far.",negative,Side Effects
+712,This whole situation has made me feel cryptic.,negative,Communication Issues
+713,My symptoms are not displeased and outcome.,negative,Side Effects
+714,"Today, I feel complications.",negative,Side Effects
+715,"I've been feeling recognizing, received and defended about my energy levels.",positive,Social Support
+716,"I'm feeling quite confident, appreciative and bolstered about my prognosis.",positive,Additional Positive Terms
+717,"My mood has been displeased, terrified and painful since starting the new regimen.",negative,Fear of Future
+718,I'm finding the new medication knowledgeable.,positive,Additional Positive Terms
+719,"I'm looking forward to a polite, assisted and regular future.",positive,Additional Positive Terms
+720,The medication is making me feel horrible and stiff.,negative,Additional Negative Terms
+721,"My day has been flexible, constructive and elastic.",positive,Additional Positive Terms
+722,The improvements are rarely defended.,positive,Social Support
+723,"Since the treatment, I've been coherent.",positive,Additional Positive Terms
+724,I'm looking forward to a metastasized future.,negative,Worsening Condition
+725,I'm noticing consequences changes in my daily life.,negative,Side Effects
+726,My health is not controlled.,positive,Additional Positive Terms
+727,"My mood has been vacillating, unlettered and deleterious since starting the new regimen.",negative,Additional Negative Terms
+728,"Although the treatment is painful, I still feel reluctant.",negative,Pain and Discomfort
+729,My recovery has not been unread.,negative,Additional Negative Terms
+730,The communication with the clinic has been relieving and sheltered.,positive,Social Support
+731,I found the doctor's explanation very devalued and insupportable.,negative,Additional Negative Terms
+732,My general disposition has been urgent and blocked.,negative,Additional Negative Terms
+733,"My symptoms are skeptical, ineffective and distressed.",negative,Emotional Distress
+734,I'm concerned about the weakening and discomfort impact of the therapy.,negative,Additional Negative Terms
+735,I feel retreating and inflexible today.,negative,Additional Negative Terms
+736,The pain is expensive.,negative,Financial Concerns
+737,"Although the treatment is misevaluated, I still feel intensified.",negative,Worsening Condition
+738,The communication with the clinic has been doubtful and deleterious.,negative,Additional Negative Terms
+739,"Each day, I'm feeling a little more impaired, gloomy and sickly.",negative,Depression and Hopelessness
+740,The explanation was not determined.,positive,Emotional Wellbeing
+741,I'm hopeful the pain will become delicate soon.,negative,Physical Symptoms
+742,"I found the doctor's explanation very failing, subsiding and burning.",negative,Additional Negative Terms
+743,"I'm hopeful the pain will become consistent, benign and sheltered soon.",positive,Additional Positive Terms
+744,The latest tests show my condition is abhorrent.,negative,Additional Negative Terms
+745,The side effects are not damaging.,negative,Additional Negative Terms
+746,I've been dealing with a hardy and advantageous feeling in my joints.,positive,Additional Positive Terms
+747,"I'm concerned about the understood, collaborative and peaceful impact of the therapy.",positive,Trust in Healthcare
+748,"Today, I feel commanding, disgruntled and unread.",negative,Additional Negative Terms
+749,"I am not panicked, apprehensive and evolved about my condition.",negative,Emotional Distress
+750,"I'm trying to stay salutary, able and productive despite the challenges.",positive,Additional Positive Terms
+751,I do not feel unhappy and overpriced.,negative,Frustration
+752,"Since the treatment, I've been assured, accompanied and regulated.",positive,Social Support
+753,I feel notable and fervent regarding my care.,positive,Hope for Future
+754,"Since the treatment, I've been prevented.",negative,Limitations
+755,My general disposition has been uninterested and lethargic.,negative,Additional Negative Terms
+756,"My symptoms are not appalled, troubled and dizzy.",negative,Fear of Future
+757,I've been experiencing impaired due to side effects.,negative,Limitations
+758,"I am not recovered, vigorous and coherent with the treatment.",positive,Physical Improvement
+759,"The medication is not making me feel enthusiastic, fostering and indebted.",positive,Gratitude Toward Healthcare
+760,I'm horror-struck about my condition.,negative,Fear of Future
+761,I found the doctor's explanation very rehabilitative and defended.,positive,Social Support
+762,"The pain is not backed, flexible and relief.",positive,Social Support
+763,I feel subsiding and resentful when discussing my health with the doctor.,negative,Additional Negative Terms
+764,"Since the treatment, I've been hurting, discouraged and unsettled.",negative,Additional Negative Terms
+765,I hardly feel sharp anymore.,negative,Pain and Discomfort
+766,This whole situation has made me feel comfortable.,positive,Treatment Response
+767,I'm feeling quite strengthening about my prognosis.,positive,Additional Positive Terms
+768,I've been dealing with a fatiguing and queasy feeling in my joints.,negative,Additional Negative Terms
+769,"I am not bountiful, encouraged and dedicated with the treatment.",positive,Hope for Future
+770,"I do not have amenable, precise and adaptive in my healthcare team.",positive,Additional Positive Terms
+771,"Since the treatment, I've been ramifications, anxious and rigid.",negative,Side Effects
+772,I feel vague about the information I received.,negative,Communication Issues
+773,I am not beholden and positive with the treatment.,positive,Treatment Response
+774,I'm experiencing impoverished levels of discomfort.,negative,Financial Concerns
+775,My symptoms are hostile and counterproductive.,negative,Treatment Concerns
+776,"There is no undervalued, insecure and gloomy in my condition.",negative,Additional Negative Terms
+777,I feel opaque regarding my care.,negative,Communication Issues
+778,My day has been discouraged and pain.,negative,Depression and Hopelessness
+779,My general disposition has been intolerant and amplified.,negative,Worsening Condition
+780,"I'm finding the new medication draining, appalled and feeble.",negative,Additional Negative Terms
+781,I've been experiencing proficient and accustomed due to side effects.,positive,Additional Positive Terms
+782,"My mood has been brittle, defective and panicked since starting the new regimen.",negative,Additional Negative Terms
+783,My symptoms are becoming more renewing.,positive,Additional Positive Terms
+784,I do not feel fostering.,positive,Gratitude Toward Healthcare
+785,"I've been feeling deficient, expensive and unavailable about my energy levels.",negative,Limitations
+786,I'm looking forward to a painful future.,negative,Pain and Discomfort
+787,"I feel displeased, uncaring and weak regarding my care.",negative,Additional Negative Terms
+788,I've been dealing with a mischaracterized feeling in my joints.,negative,Communication Issues
+789,"I do not feel confident, capable and acknowledging.",positive,Gratitude Toward Healthcare
+790,The path to recovery feels benevolent and supported.,positive,Trust in Healthcare
+791,I've been dealing with a careful feeling in my joints.,positive,Cooperation
+792,"Each day, I'm feeling a little more assimilated and understanding.",positive,Clarity
+793,The latest tests show my condition is irregular and fearful.,negative,Additional Negative Terms
+794,I am not received and laid-back about my condition.,positive,Comfort
+795,"I have usual, adjustable and definite in my healthcare team.",positive,Additional Positive Terms
+796,I am not understood with the treatment.,positive,Trust in Healthcare
+797,"I feel improving, constructive and complimenting today.",positive,Gratitude Toward Healthcare
+798,The explanation was not dedicated.,positive,Cooperation
+799,"There is no functional, logical and hardy in my condition.",positive,Physical Improvement
+800,"Although the treatment is committed, I still feel committed.",positive,Hope for Future
+801,There is no disengaged and nauseous in my condition.,negative,Additional Negative Terms
+802,The explanation was not stubborn and extreme.,negative,Additional Negative Terms
+803,The latest tests show my condition is costly.,negative,Financial Concerns
+804,The doctor said my condition is declining and overwhelming.,negative,Worsening Condition
+805,I've been experiencing adjustable and improvement due to side effects.,positive,Additional Positive Terms
+806,My symptoms are friendly and whole.,positive,Additional Positive Terms
+807,The explanation was not informed and informed.,positive,Additional Positive Terms
+808,The doctor said my condition is valued and generous.,positive,Trust in Healthcare
+809,I'm distant with how the treatment is going.,negative,Additional Negative Terms
+810,I feel accommodating and complimenting when discussing my health with the doctor.,positive,Gratitude Toward Healthcare
+811,I'm concerned about the mindful and flexible impact of the therapy.,positive,Additional Positive Terms
+812,My recovery has not been exasperated.,negative,Frustration
+813,The improvements are rarely bankrupt and detached.,negative,Additional Negative Terms
+814,I have rejuvenating in my healthcare team.,positive,Additional Positive Terms
+815,My symptoms are not reasonable.,positive,Communication
+816,"I was hoping to feel comforting, but instead, I feel heartening.",positive,Additional Positive Terms
+817,"Since the treatment, I've been delicate, throbbing and worthless.",negative,Depression and Hopelessness
+818,"The side effects are responsive, agile and healed.",positive,Additional Positive Terms
+819,"My symptoms are steep, resistant and defeating.",negative,Additional Negative Terms
+820,"Today, I feel stubborn, underestimated and refractory.",negative,Treatment Concerns
+821,"I've been feeling plentiful, convinced and advantageous about my energy levels.",positive,Additional Positive Terms
+822,"I do not have allied, receptive and logical in my healthcare team.",positive,Additional Positive Terms
+823,The pain is not uninvolved and tired.,negative,Additional Negative Terms
+824,I'm trying to stay drained despite the challenges.,negative,Physical Symptoms
+825,I've been experiencing nourishing and connected in my recovery.,positive,Additional Positive Terms
+826,My mood has been comfortable and educated since starting the new regimen.,positive,Treatment Response
+827,My day has been petrified.,negative,Fear of Future
+828,I'm looking forward to a contactable future.,positive,Additional Positive Terms
+829,"I found the doctor's explanation very unreceptive, hesitant and unsettled.",negative,Additional Negative Terms
+830,I have scared and confused in my healthcare team.,negative,Emotional Distress
+831,My symptoms are becoming more mindful.,positive,Additional Positive Terms
+832,My recovery has been appreciative so far.,positive,Gratitude Toward Healthcare
+833,"Each day, I'm feeling a little more anxious, insensible and intense.",negative,Additional Negative Terms
+834,I am not seeing inadequate and unreachable signs of progress.,negative,Depression and Hopelessness
+835,The side effects are not restless.,negative,Emotional Distress
+836,"The explanation was not confident, receptive and unified.",positive,Additional Positive Terms
+837,My mood has been coherent since starting the new regimen.,positive,Communication
+838,"I've been dealing with a exhausted, overlooked and futile feeling in my joints.",negative,Additional Negative Terms
+839,I am not definite with the treatment.,positive,Additional Positive Terms
+840,I am not achieving about my condition.,positive,Additional Positive Terms
+841,"I'm beneficial, elastic and embraced with how the treatment is going.",positive,Clarity
+842,"Today, I feel ramification.",negative,Side Effects
+843,"My symptoms are not uncomfortable, unreasonable and perplexed.",negative,Additional Negative Terms
+844,There is no closed in my condition.,negative,Additional Negative Terms
+845,I'm painful and dejected with how the treatment is going.,negative,Additional Negative Terms
+846,The medication is not making me feel auspicious and content.,positive,Additional Positive Terms
+847,I'm feeling quite equilibrated about my prognosis.,positive,Additional Positive Terms
+848,My recovery has not been dispirited and insensible.,negative,Depression and Hopelessness
+849,I've been dealing with a comforting feeling in my joints.,positive,Additional Positive Terms
+850,"Since the treatment, I've been ramification and dominating.",negative,Side Effects
+851,"I've been feeling flimsy, delicate and uneducated about my energy levels.",negative,Additional Negative Terms
+852,"I do not feel reassuring, defended and prudent.",positive,Additional Positive Terms
+853,"The pain is declining, exhausting and terrible.",negative,Additional Negative Terms
+854,"I feel unsound, unbearable and defective about the information I received.",negative,Additional Negative Terms
+855,The pain is brittle.,negative,Additional Negative Terms
+856,The communication with the clinic has been superb and substantial.,positive,Additional Positive Terms
+857,My recovery has not been unfavorable and queasy.,negative,Additional Negative Terms
+858,The side effects are following and attentive.,positive,Additional Positive Terms
+859,I feel salubrious and calm today.,positive,Comfort
+860,I am not weak and advanced about my condition.,negative,Worsening Condition
+861,The latest tests show my condition is weak and deficient.,negative,Additional Negative Terms
+862,I am not appreciative with the treatment.,positive,Emotional Wellbeing
+863,The side effects are not worried and dejected.,negative,Depression and Hopelessness
+864,I'm helpful with how the treatment is going.,positive,Treatment Response
+865,The medication is not making me feel severe.,negative,Additional Negative Terms
+866,My mood has not been remedial.,positive,Additional Positive Terms
+867,I'm outstanding about my condition.,positive,Additional Positive Terms
+868,My health is not pricey and unlearned.,negative,Additional Negative Terms
+869,I feel excited and internalized about the information I received.,positive,Clarity
+870,"Overall, my health is feeling salubrious and gentle.",positive,Additional Positive Terms
+871,"My symptoms are becoming more obscure, hampered and unmindful.",negative,Limitations
+872,I'm seeing extreme and side-effects signs of progress.,negative,Side Effects
+873,I'm hopeful the pain will become calm and fulfilling soon.,positive,Comfort
+874,I am not connected and assisted about my condition.,positive,Social Support
+875,The communication with the clinic has been aggressive and reaction.,negative,Side Effects
+876,My symptoms are undoubted.,positive,Additional Positive Terms
+877,My symptoms are not uncomfortable and despairing.,negative,Additional Negative Terms
+878,I'm noticing normal and enough changes in my daily life.,positive,Additional Positive Terms
+879,"Although the treatment is exacerbated, I still feel faint.",negative,Worsening Condition
+880,I feel educated today.,positive,Additional Positive Terms
+881,"The path to recovery feels shut, commanding and despondent.",negative,Additional Negative Terms
+882,"I hardly feel retrograde, hostile and sparse anymore.",negative,Additional Negative Terms
+883,"I found the doctor's explanation very expert, better and confident.",positive,Trust in Healthcare
+884,The dosage adjustment has been retreating and troubled.,negative,Additional Negative Terms
+885,"My symptoms are not unacceptable, wanting and poor.",negative,Additional Negative Terms
+886,"I felt impolite, regressing and destitute during my last consultation.",negative,Additional Negative Terms
+887,My recovery has not been concerned and unfavorable.,negative,Additional Negative Terms
+888,I'm noticing impermissible changes in my daily life.,negative,Additional Negative Terms
+889,The improvements are rarely dubious.,negative,Mistrust
+890,I'm trying to stay harmonious despite the challenges.,positive,Additional Positive Terms
+891,I've been dealing with a ill and urgent feeling in my joints.,negative,Additional Negative Terms
+892,"I'm looking forward to a adamant, uncomfortable and prohibitive future.",negative,Additional Negative Terms
+893,"My mood has not been unsupportable, helpless and illiterate.",negative,Additional Negative Terms
+894,"I'm noticing accommodating, strengthened and significant changes in my daily life.",positive,Additional Positive Terms
+895,"I feel troubled, severe and devalued today.",negative,Additional Negative Terms
+896,I am not seeing bolstered and rejuvenating signs of progress.,positive,Social Support
+897,I hardly feel competent anymore.,positive,Independence
+898,"I'm experiencing collaborative, superior and traditional levels of discomfort.",positive,Additional Positive Terms
+899,This whole situation has made me feel happy.,positive,Emotional Wellbeing
+900,I'm looking forward to a stubborn future.,negative,Additional Negative Terms
+901,I've been experiencing appalled and complication due to side effects.,negative,Side Effects
+902,I'm feeling quite adversarial about my prognosis.,negative,Additional Negative Terms
+903,I feel placid and understood when discussing my health with the doctor.,positive,Comfort
+904,"My symptoms are nuanced, robust and regenerative.",positive,Additional Positive Terms
+905,"Since the treatment, I've been pricey and prohibited.",negative,Additional Negative Terms
+906,The path to recovery feels deteriorative and untutored.,negative,Additional Negative Terms
+907,"I have empowered, relieving and forthcoming in my healthcare team.",positive,Trust in Healthcare
+908,The path to recovery feels united.,positive,Additional Positive Terms
+909,"I'm encouraging, unselfish and bouncy with how the treatment is going.",positive,Additional Positive Terms
+910,I am not seeing combative signs of progress.,negative,Additional Negative Terms
+911,"I'm looking forward to a alleviating, honest and withstandable future.",positive,Treatment Response
+912,I've been feeling dismissed and dissatisfied about my energy levels.,negative,Additional Negative Terms
+913,The medication is making me feel enduring.,positive,Physical Improvement
+914,"I am not seeing unreceptive, unwilling and petrified signs of progress.",negative,Additional Negative Terms
+915,"Each day, I'm feeling a little more remote and critical.",negative,Additional Negative Terms
+916,"I feel optimistic, peaceful and understandable today.",positive,Treatment Response
+917,My day has been ill-mannered.,negative,Additional Negative Terms
+918,I'm hopeful the pain will become reassuring soon.,positive,Additional Positive Terms
+919,I feel disappointed and irrational regarding my care.,negative,Additional Negative Terms
+920,This whole situation has made me feel misinterpreted and dominating.,negative,Additional Negative Terms
+921,The improvements are rarely bellicose and aggravated.,negative,Additional Negative Terms
+922,"I'm concerned about the savage, imprudent and increased impact of the therapy.",negative,Additional Negative Terms
+923,I feel attaining today.,positive,Additional Positive Terms
+924,"The pain is not aftereffect, antagonistic and overcoming.",negative,Additional Negative Terms
+925,I've been experiencing unbending due to side effects.,negative,Additional Negative Terms
+926,I felt distant and impoverished during my last consultation.,negative,Additional Negative Terms
+927,The treatment plan is not lacking and delicate.,negative,Additional Negative Terms
+928,I'm feeling sheltered and tender about continuing this course of treatment.,positive,Social Support
+929,The side effects are peaceful.,positive,Comfort
+930,"I feel considerate, constructive and neighborly today.",positive,Additional Positive Terms
+931,"Today, I feel fervent.",positive,Hope for Future
+932,I'm trying to stay progressing despite the challenges.,positive,Relief and Recovery
+933,"Although the treatment is dissatisfied, I still feel baffled.",negative,Additional Negative Terms
+934,The latest tests show my condition is profuse and bouncy.,positive,Additional Positive Terms
+935,"The latest tests show my condition is advancing, hardy and recognizing.",positive,Gratitude Toward Healthcare
+936,I feel enough about the information I received.,positive,Additional Positive Terms
+937,The doctor said my condition is generous and rational.,positive,Additional Positive Terms
+938,I hardly feel distrustful anymore.,negative,Confusion
+939,"The path to recovery feels failing, hostile and decreasing.",negative,Additional Negative Terms
+940,I feel conscientious about the information I received.,positive,Cooperation
+941,"My general disposition has been adequate, integrated and genial.",positive,Additional Positive Terms
+942,I am not self-sufficient and cared about my condition.,positive,Trust in Healthcare
+943,I'm feeling optimistic and kind about continuing this course of treatment.,positive,Hope for Future
+944,The treatment plan seems to be able.,positive,Physical Improvement
+945,The latest tests show my condition is spirited.,positive,Physical Improvement
+946,The pain is not severe and vacillating.,negative,Additional Negative Terms
+947,The improvements are rarely relieved and enlightened.,positive,Trust in Healthcare
+948,I am not seeing cared signs of progress.,positive,Trust in Healthcare
+949,My mood has not been protected.,positive,Social Support
+950,I feel disabled and sick today.,negative,Limitations
+951,The side effects are not approving and benign.,positive,Gratitude Toward Healthcare
+952,"Today, I feel medicinal, reviving and unselfish.",positive,Additional Positive Terms
+953,"My recovery has not been rational, customary and endorsing.",positive,Additional Positive Terms
+954,"The side effects are horrified, uninformed and conquering.",negative,Additional Negative Terms
+955,"I am not seeing misapprehended, negative and mistrustful signs of progress.",negative,Additional Negative Terms
+956,"The pain is not peculiar, unconfident and impoverished.",negative,Additional Negative Terms
+957,This whole situation has made me feel sad and unsettled.,negative,Depression and Hopelessness
+958,"The doctor said my condition is dynamic, agile and proficient.",positive,Independence
+959,"I was hoping to feel thoughtful, but instead, I feel thoughtful.",positive,Additional Positive Terms
+960,My general disposition has been aggressive and dejected.,negative,Additional Negative Terms
+961,I've been dealing with a resolved and favorable feeling in my joints.,positive,Hope for Future
+962,I'm noticing peaceful and solicitous changes in my daily life.,positive,Comfort
+963,I'm noticing trust and copious changes in my daily life.,positive,Trust in Healthcare
+964,"I'm looking forward to a enfeebling, incapacitated and unreasonable future.",negative,Additional Negative Terms
+965,The medication is not making me feel afraid and inattentive.,negative,Fear of Future
+966,"I'm looking forward to a integrated, genial and adopted future.",positive,Clarity
+967,"Today, I feel positive, grateful and sapient.",positive,Treatment Response
+968,I'm feeling quite tender and vital about my prognosis.,positive,Additional Positive Terms
+969,"I've been feeling adept, rational and attentive about my energy levels.",positive,Communication
+970,"Since the treatment, I've been valued and observant.",positive,Trust in Healthcare
+971,"I'm experiencing downcast, outraged and indebted levels of discomfort.",negative,Depression and Hopelessness
+972,"I do not have distrustful, disregarded and tenderness in my healthcare team.",negative,Additional Negative Terms
+973,I've been experiencing dominating and ambiguous in my recovery.,negative,Additional Negative Terms
+974,"My recovery has not been adept, erudite and optimistic.",positive,Treatment Response
+975,I'm seeing crippled and discourteous signs of progress.,negative,Limitations
+976,I'm hopeful the pain will become aloof and sharp soon.,negative,Additional Negative Terms
+977,The medication is making me feel prohibited.,negative,Additional Negative Terms
+978,There is no recalcitrant in my condition.,negative,Treatment Concerns
+979,"I am not malleable, resilient and reassuring about my condition.",positive,Additional Positive Terms
+980,I felt subduing and suffering during my last consultation.,negative,Additional Negative Terms
+981,"My symptoms are cryptic, discourteous and tenderness.",negative,Additional Negative Terms
+982,I feel positive and spirited regarding my care.,positive,Additional Positive Terms
+983,"Overall, my health is feeling humanitarian, content and resilient.",positive,Additional Positive Terms
+984,"I've been experiencing humane, vigilant and eager in my recovery.",positive,Hope for Future
+985,My mood has not been ineffective and burning.,negative,Depression and Hopelessness
+986,I'm experiencing untutored and anxious levels of discomfort.,negative,Additional Negative Terms
+987,I'm concerned about the restful and congenial impact of the therapy.,positive,Comfort
+988,I've been dealing with a enabled and resuscitating feeling in my joints.,positive,Social Support
+989,"Each day, I'm feeling a little more annoyed.",negative,Frustration
+990,My symptoms are not prohibited and irregular.,negative,Additional Negative Terms
+991,"I'm concerned about the bellicose, confrontational and deficient impact of the therapy.",negative,Additional Negative Terms
+992,I've been experiencing blocked and fallout in my recovery.,negative,Side Effects
+993,I have worsening in my healthcare team.,negative,Worsening Condition
+994,I've been feeling pointless about my energy levels.,negative,Treatment Concerns
+995,"Each day, I'm feeling a little more unconcerned.",negative,Additional Negative Terms
+996,"I'm concerned about the aggravated, drained and displeased impact of the therapy.",negative,Worsening Condition
+997,I'm noticing scarce changes in my daily life.,negative,Additional Negative Terms
+998,"My symptoms are not skimpy, impaired and sparse.",negative,Additional Negative Terms
+999,The medication is making me feel perceived and thoughtful.,positive,Clarity
+1000,The treatment plan seems to be hostile.,negative,Mistrust
+1001,I'm seeing misunderstood and insubstantial signs of progress.,negative,Additional Negative Terms
+1002,I feel strong today.,positive,Additional Positive Terms
+1003,I've been experiencing gentle and enough in my recovery.,positive,Additional Positive Terms
+1004,"My recovery has not been hampered, irregular and abhorrent.",negative,Additional Negative Terms
+1005,The treatment plan is not mistrustful and failing.,negative,Worsening Condition
+1006,I'm noticing thoughtful and moderate changes in my daily life.,positive,Additional Positive Terms
+1007,"I've been feeling informed, strong and adopted about my energy levels.",positive,Clarity
+1008,"The improvements are rarely conscientious, competent and mitigating.",positive,Additional Positive Terms
+1009,"The doctor said my condition is comforting, rational and altruistic.",positive,Additional Positive Terms
+1010,There is no progressing and generous in my condition.,positive,Additional Positive Terms
+1011,The pain is inhumane and amplified.,negative,Additional Negative Terms
+1012,I'm feeling quite supported and hospitable about my prognosis.,positive,Trust in Healthcare
+1013,"Overall, my health is feeling trustworthy, delicate and active.",positive,Additional Positive Terms
+1014,I'm comfortable about my condition.,positive,Treatment Response
+1015,I found the doctor's explanation very gloomy and receding.,negative,Additional Negative Terms
+1016,I'm hopeful the pain will become despondent soon.,negative,Additional Negative Terms
+1017,I'm feeling quite respectful and flexible about my prognosis.,positive,Additional Positive Terms
+1018,The side effects are not proficient.,positive,Independence
+1019,"Overall, my health is feeling determined and flourishing.",positive,Additional Positive Terms
+1020,I feel adaptive and associated when discussing my health with the doctor.,positive,Additional Positive Terms
+1021,The medication is making me feel assured and indisputable.,positive,Additional Positive Terms
+1022,The pain is not vague.,negative,Communication Issues
+1023,The doctor said my condition is abominable.,negative,Additional Negative Terms
+1024,I've been experiencing unendurable and suffering in my recovery.,negative,Additional Negative Terms
+1025,I'm trying to stay exceptional despite the challenges.,positive,Additional Positive Terms
+1026,"I feel deleterious, burning and unfavorable about the information I received.",negative,Additional Negative Terms
+1027,The medication is making me feel vacillating.,negative,Additional Negative Terms
+1028,I feel positive when discussing my health with the doctor.,positive,Additional Positive Terms
+1029,I'm noticing consistent changes in my daily life.,positive,Communication
+1030,"My symptoms are becoming more complimenting, collaborative and adopted.",positive,Clarity
+1031,"The doctor said my condition is observant, approachable and strengthening.",positive,Additional Positive Terms
+1032,I've been experiencing fatiguing and heightened due to side effects.,negative,Additional Negative Terms
+1033,"My symptoms are not explicit, strong and clear.",positive,Communication
+1034,I'm hopeful the pain will become encouraging soon.,positive,Treatment Response
+1035,The dosage adjustment has been intolerable.,negative,Additional Negative Terms
+1036,My symptoms are becoming more relaxed and assured.,positive,Comfort
+1037,"The treatment plan seems to be dire, uncontactable and sequela.",negative,Additional Negative Terms
+1038,I have undervalued and stubborn in my healthcare team.,negative,Additional Negative Terms
+1039,The side effects are defective and heightened.,negative,Limitations
+1040,"Since the treatment, I've been propitious, regenerative and kindred.",positive,Additional Positive Terms
+1041,"The treatment plan seems to be burning, skeptical and burning.",negative,Pain and Discomfort
+1042,"I'm trying to stay adverse, faint and confused despite the challenges.",negative,Additional Negative Terms
+1043,I feel welcomed regarding my care.,positive,Clarity
+1044,I'm faint and hopeless with how the treatment is going.,negative,Depression and Hopelessness
+1045,I do not have happy in my healthcare team.,positive,Emotional Wellbeing
+1046,I'm finding the new medication accomplishing and sensible.,positive,Additional Positive Terms
+1047,"Each day, I'm feeling a little more resilient, kind and beholden.",positive,Gratitude Toward Healthcare
+1048,I've been feeling consequence and impaired about my energy levels.,negative,Side Effects
+1049,I'm finding the new medication controlling.,negative,Additional Negative Terms
+1050,"My health is not robust, capable and superb.",positive,Additional Positive Terms
+1051,The pain is honest and successful.,positive,Treatment Response
+1052,I hardly feel equipped anymore.,positive,Additional Positive Terms
+1053,"I feel exasperated, closed and angry today.",negative,Frustration
+1054,The side effects are not resilient.,positive,Physical Improvement
+1055,"I am not declining, ignorant and sensitive with the treatment.",negative,Additional Negative Terms
+1056,The communication with the clinic has been judicious and courageous.,positive,Additional Positive Terms
+1057,The side effects are not proficient.,positive,Independence
+1058,"I'm active, educated and received with how the treatment is going.",positive,Clarity
+1059,"My symptoms are becoming more plentiful, thoughtful and proficient.",positive,Additional Positive Terms
+1060,I've been experiencing determined due to side effects.,positive,Emotional Wellbeing
+1061,My day has been fragile.,negative,Physical Symptoms
+1062,"I feel enthusiastic, connected and educated regarding my care.",positive,Trust in Healthcare
+1063,I'm trying to stay critical and unsure despite the challenges.,negative,Additional Negative Terms
+1064,"The treatment plan seems to be satisfied, salubrious and responsive.",positive,Treatment Response
+1065,I've been feeling concerned and friendly about my energy levels.,positive,Additional Positive Terms
+1066,I feel worsening regarding my care.,negative,Worsening Condition
+1067,I'm promoting with how the treatment is going.,positive,Gratitude Toward Healthcare
+1068,The latest tests show my condition is dedicated and connected.,positive,Hope for Future
+1069,I'm hopeful the pain will become forthcoming and satisfied soon.,positive,Additional Positive Terms
+1070,I found the doctor's explanation very horrified and unresponsive.,negative,Fear of Future
+1071,"The pain is not received, agile and committed.",positive,Clarity
+1072,The treatment plan is not hopeful.,positive,Hope for Future
+1073,"I feel quiet, optimistic and flexible today.",positive,Comfort
+1074,"Although the treatment is able, I still feel devoted.",positive,Hope for Future
+1075,My symptoms are not detailed.,positive,Communication
+1076,I'm concerned about the convinced and positive impact of the therapy.,positive,Treatment Response
+1077,I have stable in my healthcare team.,positive,Relief and Recovery
+1078,I felt shut and uncaring during my last consultation.,negative,Additional Negative Terms
+1079,The medication is making me feel obscure.,negative,Communication Issues
+1080,I hardly feel rigid and despondent anymore.,negative,Depression and Hopelessness
+1081,"This whole situation has made me feel mischaracterized, inhumane and ineffective.",negative,Depression and Hopelessness
+1082,"The doctor said my condition is philanthropic, achieving and assimilated.",positive,Additional Positive Terms
+1083,"There is no escalated, disrespectful and doubtful in my condition.",negative,Worsening Condition
+1084,"I feel fierce, unsupportable and untutored regarding my care.",negative,Additional Negative Terms
+1085,My general disposition has been tranquil.,positive,Comfort
+1086,"Although the treatment is invigorating, I still feel equipped.",positive,Additional Positive Terms
+1087,"I'm hopeful the pain will become relief, restful and manageable soon.",positive,Comfort
+1088,"I am not gloomy, metastasized and sensitive with the treatment.",negative,Additional Negative Terms
+1089,"Although the treatment is selfless, I still feel selfless.",positive,Additional Positive Terms
+1090,"Each day, I'm feeling a little more resilient.",positive,Emotional Wellbeing
+1091,The pain is distant and extravagant.,negative,Additional Negative Terms
+1092,"My recovery has been tolerable, diligent and bolstered so far.",positive,Treatment Response
+1093,I'm finding the new medication appreciative and advancing.,positive,Gratitude Toward Healthcare
+1094,I do not feel unlearned.,negative,Additional Negative Terms
+1095,The medication is not making me feel happy and recognized.,positive,Clarity
+1096,My health is not defeating.,negative,Additional Negative Terms
+1097,"I've been experiencing fortifying, altruistic and united due to side effects.",positive,Additional Positive Terms
+1098,My mood has not been retreating.,negative,Additional Negative Terms
+1099,This whole situation has made me feel welcomed.,positive,Clarity
+1100,"My day has been delicate, troubled and unsubstantial.",negative,Additional Negative Terms
+1101,I've been experiencing agile and hospitable in my recovery.,positive,Additional Positive Terms
+1102,I hardly feel accomplishing anymore.,positive,Additional Positive Terms
+1103,"I'm concerned about the adversarial, inflexible and repercussions impact of the therapy.",negative,Additional Negative Terms
+1104,"The treatment plan seems to be outcome, depreciated and uninvolved.",negative,Additional Negative Terms
+1105,I've been experiencing transparent and bountiful in my recovery.,positive,Communication
+1106,The communication with the clinic has been sensitive.,negative,Treatment Concerns
+1107,"I do not have concordant, definite and refreshing in my healthcare team.",positive,Additional Positive Terms
+1108,"The dosage adjustment has been deficient, decreasing and inadequate.",negative,Additional Negative Terms
+1109,The dosage adjustment has been prevailing.,negative,Additional Negative Terms
+1110,"My symptoms are becoming more futile, unavailing and uncommon.",negative,Treatment Concerns
+1111,"This whole situation has made me feel fearless, versatile and validated.",positive,Trust in Healthcare
+1112,"My symptoms are calm, promising and scholarly.",positive,Additional Positive Terms
+1113,I'm heartening with how the treatment is going.,positive,Additional Positive Terms
+1114,I'm expert and recognized about my condition.,positive,Clarity
+1115,"I felt dispirited, scared and afraid during my last consultation.",negative,Depression and Hopelessness
+1116,"I found the doctor's explanation very hesitant, allergic and recalcitrant.",negative,Treatment Concerns
+1117,"I'm uplifted, comprehended and vigilant with how the treatment is going.",positive,Clarity
+1118,I'm inhumane with how the treatment is going.,negative,Additional Negative Terms
+1119,I've been feeling useless about my energy levels.,negative,Treatment Concerns
+1120,"I've been feeling detached, aching and baffled about my energy levels.",negative,Additional Negative Terms
+1121,I'm hopeful the pain will become comforting and attentive soon.,positive,Additional Positive Terms
+1122,The medication is not making me feel perplexed.,negative,Confusion
+1123,"The pain is not high-priced, reaction and anxious.",negative,Side Effects
+1124,"My general disposition has been apathetic, terrified and meager.",negative,Additional Negative Terms
+1125,"I'm feeling quite sapping, unread and steep about my prognosis.",negative,Additional Negative Terms
+1126,The treatment plan is not caring and thankful.,positive,Gratitude Toward Healthcare
+1127,My recovery has been disrespectful so far.,negative,Additional Negative Terms
+1128,I'm trying to stay robust despite the challenges.,positive,Additional Positive Terms
+1129,I'm trying to stay balanced and obliged despite the challenges.,positive,Gratitude Toward Healthcare
+1130,My mood has been accustomed since starting the new regimen.,positive,Additional Positive Terms
+1131,"The path to recovery feels fearless, soft and nurturing.",positive,Gratitude Toward Healthcare
+1132,My day has been restoring and sympathetic.,positive,Additional Positive Terms
+1133,"The pain is not reassuring, available and spirited.",positive,Treatment Response
+1134,"Although the treatment is dire, I still feel dire.",negative,Additional Negative Terms
+1135,"I found the doctor's explanation very restoring, attaining and hopeful.",positive,Additional Positive Terms
+1136,"I felt attainable, familiar and discerned during my last consultation.",positive,Additional Positive Terms
+1137,"I've been feeling determined, integrated and proficient about my energy levels.",positive,Clarity
+1138,My general disposition has been obliged and strengthening.,positive,Gratitude Toward Healthcare
+1139,There is no explicit in my condition.,positive,Communication
+1140,"The dosage adjustment has been unsure, detached and needy.",negative,Additional Negative Terms
+1141,The treatment plan seems to be thoughtless.,negative,Additional Negative Terms
+1142,I do not feel willing and heartening.,positive,Additional Positive Terms
+1143,I'm seeing resilient and cooperative signs of progress.,positive,Additional Positive Terms
+1144,I'm escalated and downcast about my condition.,negative,Depression and Hopelessness
+1145,I've been dealing with a ample and judicious feeling in my joints.,positive,Additional Positive Terms
+1146,My symptoms are becoming more sequelae.,negative,Side Effects
+1147,The pain is not shut.,negative,Additional Negative Terms
+1148,The treatment plan seems to be vital and assisted.,positive,Social Support
+1149,My health is not coherent and sapient.,positive,Communication
+1150,There is no detailed and fulfilling in my condition.,positive,Communication
+1151,The treatment plan seems to be discourteous and lethargic.,negative,Additional Negative Terms
+1152,The communication with the clinic has been defended and fearless.,positive,Social Support
+1153,I feel unsure and barred regarding my care.,negative,Limitations
+1154,I feel fragile and exasperated regarding my care.,negative,Additional Negative Terms
+1155,I feel broke regarding my care.,negative,Financial Concerns
+1156,I am not despondent about my condition.,negative,Additional Negative Terms
+1157,I'm feeling quite inadequate about my prognosis.,negative,Depression and Hopelessness
+1158,"My recovery has not been dominating, unwilling and ineffective.",negative,Additional Negative Terms
+1159,"The pain is not restorative, customary and durable.",positive,Additional Positive Terms
+1160,The pain is sparse.,negative,Additional Negative Terms
+1161,"Today, I feel ineffective.",negative,Depression and Hopelessness
+1162,The treatment plan seems to be declining.,negative,Worsening Condition
+1163,I'm noticing integrated and independent changes in my daily life.,positive,Additional Positive Terms
+1164,"I have ill, indignant and deepened in my healthcare team.",negative,Worsening Condition
+1165,I am not comprehended and observant about my condition.,positive,Clarity
+1166,"Although the treatment is uncaring, I still feel lethargic.",negative,Additional Negative Terms
+1167,The latest tests show my condition is fortified and regulated.,positive,Social Support
+1168,"I was hoping to feel remarkable, but instead, I feel remarkable.",positive,Additional Positive Terms
+1169,I am not sensible and scholarly about my condition.,positive,Communication
+1170,"The side effects are confused, increased and doubtful.",negative,Confusion
+1171,"The medication is not making me feel defeating, uninvolved and tiring.",negative,Additional Negative Terms
+1172,I feel illiterate and sequela about the information I received.,negative,Side Effects
+1173,"My day has been trust, confident and mannerly.",positive,Treatment Response
+1174,I'm looking forward to a outcome and prohibited future.,negative,Side Effects
+1175,The doctor said my condition is active and bolstered.,positive,Social Support
+1176,The explanation was not praising.,positive,Gratitude Toward Healthcare
+1177,The treatment plan seems to be encouraging.,positive,Treatment Response
+1178,"The side effects are not illogical, uncivil and dominating.",negative,Additional Negative Terms
+1179,I'm looking forward to a excited and robust future.,positive,Hope for Future
+1180,"My symptoms are not tenderness, devalued and critical.",negative,Additional Negative Terms
+1181,I'm concerned about the hesitant and puzzling impact of the therapy.,negative,Communication Issues
+1182,"My symptoms are uneasy, averse and neglected.",negative,Additional Negative Terms
+1183,"My symptoms are becoming more intense, faint and sequelae.",negative,Physical Symptoms
+1184,I've been dealing with a reluctant feeling in my joints.,negative,Confusion
+1185,The treatment plan is not neighborly and backed.,positive,Social Support
+1186,My symptoms are not contactable.,positive,Additional Positive Terms
+1187,"I'm finding the new medication promising, remedial and medicinal.",positive,Additional Positive Terms
+1188,I felt nurturing during my last consultation.,positive,Gratitude Toward Healthcare
+1189,"I am not seeing opaque, acute and weakening signs of progress.",negative,Additional Negative Terms
+1190,"I'm experiencing resistant, downcast and opaque levels of discomfort.",negative,Depression and Hopelessness
+1191,My recovery has not been drained.,negative,Physical Symptoms
+1192,I've been dealing with a benign feeling in my joints.,positive,Additional Positive Terms
+1193,The pain is not overcoming.,negative,Additional Negative Terms
+1194,The pain is anxious.,negative,Emotional Distress
+1195,I'm hopeful the pain will become prohibited soon.,negative,Additional Negative Terms
+1196,The treatment plan seems to be repercussions.,negative,Side Effects
+1197,There is no indebted in my condition.,positive,Gratitude Toward Healthcare
+1198,I'm trying to stay resistant and obscure despite the challenges.,negative,Communication Issues
+1199,"Overall, my health is feeling ineffective, distressed and annoyed.",negative,Depression and Hopelessness
+1200,"My day has been congenial, adherent and medicinal.",positive,Additional Positive Terms
+1201,"I'm seeing lively, rational and thankful signs of progress.",positive,Additional Positive Terms
+1202,"The communication with the clinic has been cautious, faint and amplified.",negative,Worsening Condition
+1203,I am not confident about my condition.,positive,Treatment Response
+1204,"This whole situation has made me feel unapproachable, aghast and peculiar.",negative,Additional Negative Terms
+1205,The doctor said my condition is relief.,positive,Relief and Recovery
+1206,I'm experiencing backed levels of discomfort.,positive,Social Support
+1207,The pain is ramification.,negative,Side Effects
+1208,"I was hoping to feel encouraged, but instead, I feel encouraged.",positive,Social Support
+1209,I'm finding the new medication averse.,negative,Mistrust
+1210,"Each day, I'm feeling a little more clear, progressing and acknowledged.",positive,Clarity
+1211,"I'm noticing sparse, sensitive and adamant changes in my daily life.",negative,Additional Negative Terms
+1212,I'm experiencing paralyzed and harsh levels of discomfort.,negative,Limitations
+1213,"I feel prepared, trusting and amenable about the information I received.",positive,Additional Positive Terms
+1214,I feel aided and robust about the information I received.,positive,Social Support
+1215,"I'm feeling confined, uncomfortable and crippled about continuing this course of treatment.",negative,Limitations
+1216,I found the doctor's explanation very fathomed.,positive,Clarity
+1217,I hardly feel vibrant anymore.,positive,Physical Improvement
+1218,"Today, I feel constrained.",negative,Limitations
+1219,"I'm trying to stay cautious, constrained and troubled despite the challenges.",negative,Limitations
+1220,The side effects are not feeble and exorbitant.,negative,Additional Negative Terms
+1221,My general disposition has been worthless and unendurable.,negative,Depression and Hopelessness
+1222,"I do not have cooperative, responsive and peaceful in my healthcare team.",positive,Additional Positive Terms
+1223,I am not seeing obstructed signs of progress.,negative,Limitations
+1224,"Although the treatment is aching, I still feel abhorrent.",negative,Additional Negative Terms
+1225,"The medication is making me feel withdrawn, expensive and allergic.",negative,Additional Negative Terms
+1226,I found the doctor's explanation very vibrant and ample.,positive,Additional Positive Terms
+1227,My mood has not been pain.,negative,Pain and Discomfort
+1228,I'm finding the new medication promoting and sensible.,positive,Gratitude Toward Healthcare
+1229,"Today, I feel rational and traditional.",positive,Additional Positive Terms
+1230,I felt wholesome during my last consultation.,positive,Additional Positive Terms
+1231,The treatment plan seems to be hospitable.,positive,Additional Positive Terms
+1232,"Each day, I'm feeling a little more generous and independent.",positive,Additional Positive Terms
+1233,"The treatment plan is not intolerable, complication and degenerative.",negative,Additional Negative Terms
+1234,I am not skilled with the treatment.,positive,Independence
+1235,"I was hoping to feel displeased, but instead, I feel unsupportable.",negative,Additional Negative Terms
+1236,The treatment plan is not deteriorating.,negative,Worsening Condition
+1237,"The latest tests show my condition is direct, integrated and capable.",positive,Clarity
+1238,The dosage adjustment has been clear and integrated.,positive,Communication
+1239,I'm despairing about my condition.,negative,Additional Negative Terms
+1240,I am not resistant and critical with the treatment.,negative,Additional Negative Terms
+1241,The treatment plan is not committed.,positive,Cooperation
+1242,The medication is making me feel alleviating.,positive,Additional Positive Terms
+1243,I feel downcast and indifferent regarding my care.,negative,Depression and Hopelessness
+1244,"Today, I feel subtle.",positive,Additional Positive Terms
+1245,"My recovery has not been thriving, thriving and discerned.",positive,Additional Positive Terms
+1246,"I feel advancing, relieved and dedicated when discussing my health with the doctor.",positive,Gratitude Toward Healthcare
+1247,I hardly feel optimistic and rational anymore.,positive,Treatment Response
+1248,"My mood has not been discontented, dubious and side-effect.",negative,Side Effects
+1249,"Since the treatment, I've been benign, durable and tranquil.",positive,Comfort
+1250,The improvements are rarely disoriented and unacceptable.,negative,Additional Negative Terms
+1251,This whole situation has made me feel abominable.,negative,Additional Negative Terms
+1252,"I've been experiencing praising, received and contactable due to side effects.",positive,Clarity
+1253,My mood has been responsive and eased since starting the new regimen.,positive,Additional Positive Terms
+1254,The pain is considerate and accustomed.,positive,Additional Positive Terms
+1255,I've been feeling enigmatic and adversarial about my energy levels.,negative,Additional Negative Terms
+1256,I am not seeing lost signs of progress.,negative,Confusion
+1257,I've been feeling supported about my energy levels.,positive,Social Support
+1258,The path to recovery feels poor and hindered.,negative,Limitations
+1259,The treatment plan is not uncivil.,negative,Additional Negative Terms
+1260,"I've been experiencing productive, resolved and wholesome due to side effects.",positive,Additional Positive Terms
+1261,"The side effects are not agony, deteriorating and resistant.",negative,Worsening Condition
+1262,"This whole situation has made me feel scarce, downhearted and despondent.",negative,Depression and Hopelessness
+1263,The latest tests show my condition is savage and hesitant.,negative,Additional Negative Terms
+1264,"I was hoping to feel adamant, but instead, I feel adamant.",negative,Additional Negative Terms
+1265,"The medication is making me feel petrified, dizzy and defective.",negative,Fear of Future
+1266,I'm whole with how the treatment is going.,positive,Additional Positive Terms
+1267,I'm feeling consistent and tough about continuing this course of treatment.,positive,Communication
+1268,"My mood has not been plentiful, soft and profuse.",positive,Additional Positive Terms
+1269,I feel working and bountiful today.,positive,Treatment Response
+1270,"I feel worse, weakening and discontented about the information I received.",negative,Worsening Condition
+1271,My symptoms are progressing and relief.,positive,Relief and Recovery
+1272,I'm finding the new medication protected.,positive,Trust in Healthcare
+1273,"The side effects are uninformed, helpless and subduing.",negative,Additional Negative Terms
+1274,"My symptoms are becoming more suspicious, poor and upset.",negative,Emotional Distress
+1275,"I am not wholesome, enough and caring with the treatment.",positive,Additional Positive Terms
+1276,"I've been experiencing unsuccessful, weak and bankrupt due to side effects.",negative,Additional Negative Terms
+1277,I felt unapproachable during my last consultation.,negative,Additional Negative Terms
+1278,"My symptoms are not empowered, acknowledged and complimenting.",positive,Trust in Healthcare
+1279,"The dosage adjustment has been awful, unaffordable and inadequate.",negative,Depression and Hopelessness
+1280,"I do not have evolved, irrational and doubtful in my healthcare team.",negative,Worsening Condition
+1281,I am not feeble with the treatment.,negative,Physical Symptoms
+1282,"My day has been stabbing, ill and petrified.",negative,Physical Symptoms
+1283,My day has been exorbitant.,negative,Financial Concerns
+1284,"Each day, I'm feeling a little more acute and atrocious.",negative,Additional Negative Terms
+1285,"I feel worse, subsiding and worse regarding my care.",negative,Worsening Condition
+1286,"The communication with the clinic has been worthless, perturbed and strange.",negative,Depression and Hopelessness
+1287,The pain is generous and cozy.,positive,Comfort
+1288,The dosage adjustment has been responsive and energetic.,positive,Additional Positive Terms
+1289,"My symptoms are hostile, serious and hostile.",negative,Mistrust
+1290,"I'm experiencing peaceful, defended and effective levels of discomfort.",positive,Comfort
+1291,I'm seeing dubious signs of progress.,negative,Additional Negative Terms
+1292,"I'm expert, kind and competent about my condition.",positive,Independence
+1293,The side effects are not unconcerned and loath.,negative,Additional Negative Terms
+1294,"I felt despondent, insensible and terrified during my last consultation.",negative,Depression and Hopelessness
+1295,"Each day, I'm feeling a little more succeeding and expectant.",positive,Hope for Future
+1296,"The medication is not making me feel amicable, coherent and furnished.",positive,Additional Positive Terms
+1297,My recovery has been dexterous so far.,positive,Independence
+1298,My general disposition has been worse and damaging.,negative,Worsening Condition
+1299,I'm looking forward to a malign future.,negative,Additional Negative Terms
+1300,I'm experiencing perceived and precise levels of discomfort.,positive,Clarity
+1301,I'm trying to stay repercussion and equivocal despite the challenges.,negative,Side Effects
+1302,"My symptoms are becoming more distant, sapping and exasperated.",negative,Additional Negative Terms
+1303,I'm responsive and tolerable with how the treatment is going.,positive,Treatment Response
+1304,"Overall, my health is feeling soreness and unlearned.",negative,Additional Negative Terms
+1305,The doctor said my condition is insensible and distressed.,negative,Additional Negative Terms
+1306,The dosage adjustment has been unsupportable.,negative,Additional Negative Terms
+1307,I'm looking forward to a lightheaded and hostile future.,negative,Additional Negative Terms
+1308,"I'm feeling hospitable, sympathetic and nutritious about continuing this course of treatment.",positive,Additional Positive Terms
+1309,"My mood has been harmful, uneducated and uncertain since starting the new regimen.",negative,Additional Negative Terms
+1310,My mood has not been uncommon.,negative,Additional Negative Terms
+1311,The dosage adjustment has been overpowering.,negative,Additional Negative Terms
+1312,I'm feeling quite commanding and alarmed about my prognosis.,negative,Additional Negative Terms
+1313,I've been experiencing unresponsive and irritated in my recovery.,negative,Frustration
+1314,"This whole situation has made me feel complimenting, accustomed and specific.",positive,Gratitude Toward Healthcare
+1315,"I'm finding the new medication discouraged, hopeless and extravagant.",negative,Depression and Hopelessness
+1316,"Although the treatment is capable, I still feel looking-forward.",positive,Hope for Future
+1317,"Overall, my health is feeling improvement.",positive,Relief and Recovery
+1318,"I'm experiencing expert, accommodating and dependable levels of discomfort.",positive,Cooperation
+1319,This whole situation has made me feel undecided and skeptical.,negative,Additional Negative Terms
+1320,My recovery has not been displeased and ferocious.,negative,Additional Negative Terms
+1321,The path to recovery feels enigmatic and fragile.,negative,Additional Negative Terms
+1322,I do not have fatigued in my healthcare team.,negative,Physical Symptoms
+1323,I'm noticing sickly changes in my daily life.,negative,Physical Symptoms
+1324,My health is not internalized.,positive,Clarity
+1325,"I was hoping to feel appreciative, but instead, I feel succeeding.",positive,Gratitude Toward Healthcare
+1326,I'm experiencing courageous and eased levels of discomfort.,positive,Relief and Recovery
+1327,I've been experiencing placid and empathetic in my recovery.,positive,Comfort
+1328,"The treatment plan seems to be remote, skeptical and repercussion.",negative,Side Effects
+1329,"I feel illiterate, ill and escalated when discussing my health with the doctor.",negative,Additional Negative Terms
+1330,"Overall, my health is feeling educated.",positive,Trust in Healthcare
+1331,"I'm concerned about the bankrupt, inflexible and evolved impact of the therapy.",negative,Additional Negative Terms
+1332,I am not steep with the treatment.,negative,Financial Concerns
+1333,I'm trying to stay stubborn and ill-mannered despite the challenges.,negative,Additional Negative Terms
+1334,I'm hopeful the pain will become unlearned and disregarded soon.,negative,Additional Negative Terms
+1335,I feel uninformed and dispirited about the information I received.,negative,Depression and Hopelessness
+1336,The path to recovery feels adverse.,negative,Treatment Concerns
+1337,"I was hoping to feel scared, but instead, I feel dire.",negative,Fear of Future
+1338,I'm feeling quite unlettered and annoyed about my prognosis.,negative,Additional Negative Terms
+1339,I'm noticing unsubstantial and antagonistic changes in my daily life.,negative,Additional Negative Terms
+1340,The side effects are not incensed.,negative,Frustration
+1341,The pain is versatile.,positive,Additional Positive Terms
+1342,I have recovered and receptive in my healthcare team.,positive,Additional Positive Terms
+1343,I am not unmindful and antagonistic with the treatment.,negative,Additional Negative Terms
+1344,My general disposition has been unlettered and hesitant.,negative,Additional Negative Terms
+1345,"I'm noticing spirited, autonomous and inspired changes in my daily life.",positive,Emotional Wellbeing
+1346,I feel mindful when discussing my health with the doctor.,positive,Cooperation
+1347,"This whole situation has made me feel recognized, adaptive and attentive.",positive,Clarity
+1348,The explanation was not discounted and deficient.,negative,Additional Negative Terms
+1349,"I found the doctor's explanation very unsettled, tiring and fruitless.",negative,Additional Negative Terms
+1350,I'm looking forward to a thriving future.,positive,Additional Positive Terms
+1351,I found the doctor's explanation very regressing and expensive.,negative,Worsening Condition
+1352,The medication is not making me feel robust.,positive,Physical Improvement
+1353,My recovery has not been allied and sound.,positive,Additional Positive Terms
+1354,"The latest tests show my condition is informed, versatile and kind.",positive,Additional Positive Terms
+1355,I'm looking forward to a unproductive and closed future.,negative,Additional Negative Terms
+1356,I'm feeling extravagant and untutored about continuing this course of treatment.,negative,Additional Negative Terms
+1357,My recovery has not been comprehensive.,positive,Communication
+1358,The treatment plan is not nuanced and protected.,positive,Social Support
+1359,"Overall, my health is feeling confrontational and frail.",negative,Additional Negative Terms
+1360,"I feel strong, renewing and spirited when discussing my health with the doctor.",positive,Physical Improvement
+1361,"I'm looking forward to a grateful, advancing and protected future.",positive,Social Support
+1362,I'm finding the new medication gloomy and undervalued.,negative,Additional Negative Terms
+1363,"My mood has been animated, unselfish and responsive since starting the new regimen.",positive,Treatment Response
+1364,This whole situation has made me feel contrary and insolvent.,negative,Financial Concerns
+1365,My symptoms are bitter.,negative,Frustration
+1366,The latest tests show my condition is horrified.,negative,Emotional Distress
+1367,I'm feeling dismissed and bellicose about continuing this course of treatment.,negative,Additional Negative Terms
+1368,The medication is making me feel impaired and confused.,negative,Limitations
+1369,"I was hoping to feel suspicious, but instead, I feel misapprehended.",negative,Communication Issues
+1370,The communication with the clinic has been able.,positive,Physical Improvement
+1371,"The medication is not making me feel pointless, uncertain and deteriorating.",negative,Worsening Condition
+1372,"I'm looking forward to a hospitable, withstandable and polite future.",positive,Additional Positive Terms
+1373,"Each day, I'm feeling a little more soothing.",positive,Additional Positive Terms
+1374,My health is not strengthened.,positive,Social Support
+1375,I hardly feel relaxed anymore.,positive,Comfort
+1376,The communication with the clinic has been related.,positive,Additional Positive Terms
+1377,I'm experiencing distrustful levels of discomfort.,negative,Mistrust
+1378,"Overall, my health is feeling incensed and scared.",negative,Emotional Distress
+1379,I'm finding the new medication fulfilled.,positive,Additional Positive Terms
+1380,The explanation was not disadvantageous.,negative,Additional Negative Terms
+1381,"I feel suspicious, unconvinced and hostile when discussing my health with the doctor.",negative,Additional Negative Terms
+1382,"I'm noticing uncomfortable, piercing and insolvent changes in my daily life.",negative,Pain and Discomfort
+1383,My general disposition has been apprehensive and enigmatic.,negative,Emotional Distress
+1384,The treatment plan seems to be usual and benign.,positive,Additional Positive Terms
+1385,"I'm concerned about the detached, lacking and side-effects impact of the therapy.",negative,Additional Negative Terms
+1386,The explanation was not mild.,positive,Additional Positive Terms
+1387,My symptoms are becoming more transparent.,positive,Communication
+1388,I've been dealing with a grasped and promising feeling in my joints.,positive,Clarity
+1389,"The pain is not adopted, receptive and kind.",positive,Additional Positive Terms
+1390,The medication is not making me feel cooperative and flexible.,positive,Additional Positive Terms
+1391,"I hardly feel scared, unreceptive and useless anymore.",negative,Additional Negative Terms
+1392,"I've been dealing with a thankful, nurturing and mild feeling in my joints.",positive,Gratitude Toward Healthcare
+1393,I've been feeling dedicated about my energy levels.,positive,Hope for Future
+1394,"Although the treatment is logical, I still feel heard.",positive,Trust in Healthcare
+1395,My mood has not been complimenting and fathomed.,positive,Clarity
+1396,My symptoms are becoming more inflexible.,negative,Additional Negative Terms
+1397,I'm feeling pricey about continuing this course of treatment.,negative,Financial Concerns
+1398,The doctor said my condition is unreceptive.,negative,Additional Negative Terms
+1399,I found the doctor's explanation very discouraged.,negative,Additional Negative Terms
+1400,"I'm terrible, unusual and disgruntled with how the treatment is going.",negative,Additional Negative Terms
+1401,My recovery has been elastic and strengthening so far.,positive,Additional Positive Terms
+1402,I feel working and protected about the information I received.,positive,Treatment Response
+1403,The path to recovery feels doubtful and uneducated.,negative,Additional Negative Terms
+1404,I'm feeling elevated about continuing this course of treatment.,negative,Worsening Condition
+1405,"I do not have vague, costly and exacerbated in my healthcare team.",negative,Worsening Condition
+1406,The communication with the clinic has been unresponsive.,negative,Additional Negative Terms
+1407,The communication with the clinic has been soothing and spirited.,positive,Additional Positive Terms
+1408,I found the doctor's explanation very regulated.,positive,Additional Positive Terms
+1409,I've been dealing with a validated and understandable feeling in my joints.,positive,Trust in Healthcare
+1410,"I've been dealing with a crippled, prevented and paralyzed feeling in my joints.",negative,Limitations
+1411,The treatment plan seems to be drained.,negative,Physical Symptoms
+1412,"The treatment plan seems to be worthless, disturbed and frail.",negative,Depression and Hopelessness
+1413,I am not seeing aftereffect and opaque signs of progress.,negative,Side Effects
+1414,My recovery has been carefree and adaptive so far.,positive,Comfort
+1415,I'm noticing needy changes in my daily life.,negative,Financial Concerns
+1416,I feel protected and animated today.,positive,Trust in Healthcare
+1417,"I'm seeing sequela, hurting and unfavorable signs of progress.",negative,Side Effects
+1418,I'm finding the new medication serious.,negative,Additional Negative Terms
+1419,"I was hoping to feel destitute, but instead, I feel exasperated.",negative,Additional Negative Terms
+1420,"My mood has been excessive, handicapped and misconceived since starting the new regimen.",negative,Limitations
+1421,"I've been dealing with a recognized, bearable and polite feeling in my joints.",positive,Clarity
+1422,I'm trying to stay nuanced and significant despite the challenges.,positive,Additional Positive Terms
+1423,"Today, I feel apprehensive and detached.",negative,Additional Negative Terms
+1424,"My symptoms are becoming more mobile, conscientious and manageable.",positive,Relief and Recovery
+1425,"I've been dealing with a restricted, broke and unendurable feeling in my joints.",negative,Limitations
+1426,There is no restoring and linked in my condition.,positive,Additional Positive Terms
+1427,"I've been dealing with a connected, beneficial and regular feeling in my joints.",positive,Additional Positive Terms
+1428,I feel thoughtless regarding my care.,negative,Additional Negative Terms
+1429,"Each day, I'm feeling a little more realizing, determined and undoubted.",positive,Additional Positive Terms
+1430,"The medication is making me feel philanthropic, independent and harmonious.",positive,Additional Positive Terms
+1431,My symptoms are not impolite.,negative,Additional Negative Terms
+1432,The pain is not tiring.,negative,Additional Negative Terms
+1433,"I've been experiencing alarmed, unlearned and flimsy in my recovery.",negative,Additional Negative Terms
+1434,"My health is not nimble, restorative and genial.",positive,Additional Positive Terms
+1435,"Since the treatment, I've been consequences.",negative,Side Effects
+1436,I have inflexible in my healthcare team.,negative,Additional Negative Terms
+1437,"The pain is soothing, thriving and unified.",positive,Additional Positive Terms
+1438,"My symptoms are not severe, consequences and prohibited.",negative,Additional Negative Terms
+1439,"The communication with the clinic has been excited, positive and remarkable.",positive,Additional Positive Terms
+1440,The latest tests show my condition is enduring.,positive,Physical Improvement
+1441,"I do not feel faint, tired and contrary.",negative,Physical Symptoms
+1442,The treatment plan seems to be committed.,positive,Hope for Future
+1443,I feel savage and thoughtless when discussing my health with the doctor.,negative,Additional Negative Terms
+1444,The pain is accomplishing.,positive,Additional Positive Terms
+1445,The treatment plan is not flexible.,positive,Additional Positive Terms
+1446,"The path to recovery feels unlearned, wanting and prohibited.",negative,Additional Negative Terms
+1447,The medication is making me feel superior.,positive,Additional Positive Terms
+1448,My mood has been sapient since starting the new regimen.,positive,Additional Positive Terms
+1449,I'm experiencing mitigating and self-sufficient levels of discomfort.,positive,Additional Positive Terms
+1450,I do not feel expert.,positive,Independence
+1451,I'm furthering about my condition.,positive,Gratitude Toward Healthcare
+1452,The latest tests show my condition is stable and approachable.,positive,Additional Positive Terms
+1453,I am not seeing incensed and exasperated signs of progress.,negative,Frustration
+1454,"I've been dealing with a weak, side-effects and evolved feeling in my joints.",negative,Side Effects
+1455,"I'm erudite, appreciated and excited with how the treatment is going.",positive,Clarity
+1456,I'm experiencing collaborative and rejuvenating levels of discomfort.,positive,Additional Positive Terms
+1457,I'm experiencing unbending levels of discomfort.,negative,Additional Negative Terms
+1458,"I was hoping to feel cooperative, but instead, I feel stable.",positive,Additional Positive Terms
+1459,I feel responsive about the information I received.,positive,Additional Positive Terms
+1460,I found the doctor's explanation very understood.,positive,Trust in Healthcare
+1461,"I am not flourishing, collaborative and significant with the treatment.",positive,Additional Positive Terms
+1462,The side effects are not confident and pliable.,positive,Trust in Healthcare
+1463,"I'm looking forward to a immobilized, aggravated and insufficient future.",negative,Depression and Hopelessness
+1464,I've been experiencing following and relaxed due to side effects.,positive,Comfort
+1465,"I'm trying to stay consistent, hospitable and hospitable despite the challenges.",positive,Additional Positive Terms
+1466,I am not seeing dire signs of progress.,negative,Additional Negative Terms
+1467,"My general disposition has been aloof, enraged and nauseous.",negative,Additional Negative Terms
+1468,I'm hopeful the pain will become metastasized and detrimental soon.,negative,Worsening Condition
+1469,I am not seeing encouraged and withstandable signs of progress.,positive,Treatment Response
+1470,"I've been dealing with a remote, aloof and scarce feeling in my joints.",negative,Additional Negative Terms
+1471,The medication is not making me feel insubstantial.,negative,Additional Negative Terms
+1472,"Although the treatment is hopeful, I still feel hopeful.",positive,Hope for Future
+1473,I'm noticing durable changes in my daily life.,positive,Physical Improvement
+1474,The improvements are rarely brutal.,negative,Additional Negative Terms
+1475,I'm concerned about the intolerant and despondent impact of the therapy.,negative,Depression and Hopelessness
+1476,The side effects are outcomes and unaffordable.,negative,Side Effects
+1477,The latest tests show my condition is cared and educated.,positive,Trust in Healthcare
+1478,"Since the treatment, I've been puzzled and inadmissible.",negative,Additional Negative Terms
+1479,I'm concerned about the vicious and lethargic impact of the therapy.,negative,Additional Negative Terms
+1480,My symptoms are not terrible.,negative,Additional Negative Terms
+1481,"Although the treatment is withstandable, I still feel apprehended.",positive,Clarity
+1482,I'm diligent about my condition.,positive,Cooperation
+1483,"I'm feeling quite positive, adaptive and dedicated about my prognosis.",positive,Additional Positive Terms
+1484,"The doctor said my condition is unfavorable, unwilling and disregarded.",negative,Additional Negative Terms
+1485,I'm untrusting about my condition.,negative,Mistrust
+1486,"I feel willing, complete and receptive when discussing my health with the doctor.",positive,Additional Positive Terms
+1487,"The improvements are rarely petrified, unwell and unresponsive.",negative,Additional Negative Terms
+1488,My recovery has been acknowledged and renewing so far.,positive,Trust in Healthcare
+1489,"I have expectant, competent and welcomed in my healthcare team.",positive,Clarity
+1490,"I felt evolved, stinging and disheartened during my last consultation.",negative,Depression and Hopelessness
+1491,"Although the treatment is despondent, I still feel despondent.",negative,Additional Negative Terms
+1492,The dosage adjustment has been realizing and succeeding.,positive,Additional Positive Terms
+1493,"I've been experiencing shut, obscure and furious in my recovery.",negative,Additional Negative Terms
+1494,My day has been insensitive.,negative,Additional Negative Terms
+1495,I found the doctor's explanation very nourishing and mindful.,positive,Additional Positive Terms
+1496,"Although the treatment is relief, I still feel mindful.",positive,Additional Positive Terms
+1497,I am not seeing relieved signs of progress.,positive,Relief and Recovery
+1498,I feel outlandish and deteriorating about the information I received.,negative,Additional Negative Terms
+1499,"The side effects are inspired, tough and accomplishing.",positive,Additional Positive Terms
+1500,"I've been experiencing breakable, draining and melancholy due to side effects.",negative,Additional Negative Terms
+1501,I feel troubled regarding my care.,negative,Emotional Distress
+1502,"I'm concerned about the prepared, ordinary and peaceful impact of the therapy.",positive,Additional Positive Terms
+1503,"Each day, I'm feeling a little more disappointed, unfavorable and aching.",negative,Additional Negative Terms
+1504,The latest tests show my condition is worse and aghast.,negative,Worsening Condition
+1505,"I'm trying to stay humane, related and adept despite the challenges.",positive,Additional Positive Terms
+1506,"The improvements are rarely delicate, refractory and sickly.",negative,Additional Negative Terms
+1507,I've been feeling detached about my energy levels.,negative,Additional Negative Terms
+1508,"Today, I feel fatigued and belligerent.",negative,Additional Negative Terms
+1509,I feel misevaluated and outcome about the information I received.,negative,Side Effects
+1510,I do not have advancing and outfitted in my healthcare team.,positive,Gratitude Toward Healthcare
+1511,The medication is not making me feel irregular.,negative,Additional Negative Terms
+1512,The dosage adjustment has been prohibitive.,negative,Financial Concerns
+1513,The medication is making me feel unhappy and stabbing.,negative,Pain and Discomfort
+1514,The path to recovery feels obstructed and tired.,negative,Limitations
+1515,The pain is not uncivil and dreading.,negative,Additional Negative Terms
+1516,The side effects are not displeased and intensified.,negative,Worsening Condition
+1517,The medication is making me feel facilitated and convinced.,positive,Treatment Response
+1518,I'm afraid and alarmed with how the treatment is going.,negative,Fear of Future
+1519,"There is no tiring, adamant and fruitless in my condition.",negative,Additional Negative Terms
+1520,The medication is not making me feel indifferent.,negative,Additional Negative Terms
+1521,I am not inimical with the treatment.,negative,Additional Negative Terms
+1522,The dosage adjustment has been bitter.,negative,Frustration
+1523,"My symptoms are working, invigorating and strong.",positive,Additional Positive Terms
+1524,The pain is not resentful.,negative,Frustration
+1525,I'm feeling dreadful and horrific about continuing this course of treatment.,negative,Additional Negative Terms
+1526,My mood has been insolvent and counterproductive since starting the new regimen.,negative,Treatment Concerns
+1527,The path to recovery feels accommodating.,positive,Additional Positive Terms
+1528,I felt damaging and unconcerned during my last consultation.,negative,Additional Negative Terms
+1529,I'm feeling understandable and sympathetic about continuing this course of treatment.,positive,Communication
+1530,I'm obstinate about my condition.,negative,Additional Negative Terms
+1531,I am not seeing hesitant and unmindful signs of progress.,negative,Additional Negative Terms
+1532,"The doctor said my condition is confident, equilibrated and devoted.",positive,Trust in Healthcare
+1533,"The pain is not faint, illogical and enraged.",negative,Additional Negative Terms
+1534,The treatment plan seems to be uneasy and inaccessible.,negative,Additional Negative Terms
+1535,I am not contactable with the treatment.,positive,Additional Positive Terms
+1536,My general disposition has been assimilated.,positive,Clarity
+1537,"The pain is functional, coherent and civil.",positive,Communication
+1538,This whole situation has made me feel able.,positive,Physical Improvement
+1539,"I was hoping to feel illiterate, but instead, I feel illiterate.",negative,Additional Negative Terms
+1540,"I'm feeling quite informed, nuanced and apprehended about my prognosis.",positive,Clarity
+1541,I'm looking forward to a tired and exorbitant future.,negative,Physical Symptoms
+1542,My day has been alleviating.,positive,Additional Positive Terms
+1543,I've been feeling hospitable and dedicated about my energy levels.,positive,Hope for Future
+1544,"Although the treatment is recovery, I still feel recovery.",positive,Relief and Recovery
+1545,I'm looking forward to a incensed and grave future.,negative,Additional Negative Terms
+1546,I feel defended and rational regarding my care.,positive,Social Support
+1547,The doctor said my condition is anxious and failing.,negative,Fear of Future
+1548,I've been dealing with a confused and weak feeling in my joints.,negative,Physical Symptoms
+1549,"I was hoping to feel nutritious, but instead, I feel nutritious.",positive,Additional Positive Terms
+1550,I'm insubstantial and impaired about my condition.,negative,Additional Negative Terms
+1551,I feel mischaracterized and scared about the information I received.,negative,Emotional Distress
+1552,My symptoms are not defeating and costly.,negative,Additional Negative Terms
+1553,I feel insupportable and troubled regarding my care.,negative,Additional Negative Terms
+1554,"Today, I feel disabled and anxious.",negative,Limitations
+1555,I do not feel amiable.,positive,Additional Positive Terms
+1556,"My recovery has been pliable, consoling and grateful so far.",positive,Additional Positive Terms
+1557,"I was hoping to feel ineffective, but instead, I feel ineffective.",negative,Depression and Hopelessness
+1558,I've been feeling anticipating about my energy levels.,positive,Hope for Future
+1559,The path to recovery feels functional.,positive,Physical Improvement
+1560,My day has been assisted and relief.,positive,Social Support
+1561,I am not seeing versatile signs of progress.,positive,Independence
+1562,My mood has been antagonistic since starting the new regimen.,negative,Mistrust
+1563,The dosage adjustment has been outstanding.,positive,Additional Positive Terms
+1564,The medication is making me feel unwell.,negative,Physical Symptoms
+1565,I am not uncontactable with the treatment.,negative,Additional Negative Terms
+1566,The side effects are apathetic and cold.,negative,Additional Negative Terms
+1567,I feel dizzy regarding my care.,negative,Physical Symptoms
+1568,"Each day, I'm feeling a little more adopted and educated.",positive,Clarity
+1569,"Since the treatment, I've been strong, achieving and lively.",positive,Additional Positive Terms
+1570,I feel untroubled and empowered today.,positive,Comfort
+1571,The communication with the clinic has been weird.,negative,Additional Negative Terms
+1572,"Although the treatment is placid, I still feel sapient.",positive,Comfort
+1573,"I'm complication, anxious and controlling about my condition.",negative,Side Effects
+1574,"My health is not content, accompanied and buoyant.",positive,Additional Positive Terms
+1575,"My recovery has been despairing, withdrawn and deteriorative so far.",negative,Additional Negative Terms
+1576,I'm noticing unusual changes in my daily life.,negative,Additional Negative Terms
+1577,This whole situation has made me feel skeptical and atrocious.,negative,Additional Negative Terms
+1578,"I'm feeling stinging, soreness and defective about continuing this course of treatment.",negative,Pain and Discomfort
+1579,The pain is not declining and dejected.,negative,Worsening Condition
+1580,"The doctor said my condition is apprehensive, deteriorative and petrified.",negative,Additional Negative Terms
+1581,I'm finding the new medication misapprehended.,negative,Communication Issues
+1582,My mood has been flimsy and barred since starting the new regimen.,negative,Additional Negative Terms
+1583,I feel observant when discussing my health with the doctor.,positive,Cooperation
+1584,The treatment plan is not furthering.,positive,Gratitude Toward Healthcare
+1585,"My symptoms are not cold, insecure and fragile.",negative,Additional Negative Terms
+1586,The pain is thankful and motivated.,positive,Gratitude Toward Healthcare
+1587,I feel productive and vibrant today.,positive,Additional Positive Terms
+1588,"My day has been assimilated, rational and honest.",positive,Communication
+1589,"I'm trying to stay impaired, uneasy and restless despite the challenges.",negative,Emotional Distress
+1590,I'm hopeful the pain will become horrible soon.,negative,Additional Negative Terms
+1591,"I'm amiable, notable and encouraging about my condition.",positive,Additional Positive Terms
+1592,I've been experiencing indebted and beneficial in my recovery.,positive,Additional Positive Terms
+1593,"I am not seeing evolved, disgruntled and uncivil signs of progress.",negative,Worsening Condition
+1594,My symptoms are not uninterested and frustrated.,negative,Additional Negative Terms
+1595,"Overall, my health is feeling dedicated and improving.",positive,Hope for Future
+1596,My mood has been embraced since starting the new regimen.,positive,Clarity
+1597,"The side effects are expectant, reinforced and assimilated.",positive,Clarity
+1598,"I'm feeling quite propitious, adjustable and curative about my prognosis.",positive,Additional Positive Terms
+1599,"Each day, I'm feeling a little more fruitful.",positive,Additional Positive Terms
+1600,I'm feeling quite hostile and hesitant about my prognosis.,negative,Confusion
+1601,"Each day, I'm feeling a little more unworried and learned.",positive,Comfort
+1602,"My day has been critical, sick and untrusting.",negative,Additional Negative Terms
+1603,I'm seeing quiet and reasonable signs of progress.,positive,Comfort
+1604,"My recovery has been elastic, responsive and solid so far.",positive,Additional Positive Terms
+1605,My health is not equilibrated and happy.,positive,Additional Positive Terms
+1606,"Overall, my health is feeling functional and peaceful.",positive,Physical Improvement
+1607,"I'm independent, successful and improving with how the treatment is going.",positive,Treatment Response
+1608,"My symptoms are not painful, fatigued and worsening.",negative,Physical Symptoms
+1609,I feel hesitant and appalled regarding my care.,negative,Fear of Future
+1610,I hardly feel opaque anymore.,negative,Communication Issues
+1611,"The treatment plan is not harmful, agony and inconsiderate.",negative,Additional Negative Terms
+1612,My general disposition has been failing and ineffective.,negative,Worsening Condition
+1613,The pain is ferocious.,negative,Additional Negative Terms
+1614,My recovery has been injurious and deficient so far.,negative,Additional Negative Terms
+1615,I have untaught in my healthcare team.,negative,Additional Negative Terms
+1616,The path to recovery feels insolvent and inadequate.,negative,Depression and Hopelessness
+1617,"I'm finding the new medication backward, obscure and opaque.",negative,Communication Issues
+1618,I felt sophisticated and plentiful during my last consultation.,positive,Additional Positive Terms
+1619,The treatment plan seems to be misjudged.,negative,Communication Issues
+1620,I hardly feel appalled and ignored anymore.,negative,Fear of Future
+1621,I hardly feel deteriorative anymore.,negative,Additional Negative Terms
+1622,"I feel aloof, burning and refractory regarding my care.",negative,Additional Negative Terms
+1623,"I was hoping to feel afraid, but instead, I feel overpowering.",negative,Additional Negative Terms
+1624,I feel remarkable regarding my care.,positive,Additional Positive Terms
+1625,I have tenderness and mystified in my healthcare team.,negative,Pain and Discomfort
+1626,The doctor said my condition is sophisticated.,positive,Additional Positive Terms
+1627,"I do not have heightened, puzzled and sequelae in my healthcare team.",negative,Side Effects
+1628,I found the doctor's explanation very hesitant.,negative,Mistrust
+1629,I found the doctor's explanation very downcast and unsound.,negative,Depression and Hopelessness
+1630,"The improvements are rarely apprehensive, depressed and unreceptive.",negative,Additional Negative Terms
+1631,"I've been experiencing direct, ample and traditional due to side effects.",positive,Additional Positive Terms
+1632,"Although the treatment is insensible, I still feel insensible.",negative,Additional Negative Terms
+1633,"My mood has not been mistrustful, unsubstantial and flimsy.",negative,Additional Negative Terms
+1634,"The medication is making me feel significant, achieving and adaptive.",positive,Additional Positive Terms
+1635,"The treatment plan seems to be received, amenable and knowledgeable.",positive,Clarity
+1636,"I hardly feel sheltered, refreshing and mild anymore.",positive,Additional Positive Terms
+1637,"My mood has been benign, adequate and comprehensive since starting the new regimen.",positive,Additional Positive Terms
+1638,I feel grateful today.,positive,Emotional Wellbeing
+1639,"My symptoms are loath, intense and inflexible.",negative,Additional Negative Terms
+1640,I felt panicked and stubborn during my last consultation.,negative,Additional Negative Terms
+1641,"I've been dealing with a bolstered, ample and amenable feeling in my joints.",positive,Additional Positive Terms
+1642,"I feel confident, relaxed and equipped about the information I received.",positive,Trust in Healthcare
+1643,The latest tests show my condition is unresponsive.,negative,Treatment Concerns
+1644,"The pain is unacceptable, vicious and uneducated.",negative,Additional Negative Terms
+1645,"Although the treatment is disinclined, I still feel disappointed.",negative,Worsening Condition
+1646,I've been experiencing protected and benevolent in my recovery.,positive,Trust in Healthcare
+1647,My symptoms are becoming more accommodating and equipped.,positive,Additional Positive Terms
+1648,I found the doctor's explanation very compliant and placid.,positive,Comfort
+1649,The explanation was not determined.,positive,Emotional Wellbeing
+1650,My health is not cozy.,positive,Comfort
+1651,I'm feeling quite realizing about my prognosis.,positive,Additional Positive Terms
+1652,"My health is not tiring, unattainable and outlandish.",negative,Additional Negative Terms
+1653,"Although the treatment is excessive, I still feel excessive.",negative,Financial Concerns
+1654,The medication is making me feel vigilant and withstandable.,positive,Treatment Response
+1655,"The latest tests show my condition is adverse, doubtful and baffled.",negative,Additional Negative Terms
+1656,"I am not endurable, approving and alleviating with the treatment.",positive,Treatment Response
+1657,The improvements are rarely related.,positive,Additional Positive Terms
+1658,"I do not feel improvement, equipped and protected.",positive,Social Support
+1659,"I am not seeing participative, rejuvenating and bountiful signs of progress.",positive,Additional Positive Terms
+1660,I am not seeing favorable signs of progress.,positive,Additional Positive Terms
+1661,My day has been versatile.,positive,Independence
+1662,I'm experiencing dubious and underestimated levels of discomfort.,negative,Additional Negative Terms
+1663,My symptoms are not healing and consoling.,positive,Additional Positive Terms
+1664,I feel upset and counterproductive today.,negative,Emotional Distress
+1665,I've been feeling elevated and frail about my energy levels.,negative,Worsening Condition
+1666,"I hardly feel delicate, adaptable and assimilated anymore.",positive,Clarity
+1667,My mood has been unavailable and sensitive since starting the new regimen.,negative,Additional Negative Terms
+1668,I feel significant and supported regarding my care.,positive,Trust in Healthcare
+1669,My recovery has not been connected and solid.,positive,Additional Positive Terms
+1670,"I'm trying to stay regular, hardy and abundant despite the challenges.",positive,Additional Positive Terms
+1671,"I'm experiencing horror-struck, adamant and ambiguous levels of discomfort.",negative,Fear of Future
+1672,I have cooperative and robust in my healthcare team.,positive,Additional Positive Terms
+1673,I found the doctor's explanation very neglected.,negative,Additional Negative Terms
+1674,The side effects are not subduing.,negative,Additional Negative Terms
+1675,I'm seeing understood signs of progress.,positive,Trust in Healthcare
+1676,My recovery has been valued and confident so far.,positive,Treatment Response
+1677,I'm experiencing disquieted levels of discomfort.,negative,Fear of Future
+1678,The path to recovery feels discerned and bouncy.,positive,Clarity
+1679,I've been dealing with a coherent and encouraging feeling in my joints.,positive,Treatment Response
+1680,I've been experiencing pointless in my recovery.,negative,Treatment Concerns
+1681,The side effects are not discontented and uninvolved.,negative,Additional Negative Terms
+1682,"I've been feeling cared, approachable and fruitful about my energy levels.",positive,Additional Positive Terms
+1683,"My symptoms are becoming more misinterpreted, result and mystified.",negative,Side Effects
+1684,There is no safe and attentive in my condition.,positive,Trust in Healthcare
+1685,"I have disoriented, sharp and scared in my healthcare team.",negative,Pain and Discomfort
+1686,"I'm finding the new medication acute, pricey and upset.",negative,Additional Negative Terms
+1687,The treatment plan is not repercussions.,negative,Side Effects
+1688,The explanation was not extreme and side-effects.,negative,Side Effects
+1689,The doctor said my condition is inattentive and damaging.,negative,Additional Negative Terms
+1690,"I do not have empowered, welcomed and endurable in my healthcare team.",positive,Clarity
+1691,"Although the treatment is melancholy, I still feel prevailing.",negative,Depression and Hopelessness
+1692,I'm noticing zealous changes in my daily life.,positive,Hope for Future
+1693,I feel uplifted and tender today.,positive,Additional Positive Terms
+1694,I am not insufficient and aftereffect with the treatment.,negative,Depression and Hopelessness
+1695,"I do not have distrustful, unsuccessful and depleting in my healthcare team.",negative,Additional Negative Terms
+1696,My mood has been courageous and invigorating since starting the new regimen.,positive,Additional Positive Terms
+1697,"Overall, my health is feeling discomfort and undecided.",negative,Additional Negative Terms
+1698,My recovery has been accommodating so far.,positive,Additional Positive Terms
+1699,"Overall, my health is feeling light, appreciative and connected.",positive,Additional Positive Terms
+1700,"I do not have hesitant, unsupportable and deepened in my healthcare team.",negative,Additional Negative Terms
+1701,I'm acute and adverse about my condition.,negative,Additional Negative Terms
+1702,I'm hopeful the pain will become familiar and fulfilling soon.,positive,Additional Positive Terms
+1703,"I do not have unmindful, unavailing and gloomy in my healthcare team.",negative,Additional Negative Terms
+1704,The explanation was not calm.,positive,Comfort
+1705,My mood has been misunderstood and reluctant since starting the new regimen.,negative,Confusion
+1706,"Since the treatment, I've been accommodating.",positive,Additional Positive Terms
+1707,My recovery has been versatile so far.,positive,Additional Positive Terms
+1708,The side effects are not soothing.,positive,Additional Positive Terms
+1709,I have consistent in my healthcare team.,positive,Communication
+1710,The improvements are rarely flexible and amicable.,positive,Additional Positive Terms
+1711,There is no accessible in my condition.,positive,Additional Positive Terms
+1712,I'm noticing unbearable and disadvantageous changes in my daily life.,negative,Additional Negative Terms
+1713,The medication is making me feel supported and complete.,positive,Trust in Healthcare
+1714,"The side effects are not unconfident, repercussions and indifferent.",negative,Additional Negative Terms
+1715,There is no recovered and better in my condition.,positive,Relief and Recovery
+1716,My symptoms are not apprehensive.,negative,Emotional Distress
+1717,The path to recovery feels grasped and traditional.,positive,Clarity
+1718,"Overall, my health is feeling impaired and deleterious.",negative,Limitations
+1719,I'm hopeful the pain will become degenerative and reactions soon.,negative,Side Effects
+1720,The medication is making me feel stubborn.,negative,Treatment Concerns
+1721,The doctor said my condition is overpriced and unclear.,negative,Communication Issues
+1722,There is no enervating in my condition.,negative,Additional Negative Terms
+1723,"I'm trying to stay restful, satisfied and regular despite the challenges.",positive,Comfort
+1724,"Each day, I'm feeling a little more fallout, hindered and gloomy.",negative,Side Effects
+1725,My day has been fortifying and inspired.,positive,Additional Positive Terms
+1726,"My symptoms are not zealous, cooperative and balanced.",positive,Additional Positive Terms
+1727,"I'm concerned about the agile, indebted and apprehended impact of the therapy.",positive,Clarity
+1728,I'm autonomous about my condition.,positive,Independence
+1729,The path to recovery feels abnormal and uncertain.,negative,Additional Negative Terms
+1730,I feel thorough about the information I received.,positive,Communication
+1731,I hardly feel damaging and misevaluated anymore.,negative,Additional Negative Terms
+1732,I'm content and adaptive with how the treatment is going.,positive,Additional Positive Terms
+1733,"I'm inflexible, shut and disheartened about my condition.",negative,Additional Negative Terms
+1734,I'm feeling quite relief and tough about my prognosis.,positive,Physical Improvement
+1735,I am not nauseous and resentful with the treatment.,negative,Physical Symptoms
+1736,I do not feel abundant and accommodating.,positive,Additional Positive Terms
+1737,The latest tests show my condition is dynamic.,positive,Physical Improvement
+1738,I'm trying to stay at-ease and restful despite the challenges.,positive,Comfort
+1739,I'm unsettled with how the treatment is going.,negative,Emotional Distress
+1740,"The latest tests show my condition is conscientious, bouncy and animated.",positive,Additional Positive Terms
+1741,The treatment plan is not declining.,negative,Additional Negative Terms
+1742,I feel regressive about the information I received.,negative,Additional Negative Terms
+1743,I'm feeling wary and distant about continuing this course of treatment.,negative,Additional Negative Terms
+1744,My mood has not been furthering and hardy.,positive,Gratitude Toward Healthcare
+1745,The dosage adjustment has been encouraging and satisfied.,positive,Additional Positive Terms
+1746,The latest tests show my condition is reluctant.,negative,Confusion
+1747,I'm finding the new medication associated and furnished.,positive,Additional Positive Terms
+1748,My symptoms are renewing.,positive,Additional Positive Terms
+1749,"Overall, my health is feeling dominating, suspicious and horrified.",negative,Additional Negative Terms
+1750,"My symptoms are not calm, appreciative and nutritious.",positive,Comfort
+1751,"I'm feeling quite improvement, direct and amenable about my prognosis.",positive,Communication
+1752,"I'm noticing acute, outlandish and neglected changes in my daily life.",negative,Additional Negative Terms
+1753,"I feel sensible, hospitable and manageable about the information I received.",positive,Communication
+1754,My general disposition has been injurious and broke.,negative,Additional Negative Terms
+1755,I'm noticing achieving and fulfilled changes in my daily life.,positive,Additional Positive Terms
+1756,"I do not feel doubtful, insubstantial and untutored.",negative,Additional Negative Terms
+1757,I'm alleviated and stable with how the treatment is going.,positive,Relief and Recovery
+1758,My health is not considerate.,positive,Additional Positive Terms
+1759,"I've been feeling metastasized, disengaged and disturbed about my energy levels.",negative,Worsening Condition
+1760,I felt intensified and irrational during my last consultation.,negative,Worsening Condition
+1761,"Overall, my health is feeling indigent, unmindful and unsubstantial.",negative,Additional Negative Terms
+1762,"I've been experiencing routine, relief and reasonable in my recovery.",positive,Additional Positive Terms
+1763,"The treatment plan is not united, consistent and thoughtful.",positive,Additional Positive Terms
+1764,I am not seeing unacceptable signs of progress.,negative,Additional Negative Terms
+1765,My recovery has not been outcomes.,negative,Side Effects
+1766,"This whole situation has made me feel inadequate, harsh and advanced.",negative,Additional Negative Terms
+1767,The medication is not making me feel rational.,positive,Additional Positive Terms
+1768,"Each day, I'm feeling a little more secure and caring.",positive,Trust in Healthcare
+1769,"The side effects are not intransigent, despondent and aggressive.",negative,Additional Negative Terms
+1770,"The medication is making me feel apathetic, sickly and lost.",negative,Additional Negative Terms
+1771,"Although the treatment is prepared, I still feel vibrant.",positive,Additional Positive Terms
+1772,I am not burning and prohibited with the treatment.,negative,Additional Negative Terms
+1773,I feel refined regarding my care.,positive,Additional Positive Terms
+1774,The explanation was not retreating.,negative,Additional Negative Terms
+1775,I'm feeling quite concerned and opposed about my prognosis.,negative,Emotional Distress
+1776,I'm feeling quite futile and restricted about my prognosis.,negative,Limitations
+1777,I'm endorsing and flourishing about my condition.,positive,Gratitude Toward Healthcare
+1778,My symptoms are not deteriorating and unacceptable.,negative,Worsening Condition
+1779,The medication is making me feel unsettled.,negative,Emotional Distress
+1780,I've been experiencing validated in my recovery.,positive,Trust in Healthcare
+1781,"I am not prepared, affirmative and consistent about my condition.",positive,Additional Positive Terms
+1782,"The communication with the clinic has been severe, discouraged and savage.",negative,Additional Negative Terms
+1783,I do not have commanding in my healthcare team.,negative,Additional Negative Terms
+1784,The dosage adjustment has been unusual.,negative,Additional Negative Terms
+1785,"Today, I feel favorable.",positive,Additional Positive Terms
+1786,"Each day, I'm feeling a little more detached and unbending.",negative,Additional Negative Terms
+1787,"The dosage adjustment has been reanimating, clear and coherent.",positive,Additional Positive Terms
+1788,I'm attaining and beneficial with how the treatment is going.,positive,Treatment Response
+1789,The treatment plan is not adaptable.,positive,Additional Positive Terms
+1790,I'm seeing complications and abominable signs of progress.,negative,Side Effects
+1791,I feel strong regarding my care.,positive,Emotional Wellbeing
+1792,My mood has not been irrational.,negative,Additional Negative Terms
+1793,I am not seeing bitter signs of progress.,negative,Frustration
+1794,The dosage adjustment has been unacceptable and annoyed.,negative,Additional Negative Terms
+1795,"The treatment plan seems to be result, dubious and disrespectful.",negative,Side Effects
+1796,"I felt fearless, encouraged and judicious during my last consultation.",positive,Hope for Future
+1797,I'm feeling unlearned and hesitant about continuing this course of treatment.,negative,Additional Negative Terms
+1798,I'm hopeful the pain will become independent and advocated soon.,positive,Social Support
+1799,The dosage adjustment has been soothing and following.,positive,Additional Positive Terms
+1800,"My mood has not been unconcerned, hindered and distrustful.",negative,Additional Negative Terms
+1801,The communication with the clinic has been optimistic and malleable.,positive,Additional Positive Terms
+1802,This whole situation has made me feel assured and controlled.,positive,Trust in Healthcare
+1803,The doctor said my condition is underestimated.,negative,Additional Negative Terms
+1804,My health is not logical and enabled.,positive,Social Support
+1805,I'm feeling happy about continuing this course of treatment.,positive,Emotional Wellbeing
+1806,My health is not ready and adjustable.,positive,Additional Positive Terms
+1807,"My symptoms are not subsiding, meager and counterproductive.",negative,Additional Negative Terms
+1808,I feel panicked and depressed when discussing my health with the doctor.,negative,Additional Negative Terms
+1809,"I was hoping to feel unattainable, but instead, I feel frustrated.",negative,Additional Negative Terms
+1810,"The medication is not making me feel blocked, hostile and restricted.",negative,Limitations
+1811,The communication with the clinic has been understanding and enlightened.,positive,Trust in Healthcare
+1812,"The treatment plan is not feeble, horrendous and lacking.",negative,Additional Negative Terms
+1813,"The communication with the clinic has been fragile, untutored and repercussion.",negative,Additional Negative Terms
+1814,I feel realizing today.,positive,Additional Positive Terms
+1815,I'm worthless and peculiar with how the treatment is going.,negative,Depression and Hopelessness
+1816,My health is not impeded and melancholy.,negative,Depression and Hopelessness
+1817,The communication with the clinic has been hindered and ill-mannered.,negative,Limitations
+1818,"The medication is making me feel mobile, invigorating and solicitous.",positive,Additional Positive Terms
+1819,I'm noticing following changes in my daily life.,positive,Cooperation
+1820,I'm trying to stay uncomfortable despite the challenges.,negative,Emotional Distress
+1821,This whole situation has made me feel straightforward.,positive,Communication
+1822,The medication is not making me feel sequela.,negative,Side Effects
+1823,"The dosage adjustment has been amicable, sufficient and amenable.",positive,Additional Positive Terms
+1824,I am not seeing acute and injurious signs of progress.,negative,Additional Negative Terms
+1825,I feel disoriented today.,negative,Confusion
+1826,My symptoms are hindered.,negative,Limitations
+1827,My symptoms are accomplished.,positive,Independence
+1828,"Since the treatment, I've been lively.",positive,Physical Improvement
+1829,I am not thankful and renewing with the treatment.,positive,Additional Positive Terms
+1830,My symptoms are not result.,negative,Side Effects
+1831,"I'm concerned about the unconcerned, suspicious and unconfident impact of the therapy.",negative,Additional Negative Terms
+1832,"The pain is not irregular, resistant and detached.",negative,Additional Negative Terms
+1833,"Although the treatment is civil, I still feel enthusiastic.",positive,Additional Positive Terms
+1834,The side effects are furthering and mitigating.,positive,Gratitude Toward Healthcare
+1835,"I'm unresponsive, atrocious and uncertain with how the treatment is going.",negative,Additional Negative Terms
+1836,The pain is serene and informative.,positive,Comfort
+1837,The side effects are not flexible.,positive,Additional Positive Terms
+1838,"This whole situation has made me feel reasonable, fulfilled and sufficient.",positive,Additional Positive Terms
+1839,"The improvements are rarely depressed, indignant and urgent.",negative,Depression and Hopelessness
+1840,The path to recovery feels underestimated.,negative,Additional Negative Terms
+1841,The side effects are commending.,positive,Gratitude Toward Healthcare
+1842,"I have coherent, fulfilled and logical in my healthcare team.",positive,Additional Positive Terms
+1843,"My symptoms are complete, responsive and tender.",positive,Additional Positive Terms
+1844,My recovery has been inadequate so far.,negative,Depression and Hopelessness
+1845,"Since the treatment, I've been outraged, feeble and appalling.",negative,Additional Negative Terms
+1846,"The medication is not making me feel misapprehended, prevailing and afraid.",negative,Additional Negative Terms
+1847,"Although the treatment is antagonistic, I still feel irritated.",negative,Additional Negative Terms
+1848,I've been feeling deteriorative about my energy levels.,negative,Additional Negative Terms
+1849,"I hardly feel renewing, optimistic and accessible anymore.",positive,Additional Positive Terms
+1850,"I'm feeling attaining, placid and sympathetic about continuing this course of treatment.",positive,Additional Positive Terms
+1851,The latest tests show my condition is rejuvenating.,positive,Additional Positive Terms
+1852,The communication with the clinic has been unworried.,positive,Comfort
+1853,I feel laid-back and hopeful when discussing my health with the doctor.,positive,Comfort
+1854,My day has been appreciative.,positive,Gratitude Toward Healthcare
+1855,"The side effects are troubled, furious and frightened.",negative,Fear of Future
+1856,"Although the treatment is peaceful, I still feel peaceful.",positive,Comfort
+1857,I've been experiencing gloomy in my recovery.,negative,Depression and Hopelessness
+1858,I'm looking forward to a durable future.,positive,Physical Improvement
+1859,I'm recognizing and bearable with how the treatment is going.,positive,Treatment Response
+1860,"I'm finding the new medication hopeless, restricted and uncontactable.",negative,Depression and Hopelessness
+1861,The doctor said my condition is spry and endorsing.,positive,Gratitude Toward Healthcare
+1862,"I'm hopeful the pain will become discounted, aftereffects and prohibited soon.",negative,Additional Negative Terms
+1863,The path to recovery feels abnormal.,negative,Additional Negative Terms
+1864,I feel incapacitated and side-effect regarding my care.,negative,Side Effects
+1865,I'm looking forward to a scarce future.,negative,Additional Negative Terms
+1866,I'm trying to stay unsure despite the challenges.,negative,Confusion
+1867,"Today, I feel alleviated.",positive,Relief and Recovery
+1868,The medication is not making me feel incensed.,negative,Frustration
+1869,I'm looking forward to a stiff future.,negative,Additional Negative Terms
+1870,I have recognized in my healthcare team.,positive,Clarity
+1871,I am not adept with the treatment.,positive,Independence
+1872,My general disposition has been spry.,positive,Independence
+1873,"Although the treatment is relaxed, I still feel obliged.",positive,Gratitude Toward Healthcare
+1874,I've been dealing with a uninvolved feeling in my joints.,negative,Additional Negative Terms
+1875,"The explanation was not disabled, dominating and perplexed.",negative,Limitations
+1876,"There is no transparent, adjustable and thriving in my condition.",positive,Additional Positive Terms
+1877,The latest tests show my condition is troubled and constrained.,negative,Limitations
+1878,The improvements are rarely expensive and troubled.,negative,Fear of Future
+1879,I am not seeing side-effect and uncomfortable signs of progress.,negative,Side Effects
+1880,My symptoms are unsettled.,negative,Emotional Distress
+1881,My mood has been alarmed since starting the new regimen.,negative,Emotional Distress
+1882,"I'm looking forward to a moderated, confident and independent future.",positive,Trust in Healthcare
+1883,I'm seeing puzzling and sick signs of progress.,negative,Physical Symptoms
+1884,The improvements are rarely discomfort.,negative,Pain and Discomfort
+1885,"The pain is not furthering, detailed and confident.",positive,Trust in Healthcare
+1886,"Since the treatment, I've been retreating.",negative,Additional Negative Terms
+1887,"I am not seeing healed, convinced and supported signs of progress.",positive,Trust in Healthcare
+1888,I feel comprehended and promising today.,positive,Clarity
+1889,My mood has been unsound and expensive since starting the new regimen.,negative,Additional Negative Terms
+1890,My mood has been withdrawn since starting the new regimen.,negative,Additional Negative Terms
+1891,I'm experiencing frail and weak levels of discomfort.,negative,Additional Negative Terms
+1892,"I feel horrible, pain and imprudent today.",negative,Additional Negative Terms
+1893,My symptoms are becoming more praising and backed.,positive,Social Support
+1894,"The treatment plan seems to be courageous, alleviated and compliant.",positive,Cooperation
+1895,I've been dealing with a handicapped feeling in my joints.,negative,Limitations
+1896,The pain is not regressive and lightheaded.,negative,Additional Negative Terms
+1897,The treatment plan is not hostile.,negative,Additional Negative Terms
+1898,The explanation was not tough and unified.,positive,Additional Positive Terms
+1899,I do not feel content and reviving.,positive,Additional Positive Terms
+1900,"I'm unreceptive, grave and throbbing about my condition.",negative,Additional Negative Terms
+1901,The medication is making me feel failing and unavailing.,negative,Treatment Concerns
+1902,I've been experiencing hurting in my recovery.,negative,Pain and Discomfort
+1903,I feel pliable and expectant about the information I received.,positive,Hope for Future
+1904,My mood has not been overwhelming and scared.,negative,Additional Negative Terms
+1905,The medication is making me feel ineffective and deficient.,negative,Depression and Hopelessness
+1906,The treatment plan seems to be ready.,positive,Additional Positive Terms
+1907,I'm feeling quite allied and regular about my prognosis.,positive,Additional Positive Terms
+1908,"The communication with the clinic has been compliant, adopted and attainable.",positive,Additional Positive Terms
+1909,The medication is making me feel unfavorable and abnormal.,negative,Additional Negative Terms
+1910,I found the doctor's explanation very fervent and eager.,positive,Hope for Future
+1911,I hardly feel convinced and apprehended anymore.,positive,Clarity
+1912,"I feel burning, uncivil and mistrustful when discussing my health with the doctor.",negative,Additional Negative Terms
+1913,My recovery has been troubled and undervalued so far.,negative,Fear of Future
+1914,"My mood has been retrograde, lightheaded and unwell since starting the new regimen.",negative,Physical Symptoms
+1915,I do not feel congenial and revitalizing.,positive,Additional Positive Terms
+1916,I felt noteworthy during my last consultation.,positive,Additional Positive Terms
+1917,"I'm hopeful the pain will become convinced, solid and better soon.",positive,Treatment Response
+1918,"Overall, my health is feeling refractory.",negative,Treatment Concerns
+1919,"I found the doctor's explanation very extraordinary, extraordinary and ordinary.",positive,Additional Positive Terms
+1920,I have extreme and dizzy in my healthcare team.,negative,Additional Negative Terms
+1921,I'm looking forward to a subduing future.,negative,Additional Negative Terms
+1922,I do not have adversative in my healthcare team.,negative,Additional Negative Terms
+1923,My mood has not been customary and informative.,positive,Communication
+1924,"I've been experiencing brittle, dubious and ill due to side effects.",negative,Additional Negative Terms
+1925,The latest tests show my condition is fathomed and dedicated.,positive,Clarity
+1926,The improvements are rarely reluctant and unwilling.,negative,Confusion
+1927,I'm finding the new medication uncommon.,negative,Additional Negative Terms
+1928,I'm hopeful the pain will become poor and hostile soon.,negative,Mistrust
+1929,The improvements are rarely extraordinary.,positive,Additional Positive Terms
+1930,"Overall, my health is feeling notable.",positive,Additional Positive Terms
+1931,The treatment plan seems to be adamant and severe.,negative,Additional Negative Terms
+1932,"The medication is making me feel endurable, appreciative and vital.",positive,Treatment Response
+1933,"Today, I feel decreasing.",negative,Additional Negative Terms
+1934,I feel hopeful and resilient about the information I received.,positive,Emotional Wellbeing
+1935,I felt suspicious during my last consultation.,negative,Mistrust
+1936,The improvements are rarely ample.,positive,Additional Positive Terms
+1937,My symptoms are not improvement.,positive,Relief and Recovery
+1938,"Each day, I'm feeling a little more tired and appalled.",negative,Fear of Future
+1939,My mood has been adjustable and informed since starting the new regimen.,positive,Additional Positive Terms
+1940,"My mood has been ignorant, meager and reserved since starting the new regimen.",negative,Additional Negative Terms
+1941,I have regenerative and still in my healthcare team.,positive,Comfort
+1942,There is no complications in my condition.,negative,Side Effects
+1943,I'm hopeful the pain will become outfitted soon.,positive,Additional Positive Terms
+1944,The latest tests show my condition is high-priced and gloomy.,negative,Additional Negative Terms
+1945,The improvements are rarely excellent and auspicious.,positive,Additional Positive Terms
+1946,"I was hoping to feel worried, but instead, I feel unreasonable.",negative,Additional Negative Terms
+1947,"Since the treatment, I've been customary.",positive,Additional Positive Terms
+1948,I'm hopeful the pain will become delicate soon.,negative,Physical Symptoms
+1949,I feel profuse and enabled when discussing my health with the doctor.,positive,Social Support
+1950,"The dosage adjustment has been increased, terrible and scared.",negative,Worsening Condition
+1951,The dosage adjustment has been outcomes.,negative,Side Effects
+1952,I found the doctor's explanation very injudicious.,negative,Additional Negative Terms
+1953,My symptoms are puzzled and distressed.,negative,Emotional Distress
+1954,"My recovery has been discourteous, side-effects and sapping so far.",negative,Additional Negative Terms
+1955,"I've been experiencing committed, superior and propitious due to side effects.",positive,Additional Positive Terms
+1956,I've been experiencing educated due to side effects.,positive,Additional Positive Terms
+1957,I've been dealing with a restless and overpriced feeling in my joints.,negative,Emotional Distress
+1958,My mood has been inconsiderate and inimical since starting the new regimen.,negative,Additional Negative Terms
+1959,"Each day, I'm feeling a little more versatile, outstanding and tender.",positive,Additional Positive Terms
+1960,I've been experiencing benign and accompanied in my recovery.,positive,Social Support
+1961,I'm hopeful the pain will become comfortable soon.,positive,Comfort
+1962,I'm looking forward to a detailed and succeeding future.,positive,Communication
+1963,"I'm feeling quite humane, cooperative and manageable about my prognosis.",positive,Additional Positive Terms
+1964,"I've been experiencing optimistic, approving and coherent due to side effects.",positive,Gratitude Toward Healthcare
+1965,"I feel honest, superb and refreshing regarding my care.",positive,Additional Positive Terms
+1966,"I'm trying to stay congenial, obtainable and abundant despite the challenges.",positive,Additional Positive Terms
+1967,I feel favorable and grateful regarding my care.,positive,Additional Positive Terms
+1968,I do not feel subduing.,negative,Additional Negative Terms
+1969,"Overall, my health is feeling affable and undoubted.",positive,Additional Positive Terms
+1970,"The communication with the clinic has been malign, disinclined and unwilling.",negative,Mistrust
+1971,"The treatment plan is not keen, indebted and compassionate.",positive,Gratitude Toward Healthcare
+1972,The improvements are rarely cruel and resistant.,negative,Additional Negative Terms
+1973,There is no ramification in my condition.,negative,Side Effects
+1974,I feel harmonious today.,positive,Additional Positive Terms
+1975,My symptoms are not dizzy.,negative,Physical Symptoms
+1976,The communication with the clinic has been downhearted and extreme.,negative,Additional Negative Terms
+1977,"I'm trying to stay expectant, observant and salutary despite the challenges.",positive,Additional Positive Terms
+1978,"Since the treatment, I've been receptive and regulated.",positive,Additional Positive Terms
+1979,"My symptoms are not beholden, dynamic and undoubted.",positive,Additional Positive Terms
+1980,I'm noticing handicapped changes in my daily life.,negative,Limitations
+1981,The pain is not regressive and ramifications.,negative,Side Effects
+1982,"I do not feel substantial, accessible and revivifying.",positive,Additional Positive Terms
+1983,"Since the treatment, I've been resilient.",positive,Emotional Wellbeing
+1984,I've been experiencing acknowledged and accommodating in my recovery.,positive,Clarity
+1985,"I've been dealing with a immobilized, baffled and sick feeling in my joints.",negative,Limitations
+1986,I'm concerned about the pliable and careful impact of the therapy.,positive,Additional Positive Terms
+1987,I'm trying to stay fulfilling despite the challenges.,positive,Additional Positive Terms
+1988,I have defended in my healthcare team.,positive,Social Support
+1989,"My mood has not been misconstrued, harsh and declining.",negative,Additional Negative Terms
+1990,The improvements are rarely expectant.,positive,Hope for Future
+1991,"Since the treatment, I've been lighthearted, auspicious and available.",positive,Additional Positive Terms
+1992,The pain is not commanding and unresponsive.,negative,Additional Negative Terms
+1993,The pain is skeptical.,negative,Confusion
+1994,"I've been feeling unavailable, displeased and terrified about my energy levels.",negative,Additional Negative Terms
+1995,"My health is not accomplishing, tough and gentle.",positive,Additional Positive Terms
+1996,"My mood has been impolite, undecided and adversative since starting the new regimen.",negative,Additional Negative Terms
+1997,"I feel determined, confident and usual about the information I received.",positive,Additional Positive Terms
+1998,The latest tests show my condition is evolved and anxious.,negative,Worsening Condition
+1999,"My recovery has been erudite, unified and endurable so far.",positive,Additional Positive Terms
+2000,The medication is making me feel refreshing and defended.,positive,Social Support

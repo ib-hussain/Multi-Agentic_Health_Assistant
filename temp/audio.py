@@ -1,7 +1,6 @@
 import wave
 import json
 import pandas as pd
-from vosk import Model, KaldiRecognizer
 import streamlit as st
 import subprocess
 from imageio_ffmpeg import get_ffmpeg_exe
@@ -9,6 +8,7 @@ from imageio_ffmpeg import get_ffmpeg_exe
 debug = st.secrets["DEBUGGING_MODE"]
 # for getting the transcript
 def transcribe_audio(audio_file_path: str = "temp_audio1.wav"):
+    from vosk import Model, KaldiRecognizer
     model_path = "vosk_model" #vosk-model-small-en-us-0.15
 
     wf = wave.open(audio_file_path, "rb")
@@ -36,6 +36,7 @@ def convert_to_wav(input_path: str = "temp_audio.mp3", output_path: str = "temp_
         input_path (str): Path to input audio file
         output_path (str): Path for output WAV file
     """
+    from vosk import Model, KaldiRecognizer
     # Add audio normalization for better preprocessing
     cmd = [
         ffmpeg_path,

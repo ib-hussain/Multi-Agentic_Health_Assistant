@@ -3,6 +3,7 @@
 *.tmp
 .streamlit/
 *.toml
+*.zip
 ignore/
 # Ignore virtual environments
 venv/
