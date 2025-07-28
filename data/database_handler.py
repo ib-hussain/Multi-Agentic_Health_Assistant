@@ -71,9 +71,9 @@ def close_db(conn, cur):
         try:
             export_path = r"C:\Users\Ibrahim\Downloads\Internship\Multi-Agentic_Health_Assistant\data\\"
             cur.execute(f"""
-            COPY user_profile TO '{export_path}user_profile.csv' WITH CSV HEADER;
-            COPY daily_stats TO '{export_path}daily_stats.csv' WITH CSV HEADER;
-            COPY other_storage TO '{export_path}other_storage.csv' WITH CSV HEADER;
+            {"--" if debug else""}COPY user_profile TO '{export_path}user_profile.csv' WITH CSV HEADER;
+            {"--" if debug else""}COPY daily_stats TO '{export_path}daily_stats.csv' WITH CSV HEADER;
+            {"--" if debug else""}COPY other_storage TO '{export_path}other_storage.csv' WITH CSV HEADER;
             """)
             if debug: print(f"Exported")
         except Exception as e:

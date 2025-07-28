@@ -204,13 +204,13 @@ def render_navbar():
         with col1:st.empty()  # Spacer
         with col2:st.empty()  # Spacer
         with col3:
-            if st.button("Chatbot", key="nav_chatbot"):
-                set_page("chatbot")
+            if st.button("Progress", key="nav_daily"):
+                set_page("daily_progress")
         with col4:
             st.empty()  # Spacer
         with col5:
-            if st.button("Progress", key="nav_daily"):
-                set_page("daily_progress")
+            if st.button("Chatbot", key="nav_chatbot"):
+                set_page("chatbot")
         with col6:st.empty()  # Spacer
         with col7:
             if st.button("Profile", key="nav_profile"):
@@ -258,24 +258,32 @@ def signup_page():
     with st.form("signup_form", clear_on_submit=True):
         # Basic Information
         st.subheader("Basic Information")
-        name = st.text_input("Full Name", placeholder="Enter your full name")
-        password = st.text_input("Password", type="password", placeholder="Create a password")
-        age = st.number_input("Age", min_value=1.0, max_value=150.0, value=25.0, step=0.1)
+        name = str(st.text_input("Full Name", placeholder="Enter your full name"))
+        if debug: print("name entered:", name)
+        password = str(st.text_input("Password", type="password", placeholder="Create a password", max_chars=10))
+        if debug: print("password entered:", password)
+        age = float(st.number_input("Age", min_value=1.0, max_value=150.0, value=25.0, step=0.1))
+        if debug: print("age entered:", age)
 
         col1, col2 = st.columns(2)
         with col1:
-            gender = st.selectbox("Gender", ['Female', 'Male'])
+            gender = str(st.selectbox("Gender", ['Female', 'Male']))
+            if debug: print("gender entered:", gender)
         with col2:
-            height = st.number_input("Height (meters)", min_value=0.5, max_value=3.0, value=1.70, step=0.01)
+            height = float(st.number_input("Height (meters)", min_value=0.5, max_value=3.0, value=1.70, step=0.01))
+            if debug: print("height entered:", height)
 
-        weight = st.number_input("Weight (kg)", min_value=20.0, max_value=500.0, value=70.0, step=0.1)
+        weight = float(st.number_input("Weight (kg)", min_value=20.0, max_value=500.0, value=70.0, step=0.1))
+        if debug: print("weight entered:", weight)
 
         # Fitness Information
         st.subheader("Fitness Goals")
-        fitness_goal = st.text_area("Fitness Goal", value="Get into better shape", placeholder="Describe your fitness goals...")
-        diet_pref = st.selectbox("Dietary Preference", 
-                                ['any', 'vegan', 'vegetarian', 'pescatarian', 'carnivore', 'balanced', 'both'])
-        
+        fitness_goal = str(st.text_area("Fitness Goal", value="Get into better shape", placeholder="Describe your fitness goals..."))
+        if debug: print("fitness_goal entered:", fitness_goal)
+        diet_pref = str(st.selectbox("Dietary Preference", 
+                                ['any', 'vegan', 'vegetarian', 'pescatarian', 'carnivore', 'balanced', 'both']))
+        if debug: print("diet_pref entered:", diet_pref)
+
         # Time and Schedule
         st.subheader("Schedule")
         time_deadline = st.number_input("Goal Deadline (days)", min_value=1, max_value=365, value=90)
@@ -287,13 +295,16 @@ def signup_page():
                                         '18:00', '19:00', '20:00', '21:00'], max_selections=3)
         # Health Information
         st.subheader("Health Information")
-        mental_health_notes = st.text_area("Mental Health Notes (Optional)", 
-                                         placeholder="Any mental health conditions from past or present that you may have...")
-        medical_conditions = st.text_area("Medical Conditions (Optional)", 
-                                        placeholder="Any medical conditions you may have...")
-        
+        mental_health_notes = str(st.text_area("Mental Health Notes (Optional)", 
+                                         placeholder="Any mental health conditions from past or present that you may have..."))
+        if debug: print("mental_health_notes entered:", mental_health_notes)
+        medical_conditions = str(st.text_area("Medical Conditions (Optional)", 
+                                        placeholder="Any medical conditions you may have..."))
+        if debug: print("medical_conditions entered:", medical_conditions)
+
         # Terms checkbox
         terms_agreed = st.checkbox("I agree with Terms & Conditions")
+        if debug: print("terms_agreed:", terms_agreed)
         
         col1, col2 = st.columns(2)
         with col1:
@@ -324,6 +335,8 @@ def signup_page():
                         password=password
                     )
                     st.success("Account created successfully! Please log in.")
+                    if debug:
+                        print(f"User {name} registered successfully.")
                     st.balloons()
                     set_page("login")
                 except Exception as e:
@@ -346,8 +359,8 @@ def daily_progress_page():
     daily_stats = get_daily_stats_by_id(st.session_state.user_id)
     if daily_stats:
         st.subheader("Current Progress")
+        if debug: print(daily_stats, "\n", type(daily_stats))
         col1, col2 = st.columns(2)
-        
         with col1:
             st.markdown(f"""
             <div class="stats-card">
@@ -366,20 +379,20 @@ def daily_progress_page():
         with col2:
             st.markdown(f"""
             <div class="stats-card">
-                <div class="stats-value">{daily_stats[4]}</div>
+                <div class="stats-value">{daily_stats[5]}</div>
                 <div class="stats-label">Days Completed</div>
             </div>
             """, unsafe_allow_html=True)
             
-            progress_emoji = "📈" if daily_stats[5] == "positive" else "📉" if daily_stats[5] == "negative" else "➡️"
+            progress_emoji = "📈" if daily_stats[4] == "positive" else "📉" if daily_stats[4] == "negative" else "➡️"
             st.markdown(f"""
             <div class="stats-card">
-                <div class="stats-value">{progress_emoji} {daily_stats[5].title()}</div>
+                <div class="stats-value">{progress_emoji} {daily_stats[4].title()}</div>
                 <div class="stats-label">Progress Feeling</div>
             </div>
             """, unsafe_allow_html=True)
         
-        if daily_stats[6] is not None:
+        if daily_stats[6]:
             st.markdown(f"""
             <div class="stats-card">
                 <div class="stats-value">{daily_stats[6]}</div>
