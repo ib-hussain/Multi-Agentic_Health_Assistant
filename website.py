@@ -1,10 +1,8 @@
 import streamlit as st
 from data.database_handler import (
     get_id, user_registration, get_user_profile_by_id,
-    change_name, change_age, change_weight, change_height, change_gender,
-    change_fitness_goal, change_dietary_pref, change_time_deadline,
-    change_mental_health_notes, change_medical_conditions,
-    insert_daily_stats_entry, get_daily_stats_by_id
+    change_name,
+    insert_daily_stats_entry, get_daily_stats_by_id, change_everything
 )
 from temp.audio import transcribe_audio, convert_to_wav
 debug = st.secrets["DEBUGGING_MODE"]
@@ -233,7 +231,7 @@ def login_page():
         with col1:
             login_submitted = st.form_submit_button("Log In")
         with col2:
-            if st.form_submit_button("Sign Up Instead"):
+            if st.form_submit_button("Sign Up"):
                 set_page("signup")
         
         if login_submitted:
@@ -248,7 +246,6 @@ def login_page():
                     st.error("Invalid credentials. Please try again.")
             else:
                 st.error("Please fill in all fields.")
-    
     st.markdown('</div>', unsafe_allow_html=True)
 # Signup Page
 def signup_page():
@@ -350,7 +347,6 @@ def chatbot_page():
         st.session_state.user_profile = get_user_profile_by_id(st.session_state.user_id)
     profile = st.session_state.user_profile
     st.markdown(f'<h1 class="profile-title">Coming soon...</h1>', unsafe_allow_html=True)
-
 # Daily Progress Page (Combined viewing and logging)
 def daily_progress_page():
     render_navbar()
@@ -359,7 +355,6 @@ def daily_progress_page():
     daily_stats = get_daily_stats_by_id(st.session_state.user_id)
     if daily_stats:
         st.subheader("Current Progress")
-        if debug: print(daily_stats, "\n", type(daily_stats))
         col1, col2 = st.columns(2)
         with col1:
             st.markdown(f"""
@@ -404,7 +399,6 @@ def daily_progress_page():
     
     # Daily Stats Logging
     st.subheader("Log Today's Progress")
-    
     col1, col2 = st.columns(2)
     with col1:
         activity_level = st.selectbox("Activity Level Today", 
@@ -412,7 +406,6 @@ def daily_progress_page():
     with col2:
         progress_condition = st.selectbox("How do you feel about your progress?", 
                                         ['positive', 'neutral', 'negative'])
-    
     if st.button("Log Today's Stats"):
         try:
             insert_daily_stats_entry(st.session_state.user_id, activity_level, progress_condition)
@@ -422,20 +415,15 @@ def daily_progress_page():
             st.error(f"Error logging stats: {str(e)}")
     
     st.markdown('</div>', unsafe_allow_html=True)
-
 # Profile Management Page
 def profile_page():
     render_navbar()
-    
     if not st.session_state.user_profile:
         st.session_state.user_profile = get_user_profile_by_id(st.session_state.user_id)
-    
     profile = st.session_state.user_profile
     st.markdown('<h1 class="profile-title">Profile Management</h1>', unsafe_allow_html=True)
-    
     # Display current profile info
     st.subheader("Current Profile Information")
-    
     col1, col2, col3 = st.columns(3)
     with col1:
         st.markdown(f"""
@@ -444,14 +432,12 @@ def profile_page():
             <div class="stats-label">Name</div>
         </div>
         """, unsafe_allow_html=True)
-        
         st.markdown(f"""
         <div class="stats-card">
             <div class="stats-value">{profile["age"]} years</div>
             <div class="stats-label">Age</div>
         </div>
         """, unsafe_allow_html=True)
-    
     with col2:
         st.markdown(f"""
         <div class="stats-card">
@@ -466,7 +452,6 @@ def profile_page():
             <div class="stats-label">Height</div>
         </div>
         """, unsafe_allow_html=True)
-    
     with col3:
         st.markdown(f"""
         <div class="stats-card">
@@ -474,19 +459,15 @@ def profile_page():
             <div class="stats-label">Gender</div>
         </div>
         """, unsafe_allow_html=True)
-        
         st.markdown(f"""
         <div class="stats-card">
             <div class="stats-value">{profile["diet_pref"].title()}</div>
             <div class="stats-label">Diet Preference</div>
         </div>
         """, unsafe_allow_html=True)
-    
     st.markdown("---")
-    
     # Edit profile form
     st.subheader("Edit Profile")
-    
     with st.form("profile_form"):
         st.subheader("Basic Information")
 
@@ -495,53 +476,45 @@ def profile_page():
             new_name = st.text_input("Name", value=profile["name"])
             new_age = st.number_input("Age", value=float(profile["age"]), min_value=1.0, step=0.1)
             new_weight = st.number_input("Weight (kg)", value=float(profile["weight"]), min_value=20.0, step=0.1)
-
         with col2:
             new_height = st.number_input("Height (m)", value=float(profile["height"]), min_value=0.5, step=0.01)
             new_gender = st.selectbox("Gender", ['Female', 'Male'], 
                                     index=0 if profile["gender"] == "Female" else 1)
             new_deadline = st.number_input("Goal Deadline (days)", value=profile["time_deadline"], min_value=1)
-
         st.subheader("Fitness & Diet")
         new_goal = st.text_area("Fitness Goal", value=profile["fitness_goal"] or "")
         new_diet = st.selectbox("Dietary Preference", 
                               ['any', 'vegan', 'vegetarian', 'pescatarian', 'carnivore', 'balanced', 'both'],
                               index=['any', 'vegan', 'vegetarian', 'pescatarian', 'carnivore', 'balanced', 'both'].index(profile["diet_pref"]))
-        
         st.subheader("Health Information")
         new_mh = st.text_area("Mental Health Notes", value=profile["mental_health_background"] or "")
         new_cond = st.text_area("Medical Conditions", value=profile["medical_conditions"] or "")
-
         submitted = st.form_submit_button("Update Profile")
-        
         if submitted:
             try:
                 # Update all fields
                 if new_name != profile["name"]:
                     change_name(profile["name"], new_name)
                     profile["name"] = new_name  # Update local profile
-                
-                change_age(profile["name"], new_age)
-                change_weight(profile["name"], new_weight)
-                change_height(profile["name"], new_height)
-                change_gender(profile["name"], new_gender == 'Female')
-                change_fitness_goal(profile["name"], new_goal)
-                change_dietary_pref(profile["name"], new_diet)
-                change_time_deadline(profile["name"], int(new_deadline))
-                change_mental_health_notes(profile["name"], new_mh)
-                change_medical_conditions(profile["name"], new_cond)
-                
+                change_everything(
+                    profile["name"], 
+                    new_age,
+                    new_gender == 'Female',
+                    new_weight,
+                    new_height,
+                    new_diet,
+                    int(new_deadline),
+                    new_goal,
+                    new_mh,
+                    new_cond
+                )
                 st.success("Profile updated successfully!")
-                
                 # Refresh profile data
                 st.session_state.user_profile = get_user_profile_by_id(st.session_state.user_id)
                 st.rerun()
-                
             except Exception as e:
                 st.error(f"Error updating profile: {str(e)}")
-    
     st.markdown('</div>', unsafe_allow_html=True)
-
 # Main App Router
 def main():
     # Route to appropriate page based on authentication and current page
@@ -557,6 +530,5 @@ def main():
             daily_progress_page()
         else:
             chatbot_page()  # Default to chatbot (home page)
-
 if __name__ == "__main__":
     main()

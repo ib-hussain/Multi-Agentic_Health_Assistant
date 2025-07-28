@@ -182,7 +182,17 @@ def change_name(old_name: str, new_name: str):
         if debug: print("Error changing name:", e)
     finally:
         close_db(conn, cur)
-def change_age(name: str, new_age: float):
+def change_everything(
+    name: str,
+    new_age: float,
+    new_gender: bool, 
+    new_weight: float, 
+    new_height: float, 
+    new_pref: str, 
+    days: int, 
+    new_goal: str, 
+    notes: str, 
+    condition: str):
     conn, cur = connect_db()
     try:
         cur.execute("""
@@ -196,10 +206,6 @@ def change_age(name: str, new_age: float):
     except Exception as e:
         conn.rollback()
         if debug: print("Error updating age:", e)
-    finally:
-        close_db(conn, cur)
-def change_gender(name: str, new_gender: bool):
-    conn, cur = connect_db()
     try:
         gender_value = 'Female' if new_gender else 'Male'
         cur.execute("""
@@ -213,10 +219,6 @@ def change_gender(name: str, new_gender: bool):
     except Exception as e:
         conn.rollback()
         if debug: print("Error updating gender:", e)
-    finally:
-        close_db(conn, cur)
-def change_weight(name: str, new_weight: float):
-    conn, cur = connect_db()
     try:
         cur.execute("""
             UPDATE user_profile
@@ -229,10 +231,6 @@ def change_weight(name: str, new_weight: float):
     except Exception as e:
         conn.rollback()
         if debug: print("Error updating weight:", e)
-    finally:
-        close_db(conn, cur)
-def change_height(name: str, new_height: float):
-    conn, cur = connect_db()
     try:
         cur.execute("""
             UPDATE user_profile
@@ -245,11 +243,6 @@ def change_height(name: str, new_height: float):
     except Exception as e:
         conn.rollback()
         if debug: print("Error updating height:", e)
-    finally:
-        close_db(conn, cur)
-
-def change_dietary_pref(name: str, new_pref: str):
-    conn, cur = connect_db()
     try:
         cur.execute("""
             UPDATE user_profile
@@ -261,10 +254,6 @@ def change_dietary_pref(name: str, new_pref: str):
     except Exception as e:
         conn.rollback()
         if debug: print("Error updating dietary preference:", e)
-    finally:
-        close_db(conn, cur)
-def change_time_deadline(name: str, days: int):
-    conn, cur = connect_db()
     try:
         cur.execute("""
             UPDATE user_profile
@@ -276,9 +265,42 @@ def change_time_deadline(name: str, days: int):
     except Exception as e:
         conn.rollback()
         if debug: print("Error updating time deadline:", e)
+    try:
+        cur.execute("""
+            UPDATE user_profile
+            SET fitness_goal = %s
+            WHERE (user_information).name = %s;
+        """, (new_goal, name))
+        conn.commit()
+        if debug: print("Fitness goal updated successfully.")
+    except Exception as e:
+        conn.rollback()
+        if debug: print("Error updating fitness goal:", e)
+    try:
+        cur.execute("""
+            UPDATE user_profile
+            SET mental_health_background = %s
+            WHERE (user_information).name = %s;
+        """, (notes, name))
+        conn.commit()
+        if debug: print("Mental health notes updated successfully.")
+    except Exception as e:
+        conn.rollback()
+        if debug: print("Error updating mental health notes:", e)
+    try:
+        cur.execute("""
+            UPDATE user_profile
+            SET medical_conditions = %s
+            WHERE (user_information).name = %s;
+        """, (condition, name))
+        conn.commit()
+        if debug: print("Medical condition updated successfully.")
+    except Exception as e:
+        conn.rollback()
+        if debug: print("Error updating medical condition:", e)
     finally:
         close_db(conn, cur)
-
+    
 def parse_time_string(time_str):
     return datetime.strptime(time_str, "%H:%M").time()
 def add_20_minutes(time_obj):
@@ -301,180 +323,6 @@ def change_time_available(name: str, start_time: str):
     except Exception as e:
         conn.rollback()
         if debug: print("Error updating time availability:", e)
-    finally:
-        close_db(conn, cur)
-def append_time_available(name: str, start_time: str):
-    conn, cur = connect_db()
-    try:
-        cur.execute("""
-            SELECT time_arr FROM user_profile
-            WHERE (user_information).name = %s;
-        """, (name,))
-        result = cur.fetchone()
-        
-        if not result or not result[0]:
-            if debug: print("User not found or time_arr is NULL.")
-            return
-
-        t1 = parse_time_string(start_time)
-        t2 = add_20_minutes(t1)
-        arr = result[0]  # time_arr is a 2D array
-
-        inserted = False
-        for col in range(3):
-            if arr[0][col] is None and arr[1][col] is None:
-                arr[0][col] = t1.strftime('%H:%M:%S')
-                arr[1][col] = t2.strftime('%H:%M:%S')
-                inserted = True
-                break
-
-        if not inserted:
-            if debug: print("All 3 time ranges already filled.")
-            return
-
-        cur.execute("""
-            UPDATE user_profile
-            SET time_arr = %s
-            WHERE (user_information).name = %s;
-        """, (arr, name))
-        
-        conn.commit()
-        if debug: print("Time range appended successfully.")
-    except Exception as e:
-        conn.rollback()
-        if debug: print("Error appending time range:", e)
-    finally:
-        close_db(conn, cur)
-
-def change_fitness_goal(name: str, new_goal: str):
-    conn, cur = connect_db()
-    try:
-        cur.execute("""
-            UPDATE user_profile
-            SET fitness_goal = %s
-            WHERE (user_information).name = %s;
-        """, (new_goal, name))
-        conn.commit()
-        if debug: print("Fitness goal updated successfully.")
-    except Exception as e:
-        conn.rollback()
-        if debug: print("Error updating fitness goal:", e)
-    finally:
-        close_db(conn, cur)
-def append_fitness_goal(name: str, additional_goal: str):
-    conn, cur = connect_db()
-    try:
-        cur.execute("""
-            SELECT fitness_goal FROM user_profile
-            WHERE (user_information).name = %s;
-        """, (name,))
-        result = cur.fetchone()
-        if not result:
-            if debug: print("User not found.")
-            return
-        goals = result[0]
-        if goals:
-            goals = goals + "; " + additional_goal
-        else:
-            goals = additional_goal
-        cur.execute("""
-            UPDATE user_profile
-            SET fitness_goal = %s
-            WHERE (user_information).name = %s;
-        """, (goals, name))
-        conn.commit()
-        if debug: print("Fitness goal appended successfully.")
-    except Exception as e:
-        conn.rollback()
-        if debug: print("Error appending fitness goal:", e)
-    finally:
-        close_db(conn, cur)
-
-def change_mental_health_notes(name: str, notes: str):
-    conn, cur = connect_db()
-    try:
-        cur.execute("""
-            UPDATE user_profile
-            SET mental_health_background = %s
-            WHERE (user_information).name = %s;
-        """, (notes, name))
-        conn.commit()
-        if debug: print("Mental health notes updated successfully.")
-    except Exception as e:
-        conn.rollback()
-        if debug: print("Error updating mental health notes:", e)
-    finally:
-        close_db(conn, cur)
-def append_mental_health_notes(name: str, note: str):
-    conn, cur = connect_db()
-    try:
-        cur.execute("""
-            SELECT mental_health_background FROM user_profile
-            WHERE (user_information).name = %s;
-        """, (name,))
-        result = cur.fetchone()
-        if not result:
-            if debug: print("User not found.")
-            return
-        notes = result[0]
-        if notes:
-            notes = notes + "\n" + note
-        else:
-            notes = note
-        cur.execute("""
-            UPDATE user_profile
-            SET mental_health_background = %s
-            WHERE (user_information).name = %s;
-        """, (notes, name))
-        conn.commit()
-        if debug: print("Mental health note appended successfully.")
-    except Exception as e:
-        conn.rollback()
-        if debug: print("Error appending mental health note:", e)
-    finally:
-        close_db(conn, cur)
-
-def change_medical_conditions(name: str, condition: str):
-    conn, cur = connect_db()
-    try:
-        cur.execute("""
-            UPDATE user_profile
-            SET medical_conditions = %s
-            WHERE (user_information).name = %s;
-        """, (condition, name))
-        conn.commit()
-        if debug: print("Medical condition updated successfully.")
-    except Exception as e:
-        conn.rollback()
-        if debug: print("Error updating medical condition:", e)
-    finally:
-        close_db(conn, cur)
-def append_medical_conditions(name: str, condition: str):
-    conn, cur = connect_db()
-    try:
-        cur.execute("""
-            SELECT medical_conditions FROM user_profile
-            WHERE (user_information).name = %s;
-        """, (name,))
-        result = cur.fetchone()
-        if not result:
-            if debug: print("User not found.")
-            return
-        conditions = result[0]
-        if conditions:
-            conditions = conditions + "\n" + condition
-        else:
-            conditions = condition
-        cur.execute("""
-            UPDATE user_profile
-            SET medical_conditions = %s
-            WHERE (user_information).name = %s;
-        """, (conditions, name))
-        conn.commit()
-        if debug: print("Medical condition appended successfully.")
-    except Exception as e:
-        conn.rollback()
-        if debug: print("Error appending medical condition:", e)
     finally:
         close_db(conn, cur)
 
