@@ -1,4 +1,5 @@
 *~$lti-Agentic Health Assistant.docx
+*makefile
 *.tmp
 .streamlit/
 *.toml

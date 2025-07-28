@@ -1,7 +1,7 @@
 import wave
 import json
 import pandas as pd
-from voski.vosk import Model, KaldiRecognizer
+from vosk import Model, KaldiRecognizer
 import streamlit as st
 import subprocess
 from imageio_ffmpeg import get_ffmpeg_exe
@@ -9,7 +9,7 @@ from imageio_ffmpeg import get_ffmpeg_exe
 debug = st.secrets["DEBUGGING_MODE"]
 # for getting the transcript
 def transcribe_audio(audio_file_path: str = "temp_audio1.wav"):
-    model_path = "vosk" #vosk-model-small-en-us-0.15
+    model_path = "vosk_model" #vosk-model-small-en-us-0.15
 
     wf = wave.open(audio_file_path, "rb")
     if wf.getnchannels() != 1 or wf.getsampwidth() != 2 or wf.getframerate() != 16000:
