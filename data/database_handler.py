@@ -1,6 +1,6 @@
 import streamlit as st
 import psycopg2
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, time
 import os
 debug = st.secrets["DEBUGGING_MODE"]
 last19477491_query = """
@@ -70,11 +70,11 @@ def close_db(conn, cur):
         cur.execute(last19477491_query)
         try:
             export_path = r"C:\Users\Ibrahim\Downloads\Internship\Multi-Agentic_Health_Assistant\data\\"
-            cur.execute(f"""
-            {"--" if debug else""}COPY user_profile TO '{export_path}user_profile.csv' WITH CSV HEADER;
-            {"--" if debug else""}COPY daily_stats TO '{export_path}daily_stats.csv' WITH CSV HEADER;
-            {"--" if debug else""}COPY other_storage TO '{export_path}other_storage.csv' WITH CSV HEADER;
-            """)
+            # cur.execute(f"""
+            # {"--" if debug else""}COPY user_profile TO '{export_path}user_profile.csv' WITH CSV HEADER;
+            # {"--" if debug else""}COPY daily_stats TO '{export_path}daily_stats.csv' WITH CSV HEADER;
+            # {"--" if debug else""}COPY other_storage TO '{export_path}other_storage.csv' WITH CSV HEADER;
+            # """)
             if debug: print(f"Exported")
         except Exception as e:
             if debug: print("Error during export:", e)
@@ -85,6 +85,9 @@ def close_db(conn, cur):
         cur.close()
         conn.close()
         if debug: print("Database connection closed.")
+    # cur.close()
+    # conn.close()
+    # if debug: print("Database connection closed.")
 def get_id(name: str, password: str):
     conn, cur = connect_db()
     try:
@@ -107,7 +110,7 @@ def get_id(name: str, password: str):
     finally:
         close_db(conn, cur)
 #functions ----------------------------------------------------------------------------------------------
-def user_registration (
+def user_registration(
     name: str,
     Age: float,
     gender: str = 'Female',
@@ -115,51 +118,51 @@ def user_registration (
     Weight_kg: float = 66.400,
     fitness_goal: str = "Get into better shape",
     dietary_pref: str = "any",
-    time_available: list = None,
+    time_available=None,
     mental_health_notes: str = None,
     medical_conditions: str = None,
     time_deadline: int = 90,
-    password: str = ''  ):
+    password: str = '1234'):
     conn, cur = connect_db()
-    # Build time_arr 2D array
-    if not time_available:
-        time_arr = [['12:00:00', None, None], ['12:20:00', None, None]]
-    else:
-        row1, row2 = [], []
-        for time_str in time_available[:3]:
-            try:
-                t1 = datetime.strptime(time_str, "%H:%M")
-                t2 = (t1 + timedelta(minutes=20)).time()
-                row1.append(t1.strftime("%H:%M:%S"))
-                row2.append(t2.strftime("%H:%M:%S"))
-            except:
-                row1.append(None)
-                row2.append(None)
-        # Pad with None to make 3 elements
-        while len(row1) < 3:
-            row1.append(None)
-            row2.append(None)
-        time_arr = [row1, row2]
     try:
+        # Convert time strings to time objects
+        time_objects = None
+        if time_available:
+            time_objects = []
+            for time_str in time_available:
+                # Parse '09:00' format
+                hour, minute = map(int, time_str.split(':'))
+                time_objects.append(time(hour, minute))
+        
         cur.execute("""
             INSERT INTO user_profile (
-                user_information, fitness_goal, diet_pref, time_arr,
+                user_information, 
+                fitness_goal, diet_pref, time_arr,
                 mental_health_background, medical_conditions, time_deadline,
                 password 
             ) VALUES (
                 ROW(%s, %s, %s, %s, %s),
-                %s, %s, %s, %s, %s, %s
+                %s, %s, %s, 
+                %s, %s, %s,
+                %s
             )
             RETURNING id;
         """, (
             name, Age, gender, height_m, Weight_kg,
-            fitness_goal, dietary_pref, time_arr,
+            fitness_goal, dietary_pref, time_objects,
             mental_health_notes, medical_conditions, time_deadline,
-            password  # Include here
+            password
         ))
+        result = cur.fetchone()
+        conn.commit()
+        if debug: 
+            print(f"User {name} registered successfully with ID: {result[0]}")
+        return result[0]
     except Exception as e:
         conn.rollback()
-        if debug: print("Registration failed:", e)
+        if debug:
+            print("Registration failed:", e)
+        raise e
     finally:
         close_db(conn, cur)
 # user_information table functions

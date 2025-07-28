@@ -259,7 +259,7 @@ def signup_page():
         # Basic Information
         st.subheader("Basic Information")
         name = str(st.text_input("Full Name", placeholder="Enter your full name"))
-        if debug: print("name entered:", name)
+        if debug: print("name entered:", name, "------------------------------------------------------------------------------------------")
         password = str(st.text_input("Password", type="password", placeholder="Create a password", max_chars=10))
         if debug: print("password entered:", password)
         age = float(st.number_input("Age", min_value=1.0, max_value=150.0, value=25.0, step=0.1))
@@ -310,7 +310,7 @@ def signup_page():
         with col1:
             signup_submitted = st.form_submit_button("Sign Up")
         with col2:
-            if st.form_submit_button("Login Instead"):
+            if st.form_submit_button("Login"):
                 set_page("login")
         
         if signup_submitted:
@@ -336,7 +336,7 @@ def signup_page():
                     )
                     st.success("Account created successfully! Please log in.")
                     if debug:
-                        print(f"User {name} registered successfully.")
+                        print(f"User {name} registered successfully----------------------------------------------------------------------------")
                     st.balloons()
                     set_page("login")
                 except Exception as e:
