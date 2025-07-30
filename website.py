@@ -2,8 +2,7 @@ import streamlit as st
 from data.database_handler import (
     get_id, user_registration, get_user_profile_by_id,
     change_name,
-    insert_daily_stats_entry, get_daily_stats_by_id, change_everything
-)
+    insert_daily_stats_entry, get_daily_stats_by_id, change_everything)
 from temp.audio import transcribe_audio, convert_to_wav
 debug = st.secrets["DEBUGGING_MODE"]
 st.set_page_config(
