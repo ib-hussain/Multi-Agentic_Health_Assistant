@@ -3,6 +3,13 @@ import psycopg2
 from datetime import datetime, timedelta, time
 import os
 debug = st.secrets["DEBUGGING_MODE"]
+'''
+issues:
+put a change password function and then put a password changing field in the website.py file
+put a change time function and field in the interface
+add some alarm functionality that makes everything happen at the required times and maybe some alarm functionality
+add some 24 hour cycle routine that puts in changes in the database
+'''
 last19477491_query = """
 -- user_profile table
 UPDATE user_profile

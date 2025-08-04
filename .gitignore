@@ -4,6 +4,7 @@
 .streamlit/
 *.toml
 *.zip
+*.css
 ignore/
 # Ignore virtual environments
 venv/

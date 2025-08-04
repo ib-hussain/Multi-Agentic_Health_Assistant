@@ -16,7 +16,7 @@ st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Anaheim&display=swap');   
     .stApp {
-        background: linear-gradient(#98db2e, #749244);
+        background: linear-gradient(0deg,#707963,#1d5880);
         font-family: 'Manrope', sans-serif;
     } 
     /* Hide Streamlit elements */
@@ -46,25 +46,22 @@ st.markdown("""
         border-radius: 10px;
         max-width: 500px;
         margin: 5% auto;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    }
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);}
     .auth-title {
         font-family: 'Anaheim', sans-serif;
         font-size: 32px;
         color: white;
         text-align: center;
-        margin-bottom: 10px;
-    }
+        margin-bottom: 10px; }
     .auth-subtitle {
         font-size: 16px;
         color: white;
         text-align: center;
-        margin-bottom: 30px;
-    }
+        margin-bottom: 30px;}
     /* Custom button styling */
     .stButton > button {
-        background-color: #98db2e !important;
-        color: #171a1f !important;
+        background-color: #1d88cf !important;
+        color: #ffffff !important;
         border: none !important;
         border-radius: 5px !important;
         padding: 10px 20px !important;
@@ -74,8 +71,8 @@ st.markdown("""
         margin-top: 10px !important;
     }
     .stButton > button:hover {
-        background-color: #7ab825 !important;
-        color: #171a1f !important;
+        background-color: #174666!important;
+        color: #ffffff !important;
     }
     /* Input styling */
     .stTextInput > div > div > input {

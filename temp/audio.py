@@ -1,5 +1,6 @@
 import wave
 import json
+import os
 import pandas as pd
 import streamlit as st
 import subprocess
@@ -7,9 +8,9 @@ from imageio_ffmpeg import get_ffmpeg_exe
 
 debug = st.secrets["DEBUGGING_MODE"]
 # for getting the transcript
-def transcribe_audio(audio_file_path: str = "temp_audio1.wav"):
-    from vosk import Model, KaldiRecognizer
-    model_path = "vosk_model" #vosk-model-small-en-us-0.15
+def transcribe_audio(audio_file_path: str = "temp/temp_audio1.wav"):
+    from temp.vosk import Model, KaldiRecognizer
+    model_path = "temp/vosk_model" #vosk-model-small-en-us-0.15
 
     wf = wave.open(audio_file_path, "rb")
     if wf.getnchannels() != 1 or wf.getsampwidth() != 2 or wf.getframerate() != 16000:
@@ -26,20 +27,23 @@ def transcribe_audio(audio_file_path: str = "temp_audio1.wav"):
     results.append(json.loads(rec.FinalResult()))
     transcript = " ".join(r.get("text", "") for r in results)
     return transcript
-# Convert the video(.mp3) files into audio(.wav) only
+# Convert the video(.mp4) files into audio(.wav) only
 # Involves Pre-Processing on the audio files before conversion, to normalise all of them
 ffmpeg_path = get_ffmpeg_exe()
-def convert_to_wav(input_path: str = "temp_audio.mp3", output_path: str = "temp_audio1.wav"):
+def convert_to_wav(input_path: str = "temp/temp_audio.mp4", output_path: str = "temp/temp_audio1.wav"):
     """
     Convert audio file to WAV format with normalization.
+    
     Args:
         input_path (str): Path to input audio file
         output_path (str): Path for output WAV file
     """
-    from vosk import Model, KaldiRecognizer
+    # Check if input file exists
+    
     # Add audio normalization for better preprocessing
     cmd = [
         ffmpeg_path,
+        "-y",                    # force overwrite without asking
         "-i", input_path,
         "-ac", "1",           # mono channel
         "-ar", "16000",       # 16 kHz sample rate
@@ -47,6 +51,7 @@ def convert_to_wav(input_path: str = "temp_audio.mp3", output_path: str = "temp_
         "-loglevel", "error",    # suppress verbose output
         output_path
     ]
+    
     try:
         subprocess.run(cmd, check=True)
         if debug: print(f"Successfully converted {input_path} to {output_path}")
