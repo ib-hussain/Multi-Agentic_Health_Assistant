@@ -30,7 +30,7 @@ def transcribe_audio(input_path: str = "temp/"):
     results.append(json.loads(rec.FinalResult()))
     transcript = " ".join(r.get("text", "") for r in results)
     return transcript
-# Convert the video(.mp4) files into audio(.wav) only
+# Convert the video(.mp3) files into audio(.wav) only
 # Involves Pre-Processing on the audio files before conversion, to normalise all of them
 def convert_to_wav(input_path: str = "temp/", output_path: str = "temp/"):
     """
@@ -67,4 +67,3 @@ def convert_to_wav(input_path: str = "temp/", output_path: str = "temp/"):
     except Exception as e:
         raise RuntimeError(f"Conversion error: {e}")
         return False
-
