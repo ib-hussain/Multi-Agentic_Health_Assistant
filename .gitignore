@@ -6,9 +6,10 @@
 *.zip
 *.css
 ignore/
+
+
 # Ignore virtual environments
 venv/
-.vscode
 # Ignore Python cache
 __pycache__/
 # Ignore IDE settings
@@ -19,4 +20,3 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
-First\ Version/*.txt

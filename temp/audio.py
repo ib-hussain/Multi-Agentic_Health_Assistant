@@ -6,15 +6,18 @@ import streamlit as st
 import subprocess
 from imageio_ffmpeg import get_ffmpeg_exe
 
+NULLstring =str(st.secrets["NULLSTRING"])
 debug = st.secrets["DEBUGGING_MODE"]
 # for getting the transcript
-def transcribe_audio(audio_file_path: str = "temp/temp_audio1.wav"):
+def transcribe_audio(input_path: str = "temp/"):
+    if not convert_to_wav(input_path, input_path):
+        return NULLstring
     from temp.vosk import Model, KaldiRecognizer
-    model_path = "temp/vosk_model" #vosk-model-small-en-us-0.15
+    model_path = f"{input_path}vosk_model" #vosk-model-small-en-us-0.15
 
-    wf = wave.open(audio_file_path, "rb")
+    wf = wave.open(input_path + "temp_audio1.wav", "rb")
     if wf.getnchannels() != 1 or wf.getsampwidth() != 2 or wf.getframerate() != 16000:
-        raise ValueError(f"{audio_file_path} must be mono, 16-bit, 16kHz")
+        raise ValueError(f"{input_path + "temp_audio1.wav"} must be mono, 16-bit, 16kHz")
     model = Model(model_path)
     rec = KaldiRecognizer(model, wf.getframerate())
     results = []
@@ -29,8 +32,7 @@ def transcribe_audio(audio_file_path: str = "temp/temp_audio1.wav"):
     return transcript
 # Convert the video(.mp4) files into audio(.wav) only
 # Involves Pre-Processing on the audio files before conversion, to normalise all of them
-ffmpeg_path = get_ffmpeg_exe()
-def convert_to_wav(input_path: str = "temp/temp_audio.mp4", output_path: str = "temp/temp_audio1.wav"):
+def convert_to_wav(input_path: str = "temp/", output_path: str = "temp/"):
     """
     Convert audio file to WAV format with normalization.
     
@@ -39,8 +41,12 @@ def convert_to_wav(input_path: str = "temp/temp_audio.mp4", output_path: str = "
         output_path (str): Path for output WAV file
     """
     # Check if input file exists
-    
+    input_path += "temp_audio.mp3"
+    output_path += "temp_audio1.wav"
+    if not os.path.exists(input_path):
+        raise FileNotFoundError(f"Input file not found: {input_path}")
     # Add audio normalization for better preprocessing
+    ffmpeg_path = get_ffmpeg_exe()
     cmd = [
         ffmpeg_path,
         "-y",                    # force overwrite without asking
@@ -51,11 +57,14 @@ def convert_to_wav(input_path: str = "temp/temp_audio.mp4", output_path: str = "
         "-loglevel", "error",    # suppress verbose output
         output_path
     ]
-    
     try:
         subprocess.run(cmd, check=True)
         if debug: print(f"Successfully converted {input_path} to {output_path}")
+        return True
     except subprocess.CalledProcessError as e:
         raise RuntimeError(f"FFmpeg conversion failed: {e}")
+        return False
     except Exception as e:
         raise RuntimeError(f"Conversion error: {e}")
+        return False
+

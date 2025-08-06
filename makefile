@@ -1,5 +1,7 @@
-all: compile debug
-compile:
+all:  first #second #third  
+first:
 		streamlit run website.py
-debug: 
-# 		streamlit run website.py --logger.level=debug
+# second:
+# 		streamlit run chatbot.py
+# third:
+# 		streamlit run main.py	
