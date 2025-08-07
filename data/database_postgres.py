@@ -1,8 +1,14 @@
+'''
+Database handler for the Multi-Agentic Health Assistant project.
+This header provides functions to interact with the PostgreSQL database,
+including user registration, profile management, daily stats, and other storage functionalities.
+'''
+
 import streamlit as st
 import psycopg2
 from datetime import datetime, timedelta, time
 import os
-debug = st.secrets["DEBUGGING_MODE"]
+debug = bool(st.secrets["DEBUGGING_MODE"])
 '''
 issues:
 put a change password function and then put a password changing field in the website.py file
@@ -307,32 +313,6 @@ def change_everything(
         if debug: print("Error updating medical condition:", e)
     finally:
         close_db(conn, cur)
-    
-def parse_time_string(time_str):
-    return datetime.strptime(time_str, "%H:%M").time()
-def add_20_minutes(time_obj):
-    dt = datetime.combine(datetime.today(), time_obj) + timedelta(minutes=20)
-    return dt.time()
-def change_time_available(name: str, start_time: str):
-    conn, cur = connect_db()
-    try:
-        t1 = parse_time_string(start_time)
-        t2 = add_20_minutes(t1)
-        arr = [[t1.strftime('%H:%M:%S'), None, None],
-               [t2.strftime('%H:%M:%S'), None, None]] 
-        cur.execute("""
-            UPDATE user_profile
-            SET time_arr = %s
-            WHERE (user_information).name = %s;
-        """, (arr, name))
-        conn.commit()
-        if debug: print("Time availability changed successfully.")
-    except Exception as e:
-        conn.rollback()
-        if debug: print("Error updating time availability:", e)
-    finally:
-        close_db(conn, cur)
-
 def get_user_profile_by_id(user_id: int):
     conn, cur = connect_db()
     try:
@@ -381,6 +361,45 @@ def get_user_profile_by_id(user_id: int):
         return None
     finally:
         close_db(conn, cur)
+def get_fitness_goal_diet_gender_age_time_deadline(user_id: int):
+    conn, cur = connect_db()
+    try:
+        cur.execute("SELECT fitness_goal, diet_pref, (user_information).gender, (user_information).age, time_deadline FROM user_profile WHERE id = %s;", (user_id,))
+        result = cur.fetchone()
+        return result
+    except Exception as e:  
+        if debug: print("Error fetching fitness goal, diet preferences, gender, age, and time deadline:", e)
+        return None
+    finally:
+        close_db(conn, cur)
+
+
+
+def parse_time_string(time_str):
+    return datetime.strptime(time_str, "%H:%M").time()
+def add_20_minutes(time_obj):
+    dt = datetime.combine(datetime.today(), time_obj) + timedelta(minutes=20)
+    return dt.time()
+def change_time_available(name: str, start_time: str):
+    conn, cur = connect_db()
+    try:
+        t1 = parse_time_string(start_time)
+        t2 = add_20_minutes(t1)
+        arr = [[t1.strftime('%H:%M:%S'), None, None],
+               [t2.strftime('%H:%M:%S'), None, None]] 
+        cur.execute("""
+            UPDATE user_profile
+            SET time_arr = %s
+            WHERE (user_information).name = %s;
+        """, (arr, name))
+        conn.commit()
+        if debug: print("Time availability changed successfully.")
+    except Exception as e:
+        conn.rollback()
+        if debug: print("Error updating time availability:", e)
+    finally:
+        close_db(conn, cur)
+
 # daily_stats table functions
 def insert_daily_stats_entry(user_id: int, activity_level: str, progress_condition: str):
     conn, cur = connect_db()

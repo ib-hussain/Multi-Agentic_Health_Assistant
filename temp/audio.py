@@ -1,3 +1,8 @@
+'''
+Provide the transcript of any auditory input given by the user.
+Args:
+    input_path (str): Path to the audio file to be transcribed from the directory which is using this header
+'''
 import wave
 import json
 import os
@@ -6,7 +11,7 @@ import streamlit as st
 import subprocess
 from imageio_ffmpeg import get_ffmpeg_exe
 
-NULLstring =str(st.secrets["NULLSTRING"])
+NULLstring =str(st.secrets["NULL_STRING"])
 debug = st.secrets["DEBUGGING_MODE"]
 # for getting the transcript
 def transcribe_audio(input_path: str = "temp/"):
@@ -34,7 +39,7 @@ def transcribe_audio(input_path: str = "temp/"):
 # Involves Pre-Processing on the audio files before conversion, to normalise all of them
 def convert_to_wav(input_path: str = "temp/", output_path: str = "temp/"):
     """
-    Convert audio file to WAV format with normalization.
+    Convert audio file to WAV format with normalization
     
     Args:
         input_path (str): Path to input audio file

@@ -1,12 +1,12 @@
 import streamlit as st
-from data.database_handler import (
+from data.database_postgres import (
     get_id, user_registration, get_user_profile_by_id,
     change_name,
     insert_daily_stats_entry, get_daily_stats_by_id, change_everything)
 from temp.audio import transcribe_audio as transcript
 
 debug = st.secrets["DEBUGGING_MODE"]
-NULLstring =st.secrets["NULL_STRING"]
+NULLstring =str(st.secrets["NULL_STRING"])
 st.set_page_config(
     page_title="Virtual Health Assistant", 
     layout="wide",
@@ -18,7 +18,7 @@ st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Anaheim&display=swap');   
     .stApp {
-        background: linear-gradient(0deg,#707963,#1d5880);
+        background: linear-gradient(#707963,#71bbec);
         font-family: 'Manrope', sans-serif;
     } 
     /* Hide Streamlit elements */
@@ -180,7 +180,7 @@ if "user_profile" not in st.session_state:
 def set_page(page_name):
     st.session_state.current_page = page_name
     st.rerun()
-
+#perfect ----------------------------------------------------------------------------------------------------------------------------
 def logout():
     st.session_state.user_id = None
     st.session_state.user_profile = None
@@ -200,13 +200,13 @@ def render_navbar():
         with col1:st.empty()  # Spacer
         with col2:st.empty()  # Spacer
         with col3:
-            if st.button("Progress", key="nav_daily"):
-                set_page("daily_progress")
+            if st.button("Chatbot", key="nav_chatbot"):
+                set_page("chatbot")
         with col4:
             st.empty()  # Spacer
         with col5:
-            if st.button("Chatbot", key="nav_chatbot"):
-                set_page("chatbot")
+            if st.button("Progress", key="nav_daily"):
+                set_page("daily_progress")
         with col6:st.empty()  # Spacer
         with col7:
             if st.button("Profile", key="nav_profile"):
@@ -338,6 +338,14 @@ def signup_page():
                     st.error(f"Registration failed: {str(e)}")
     
     st.markdown('</div>', unsafe_allow_html=True)
+#perfect ----------------------------------------------------------------------------------------------------------------------------
+# we are fucked and this shit is full of issues 
+# daily progress page doesnot work inany way whatsoever
+# suabase genrates horsehit and doesnot make rows properly
+# time functionality is a nightmare
+# ui is very bad and very badly made
+# everything is bad and doesnot work        
+# profile management page needs a change password and change timings functionality                          
 # Chatbot Page (Home Page)
 def chatbot_page():
     render_navbar()
