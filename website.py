@@ -1,52 +1,33 @@
 import streamlit as st
+import os
+from pathlib import Path
+import tempfile
 from data.database_postgres import (
-    get_id, user_registration, get_user_profile_by_id,
-    change_name,
-    insert_daily_stats_entry, get_daily_stats_by_id, change_everything)
+    get_id, user_registration, 
+    get_user_profile_by_id, change_name, insert_daily_stats_entry, get_daily_stats_by_id, 
+    change_everything
+                                    )
 from temp.audio import transcribe_audio as transcript
+from chatbots.diet import get_image_description as diet
 
 debug = st.secrets["DEBUGGING_MODE"]
 NULLstring =str(st.secrets["NULL_STRING"])
+
 st.set_page_config(
     page_title="Virtual Health Assistant", 
     layout="wide",
     initial_sidebar_state="collapsed"
 )
-
-# CSS Styling inspired by your HTML files
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Anaheim&display=swap');   
     .stApp {
         background: radial-gradient(
         circle at 20% 20%,
-        rgba(255, 212, 196, 1) 0%,
-        rgba(255, 237, 188, 1) 30%,
-        rgba(236, 217, 255, 1) 55%,
-        rgba(202, 224, 255, 1) 80%
-    );
-    background-blend-mode: screen;
-    background-size: cover;
+        rgba(255, 212, 196, 1) 0%, rgba(255, 237, 188, 1) 30%, rgba(236, 217, 255, 1) 55%, rgba(202, 224, 255, 1) 80% );
+    background-blend-mode: screen; background-size: cover;
         /*
-        background: radial-gradient(
-            circle at 20% 20%,
-            rgba(255, 212, 196, 1) 0%,    /* peach/coral */
-            rgba(255, 237, 188, 1) 30%,   /* pale yellow */
-            rgba(236, 217, 255, 1) 55%,   /* lavender purple */
-            rgba(202, 224, 255, 1) 80%    /* pastel sky blue */
-            ),
-            radial-gradient(
-            circle at 80% 30%,
-            rgba(240, 210, 255, 0.8) 0%,  /* soft violet */
-            transparent 70%
-            ),
-            radial-gradient(
-            circle at 50% 80%,
-            rgba(200, 230, 255, 0.8) 0%,  /* light blue glow */
-            transparent 70%
-            );
-        background-blend-mode: screen;
-        background-size: cover;    
+        background: radial-gradient( circle at 20% 20%, rgba(255, 212, 196, 1) 0%,    /* peach/coral */ rgba(255, 237, 188, 1) 30%,   /* pale yellow */ rgba(236, 217, 255, 1) 55%,   /* lavender purple */ rgba(202, 224, 255, 1) 80%    /* pastel sky blue */ ), radial-gradient( circle at 80% 30%, rgba(240, 210, 255, 0.8) 0%,  /* soft violet */ transparent 70% ), radial-gradient( circle at 50% 80%, rgba(200, 230, 255, 0.8) 0%,  /* light blue glow */ transparent 70% ); background-blend-mode: screen; background-size: cover;    
         */
         font-family: 'Manrope', sans-serif;
     } 
@@ -55,13 +36,13 @@ st.markdown("""
     footer {visibility: hidden;}
     header {visibility: hidden;}
     /* Custom navbar */
-    .custom-navbar {
+    .navbar-brand {
         background-color: transparent; 
         /*padding: 0px 20px;  Vertical and horizontal padding */
         margin: -1rem -1rem 1rem -1rem; /* Adjust margins */
         display: flex; /* Add this to enable align-items and justify-content */
-        align-items: center;
-        justify-content: center;
+        align-items: left;
+        justify-content: left;
         border-radius: 14px; /* Rounded corners */
         color: #171a1f; /* Text color */
         font-family: 'Anaheim', sans-serif; /* Font family */
@@ -69,6 +50,11 @@ st.markdown("""
         font-weight: bolder; /* Bold text 
         text-decoration: none;*/ /* Remove underline 
             opacity: 0.81;*/
+    }
+    .navbar-logo {
+        height: 36px; /* adjust size to match text */
+        vertical-align: middle;
+        margin-left: 5px; /* space between text and image */
     }
     /* Login/Signup containers */
     .auth-container {
@@ -224,7 +210,10 @@ def render_navbar():
         chatbot_class = "active" if current_page == "chatbot" else ""
         daily_class = "active" if current_page == "daily_progress" else ""
         profile_class = "active" if current_page == "profile" else ""
-        st.markdown(f"""<div class="custom-navbar">Virtual Health Assistant🥀</div>""", unsafe_allow_html=True)
+        st.markdown(f"""<div class="navbar-brand">
+                            Virtual Health Assistant
+                            <img src="https://raw.githubusercontent.com/ib-hussain/Cinemago/refs/heads/main/favicon.png" alt="Rose Logo" class="navbar-logo">
+                        </div>""", unsafe_allow_html=True)
         # Navigation buttons (invisible but functional)
         col1, col2, col3, col4, col5,col6,col7, col8, col9  = st.columns([1,1,1,1,1,1,1,1,1])
         with col1:st.empty()  # Spacer
@@ -369,110 +358,178 @@ def signup_page():
     
     st.markdown('</div>', unsafe_allow_html=True)
 #perfect ----------------------------------------------------------------------------------------------------------------------------
+# issues:
 # we are fucked and this shit is full of issues 
-# daily progress page doesnot work inany way whatsoever
-# suabase genrates horsehit and doesnot make rows properly
+# daily progress page doesnot work in any way whatsoever
+# supabase genrates horsehit and doesnot make rows properly
 # time functionality is a nightmare
-# ui is very bad and very badly made
-# everything is bad and doesnot work        
+# ui is very bad and very badly made      
 # profile management page needs a change password and change timings functionality                          
 # Chatbot Page (Home Page)
 def chatbot_page():
+    """
+    Chatbot page with centered white chat card, text/image/audio inputs,
+    proper file saving (temp/download.<ext>, temp/temp_audio.mp3), and diet() call.
+    """
     render_navbar()
     if not st.session_state.user_profile:
         st.session_state.user_profile = get_user_profile_by_id(st.session_state.user_id)
     profile = st.session_state.user_profile
-    st.markdown(f'<h1 class="profile-title">Coming soon...</h1>', unsafe_allow_html=True)
+    # ---- Styles for centered chat card ----
+    st.markdown(
+        """
+        <style>
+        .chat-wrapper { display:flex; justify-content:center; }
+        .chat-input-row { display:flex; gap:10px; flex-wrap:wrap; }
+        .chat-hint { color:#666; font-size:13px; margin: 6px 2px 8px 2px; }
+        .upload-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:6px; }
+        .send-row { display:flex; gap:10px; margin-top:10px; flex-wrap:wrap; }
+        .pill { padding:8px 12px; border-radius:10px; background:#f6f7f8; border:1px solid #eee; font-size:13px; color:#333; }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
 
-    st.markdown('<h1 class="profile-title">Virtual Health Assistant Chatbot</h1>', unsafe_allow_html=True)
-    
-    # Initialize chat history
+    # ---- Chat history state ----
     if "messages" not in st.session_state:
-        st.session_state.messages = []
+        st.session_state.messages = [
+            {"role": "assistant", "content": f"Hi {profile['name']}. You can type, upload a food image, or upload a short mp3 audio. I'll analyze the meal and give nutrition insights."}
+        ]
 
-    # Display chat messages from history on app rerun
-    for message in st.session_state.messages:
-        with st.chat_message(message["role"]):
-            st.markdown(message["content"])
+    # Render message history
+    for m in st.session_state.messages:
+        with st.chat_message(m["role"]):
+            st.markdown(m["content"])  # already markdown-friendly
+    # ---- Inputs ----
+    # A) Text input
+    user_text = st.chat_input("Type a message or add a caption for your image…")
 
-    # Accept user input
-    prompt = st.chat_input("What would you like to know?")
+    # B) Uploaders (inline under the messages)
+    col_u1, col_u2 = st.columns(2)
+    with col_u1:
+        img_file = st.file_uploader( "Upload a food image (png/jpg/jpeg/ico)", type=["png", "jpg", "jpeg", "ico"], key="diet_image_upl")
+    with col_u2:
+        audio_file = st.file_uploader( "Upload audio (mp3) to transcribe & send", type=["mp3"], key="diet_audio_upl" )
+    # C) Action buttons
+    c1, c2, c3 = st.columns([1,1,1])
+    with c1:
+        send_text = st.button("Send Text", use_container_width=True)
+    with c2:
+        analyze_image = st.button("Analyze Image", use_container_width=True)
+    with c3:
+        transcribe_audio_and_send = st.button("Transcribe & Send", use_container_width=True)
 
-    # File uploader for food images (placed above the chat input for better UX)
-    # We'll handle the file upload logic within the chat input check
-    # to avoid processing the image if there's no prompt.
-    uploaded_file = st.file_uploader("Upload a food image (PNG, JPG, JPEG, ICO)", 
-                                   type=["png", "jpg", "jpeg", "ico"], 
-                                   key="food_image_uploader",
-                                   label_visibility="collapsed") # Hidden label, icon is enough
-    
-    # If user submits a prompt (either text or with an image)
-    if prompt:
-        # Add user message to chat history
-        st.session_state.messages.append({"role": "user", "content": prompt})
-        # Display user message
-        with st.chat_message("user"):
-            st.markdown(prompt)
-            # If an image was uploaded, display a thumbnail
-            if uploaded_file is not None:
-                st.image(uploaded_file, caption="Uploaded Image", width=200) # Small thumbnail
+    # Helpers
+    def _save_image_to_temp(upload) -> str | None:
+        """Save uploaded image to temp/download.<ext> and return path."""
+        if not upload:
+            return None
+        from pathlib import Path
+        ext = Path(upload.name).suffix.lower()
+        if ext not in {".png", ".jpg", ".jpeg", ".ico"}:
+            st.error("Unsupported image type.")
+            return None
+        dest = f"temp/download{ext}"
+        with open(dest, "wb") as f:
+            f.write(upload.getbuffer())
+        return dest
+    def _append_and_render(role: str, content: str):
+        st.session_state.messages.append({"role": role, "content": content})
+        with st.chat_message(role):
+            st.markdown(content)
 
-        # Display assistant response
-        with st.chat_message("assistant"):
-            message_placeholder = st.empty()
-            full_response = ""
+    # ---- Handlers ----
+    # 1) If the user typed text and clicked send
+    if user_text and not send_text:
+        # Streamlit's chat_input sends on Enter automatically; mimic a send button feel
+        send_text = True
+    if send_text and (user_text or "" ):
+        _append_and_render("user", user_text or "")
+        # For now, if no image attached, just acknowledge. You can wire mental-health/exercise later.
+        _append_and_render(
+            "assistant",
+            "Got it. If you also upload a meal photo, I'll do a full nutrition analysis."
+        )
 
-            # Check if this is a request for food analysis
-            # This is a simple heuristic; you might want a more sophisticated way
-            # to determine when to trigger the diet agent.
-            food_keywords = ["food", "meal", "dish", "nutrition", "calories", "eat", "diet"]
-            is_food_query = any(keyword in prompt.lower() for keyword in food_keywords) and uploaded_file is not None
+    # 2) Image analysis path
+    if analyze_image:
+        if img_file is None:
 
-            if is_food_query :
-                # Process food image analysis
-                with st.spinner("Analyzing your food image..."):
-                    try:
-                        # Save uploaded file to a temporary location
-                        # The diet agent expects a file path
-                        with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(uploaded_file.name)[1]) as tmp_file:
-                            tmp_file.write(uploaded_file.getvalue())
-                            tmp_file_path = tmp_file.name
+            st.warning(f"Please upload an image first.")
+        else:
+            img_path = _save_image_to_temp(img_file)
+            if img_path:
+                # If there's a text caption in chat_input, echo it in the chat first
+                if user_text:
+                    _append_and_render("user", user_text)
+                _append_and_render("user", "(Uploaded a meal photo)")
+                st.image(img_file, caption="Your upload", use_column_width=True)
+                # Call diet() with prompt + image path
+                with st.chat_message("assistant"):
+                    with st.spinner("Analyzing your meal…"):
+                        try:
+                            prompt = user_text or ""
+                            res = diet(image_path=img_path, prompt=prompt, user_id=st.session_state.user_id)
+                            if res.get("status") == "success":
+                                st.markdown(res["description"])
+                                st.session_state.messages.append({"role": "assistant", "content": res["description"]})
+                            else:
+                                msg = f"Error: {res.get('message','Unknown error')}"
+                                st.error(msg)
+                                st.session_state.messages.append({"role": "assistant", "content": msg})
+                        except Exception as e:
+                            msg = f"Image analysis failed: {e}"
+                            st.error(msg)
+                            st.session_state.messages.append({"role": "assistant", "content": msg})
 
-                        # Call the diet agent
-                        api_key = st.secrets["TOGETHER_API_KEY"]
-                        result = get_image_description(tmp_file_path, prompt=prompt, user_id=st.session_state.user_id)
-                        
-                        # Clean up temporary file
-                        os.unlink(tmp_file_path)
-                        
-                        if result["status"] == "success":
-                            full_response = result["description"]
-                        else:
-                            full_response = f"Sorry, I couldn't analyze the image. Error: {result['message']}"
-                            
-                    except Exception as e:
-                        full_response = f"An error occurred during analysis: {str(e)}"
-            else:
-                # Default response for non-food queries or if agent is not available
-                # In a real app, you would integrate with a general-purpose LLM here
-                if is_food_query and not AGENT_AVAILABLE:
-                    full_response = "I can help analyze food images, but the analysis module is currently unavailable."
-                elif is_food_query and uploaded_file is None:
-                    full_response = "Please upload a food image for analysis."
+    # 3) Audio transcription path -> auto send as user message, then respond
+    if transcribe_audio_and_send:
+        if audio_file is None:
+            st.warning("Please upload an mp3 first.")
+        else:
+            # Save as temp/temp_audio.mp3
+            audio_dest = "temp/temp_audio.mp3"
+            with open(audio_dest, "wb") as f:
+                f.write(audio_file.getbuffer())
+            # Get transcript
+            try:
+                with st.spinner("Transcribing…"):
+                    text = transcript("temp/")
+                text = text.strip() if text else ""
+            except Exception as e:
+                text = ""
+                st.error(f"Transcription failed: {e}")
+            if text:
+                # Display transcript as a user message and auto-send it
+                _append_and_render("user", text)
+                # If there is also an image uploaded, analyze with that transcript as caption
+                if img_file is not None:
+                    img_path = _save_image_to_temp(img_file)
                 else:
-                    # Placeholder for general chat
-                    full_response = f"Thanks for your message: '{prompt}'. I'm a placeholder response. In a full implementation, I would connect to a general AI model to answer your questions."
-
-            message_placeholder.markdown(full_response)
-            
-        # Add assistant response to chat history
-        st.session_state.messages.append({"role": "assistant", "content": full_response})
-
-    # Special case: If an image is uploaded but no text prompt is given immediately
-    # This handles the scenario where a user uploads an image and then decides to ask something.
-    # The image will be processed with the next text prompt if it's a food-related query.
-    # You could add a dedicated "Analyze Image" button if you prefer more explicit control.
-
+                    img_path = None
+                if img_path:
+                    with st.chat_message("assistant"):
+                        with st.spinner("Analyzing your meal…"):
+                            try:
+                                res = diet(image_path=img_path, prompt=text, user_id=st.session_state.user_id)
+                                if res.get("status") == "success":
+                                    st.markdown(res["description"])
+                                    st.session_state.messages.append({"role": "assistant", "content": res["description"]})
+                                else:
+                                    msg = f"Error: {res.get('message','Unknown error')}"
+                                    st.error(msg)
+                                    st.session_state.messages.append({"role": "assistant", "content": msg})
+                            except Exception as e:
+                                msg = f"Image analysis failed: {e}"
+                                st.error(msg)
+                                st.session_state.messages.append({"role": "assistant", "content": msg})
+                else:
+                    _append_and_render(
+                        "assistant",
+                        "Transcript received. Upload a meal photo as well if you want a full nutrition breakdown."
+                    )
+    # Close the chat card
+    st.markdown('</div></div>', unsafe_allow_html=True)
 
 # Daily Progress Page (Combined viewing and logging)
 def daily_progress_page():

@@ -32,6 +32,8 @@ def get_image_description(image_path: str="temp/download.jpeg", prompt: str = st
         time_deadline = str(time_deadline)
         # Build personalized prompt
         personalized_info = (
+            # issues: 
+            # the prompt might need to be changed and fields might need to be added or subtracted 
             f"User Information:\n"
             f"Diet preferences: {diet_pref}\n"
             f"Age: {age}\n"
@@ -82,9 +84,9 @@ def get_image_description(image_path: str="temp/download.jpeg", prompt: str = st
             temperature=float(st.secrets["temperature__T"])
         )
         description = response.choices[0].message.content.strip()
-        return {"status": "success", "description": description}
+        return {"status":"success", "description": description}
     except Exception as e:
-        return {"status": "error", "message": str(e)}
+        return {"status":"error", "message": str(e)}
 
 # Example usage:
 # result = get_image_description("temp/download.jpeg", user_id=1, prompt = "") 
