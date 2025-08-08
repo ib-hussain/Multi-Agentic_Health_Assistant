@@ -5,6 +5,7 @@
 *.toml
 *.zip
 *.css
+*.html
 ignore/
 
 
