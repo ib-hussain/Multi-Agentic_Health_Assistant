@@ -9,6 +9,8 @@ jinja2
 rich
 transformers
 together
+streamlit-audiorec
+pydub
 pinecone
 langchain
 torch

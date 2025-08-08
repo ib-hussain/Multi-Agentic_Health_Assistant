@@ -9,6 +9,11 @@ from data.database_postgres import (
                                     )
 from temp.audio import transcribe_audio as transcript
 from chatbots.diet import get_image_description as diet
+# Optional: live recording (falls back to uploader if not installed)
+try:
+    from st_audiorec import st_audiorec  # pip install streamlit-audiorec
+    _HAS_REC = True
+except Exception: _HAS_REC = False
 
 debug = st.secrets["DEBUGGING_MODE"]
 NULLstring =str(st.secrets["NULL_STRING"])
@@ -367,169 +372,181 @@ def signup_page():
 # profile management page needs a change password and change timings functionality                          
 # Chatbot Page (Home Page)
 def chatbot_page():
-    """
-    Chatbot page with centered white chat card, text/image/audio inputs,
-    proper file saving (temp/download.<ext>, temp/temp_audio.mp3), and diet() call.
-    """
     render_navbar()
+
+    # Ensure profile loaded
     if not st.session_state.user_profile:
         st.session_state.user_profile = get_user_profile_by_id(st.session_state.user_id)
     profile = st.session_state.user_profile
-    # ---- Styles for centered chat card ----
-    st.markdown(
-        """
-        <style>
-        .chat-wrapper { display:flex; justify-content:center; }
-        .chat-input-row { display:flex; gap:10px; flex-wrap:wrap; }
-        .chat-hint { color:#666; font-size:13px; margin: 6px 2px 8px 2px; }
-        .upload-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:6px; }
-        .send-row { display:flex; gap:10px; margin-top:10px; flex-wrap:wrap; }
-        .pill { padding:8px 12px; border-radius:10px; background:#f6f7f8; border:1px solid #eee; font-size:13px; color:#333; }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
 
-    # ---- Chat history state ----
+    # ---------- styles (centered white chat card) ----------
+    st.markdown("""
+    <style>
+      .vh-chat-wrap {display:flex; justify-content:center; padding:10px 0 24px;}
+      .vh-chat-card {
+        width: min(860px, 92vw);
+        background:#fff; border-radius:16px;
+        box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+        border: 1px solid rgba(0,0,0,0.06);
+        padding: 16px 18px 12px 18px;
+      }
+      .vh-row {display:flex; gap:14px; flex-wrap:wrap;}
+      .vh-col {flex:1 1 320px;}
+      .vh-sec-title {font-weight:700; color:#222; margin:2px 0 6px;}
+      .vh-sep {height:8px;}
+      .vh-sendbar {display:flex; gap:10px; align-items:flex-end; margin-top:8px;}
+      .vh-send-btn button {height:42px; font-weight:700;}
+      .vh-card-title {font-size:18px; font-weight:800; margin:4px 0 10px;}
+      .vh-hint {color:#8a8a8a; font-size:12px; margin-top:4px;}
+    </style>
+    """, unsafe_allow_html=True)
+
+    # ---------- init chat history ----------
     if "messages" not in st.session_state:
         st.session_state.messages = [
-            {"role": "assistant", "content": f"Hi {profile['name']}. You can type, upload a food image, or upload a short mp3 audio. I'll analyze the meal and give nutrition insights."}
+            {"role": "assistant", "content": f"Hi {profile['name']}. You can type, attach an image, or add audio. I will analyze the meal and provide a clear nutritional breakdown."}
         ]
 
-    # Render message history
-    for m in st.session_state.messages:
-        with st.chat_message(m["role"]):
-            st.markdown(m["content"])  # already markdown-friendly
-    # ---- Inputs ----
-    # A) Text input
-    user_text = st.chat_input("Type a message or add a caption for your image…")
+    # ---------- helpers ----------
+    def _append(role: str, text: str):
+        st.session_state.messages.append({"role": role, "content": text})
+        with st.chat_message(role):
+            st.markdown(text)
 
-    # B) Uploaders (inline under the messages)
-    col_u1, col_u2 = st.columns(2)
-    with col_u1:
-        img_file = st.file_uploader( "Upload a food image (png/jpg/jpeg/ico)", type=["png", "jpg", "jpeg", "ico"], key="diet_image_upl")
-    with col_u2:
-        audio_file = st.file_uploader( "Upload audio (mp3) to transcribe & send", type=["mp3"], key="diet_audio_upl" )
-    # C) Action buttons
-    c1, c2, c3 = st.columns([1,1,1])
-    with c1:
-        send_text = st.button("Send Text", use_container_width=True)
-    with c2:
-        analyze_image = st.button("Analyze Image", use_container_width=True)
-    with c3:
-        transcribe_audio_and_send = st.button("Transcribe & Send", use_container_width=True)
-
-    # Helpers
-    def _save_image_to_temp(upload) -> str | None:
-        """Save uploaded image to temp/download.<ext> and return path."""
-        if not upload:
+    def _save_image_overwrite(upload) -> str | None:
+        """Save uploaded image as temp/download.<ext>; remove any previous download.* first."""
+        if upload is None:
             return None
-        from pathlib import Path
+        os.makedirs("temp", exist_ok=True)
+        # remove previous download.*
+        for old in Path("temp").glob("download.*"):
+            try: old.unlink()
+            except: pass
         ext = Path(upload.name).suffix.lower()
         if ext not in {".png", ".jpg", ".jpeg", ".ico"}:
-            st.error("Unsupported image type.")
+            st.error("Unsupported image type. Please use png/jpg/jpeg/ico.")
             return None
-        dest = f"temp/download{ext}"
+        dest = Path("temp") / f"download{ext}"
         with open(dest, "wb") as f:
             f.write(upload.getbuffer())
-        return dest
-    def _append_and_render(role: str, content: str):
-        st.session_state.messages.append({"role": role, "content": content})
-        with st.chat_message(role):
-            st.markdown(content)
+        return str(dest)
 
-    # ---- Handlers ----
-    # 1) If the user typed text and clicked send
-    if user_text and not send_text:
-        # Streamlit's chat_input sends on Enter automatically; mimic a send button feel
-        send_text = True
-    if send_text and (user_text or "" ):
-        _append_and_render("user", user_text or "")
-        # For now, if no image attached, just acknowledge. You can wire mental-health/exercise later.
-        _append_and_render(
-            "assistant",
-            "Got it. If you also upload a meal photo, I'll do a full nutrition analysis."
-        )
-
-    # 2) Image analysis path
-    if analyze_image:
-        if img_file is None:
-
-            st.warning(f"Please upload an image first.")
-        else:
-            img_path = _save_image_to_temp(img_file)
-            if img_path:
-                # If there's a text caption in chat_input, echo it in the chat first
-                if user_text:
-                    _append_and_render("user", user_text)
-                _append_and_render("user", "(Uploaded a meal photo)")
-                st.image(img_file, caption="Your upload", use_column_width=True)
-                # Call diet() with prompt + image path
-                with st.chat_message("assistant"):
-                    with st.spinner("Analyzing your meal…"):
-                        try:
-                            prompt = user_text or ""
-                            res = diet(image_path=img_path, prompt=prompt, user_id=st.session_state.user_id)
-                            if res.get("status") == "success":
-                                st.markdown(res["description"])
-                                st.session_state.messages.append({"role": "assistant", "content": res["description"]})
-                            else:
-                                msg = f"Error: {res.get('message','Unknown error')}"
-                                st.error(msg)
-                                st.session_state.messages.append({"role": "assistant", "content": msg})
-                        except Exception as e:
-                            msg = f"Image analysis failed: {e}"
-                            st.error(msg)
-                            st.session_state.messages.append({"role": "assistant", "content": msg})
-
-    # 3) Audio transcription path -> auto send as user message, then respond
-    if transcribe_audio_and_send:
-        if audio_file is None:
-            st.warning("Please upload an mp3 first.")
-        else:
-            # Save as temp/temp_audio.mp3
-            audio_dest = "temp/temp_audio.mp3"
-            with open(audio_dest, "wb") as f:
-                f.write(audio_file.getbuffer())
-            # Get transcript
+    def _save_audio_mp3_overwrite(raw_bytes: bytes, src_ext: str | None = None) -> str | None:
+        """
+        Convert raw audio bytes to mp3 and overwrite temp/temp_audio.mp3.
+        Uses pydub if available; if not, saves bytes as mp3 (works when input already mp3).
+        """
+        os.makedirs("temp", exist_ok=True)
+        target = Path("temp") / "temp_audio.mp3"
+        # Try convert with pydub
+        try:
+            from pydub import AudioSegment
+            from io import BytesIO
+            audio = AudioSegment.from_file(BytesIO(raw_bytes), format=(src_ext.replace(".", "") if src_ext else None))
+            audio.export(target, format="mp3", bitrate="192k")
+            return str(target)
+        except Exception:
+            # Fallback: just write bytes (will work if bytes are already mp3)
             try:
-                with st.spinner("Transcribing…"):
-                    text = transcript("temp/")
-                text = text.strip() if text else ""
+                with open(target, "wb") as f:
+                    f.write(raw_bytes)
+                return str(target)
             except Exception as e:
-                text = ""
+                st.error(f"Could not save audio: {e}")
+                return None
+
+    # ---------- UI shell ----------
+    st.markdown('<div class="vh-chat-wrap"><div class="vh-chat-card">', unsafe_allow_html=True)
+    st.markdown('<div class="vh-card-title">Virtual Health Assistant Chatbot</div>', unsafe_allow_html=True)
+
+    # Show history
+    for m in st.session_state.messages:
+        with st.chat_message(m["role"]):
+            st.markdown(m["content"])
+
+    st.markdown('<div class="vh-sep"></div>', unsafe_allow_html=True)
+
+    # ---------- Attachments ----------
+    st.markdown('<div class="vh-row">', unsafe_allow_html=True)
+    with st.container():
+        col_left, col_right = st.columns(2)
+        with col_left:
+            st.markdown('<div class="vh-sec-title">Image (optional)</div>', unsafe_allow_html=True)
+            img_file = st.file_uploader("Upload a food image", type=["png", "jpg", "jpeg", "ico"], label_visibility="collapsed", key="vh_img")
+            st.markdown('<div class="vh-hint">Image will be saved as temp/download.&lt;ext&gt; and overwrite any existing one.</div>', unsafe_allow_html=True)
+        with col_right:
+            st.markdown('<div class="vh-sec-title">Audio (optional)</div>', unsafe_allow_html=True)
+            aud_file = st.file_uploader("Upload audio file", type=["mp3", "wav", "m4a", "ogg"], label_visibility="collapsed", key="vh_aud")
+            if _HAS_REC:
+                st.markdown('<div class="vh-hint">Or record here</div>', unsafe_allow_html=True)
+                wav_bytes = st_audiorec()  # returns WAV bytes or None
+            else:
+                wav_bytes = None
+                st.markdown('<div class="vh-hint">Tip: install <code>streamlit-audiorec</code> to enable on-page recording.</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)  # end row
+
+    # ---------- Prompt + Send ----------
+    st.markdown('<div class="vh-sendbar">', unsafe_allow_html=True)
+    user_text = st.text_area("Message", placeholder="Type a message…", label_visibility="collapsed", height=80, key="vh_prompt")
+    send = st.button("Send", type="primary", use_container_width=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    # ---------- click handler ----------
+    if send:
+        # 1) Save image (overwrite)
+        image_path = _save_image_overwrite(img_file) if img_file is not None else None
+
+        # 2) Save audio (recording preferred > upload), convert to mp3, overwrite
+        audio_saved = None
+        if wav_bytes:
+            audio_saved = _save_audio_mp3_overwrite(wav_bytes, src_ext=".wav")
+        elif aud_file is not None:
+            audio_saved = _save_audio_mp3_overwrite(aud_file.getbuffer(), src_ext=Path(aud_file.name).suffix.lower())
+
+        # 3) If audio present -> transcribe and prepend to prompt
+        final_prompt = (user_text or "").strip()
+        if audio_saved:
+            try:
+                with st.spinner("Transcribing audio…"):
+                    t = transcript("temp/") or ""
+                t = t.strip()
+            except Exception as e:
+                t = ""
                 st.error(f"Transcription failed: {e}")
-            if text:
-                # Display transcript as a user message and auto-send it
-                _append_and_render("user", text)
-                # If there is also an image uploaded, analyze with that transcript as caption
-                if img_file is not None:
-                    img_path = _save_image_to_temp(img_file)
-                else:
-                    img_path = None
-                if img_path:
-                    with st.chat_message("assistant"):
-                        with st.spinner("Analyzing your meal…"):
-                            try:
-                                res = diet(image_path=img_path, prompt=text, user_id=st.session_state.user_id)
-                                if res.get("status") == "success":
-                                    st.markdown(res["description"])
-                                    st.session_state.messages.append({"role": "assistant", "content": res["description"]})
-                                else:
-                                    msg = f"Error: {res.get('message','Unknown error')}"
-                                    st.error(msg)
-                                    st.session_state.messages.append({"role": "assistant", "content": msg})
-                            except Exception as e:
-                                msg = f"Image analysis failed: {e}"
-                                st.error(msg)
-                                st.session_state.messages.append({"role": "assistant", "content": msg})
-                else:
-                    _append_and_render(
-                        "assistant",
-                        "Transcript received. Upload a meal photo as well if you want a full nutrition breakdown."
-                    )
-    # Close the chat card
+            if t:
+                # Show transcript as a user message
+                _append("user", t)
+                # Prepend transcript to final prompt
+                final_prompt = (t + ("\n\n" + final_prompt if final_prompt else ""))
+
+        # 4) Post the user's visible message (if any text), or simple note if only image
+        if final_prompt:
+            _append("user", final_prompt)
+        elif image_path:
+            _append("user", "(Uploaded a meal photo)")
+
+        # 5) Call the diet agent (image optional)
+        if final_prompt or image_path:
+            with st.chat_message("assistant"):
+                with st.spinner("Analyzing…"):
+                    try:
+                        result = diet(prompt=final_prompt, user_id=st.session_state.user_id, image_path=image_path)
+                        # allow both dict or str returns
+                        if isinstance(result, dict) and "description" in result:
+                            out = result["description"]
+                        else:
+                            out = str(result)
+                        st.markdown(out)
+                        st.session_state.messages.append({"role": "assistant", "content": out})
+                    except Exception as e:
+                        msg = f"Error from diet agent: {e}"
+                        st.error(msg)
+                        st.session_state.messages.append({"role": "assistant", "content": msg})
+        else:
+            st.warning("Please provide text, audio, or an image.")
+
     st.markdown('</div></div>', unsafe_allow_html=True)
+
 
 # Daily Progress Page (Combined viewing and logging)
 def daily_progress_page():
