@@ -8,7 +8,7 @@ sqlalchemy
 jinja2
 rich
 transformers
-huggingface-hub
+together
 pinecone
 langchain
 torch
