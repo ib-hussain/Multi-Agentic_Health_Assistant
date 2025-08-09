@@ -13,23 +13,60 @@ body{
     radial-gradient(circle at 50% 80%, rgba(200, 230, 255, 0.8) 0%, transparent 70%);
   background-blend-mode: screen;
   background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
 }
-
 /* Navbar (from your current file) */
 .navbar {
-  display:flex; justify-content:center; align-items:center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: transparent;
-  padding:15px 0; position:fixed; top:0; width:100%; z-index:1000; height:60px;
-  box-sizing:border-box; color:#171a1f; font-family:'Anaheim', sans-serif; font-weight:bold;
+  padding: 15px 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 60px;
+  box-sizing: border-box;
+  color: #171a1f;
+  font-family: 'Anaheim', sans-serif;
+  font-weight: bold;
+  /* Add these new properties */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: background-color 0.3s ease;
 }
+
 .navbar-brand {
-  color:#171a1f; font-family:'Anaheim', sans-serif; font-size:28px; font-weight:bolder;
-  position:absolute; left:20px; display:flex; align-items:center; text-decoration:none; transition:all 0.3s;
+    color: #171a1f;
+    font-family: 'Anaheim', sans-serif; /* Font family */
+    font-size: 28px; /* Font size */
+    font-weight:bolder;
+    position: absolute;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.3s
 }
 .navbar-logo {
-  height:36px; vertical-align:middle; margin-left:5px; transition:all 0.3s;
+    /* height: 36px;
+    width: auto;
+    object-fit: contain; */
+    height: 36px; /* adjust size to match text */
+    vertical-align: middle;
+    margin-left: 5px; /* space between text and image */
+    transition: all 0.3s
 }
-.navbar-brand:hover, .navbar-brand:active { transform:scale(1.05); }
+.navbar-brand:hover , .navbar-brand:active {
+    transform: scale(1.1);
+    transition: transform 0.3s;
+}
+/* Add scroll behavior */
+.navbar.scrolled {
+  background-color: rgba(224, 210, 238, 0.7);
+}
 
 /* Main container (copied structure/feel from the “good” page) */
 .container {

@@ -10,9 +10,12 @@
             href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Anaheim&display=swap"
             rel="stylesheet" />
         <link rel="stylesheet" href="signup.css" />
+    </head>
+    <body>
+        <!-- Navbar -->
         <header>
             <div class="navbar">
-                <a href="#" class="navbar-brand">
+                <a href="index.html" class="navbar-brand">
                     Virtual Health Assistant
                     <img
                         src="https://raw.githubusercontent.com/ib-hussain/Cinemago/refs/heads/main/favicon.png"
@@ -20,8 +23,196 @@
                 </a>
             </div>
         </header>
-    </head>
-    <body>
 
+        <!-- Signup Container -->
+        <div class="container">
+            <div class="logo">
+                <h1>Create Your Account</h1>
+                <p class="subtitle">Join us and start your health journey!</p>
+            </div>
+
+            <form id="signup-form" novalidate>
+                <!-- Basic Information Section -->
+                <div class="form-section">
+                    <h2 class="section-title">Basic Information</h2>
+
+                    <div class="form-group full-width">
+                        <label for="full-name">Full Name</label>
+                        <input type="text" id="full-name" name="full_name"
+                            placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="password">Password</label>
+                            <div class="password-field">
+                                <input type="password" id="password"
+                                    name="password"
+                                    placeholder="Create a password" required
+                                    minlength="4" maxlength="10">
+                                <button type="button"
+                                    class="toggle-pass">Show</button>
+                            </div>
+                        </div>
+                        <div class="form-group half-width">
+                            <label for="confirm-password">Confirm
+                                Password</label>
+                            <div class="password-field">
+                                <input type="password" id="confirm-password"
+                                    name="confirm_password"
+                                    placeholder="Confirm password" required>
+                                <button type="button"
+                                    class="toggle-pass">Show</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" name="age"
+                                placeholder="25.00" min="1" max="120" step="0.1"
+                                value="25.00" required>
+                        </div>
+                        <div class="form-group half-width">
+                            <label for="gender">Gender</label>
+                            <select id="gender" name="gender" required>
+                                <option value="female" selected>Female</option>
+                                <option value="male">Male</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="weight">Weight (kg)</label>
+                            <input type="number" id="weight" name="weight"
+                                placeholder="70.00" min="20" max="500"
+                                step="0.1" value="70.00" required>
+                        </div>
+                        <div class="form-group half-width">
+                            <label for="height">Height (m)</label>
+                            <input type="number" id="height" name="height"
+                                placeholder="1.70" min="0.5" max="3"
+                                step="0.001" value="1.70" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fitness Goals Section -->
+                <div class="form-section">
+                    <h2 class="section-title">Fitness Goals</h2>
+
+                    <div class="form-group full-width">
+                        <label for="fitness-goal">Fitness Goal</label>
+                        <textarea id="fitness-goal" name="fitness_goal"
+                            placeholder="Get into better shape"
+                            maxlength="90">Get into better shape</textarea>
+                    </div>
+
+                    <div class="form-group half-width">
+                        <label for="diet-pref">Dietary Preference</label>
+                        <select id="diet-pref" name="diet_pref" required>
+                            <option value="any" selected>Any</option>
+                            <option value="vegan">Vegan</option>
+                            <option value="vegetarian">Vegetarian</option>
+                            <option value="pescatarian">Pescatarian</option>
+                            <option value="carnivore">Carnivore</option>
+                            <option value="balanced">Balanced</option>
+                            <option value="both">Both</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Schedule Section -->
+                <div class="form-section">
+                    <h2 class="section-title">Schedule</h2>
+
+                    <div class="form-group half-width">
+                        <label for="goal-deadline">Goal Deadline (days)</label>
+                        <input type="number" id="goal-deadline"
+                            name="goal_deadline" placeholder="90" min="1"
+                            max="365" value="90" required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Preferred Workout Times (Select 1-3
+                            hours)</label>
+                        <div class="time-slots-container">
+                            <div class="time-slot-group">
+                                <select class="time-hour" data-index="0">
+                                    <option value disabled selected>Select
+                                        hour</option>
+                                    <option value="06">06:00</option>
+                                    <option value="07">07:00</option>
+                                    <option value="08">08:00</option>
+                                    <option value="09">09:00</option>
+                                    <option value="10">10:00</option>
+                                    <option value="11">11:00</option>
+                                    <option value="12">12:00</option>
+                                    <option value="13">13:00</option>
+                                    <option value="14">14:00</option>
+                                    <option value="15">15:00</option>
+                                    <option value="16">16:00</option>
+                                    <option value="17">17:00</option>
+                                    <option value="18">18:00</option>
+                                    <option value="19">19:00</option>
+                                    <option value="20">20:00</option>
+                                    <option value="21">21:00</option>
+                                    <option value="22">22:00</option>
+                                    <option value="23">23:00</option>
+                                </select>
+                                <span class="time-range-indicator">20 min
+                                    session</span>
+                            </div>
+                            <button type="button" id="add-time-slot"
+                                class="btn-add-time">+ Add Another Time</button>
+                        </div>
+                        <input type="hidden" id="time-availability"
+                            name="time_availability">
+                    </div>
+                </div>
+
+                <!-- Health Information Section -->
+                <div class="form-section">
+                    <h2 class="section-title">Health Information</h2>
+
+                    <div class="form-group full-width">
+                        <label for="mental-health">Mental Health Notes
+                            (Optional)</label>
+                        <textarea id="mental-health" name="mental_health"
+                            placeholder="Any mental health conditions from past or present that you may have..."></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="medical-conditions">Medical Conditions
+                            (Optional)</label>
+                        <textarea id="medical-conditions"
+                            name="medical_conditions"
+                            placeholder="Any medical conditions you may have..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Terms and Submit -->
+                <div class="form-section">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I agree with Terms &
+                            Conditions</label>
+                    </div>
+
+                    <div class="button-row">
+                        <button type="submit" class="btn btn-primary">Sign
+                            Up</button>
+                        <a href="login.html" class="btn btn-secondary">Login</a>
+                    </div>
+                </div>
+
+                <div id="form-error" class="form-error"
+                    aria-live="polite"></div>
+            </form>
+        </div>
+
+        <script src="signup.js"></script>
     </body>
 </html>
