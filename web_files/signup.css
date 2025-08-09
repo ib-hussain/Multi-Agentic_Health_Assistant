@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Anaheim&display=swap');
+body{
+    background: radial-gradient(
+        circle at 20% 20%,
+        rgba(255, 212, 196, 1) 0%, rgba(255, 237, 188, 1) 30%, rgba(236, 217, 255, 1) 55%, rgba(202, 224, 255, 1) 80% );
+    background-blend-mode: screen; background-size: cover;
+        /*
+        background: radial-gradient( circle at 20% 20%, rgba(255, 212, 196, 1) 0%, 
+        peach/coral 
+        rgba(255, 237, 188, 1) 30%,   
+        pale yellow 
+        rgba(236, 217, 255, 1) 55%,   
+        lavender purple 
+        rgba(202, 224, 255, 1) 80%    
+         pastel sky blue 
+        ), 
+        radial-gradient( circle at 80% 30%, rgba(240, 210, 255, 0.8) 0%,  
+         soft violet 
+        transparent 70% ), 
+        radial-gradient( circle at 50% 80%, rgba(200, 230, 255, 0.8) 0%, 
+        light blue glow 
+        transparent 70% ); 
+        background-blend-mode: screen; 
+        background-size: cover;    
+        */
+    font-family: 'Manrope', sans-serif;
+    color: #171a1f;
+}
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent; 
+    padding: 15px 0;
+    position: fixed;
+    color: #171a1f;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 60px;
+    box-sizing: border-box;
+    font-family: 'Anaheim', sans-serif; /* Font family */
+    /* 'Manrope', sans-serif; */
+    font-weight: bold;
+}
+.navbar-brand {
+    color: #171a1f;
+    font-family: 'Anaheim', sans-serif; /* Font family */
+    font-size: 28px; /* Font size */
+    font-weight:bolder;
+    position: absolute;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.3s
+}
+.navbar-logo {
+    /* height: 36px;
+    width: auto;
+    object-fit: contain; */
+    height: 36px; /* adjust size to match text */
+    vertical-align: middle;
+    margin-left: 5px; /* space between text and image */
+    transition: all 0.3s
+}
+.navbar-brand:hover , .navbar-brand:active {
+    transform: scale(1.1);
+    transition: transform 0.3s;
+}

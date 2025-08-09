@@ -4,8 +4,7 @@
 .streamlit/
 *.toml
 *.zip
-*.css
-*.html
+*dg.css
 ignore/
 
 

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/png"
+      href="https://raw.githubusercontent.com/ib-hussain/Cinemago/refs/heads/main/favicon.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Virtual Health Assistant - Log In</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Anaheim&display=swap" rel="stylesheet" />
+    <!-- Styles -->
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <!-- Navbar (from your current style) -->
+    <header>
+      <div class="navbar">
+        <a href="#" class="navbar-brand">
+          Virtual Health Assistant
+          <img
+            src="https://raw.githubusercontent.com/ib-hussain/Cinemago/refs/heads/main/favicon.png"
+            alt="Rose Logo" class="navbar-logo">
+        </a>
+      </div>
+    </header>
+
+    <!-- Container (copied structure/formatting from your “good” page) -->
+    <div class="container full-height">
+      <div class="logo">
+        <p class="subtitle">Welcome back! Log in to continue</p>
+      </div>
+
+      <div class="form-wrapper">
+        <form id="login-form" novalidate>
+          <input id="name" name="name" type="text" placeholder="Your full name" required />
+          <div class="password-field">
+            <input id="password" name="password" type="password" placeholder="Enter your password" required />
+            <button type="button" id="toggle-pass" class="toggle-pass" aria-label="Show password">Show</button>
+          </div>
+          <button class="btn" type="submit" id="login-btn">Log In</button>
+
+          <div id="form-error" class="form-error" aria-live="polite"></div>
+        </form>
+      </div>
+
+      <div class="footer">
+        <span class="registered"><br>Need an account?<br><br></span>
+        <a href="signup.html" class="login-link">Sign Up</a>
+      </div>
+    </div>
+
+    <!-- JS -->
+    <script src="login.js"></script>
+  </body>
+</html>
