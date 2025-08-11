@@ -71,11 +71,11 @@ WHERE audio_transcript IS NULL;
 def connect_db():
     # Establish connection to PostgreSQL
     conn = psycopg2.connect(
-        dbname=st.secrets["DB_NAME"],
-        user=st.secrets["DB_USER"],
-        password=st.secrets["DB_PASSWORD"],
-        host=st.secrets["DB_HOST"],
-        port=st.secrets["DB_PORT"]
+        dbname=os.getenv("DB_NAME"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        host=os.getenv("DB_HOST"),
+        port=os.getenv("DB_PORT")
     )
     cur = conn.cursor()
     return conn, cur
@@ -89,7 +89,7 @@ def close_db(conn, cur):
             # {"--" if debug else""}COPY daily_stats TO '{export_path}daily_stats.csv' WITH CSV HEADER;
             # {"--" if debug else""}COPY other_storage TO '{export_path}other_storage.csv' WITH CSV HEADER;
             # """)
-            if debug: print(f"Exported")
+            # if debug: print(f"Exported")
         except Exception as e:
             if debug: print("Error during export:", e)
             conn.commit()
@@ -136,8 +136,12 @@ def user_registration(
     mental_health_notes: str = None,
     medical_conditions: str = None,
     time_deadline: int = 90,
-    password: str = '1234'):
+    password: str = '12345678'):
     conn, cur = connect_db()
+    if gender=="female": gender = "Female"
+    if gender=='female': gender = "Female"
+    if gender=="male": gender = "Male"
+    if gender=='male': gender = 'Male'
     try:
         # Convert time strings to time objects
         time_objects = None
@@ -180,6 +184,7 @@ def user_registration(
     finally:
         close_db(conn, cur)
 # user_information table functions
+
 def change_name(old_name: str, new_name: str):
     conn, cur = connect_db()
     try:
@@ -314,6 +319,9 @@ def change_everything(
         if debug: print("Error updating medical condition:", e)
     finally:
         close_db(conn, cur)
+
+
+
 def get_user_profile_by_id(user_id: int):
     conn, cur = connect_db()
     try:

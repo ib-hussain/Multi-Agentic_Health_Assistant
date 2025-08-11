@@ -1,7 +1,7 @@
 from flask import Flask, request, redirect, send_from_directory, jsonify, session
 import psycopg2
 from psycopg2.extras import RealDictCursor
-from data.database_postgres import get_id
+from data.database_postgres import get_id, user_registration
 import os
 
 app = Flask(__name__)
@@ -37,7 +37,78 @@ def login():
             'success': False,
             'message': 'Invalid name or password'
         }), 401
-
+@app.route('/api/signup', methods=['POST'])
+def signup():
+    try:
+        data = request.get_json()
+        # Validate required fields
+        required_fields = {
+            'name': 'Full name is required',
+            'password': 'Password is required',
+            'age': 'Age is required',
+            'gender': 'Gender is required',
+            'height': 'Height is required',
+            'weight': 'Weight is required',
+            'time_availability': 'At least one workout time is required'
+        }
+        missing_fields = []
+        for field, message in required_fields.items():
+            if not data.get(field):
+                missing_fields.append(message)
+        if missing_fields:
+            return jsonify({
+                'success': False,
+                'message': 'Missing required fields',
+                'errors': missing_fields
+            }), 400
+        # Additional validation for numeric fields
+        try:
+            age = float(data['age'])
+            height = float(data['height'])
+            weight = float(data['weight'])
+        except ValueError:
+            return jsonify({
+                'success': False,
+                'message': 'Age, height, and weight must be numbers'
+            }), 400
+        # Validate at least one workout time is selected
+        if not data['time_availability'] or len(data['time_availability']) == 0:
+            return jsonify({
+                'success': False,
+                'message': 'At least one workout time is required'
+            }), 400
+        # Convert time availability to the format expected by user_registration
+        time_available = []
+        for slot in data['time_availability']:
+            time_available.append(slot['start'])  # Just use the start time
+        # Call the registration function
+        user_id = user_registration(
+            name=data['name'],
+            Age=age,
+            gender=data['gender'],
+            height_m=height,
+            Weight_kg=weight,
+            fitness_goal=data.get('fitness_goal', "Get into better shape"),
+            dietary_pref=data.get('diet_pref', "any"),
+            time_available=time_available,
+            mental_health_notes=data.get('mental_health'),
+            medical_conditions=data.get('medical_conditions'),
+            time_deadline=int(data.get('goal_deadline', 90)),
+            password=data['password']
+        )
+        return jsonify({
+            'success': True,
+            'message': 'Registration successful',
+            'user_id': user_id
+        })
+    except Exception as e:
+        print("Registration error:", str(e))
+        # Registration error: {str(e)}
+        return jsonify({
+            'success': False,
+            'message': f'Registration error: {str(e)}',
+            'error': str(e)
+        }), 500
 @app.route('/logout')
 def logout():
     session.clear()

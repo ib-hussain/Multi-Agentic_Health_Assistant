@@ -1,31 +1,31 @@
-        document.addEventListener('DOMContentLoaded', function() {
-            // DOM Elements
-            const signupForm = document.getElementById('signup-form');
-            const passwordInput = document.getElementById('password');
-            const confirmPasswordInput = document.getElementById('confirm-password');
-            const formError = document.getElementById('form-error');
-            const timeSlotsContainer = document.querySelector('.time-slots-container');
-            const addTimeBtn = document.getElementById('add-time-slot');
-            const timeAvailabilityInput = document.getElementById('time-availability');
-            const togglePassBtns = document.querySelectorAll('.toggle-pass');
+document.addEventListener('DOMContentLoaded', function() {
+    // DOM Elements
+    const signupForm = document.getElementById('signup-form');
+    const passwordInput = document.getElementById('password');
+    const confirmPasswordInput = document.getElementById('confirm-password');
+    const formError = document.getElementById('form-error');
+    const timeSlotsContainer = document.querySelector('.time-slots-container');
+    const addTimeBtn = document.getElementById('add-time-slot');
+    const timeAvailabilityInput = document.getElementById('time-availability');
+    const togglePassBtns = document.querySelectorAll('.toggle-pass');
 
-            // Time slots array (max 3)
-            let timeSlots = [null, null, null];
-            let activeSlots = 1;
-            let usedTimes = new Set();
+    // Time slots management
+    let timeSlots = [null, null, null];
+    let activeSlots = 1;
+    let usedTimes = new Set();
+    // Toggle password visibility
+    togglePassBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const input = this.parentElement.querySelector('input');
+            const isPassword = input.type === 'password';
+            input.type = isPassword ? 'text' : 'password';
+            this.textContent = isPassword ? 'Hide' : 'Show';
+        });
+    });
 
-            // Toggle password visibility
-            togglePassBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const input = this.parentElement.querySelector('input');
-                    const isPassword = input.type === 'password';
-                    input.type = isPassword ? 'text' : 'password';
-                    this.textContent = isPassword ? 'Hide' : 'Show';
-                });
-            });
-
-            // Update available options for time selects
-            function updateTimeOptions() {
+    // Time slots functions (updateTimeOptions, addTimeSlot, updateTimeSlot, removeTimeSlot)
+    // ... [keep all your existing time slot management functions unchanged] ...
+    function updateTimeOptions() {
                 const timeSelects = document.querySelectorAll('.time-hour');
                 timeSelects.forEach(select => {
                     const currentValue = select.value;
@@ -43,10 +43,8 @@
                         }
                     });
                 });
-            }
-
-            // Add time slot
-            addTimeBtn.addEventListener('click', function() {
+    }
+    addTimeBtn.addEventListener('click', function() {
                 if (activeSlots >= 3) return;
                 
                 activeSlots++;
@@ -93,10 +91,8 @@
                 if (activeSlots >= 3) {
                     addTimeBtn.style.display = 'none';
                 }
-            });
-
-            // Update time slot
-            function updateTimeSlot(e) {
+    });
+    function updateTimeSlot(e) {
                 const index = parseInt(e.target.dataset.index);
                 const hour = e.target.value;
                 const previousHour = timeSlots[index] ? timeSlots[index].start.split(':')[0] : null;
@@ -124,10 +120,9 @@
                 
                 // Update hidden input
                 updateTimeAvailability();
-            }
-
-            // Remove time slot
-            function removeTimeSlot(e) {
+    }
+    // Remove time slot
+    function removeTimeSlot(e) {
                 const index = parseInt(e.target.dataset.index);
                 const group = e.target.closest('.time-slot-group');
                 const select = group.querySelector('.time-hour');
@@ -163,121 +158,151 @@
                 addTimeBtn.style.display = 'block';
                 updateTimeOptions();
                 updateTimeAvailability();
-            }
+    }
+    // Update hidden input with time availability
+    function updateTimeAvailability() {
+        const validSlots = timeSlots.filter(slot => slot !== null);
+        timeAvailabilityInput.value = JSON.stringify(validSlots);
+    }
+    // Enhanced form validation
+    function validateForm() {
+        // Get all form values
+        const formValues = {
+            name: document.getElementById('full-name').value.trim(),
+            password: passwordInput.value,
+            confirmPassword: confirmPasswordInput.value,
+            age: document.getElementById('age').value,
+            gender: document.getElementById('gender').value,
+            height: document.getElementById('height').value,
+            weight: document.getElementById('weight').value,
+            fitnessGoal: document.getElementById('fitness-goal').value.trim(),
+            hasTimeSlot: timeSlots.some(slot => slot !== null)
+        };
 
-            // Update hidden input with time availability
-            function updateTimeAvailability() {
-                const validSlots = timeSlots.filter(slot => slot !== null);
-                timeAvailabilityInput.value = JSON.stringify(validSlots);
-            }
+        // Clear previous errors
+        formError.style.display = 'none';
+        formError.textContent = '';
+        formError.innerHTML = ''; // Clear any HTML content
 
-            // Form validation
-            function validateForm() {
-                const password = passwordInput.value;
-                const confirmPassword = confirmPasswordInput.value;
-                
-                // Clear previous errors
-                formError.style.display = 'none';
-                formError.textContent = '';
-                
-                // Password validation
-                if (password.length < 4 || password.length > 10) {
-                    showError('Password must be between 4 and 10 characters.');
-                    return false;
-                }
-                
-                if (password !== confirmPassword) {
-                    showError('Passwords do not match.');
-                    return false;
-                }
-                
-                // Time slots validation (at least one required)
-                const hasTimeSlot = timeSlots.some(slot => slot !== null);
-                if (!hasTimeSlot) {
-                    showError('Please select at least one preferred workout time.');
-                    return false;
-                }
-                
-                return true;
-            }
+        // Validate each field
+        const errors = [];
 
-            // Show error message
-            function showError(message) {
-                formError.textContent = message;
-                formError.style.display = 'block';
-                formError.setAttribute('aria-live', 'assertive');
-                
-                // Scroll to error
-                formError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
+        // Required fields validation
+        if (!formValues.name) errors.push('Full name is required');
+        if (!formValues.password) errors.push('Password is required');
+        if (!formValues.age) errors.push('Age is required');
+        if (!formValues.gender) errors.push('Gender is required');
+        if (!formValues.height) errors.push('Height is required');
+        if (!formValues.weight) errors.push('Weight is required');
+        if (!formValues.hasTimeSlot) errors.push('At least one workout time is required');
 
-            // Form submission
-            signupForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                if (!validateForm()) return;
-                
-                // Prepare form data
-                const formData = {
-                    name: document.getElementById('full-name').value.trim(),
-                    password: passwordInput.value,
-                    age: parseFloat(document.getElementById('age').value),
-                    gender: document.getElementById('gender').value,
-                    height: parseFloat(document.getElementById('height').value),
-                    weight: parseFloat(document.getElementById('weight').value),
-                    fitness_goal: document.getElementById('fitness-goal').value.trim(),
-                    diet_pref: document.getElementById('diet-pref').value,
-                    time_availability: JSON.parse(timeAvailabilityInput.value),
-                    goal_deadline: parseInt(document.getElementById('goal-deadline').value),
-                    mental_health: document.getElementById('mental-health').value.trim() || null,
-                    medical_conditions: document.getElementById('medical-conditions').value.trim() || null,
-                    terms: document.getElementById('terms').checked
-                };
-                
-                // Disable button during submission
-                const submitBtn = signupForm.querySelector('button[type="submit"]');
-                const originalText = submitBtn.textContent;
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Creating account...';
-                
-                try {
-                    // Simulate API response for demonstration
-                    await simulateSignup(formData);
-                    
-                } catch (error) {
-                    console.error('Signup error:', error);
-                    showError(error.message || 'An error occurred during registration. Please try again.');
-                } finally {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = originalText;
-                }
+        // Numeric validation
+        if (formValues.age && isNaN(formValues.age)) errors.push('Age must be a valid number');
+        if (formValues.height && isNaN(formValues.height)) errors.push('Height must be a valid number');
+        if (formValues.weight && isNaN(formValues.weight)) errors.push('Weight must be a valid number');
+
+        // Password validation
+        if (formValues.password) {
+            if (formValues.password.length < 4 || formValues.password.length > 10) {
+                errors.push('Password must be between 4 and 10 characters');
+            }
+            if (!/[A-Z]/.test(formValues.password)) {
+                errors.push('Password must contain at least one uppercase letter');
+            }
+            if (!/[0-9]/.test(formValues.password)) {
+                errors.push('Password must contain at least one number');
+            }
+        }
+
+        // Password match validation
+        if (formValues.password && formValues.password !== formValues.confirmPassword) {
+            errors.push('Passwords do not match');
+        }
+
+        // Display errors if any
+        if (errors.length > 0) {
+            const errorList = errors.map(error => `<li>${error}</li>`).join('');
+            formError.innerHTML = `<ul style="margin:0;padding-left:20px;">${errorList}</ul>`;
+            formError.style.display = 'block';
+            
+            // Scroll to error message
+            formError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return false;
+        }
+
+        return true;
+    }
+    // Enhanced form submission
+    signupForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Validate form before submission
+        if (!validateForm()) return;
+        
+        // Prepare form data
+        const formData = {
+            name: document.getElementById('full-name').value.trim(),
+            password: passwordInput.value,
+            age: parseFloat(document.getElementById('age').value),
+            gender: document.getElementById('gender').value,
+            height: parseFloat(document.getElementById('height').value),
+            weight: parseFloat(document.getElementById('weight').value),
+            fitness_goal: document.getElementById('fitness-goal').value.trim(),
+            diet_pref: document.getElementById('diet-pref').value,
+            time_availability: JSON.parse(timeAvailabilityInput.value),
+            goal_deadline: parseInt(document.getElementById('goal-deadline').value),
+            mental_health: document.getElementById('mental-health').value.trim() || null,
+            medical_conditions: document.getElementById('medical-conditions').value.trim() || null
+        };
+        
+        // Disable button during submission
+        const submitBtn = signupForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Creating account...';
+        
+        try {
+            const response = await fetch('/api/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(formData)
             });
-
-            // Development-only simulation
-            async function simulateSignup(formData) {
-                console.log('Simulated form submission:', formData);
-                await new Promise(resolve => setTimeout(resolve, 1500));
-                
-                // Format time availability for display
-                const timeSlots = formData.time_availability.map(slot => 
-                    `${slot.start} - ${slot.end}`).join(', ');
-                
-                alert(`Account would be created with:\n\n` +
-                      `Name: ${formData.name}\n` +
-                      `Age: ${formData.age}\n` +
-                      `Gender: ${formData.gender}\n` +
-                      `Height: ${formData.height}m\n` +
-                      `Weight: ${formData.weight}kg\n` +
-                      `Fitness Goal: ${formData.fitness_goal}\n` +
-                      `Diet Preference: ${formData.diet_pref}\n` +
-                      `Workout Times: ${timeSlots}\n` +
-                      `Goal Deadline: ${formData.goal_deadline} days`);
-                
-                // Simulate successful registration
-                console.log('Registration successful!');
+            
+            const data = await response.json();
+            
+            if (!response.ok) {
+                // Handle server-side validation errors
+                if (data.errors) {
+                    const errorList = data.errors.map(error => `<li>${error}</li>`).join('');
+                    formError.innerHTML = `<ul style="margin:0;padding-left:20px;">${errorList}</ul>`;
+                    formError.style.display = 'block';
+                    formError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    throw new Error(data.message || 'Registration failed');
+                }
+                return;
             }
+            
+            if (data.success) {
+                // Registration successful - redirect to login with success message
+                sessionStorage.setItem('registrationSuccess', 'true');
+                window.location.href = 'login.html';
+            }
+            
+        } catch (error) {
+            console.error('Signup error:', error);
+            formError.textContent = error.message || 'An error occurred during registration. Please try again.';
+            formError.style.display = 'block';
+            formError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        }
+    });
 
-            // Initialize first time slot event listeners
-            document.querySelector('.time-hour').addEventListener('change', updateTimeSlot);
-        });
-    
+    // Initialize first time slot event listeners
+    document.querySelector('.time-hour')?.addEventListener('change', updateTimeSlot);
+});
