@@ -5,7 +5,7 @@ import os
 from tempfile import NamedTemporaryFile
 from data.database_postgres import get_id, user_registration
 from temp.audio import transcribe_audio as transcript
-
+from chatbots.diet import get_image_description
 app = Flask(__name__)
 app.secret_key = 'your-secret-key-here'  # Important for sessions
 
@@ -153,7 +153,85 @@ def handle_transcription():
         except Exception:
             pass
         return jsonify({'success': False, 'error': f'Transcription failed: {str(e)}'}), 500
+# ---------- New: upload mp3 (save as temp_audio.mp3 + transcribe; return text) ----------
+@app.route('/api/upload-audio', methods=['POST'])
+def upload_audio():
+    if 'file' not in request.files:
+        return jsonify({'success': False, 'error': 'No file provided'}), 400
+    f = request.files['file']
+    if f.filename == '':
+        return jsonify({'success': False, 'error': 'No selected file'}), 400
+    ext = (f.filename.rsplit('.', 1)[-1] if '.' in f.filename else '').lower()
+    if ext != 'mp3':
+        return jsonify({'success': False, 'error': 'Only .mp3 files are allowed'}), 400
+    temp_dir = os.path.join(os.getcwd(), 'temp')
+    os.makedirs(temp_dir, exist_ok=True)
+    save_path = os.path.join(temp_dir, 'temp_audio.mp3')
+    try:
+        f.save(save_path)
 
+        result_text = transcript(mp3_or_not=False)
+        return jsonify({'success': True, 'saved_path': 'temp/temp_audio.mp3', 'transcription': result_text})
+    except Exception as e:
+        return jsonify({'success': False, 'error': f'Audio save failed: {str(e)}'}), 500
+# ---------- Upload image (save as download.<ext> + call get_image_description) ----------
+@app.route('/api/upload-image', methods=['POST'])
+def upload_image():
+    """
+    Expects multipart/form-data with:
+      - file: image (.png/.jpg/.jpeg/.ico)
+      - prompt: optional text prompt
+    Uses session['user_id'] (or form user_id) to call get_image_description(image_path, prompt, user_id).
+    Returns:
+      {success: True, description: <markup>, ext: <ext>} OR {success: False, error: <msg>}
+    """
+    if 'file' not in request.files:
+        return jsonify({'success': False, 'error': 'No file provided'}), 400
+    f = request.files['file']
+    if f.filename == '':
+        return jsonify({'success': False, 'error': 'No selected file'}), 400
+
+    prompt = request.form.get('prompt', ' ')
+    # Prefer session; fall back to optional form field
+    user_id = session.get('user_id')
+    if user_id is None:
+        # allow explicit user_id if frontend wants to pass it
+        user_id = request.form.get('user_id', type=int)
+    if user_id is None:
+        return jsonify({'success': False, 'error': 'User not authenticated'}), 401
+
+    ext = (f.filename.rsplit('.', 1)[-1] if '.' in f.filename else '').lower()
+    if ext not in ('png', 'jpg', 'jpeg', 'ico'):
+        return jsonify({'success': False, 'error': 'Unsupported image type'}), 400
+
+    temp_dir = os.path.join(os.getcwd(), 'temp')
+    os.makedirs(temp_dir, exist_ok=True)
+    save_path_abs = os.path.join(temp_dir, f'download.{ext}')
+    save_path_rel = f'temp/download.{ext}'  # what we pass to your function to match its expected style
+
+    try:
+        f.save(save_path_abs)
+
+        if get_image_description is None:
+            return jsonify({'success': False, 'error': 'get_image_description not configured'}), 500
+
+        # Call user's function
+        try:
+            result = get_image_description(image_path=save_path_rel, prompt=prompt or " ", user_id=int(user_id))
+        except TypeError:
+            # In case the function only accepts positional args
+            result = get_image_description(save_path_rel, prompt or " ", int(user_id))
+
+        if not isinstance(result, dict):
+            return jsonify({'success': False, 'error': 'Invalid response from get_image_description'}), 500
+
+        if result.get('status') == 'success':
+            return jsonify({'success': True, 'description': result.get('description', ''), 'ext': ext})
+        else:
+            return jsonify({'success': False, 'error': result.get('message', 'Unknown error')}), 400
+
+    except Exception as e:
+        return jsonify({'success': False, 'error': f'Image processing failed: {str(e)}'}), 500
 
 if __name__ == "__main__":
     # Create web_files directory if it doesn't exist

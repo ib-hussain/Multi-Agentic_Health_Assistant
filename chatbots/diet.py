@@ -40,7 +40,7 @@ def get_image_description(image_path: str="temp/download.jpeg", prompt: str = st
             f"Diet History: {diet_history}\n"
             f"Fitness goal: {fitness_goal}\n"
             f"Time deadline: {time_deadline}\n"
-            f"You must also provide an analysis of the meal photos and provide the nutrient breakdown and maybe a few nutritional suggestions"
+            f"You must also provide an analysis of the meal photo and provide the nutrient breakdown and maybe a few nutritional suggestions"
         )
         prompt = f"User Prompt:\n"+prompt + personalized_info
         

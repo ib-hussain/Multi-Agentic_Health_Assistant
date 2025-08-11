@@ -14,9 +14,10 @@ from imageio_ffmpeg import get_ffmpeg_exe
 NULLstring =str(st.secrets["NULL_STRING"])
 debug = st.secrets["DEBUGGING_MODE"]
 # for getting the transcript
-def transcribe_audio(input_path: str = "temp/"):
-    # if not convert_to_wav(input_path, input_path):
-    #     return NULLstring
+def transcribe_audio(input_path: str = "temp/", mp3_or_not: bool = True):
+    if not mp3_or_not:
+        if not convert_to_wav(input_path, input_path):
+            return NULLstring
     from temp.vosk import Model, KaldiRecognizer
     model_path = f"{input_path}vosk_model" #vosk-model-small-en-us-0.15
 

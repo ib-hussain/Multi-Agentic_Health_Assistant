@@ -6,7 +6,13 @@
 *.zip
 *dg.css
 ignore/
-*.wav
+# Ignore temp files
+*temp_audio1.wav
+*temp_audio.mp3
+*download.png
+*download.jpg
+*download.jpeg
+*download.ico
 
 
 # Ignore virtual environments
