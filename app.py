@@ -1,8 +1,10 @@
 from flask import Flask, request, redirect, send_from_directory, jsonify, session
 import psycopg2
 from psycopg2.extras import RealDictCursor
-from data.database_postgres import get_id, user_registration
 import os
+from tempfile import NamedTemporaryFile
+from data.database_postgres import get_id, user_registration
+from temp.audio import transcribe_audio as transcript
 
 app = Flask(__name__)
 app.secret_key = 'your-secret-key-here'  # Important for sessions
@@ -113,6 +115,45 @@ def signup():
 def logout():
     session.clear()
     return redirect('/web_files/login.html')
+@app.route('/api/transcribe', methods=['POST'])
+def handle_transcription():
+    """
+    Accepts multipart/form-data with field 'audio' (16kHz mono WAV preferred).
+    Saves to temp/, does a quick RIFF check, calls your transcriber, returns JSON.
+    """
+    if 'audio' not in request.files:
+        return jsonify({'success': False, 'error': 'No audio file provided'}), 400
+    audio_file = request.files['audio']
+    if audio_file.filename == '':
+        return jsonify({'success': False, 'error': 'No selected file'}), 400
+    temp_dir = os.path.join(os.getcwd(), 'temp')
+    os.makedirs(temp_dir, exist_ok=True)
+    temp_path = os.path.join(temp_dir, 'temp_audio1.wav')
+    try:
+        audio_file.save(temp_path)
+        # Minimal WAV sanity check (RIFF header)
+        with open(temp_path, 'rb') as f:
+            if f.read(4) != b'RIFF':
+                try:
+                    os.remove(temp_path)
+                except Exception:
+                    pass
+                return jsonify({'success': False, 'error': 'Invalid WAV file format'}), 400
+        # Call your transcription function if available
+        result_text = transcript()
+        try:
+            os.remove('temp_audio1.wav')
+        except Exception:
+            pass
+        return jsonify({'success': True, 'transcription': result_text})
+    except Exception as e:
+        try:
+            if os.path.exists(temp_path):
+                os.remove(temp_path)
+        except Exception:
+            pass
+        return jsonify({'success': False, 'error': f'Transcription failed: {str(e)}'}), 500
+
 
 if __name__ == "__main__":
     # Create web_files directory if it doesn't exist

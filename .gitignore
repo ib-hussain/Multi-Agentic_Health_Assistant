@@ -6,6 +6,7 @@
 *.zip
 *dg.css
 ignore/
+*.wav
 
 
 # Ignore virtual environments
