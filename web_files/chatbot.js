@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const sendBtn = document.getElementById('send-btn');
     const recordBtn = document.getElementById('record-btn');
     const chatMessages = document.getElementById('chat-messages');
-
     // State
     let isTyping = false;
     let mediaRecorder;
@@ -13,12 +12,10 @@ document.addEventListener("DOMContentLoaded", function() {
     let recordingTimer;
     let audioChunks = [];
     let currentStream;
-
     // Events
     recordBtn.addEventListener('click', toggleRecording);
     window.addEventListener('beforeunload', handlePageUnload);
     messageForm.addEventListener('submit', handleMessageSubmit);
-
     // Start/stop recording
     async function toggleRecording() {
         if (isRecording) {
@@ -66,7 +63,6 @@ document.addEventListener("DOMContentLoaded", function() {
             cleanupAudio();
         }
     }
-
     function stopRecording() {
         if (mediaRecorder && isRecording) {
             clearTimeout(recordingTimer);
@@ -76,7 +72,6 @@ document.addEventListener("DOMContentLoaded", function() {
             userInput.placeholder = "Type your message...";
         }
     }
-
     async function handleRecordingStop() {
         try {
             if (!audioChunks.length) throw new Error("No audio data recorded");
@@ -105,7 +100,6 @@ document.addEventListener("DOMContentLoaded", function() {
             cleanupAudio();
         }
     }
-
     // Convert compressed MediaRecorder blob -> decoded PCM -> resample to 16kHz mono -> encode WAV
     async function convertToWav16kMono(inputBlob) {
         const arrayBuffer = await inputBlob.arrayBuffer();
@@ -141,7 +135,6 @@ document.addEventListener("DOMContentLoaded", function() {
         await ac.close().catch(() => {});
         return new Blob([wavBuffer], { type: 'audio/wav' });
     }
-
     function encodeWavFromFloat32(samples, sampleRate) {
         const bytesPerSample = 2; // 16-bit PCM
         const blockAlign = 1 * bytesPerSample;
@@ -171,18 +164,15 @@ document.addEventListener("DOMContentLoaded", function() {
         floatTo16BitPCM(view, 44, samples);
         return buffer;
     }
-
     function floatTo16BitPCM(view, offset, input) {
         for (let i = 0; i < input.length; i++, offset += 2) {
             let s = Math.max(-1, Math.min(1, input[i]));
             view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
         }
     }
-
     function writeString(view, offset, string) {
         for (let i = 0; i < string.length; i++) view.setUint8(offset + i, string.charCodeAt(i));
     }
-
     async function transcribeAudio(audioBlob) {
         const formData = new FormData();
         formData.append('audio', audioBlob, 'recording.wav');
@@ -196,11 +186,9 @@ document.addEventListener("DOMContentLoaded", function() {
         const result = await response.json();
         return result.transcription || "No transcription returned";
     }
-
     function handlePageUnload() {
         if (isRecording) stopRecording();
     }
-
     function cleanupAudio() {
         audioChunks = [];
         if (currentStream) {
@@ -208,12 +196,10 @@ document.addEventListener("DOMContentLoaded", function() {
             currentStream = null;
         }
     }
-
     function showSpinner() {
         recordBtn.disabled = true;
         recordBtn.innerHTML = '<div class="spinner"></div>';
     }
-
     function hideSpinner() {
         recordBtn.disabled = false;
         recordBtn.innerHTML = `
@@ -221,7 +207,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 <path fill="currentColor" d="M12 2a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3zm7 9a1 1 0 0 1 1 1 7 7 0 0 1-14 0 1 1 0 0 1 1-1 1 1 0 0 1 1 1 5 5 0 0 0 10 0 1 1 0 0 1 1-1z"/>
             </svg>`;
     }
-
     // Simple bot plumbing (unchanged)
     function handleMessageSubmit(e) {
         e.preventDefault();
@@ -242,7 +227,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }, 1200);
         }
     }
-
     function getBotResponse(message) {
         const lowerMsg = message.toLowerCase();
         if (lowerMsg.includes('hello') || lowerMsg.includes('hi')) {
@@ -253,7 +237,6 @@ document.addEventListener("DOMContentLoaded", function() {
             return "I'm your virtual health assistant.";
         }
     }
-
     function addMessage(text, className) {
         const div = document.createElement('div');
         div.classList.add('message', className);
@@ -263,13 +246,11 @@ document.addEventListener("DOMContentLoaded", function() {
         chatMessages.appendChild(div);
         scrollToBottom();
     }
-
     function setInputState(enabled) {
         userInput.disabled = !enabled;
         sendBtn.disabled = !enabled;
         userInput.placeholder = enabled ? "Type your message..." : "Please wait...";
     }
-
     function parseMarkdown(text) {
         let html = text
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
@@ -282,7 +263,6 @@ document.addEventListener("DOMContentLoaded", function() {
         if (!html.startsWith('<')) html = '<p>' + html + '</p>';
         return html;
     }
-
     function addTypingIndicator() {
         const typing = document.createElement('div');
         typing.classList.add('typing-indicator');
@@ -296,7 +276,6 @@ document.addEventListener("DOMContentLoaded", function() {
         scrollToBottom();
         return typing;
     }
-
     function scrollToBottom() {
         window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     }
