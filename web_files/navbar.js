@@ -8,14 +8,14 @@ document.addEventListener("DOMContentLoaded", function () {
             document.body.insertBefore(navContainer, document.body.firstChild);
 
             // Add scroll behavior for navbar
-            window.addEventListener("scroll", function() {
-                const navbar = document.querySelector(".navbar");
-                if (window.scrollY > 10) {
-                    navbar.classList.add("scrolled");
-                } else {
-                    navbar.classList.remove("scrolled");
-                }
-            });
+            // window.addEventListener("scroll", function() {
+            //     const navbar = document.querySelector(".navbar");
+            //     if (window.scrollY > 10) {
+            //         navbar.classList.add("scrolled");
+            //     } else {
+            //         navbar.classList.remove("scrolled");
+            //     }
+            // });
 
             // Improved active page detection
             const currentPage = getCurrentPage();

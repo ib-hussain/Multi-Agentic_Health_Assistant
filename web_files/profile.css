@@ -1,17 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Anaheim&display=swap');
 /* Background (your pastel gradients) */
-body{
-  margin:0;
+body {
+  margin: 0;
   font-family: 'Manrope', sans-serif;
-  color:#171a1f;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(255, 212, 196, 1) 0%,
-                    rgba(255, 237, 188, 1) 30%, rgba(236, 217, 255, 1) 55%,
-                    rgba(202, 224, 255, 1) 80%),
-    radial-gradient(circle at 80% 30%, rgba(240, 210, 255, 0.8) 0%, transparent 70%),
-    radial-gradient(circle at 50% 80%, rgba(200, 230, 255, 0.8) 0%, transparent 70%);
-  background-blend-mode: screen;
-  background-size: cover;
+  color: #171a1f;
+  background: radial-gradient(
+        circle at 20% 20%,
+        rgba(255, 212, 196, 1) 0%, rgba(255, 237, 188, 1) 30%, rgba(236, 217, 255, 1) 55%, rgba(202, 224, 255, 1) 80% );
+    background-blend-mode: screen; background-size: cover;
+        
   background-attachment: fixed;
   min-height: 100vh;
 }

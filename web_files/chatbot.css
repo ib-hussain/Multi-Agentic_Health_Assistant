@@ -1,17 +1,141 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Anaheim&display=swap');
+
 /* Background (your pastel gradients) */
-body{
-  margin:0;
+body {
+  margin: 0;
   font-family: 'Manrope', sans-serif;
-  color:#171a1f;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(255, 212, 196, 1) 0%,
-                    rgba(255, 237, 188, 1) 30%, rgba(236, 217, 255, 1) 55%,
-                    rgba(202, 224, 255, 1) 80%),
-    radial-gradient(circle at 80% 30%, rgba(240, 210, 255, 0.8) 0%, transparent 70%),
-    radial-gradient(circle at 50% 80%, rgba(200, 230, 255, 0.8) 0%, transparent 70%);
-  background-blend-mode: screen;
-  background-size: cover;
+  color: #171a1f;
+  background: radial-gradient(
+        circle at 20% 20%,
+        rgba(255, 212, 196, 1) 0%, rgba(255, 237, 188, 1) 30%, rgba(236, 217, 255, 1) 55%, rgba(202, 224, 255, 1) 80% );
+    background-blend-mode: screen; background-size: cover;
+        
   background-attachment: fixed;
   min-height: 100vh;
+}
+/* Alternative - Outer scrolling */
+.chat-container {
+  background-color: rgba(200, 230, 255, 0.616);
+  border-radius: 30px;
+  width: 80%;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.158);
+  display: flex;
+  flex-direction: column;
+  margin: 80px auto 5%;
+  max-height: calc(100vh - 150px);
+  overflow-y: auto; /* Outer scrolling */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+.chat-messages {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  /* Remove overflow-y from here */
+}
+.chat-input {
+  position: sticky;
+  opacity: 1;
+  bottom: 0;
+  background:  rgba(200, 230, 255, 0.616);
+  padding: 15px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+/* Chat Header */
+.chat-header {
+  padding: 20px;
+  background-color: rgb(155, 195, 228) ;
+  text-align: center;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  opacity: 0.73;
+}
+.chat-header h2 {
+  margin: 0;
+  color: rgb(46, 27, 65);
+  font-size: 24px;
+  font-weight: bolder;
+}
+.chat-header p {
+  margin: 5px 0 0;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+}
+/* Message Bubbles */
+.message {
+  opacity: 1;
+  max-width: 70%;
+  padding: 12px 18px;
+  border-radius: 20px;
+  font-size: 16px;
+  line-height: 1.4;
+  position: relative;
+}
+.user-message {
+  opacity: 1;
+  align-self: flex-end;
+  background-color: rgb(156, 145, 167);
+  color: white;
+  border-bottom-right-radius: 5px;
+}
+.bot-message {
+  opacity: 1;
+  align-self: flex-start;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: rgb(46, 27, 65);
+  border-bottom-left-radius: 5px;
+}
+#message-form {
+  opacity: 1;
+  display: flex;
+  gap: 10px;
+}
+#user-input {
+  flex: 1;
+  opacity: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 30px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: rgb(46, 27, 65);
+}
+#user-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(156, 145, 167, 0.5);
+}
+.send-btn {
+  opacity: 1;
+  background-color: rgb(46, 27, 65);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.send-btn:hover {
+  opacity: 1;
+  background-color: rgb(70, 44, 95);
+  transform: scale(1.05);
+}
+/* Scrollbar styling */
+.chat-messages::-webkit-scrollbar {
+  width: 8px;
+}
+.chat-messages::-webkit-scrollbar-track {
+  background: rgba(224, 210, 238, 0.5);
+  border-radius: 10px;
+}
+.chat-messages::-webkit-scrollbar-thumb {
+  background-color: rgb(156, 145, 167);
+  border-radius: 10px;
 }

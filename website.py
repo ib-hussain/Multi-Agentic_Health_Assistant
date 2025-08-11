@@ -217,7 +217,7 @@ def render_navbar():
         profile_class = "active" if current_page == "profile" else ""
         st.markdown(f"""<div class="navbar-brand">
                             Virtual Health Assistant
-                            <img src="https://raw.githubusercontent.com/ib-hussain/Cinemago/refs/heads/main/favicon.png" alt="Rose Logo" class="navbar-logo">
+                            <img src="favicon.png" alt="Rose Logo" class="navbar-logo">
                         </div>""", unsafe_allow_html=True)
         # Navigation buttons (invisible but functional)
         col1, col2, col3, col4, col5,col6,col7, col8, col9  = st.columns([1,1,1,1,1,1,1,1,1])

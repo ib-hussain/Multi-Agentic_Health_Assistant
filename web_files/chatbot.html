@@ -1,22 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="icon" type="image/png"
-        href="https://raw.githubusercontent.com/ib-hussain/Cinemago/refs/heads/main/favicon.png" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Virtual Health Assistant</title>
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Anaheim&display=swap" rel="stylesheet" />
-    <!-- Styles -->
-    <link rel="stylesheet" href="chatbot.css" />
-</head>
-<body>
-    <script src="navbar.js"></script>
+    <head>
+        <link rel="icon" type="image/png"
+            href="favicon.png" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Virtual Health Assistant</title>
+        <!-- Fonts -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Anaheim&display=swap"
+            rel="stylesheet" />
+        <!-- Styles -->
+        <link rel="stylesheet" href="chatbot.css" />
+    </head>
+    <body>
+        <script src="navbar.js"></script>
 
-    
+        <div class="chat-container">
+            <div class="chat-header">
+                <h2>Virtual Health Assistant</h2>
+                <p>How can I help you today?</p>
+            </div>
 
-    <!-- JS -->
-    <script src="chatbot.js"></script>
-</body>
+            <div class="chat-messages" id="chat-messages">
+                <!-- Messages will appear here -->
+            </div>
+
+            <div class="chat-input">
+                <form id="message-form">
+                    <input type="text" id="user-input"
+                        placeholder="Type your message here..."
+                        autocomplete="off" />
+                    <button type="submit" class="send-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="currentColor"
+                                d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- JS -->
+        <script src="chatbot.js"></script>
+    </body>
 </html>
