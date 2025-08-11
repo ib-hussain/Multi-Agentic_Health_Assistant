@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Anaheim&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Anaheim&display=swap');
 
         /* Background (your pastel gradients) */
         body {
@@ -213,6 +213,59 @@
                 transform: scale(1);
                 opacity: 1;
             }
+        }
+
+        /* Markdown formatting in messages */
+        .message strong {
+            font-weight: 600;
+            color: inherit;
+        }
+
+        .message em {
+            font-style: italic;
+        }
+
+        .message ul, .message ol {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+
+        .message li {
+            margin: 4px 0;
+            line-height: 1.5;
+        }
+
+        .message p {
+            margin: 8px 0;
+        }
+
+        .message p:first-child {
+            margin-top: 0;
+        }
+
+        .message p:last-child {
+            margin-bottom: 0;
+        }
+
+        .message code {
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .message pre {
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 8px 0;
+        }
+
+        .message pre code {
+            background: none;
+            padding: 0;
         }
 
         /* Removed scrollbar styling since we no longer have inner scrolling */
