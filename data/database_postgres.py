@@ -183,6 +183,52 @@ def user_registration(
         raise e
     finally:
         close_db(conn, cur)
+def change_everything(
+    name: str,
+    new_age: float,
+    new_gender: bool, 
+    new_weight: float, 
+    new_height: float, 
+    new_pref: str, 
+    days: int, 
+    new_goal: str, 
+    notes: str, 
+    condition: str):
+    conn, cur = connect_db()
+    if gender=="female": gender = "Female"
+    if gender=='female': gender = "Female"
+    if gender=="male": gender = "Male"
+    if gender=='male': gender = 'Male'
+    try:
+        # Convert gender boolean to string once
+        gender_value = 'Female' if new_gender else 'Male'
+        
+        # Single query to update all fields at once
+        cur.execute("""
+            UPDATE user_profile
+            SET user_information = ROW(%s, %s, %s, %s, %s),
+                diet_pref = %s,
+                time_deadline = %s,
+                fitness_goal = %s,
+                mental_health_background = %s,
+                medical_conditions = %s
+            WHERE (user_information).name = %s;
+        """, (name, new_age, gender_value, new_height, new_weight, 
+              new_pref, days, new_goal, notes, condition, name))
+        
+        # Single commit for all changes
+        conn.commit()
+        
+        if debug: 
+            print("All user profile fields updated successfully.")
+            
+    except Exception as e:
+        conn.rollback()
+        if debug: 
+            print("Error updating user profile:", e)
+        raise  # Re-raise the exception to maintain error handling behavior
+    finally:
+        close_db(conn, cur)
 # user_information table functions
 
 def change_name(old_name: str, new_name: str):
@@ -201,126 +247,6 @@ def change_name(old_name: str, new_name: str):
         if debug: print("Error changing name:", e)
     finally:
         close_db(conn, cur)
-def change_everything(
-    name: str,
-    new_age: float,
-    new_gender: bool, 
-    new_weight: float, 
-    new_height: float, 
-    new_pref: str, 
-    days: int, 
-    new_goal: str, 
-    notes: str, 
-    condition: str):
-    conn, cur = connect_db()
-    try:
-        cur.execute("""
-            UPDATE user_profile
-            SET user_information = ROW((user_information).name, %s, (user_information).gender,
-                                       (user_information).height, (user_information).weight)
-            WHERE (user_information).name = %s;
-        """, (new_age, name))
-        conn.commit()
-        if debug: print("Age updated successfully.")
-    except Exception as e:
-        conn.rollback()
-        if debug: print("Error updating age:", e)
-    try:
-        gender_value = 'Female' if new_gender else 'Male'
-        cur.execute("""
-            UPDATE user_profile
-            SET user_information = ROW((user_information).name, (user_information).age, %s,
-                                       (user_information).height, (user_information).weight)
-            WHERE (user_information).name = %s;
-        """, (gender_value, name))
-        conn.commit()
-        if debug: print("Gender updated successfully.")
-    except Exception as e:
-        conn.rollback()
-        if debug: print("Error updating gender:", e)
-    try:
-        cur.execute("""
-            UPDATE user_profile
-            SET user_information = ROW((user_information).name, (user_information).age, (user_information).gender,
-                                       (user_information).height, %s)
-            WHERE (user_information).name = %s;
-        """, (new_weight, name))
-        conn.commit()
-        if debug: print("Weight updated successfully.")
-    except Exception as e:
-        conn.rollback()
-        if debug: print("Error updating weight:", e)
-    try:
-        cur.execute("""
-            UPDATE user_profile
-            SET user_information = ROW((user_information).name, (user_information).age, (user_information).gender,
-                                       %s, (user_information).weight)
-            WHERE (user_information).name = %s;
-        """, (new_height, name))
-        conn.commit()
-        if debug: print("Height updated successfully.")
-    except Exception as e:
-        conn.rollback()
-        if debug: print("Error updating height:", e)
-    try:
-        cur.execute("""
-            UPDATE user_profile
-            SET diet_pref = %s
-            WHERE (user_information).name = %s;
-        """, (new_pref, name))
-        conn.commit()
-        if debug: print("Dietary preference updated successfully.")
-    except Exception as e:
-        conn.rollback()
-        if debug: print("Error updating dietary preference:", e)
-    try:
-        cur.execute("""
-            UPDATE user_profile
-            SET time_deadline = %s
-            WHERE (user_information).name = %s;
-        """, (days, name))
-        conn.commit()
-        if debug: print("Time deadline updated successfully.")
-    except Exception as e:
-        conn.rollback()
-        if debug: print("Error updating time deadline:", e)
-    try:
-        cur.execute("""
-            UPDATE user_profile
-            SET fitness_goal = %s
-            WHERE (user_information).name = %s;
-        """, (new_goal, name))
-        conn.commit()
-        if debug: print("Fitness goal updated successfully.")
-    except Exception as e:
-        conn.rollback()
-        if debug: print("Error updating fitness goal:", e)
-    try:
-        cur.execute("""
-            UPDATE user_profile
-            SET mental_health_background = %s
-            WHERE (user_information).name = %s;
-        """, (notes, name))
-        conn.commit()
-        if debug: print("Mental health notes updated successfully.")
-    except Exception as e:
-        conn.rollback()
-        if debug: print("Error updating mental health notes:", e)
-    try:
-        cur.execute("""
-            UPDATE user_profile
-            SET medical_conditions = %s
-            WHERE (user_information).name = %s;
-        """, (condition, name))
-        conn.commit()
-        if debug: print("Medical condition updated successfully.")
-    except Exception as e:
-        conn.rollback()
-        if debug: print("Error updating medical condition:", e)
-    finally:
-        close_db(conn, cur)
-
-
 
 def get_user_profile_by_id(user_id: int):
     conn, cur = connect_db()
