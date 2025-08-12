@@ -52,7 +52,7 @@ The platform utilises a multi-agent architecture with three specialised LLM agen
 
 - **Text Model:** DeepSeek V3 671B Text
 - **Vision Model:** LLaMA 3.2 11B Vision
-- **Frontend:** Streamlit
+- **Frontend:** Streamlit/Flask
 - **Database:** PostgreSQL & Pinecone
 - **API:** Together.ai
 - **Language:** Python 3.12.7
@@ -81,17 +81,20 @@ pip install -r requirements.txt
 3. **Run the application:**
 ```bash
 streamlit run website.py
+or
+python app.py
 ```
 
 
 ## 📱 User Interface
 
-The web interface includes four main sections:
+The web interface includes 5 main sections:
 
-- **Dashboard:** Overview of health metrics and daily progress
-- **Mental Health:** Chat interface with memory toggle for session continuity
-- **Diet Tracker:** Photo upload and analysis with nutritional breakdowns
-- **Exercise Plan:** Workout logging and routine management
+- **Login:** Login to your account.
+- **Signup:** Give the AI your details.
+- **Chatbot:** Talk to the Agentic-AI regarding your daily diet, excercises and mental health.
+- **Profile Management:** View or change your user details from this page as well as logout of your account.
+- **Daily Progress Tracking:** Workout logging and routine management.
 
 ## 🔮 Advanced Features
 
