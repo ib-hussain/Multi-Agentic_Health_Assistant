@@ -1,11 +1,15 @@
 # library includes #################################################################################################################################
-from flask import Flask, request, redirect, send_from_directory, jsonify, session
+import os
+from datetime import time as dt_time, datetime
+from decimal import Decimal
+from flask import (
+    Flask, jsonify, request, send_from_directory,
+    redirect, url_for, session
+)
+from werkzeug.utils import secure_filename
 import psycopg2
 from psycopg2.extras import RealDictCursor
-import os
 from tempfile import NamedTemporaryFile
-from datetime import time, datetime
-from decimal import Decimal
 # header includes  #################################################################################################################################
 from data.database_postgres import (
     get_id, user_registration,
@@ -13,15 +17,14 @@ from data.database_postgres import (
 )
 from temp.audio import transcribe_audio as transcript
 from chatbots.diet import get_image_description
-from chatbots.reasoning import respond
-
-# issues:
-# remember to handle the empty spaces checks 
-
+from chatbots.reasoning import respond 
+# SETUP            #################################################################################################################################
+app = Flask(__name__)
+app.secret_key = 'your-secret-key-here'  # Important for sessions
 def _to_float(x):
     return float(x) if isinstance(x, Decimal) else x
 def _to_time_str(t):
-    if isinstance(t, time):
+    if isinstance(t, dt_time):
         return t.strftime("%H:%M")
     if isinstance(t, datetime):
         return t.strftime("%H:%M")
@@ -45,10 +48,43 @@ def _jsonable_profile(p):
         "time_deadline": _to_float(p.get("time_deadline")),
         "password": p.get("password") or ""   # <-- add this line
     }
-
-app = Flask(__name__)
-app.secret_key = 'your-secret-key-here'  # Important for sessions
-
+def clean_str(x) -> str:
+    return "" if x is None else (x.strip() if isinstance(x, str) else str(x))
+def to_float(x, field):
+    try:
+        return float(x) if not isinstance(x, str) else float(x.strip())
+    except (TypeError, ValueError):
+        raise ValueError(f"{field} must be a number")
+def to_int(x, field):
+    try:
+        return int(x) if not isinstance(x, str) else int(x.strip())
+    except (TypeError, ValueError):
+        raise ValueError(f"{field} must be an integer")
+def sanitize_times(arr):
+    if not isinstance(arr, list):
+        raise ValueError("time_arr must be a list")
+    out = []
+    for t in arr:
+        if isinstance(t, str):
+            s = t.strip()
+            if not s:
+                continue
+            hh = s.split(":", 1)[0]
+        else:
+            hh = str(t)
+        h = int(hh)
+        if h < 0 or h > 23:
+            raise ValueError(f"Invalid hour in time_arr: {t}")
+        out.append(f"{h:02d}:00")
+    # dedupe preserve order
+    seen = set(); uniq = []
+    for v in out:
+        if v not in seen:
+            seen.add(v); uniq.append(v)
+    if not uniq:
+        raise ValueError("time_arr is required")
+    return uniq
+# API CALLS        #################################################################################################################################
 # Serve static files from web_files directory
 @app.route('/web_files/<path:filename>')
 def serve_static(filename):
@@ -187,7 +223,6 @@ def handle_transcription():
         except Exception:
             pass
         return jsonify({'success': False, 'error': f'Transcription failed: {str(e)}'}), 500
-# ---------- New: upload mp3 (save as temp_audio.mp3 + transcribe; return text) ----------
 @app.route('/api/upload-audio', methods=['POST'])
 def upload_audio():
     if 'file' not in request.files:
@@ -208,7 +243,6 @@ def upload_audio():
         return jsonify({'success': True, 'saved_path': 'temp/temp_audio.mp3', 'transcription': result_text})
     except Exception as e:
         return jsonify({'success': False, 'error': f'Audio save failed: {str(e)}'}), 500
-# ---------- Upload image (save as download.<ext> + call get_image_description) ----------
 @app.route('/api/upload-image', methods=['POST'])
 def upload_image():
     """
@@ -287,16 +321,77 @@ def api_respond():
     if not isinstance(markdown, str):
         return jsonify({'success': False, 'error': 'respond() did not return a string'}), 500
     return jsonify({'success': True, 'markdown': markdown})
-@app.route('/api/profile', methods=['GET'])
+# ---------- Profile API ----------
+@app.route("/api/profile", methods=["GET"])
 def api_get_profile():
-    user_id = session.get('user_id')
+    user_id = session.get("user_id")
     if user_id is None:
-        return jsonify({'success': False, 'error': 'Not authenticated'}), 401
+        return jsonify({"success": False, "error": "Not authenticated"}), 401
+
     profile = get_user_profile_by_id(user_id)
     if not profile:
-        return jsonify({'success': False, 'error': 'Profile not found'}), 404
+        return jsonify({"success": False, "error": "Profile not found"}), 404
     return jsonify(_jsonable_profile(profile))
+@app.route("/api/profile", methods=["POST"])
+def api_update_profile():
+    user_id = session.get("user_id")
+    if user_id is None:
+        return jsonify({"success": False, "error": "Not authenticated"}), 401
+    if not request.is_json:
+        return jsonify({"success": False, "error": "JSON body required"}), 400
 
+    data = request.get_json(silent=True) or {}
+    try:
+        new_name   = clean_str(data.get("name"))
+        new_age    = to_float(data.get("age"), "age")
+        new_height = to_float(data.get("height"), "height")
+        new_weight = to_float(data.get("weight"), "weight")
+        days       = to_int(data.get("time_deadline"), "time_deadline")
+        new_goal   = clean_str(data.get("fitness_goal"))
+        new_pref   = clean_str(data.get("diet_pref") or "any")
+        notes      = clean_str(data.get("mental_health") or "")
+        condition  = clean_str(data.get("medical_conditions") or "")
+        gender_str = clean_str(data.get("gender") or "female").lower()
+        new_gender_bool = True if gender_str == "female" else False
+
+        time_arr_raw = data.get("time_arr") or []
+        time_arr     = sanitize_times(time_arr_raw)
+
+        new_password = clean_str(data.get("new_password"))
+        if not new_password:
+            return jsonify({"success": False, "error": "new_password is required"}), 400
+
+    except ValueError as ve:
+        return jsonify({"success": False, "error": f"Invalid payload: {ve}"}), 400
+    except Exception as e:
+        return jsonify({"success": False, "error": f"Invalid payload: {e}"}), 400
+
+    # Apply DB update (by id)
+    try:
+        # Convert "HH:00" -> datetime.time objects for Postgres TIME[]
+        time_objects = []
+        for s in time_arr:
+            hh, mm = map(int, s.split(":"))
+            time_objects.append(dt_time(hh, mm))
+
+        change_everything(
+            user_id=user_id,
+            new_name=new_name,
+            new_age=new_age,
+            new_gender=new_gender_bool,
+            new_weight=new_weight,
+            new_height=new_height,
+            new_pref=new_pref,
+            days=days,
+            new_goal=new_goal,
+            notes=notes,
+            condition=condition,
+            new_password=new_password,
+            time_arr=time_objects,  # DB adapter will handle TIME[]
+        )
+        return jsonify({"success": True, "message": "Profile updated"})
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
 
 from multiprocessing import Process
 def return_and_call(result1):

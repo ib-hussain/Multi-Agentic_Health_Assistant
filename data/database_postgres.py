@@ -274,8 +274,10 @@ def get_user_profile_by_id(user_id: int):
         return None
     finally:
         close_db(conn, cur)
+from datetime import time as dt_time
 def change_everything(
-    name: str,
+    user_id: int,
+    new_name: str,
     new_age: float,
     new_gender: bool,   # True -> 'Female', False -> 'Male'
     new_weight: float,
@@ -285,12 +287,27 @@ def change_everything(
     new_goal: str,
     notes: str,
     condition: str,
-    new_password: str,  # REQUIRED
-    time_arr: list      # REQUIRED, e.g. ["06:00","09:00"]
+    new_password: str,   # REQUIRED
+    time_arr: list       # REQUIRED, e.g. ["06:00","09:00"]
 ):
+    """
+    Updates ALL profile fields for the given user_id.
+    - Uses id in WHERE (so name can change safely).
+    - Coerces "HH:MM" strings to TIME objects for Postgres.
+    """
     conn, cur = connect_db()
     try:
         gender_value = 'Female' if new_gender else 'Male'
+        # coerce incoming strings -> TIME[]
+        time_objects = None
+        if time_arr:
+            time_objects = []
+            for t in time_arr:
+                s = str(t).strip()
+                if not s:
+                    continue
+                hh, mm = s.split(':')[0:2]
+                time_objects.append(dt_time(int(hh), int(mm)))
         sql = """
             UPDATE user_profile
             SET user_information = ROW(%s, %s, %s, %s, %s),
@@ -301,18 +318,18 @@ def change_everything(
                 medical_conditions = %s,
                 password = %s,
                 time_arr = %s
-            WHERE (user_information).name = %s;
+            WHERE id = %s;
         """
         params = (
-            name, new_age, gender_value, new_height, new_weight,
+            new_name, new_age, gender_value, new_height, new_weight,
             new_pref, days, new_goal, notes, condition,
-            new_password, time_arr,  # REQUIRED fields now
-            name
+            new_password, time_objects,
+            user_id
         )
         cur.execute(sql, params)
         conn.commit()
         if debug:
-            print("All user profile fields updated successfully.")
+            print("All user profile fields updated successfully (by id).")
     except Exception as e:
         conn.rollback()
         if debug:
@@ -320,7 +337,6 @@ def change_everything(
         raise
     finally:
         close_db(conn, cur)
-
 # Progress Page: 
 def create_daily_entry(user_id: int, activity_level: str) -> bool:
     """Creates new daily entry with activity level and today's date, other fields NULL"""

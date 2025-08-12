@@ -302,10 +302,8 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     if (!editMode) return;
-
     clearError();
     const errors = [];
-
     // collect sanitized values (trimmed so spaces-only become empty)
     const nameVal = cleanStr(nameEl.value);
     const goalVal = cleanStr(goalEl.value);
@@ -352,7 +350,6 @@ document.addEventListener("DOMContentLoaded", () => {
       time_arr: selectedTimes,
       new_password: p1
     };
-
     // ---- No fake change detection (ignores trailing/leading spaces)
     const currentNorm = normalizeFromData({
       ...payload,
@@ -363,12 +360,10 @@ document.addEventListener("DOMContentLoaded", () => {
       switchMode(false);
       return;
     }
-
     // proceed with save
     const prev = saveBtn.textContent;
     saveBtn.disabled = true;
     saveBtn.textContent = "Saving...";
-
     try {
       await fetchJSON("/api/profile", {
         method: "POST",
