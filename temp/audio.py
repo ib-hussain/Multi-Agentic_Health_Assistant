@@ -11,8 +11,8 @@ import streamlit as st
 import subprocess
 from imageio_ffmpeg import get_ffmpeg_exe
 
-NULLstring =str(st.secrets["NULL_STRING"])
-debug = st.secrets["DEBUGGING_MODE"]
+NULLstring =" "
+debug = True
 # for getting the transcript
 def transcribe_audio(input_path: str = "temp/", mp3_or_not: bool = True):
     if not mp3_or_not:

@@ -89,6 +89,7 @@ def get_image_description(image_path: str="temp/download.jpeg", prompt: str = " 
         together_api_key = os.getenv("TOGETHER_API_KEY")
         client = Together(api_key=together_api_key)
         response = client.chat.completions.create(
+            temperature=os.getenv("temperature__T"),
             model="meta-llama/Llama-3.2-11B-Vision-Instruct-Turbo",
             messages=[{"role": "user", "content": message_content}],
             max_tokens=int(os.getenv("LARGE_TOKENS")),
