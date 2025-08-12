@@ -1,14 +1,16 @@
+# library includes #################################################################################################################################
 from flask import Flask, request, redirect, send_from_directory, jsonify, session
 import psycopg2
 from psycopg2.extras import RealDictCursor
 import os
 from tempfile import NamedTemporaryFile
+# header includes  #################################################################################################################################
 from data.database_postgres import get_id, user_registration
 from temp.audio import transcribe_audio as transcript
 from chatbots.diet import get_image_description
+
 app = Flask(__name__)
 app.secret_key = 'your-secret-key-here'  # Important for sessions
-
 # Serve static files from web_files directory
 @app.route('/web_files/<path:filename>')
 def serve_static(filename):
@@ -21,12 +23,9 @@ def login():
     data = request.get_json()
     name = data.get('name')
     password = data.get('password')
-    
     if not name or not password:
         return jsonify({'success': False, 'message': 'Name and password are required'}), 400
-    
     user_id = get_id(name, password)
-    
     if user_id:
         session['user_id'] = user_id  # Store user ID in session
         return jsonify({
@@ -35,10 +34,7 @@ def login():
             'user_id': user_id
         })
     else:
-        return jsonify({
-            'success': False,
-            'message': 'Invalid name or password'
-        }), 401
+        return jsonify({ 'success': False, 'message': 'Invalid name or password' }), 401
 @app.route('/api/signup', methods=['POST'])
 def signup():
     try:
@@ -186,7 +182,7 @@ def upload_image():
       {success: True, description: <markup>, ext: <ext>} OR {success: False, error: <msg>}
     """
     if 'file' not in request.files:
-        return jsonify({'success': False, 'error': 'No file provided'}), 400
+        return jsonify({'success': False, 'error': 'No file provided'}), 402
     f = request.files['file']
     if f.filename == '':
         return jsonify({'success': False, 'error': 'No selected file'}), 400
@@ -202,7 +198,7 @@ def upload_image():
 
     ext = (f.filename.rsplit('.', 1)[-1] if '.' in f.filename else '').lower()
     if ext not in ('png', 'jpg', 'jpeg', 'ico'):
-        return jsonify({'success': False, 'error': 'Unsupported image type'}), 400
+        return jsonify({'success': False, 'error': 'Unsupported image type'}), 403
 
     temp_dir = os.path.join(os.getcwd(), 'temp')
     os.makedirs(temp_dir, exist_ok=True)
@@ -213,26 +209,27 @@ def upload_image():
         f.save(save_path_abs)
 
         if get_image_description is None:
-            return jsonify({'success': False, 'error': 'get_image_description not configured'}), 500
+            return jsonify({'success': False, 'error': 'get_image_description not configured'}), 404
 
         # Call user's function
         try:
-            result = get_image_description(image_path=save_path_rel, prompt=prompt or " ", user_id=int(user_id))
+            result = get_image_description(save_path_rel, prompt , int(user_id))
         except TypeError:
             # In case the function only accepts positional args
-            result = get_image_description(save_path_rel, prompt or " ", int(user_id))
+            result = get_image_description(save_path_rel, prompt , int(user_id))
 
         if not isinstance(result, dict):
-            return jsonify({'success': False, 'error': 'Invalid response from get_image_description'}), 500
+            return jsonify({'success': False, 'error': 'Invalid response from get_image_description'}), 405
 
         if result.get('status') == 'success':
             return jsonify({'success': True, 'description': result.get('description', ''), 'ext': ext})
         else:
-            return jsonify({'success': False, 'error': result.get('message', 'Unknown error')}), 400
+            return jsonify({'success': False, 'error': result.get('message', 'Unknown error')}), 406
 
     except Exception as e:
-        return jsonify({'success': False, 'error': f'Image processing failed: {str(e)}'}), 500
+        return jsonify({'success': False, 'error': f'Image processing failed: {str(e)}'}), 407
+
 
 if __name__ == "__main__":
-    # Create web_files directory if it doesn't exist
     app.run(host="0.0.0.0", port=5000, debug=True)
+    

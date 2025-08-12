@@ -1,14 +1,14 @@
-import streamlit as st
 import base64
+import os
 import mimetypes
 from pathlib import Path
 from together import Together
 from typing import Dict, Any
-from data.database_postgres import get_fitness_goal_diet_gender_age_time_deadline
+from data.database_postgres import get_fitness_goal_diet_gender_age_time_deadline, daily_height_weight_diet_hist
 
-debug = st.secrets["DEBUGGING_MODE"]
+debug = True
 
-def get_image_description(image_path: str="temp/download.jpeg", prompt: str = str(st.secrets["NULL_STRING"]), user_id: int = 1) -> Dict[str, Any]:
+def get_image_description(image_path: str="temp/download.jpeg", prompt: str = " ", user_id: int = 1) -> Dict[str, Any]:
     """
     Takes an image path (PNG, JPG, JPEG, ICO) and returns an image description using LLaMA 3.2 Vision.
     
@@ -22,9 +22,10 @@ def get_image_description(image_path: str="temp/download.jpeg", prompt: str = st
     """
     try:
         # Get user's fitness data
-        fitness_goal, diet_pref, gender, age, time_deadline = get_fitness_goal_diet_gender_age_time_deadline(user_id)
-        diet_history = ""
-        #put history column in database and then get it over here from the database 
+        fitness_goal, diet_pref, gender, age, medical_cond, time_deadline, conn, cur   = get_fitness_goal_diet_gender_age_time_deadline(user_id)
+        if debug: print("no Problem detected here 0")
+        height, weight, diet_history = daily_height_weight_diet_hist(user_id,conn, cur)
+        if debug: print("no Problem detected here 1")
         age = str(age)
         gender = str(gender)
         fitness_goal = str(fitness_goal)
@@ -32,17 +33,26 @@ def get_image_description(image_path: str="temp/download.jpeg", prompt: str = st
         time_deadline = str(time_deadline)
         # Build personalized prompt
         personalized_info = (
-            # issues: 
-            # the prompt might need to be changed and fields might need to be added or subtracted 
             f"User Information:\n"
             f"Diet preferences: {diet_pref}\n"
             f"Age: {age}\n"
+            f"User Weight: {height}\n"#change this to daily stats table
+            f"User Height: {weight}\n"#change this to daily stats table
             f"Diet History: {diet_history}\n"
-            f"Fitness goal: {fitness_goal}\n"
-            f"Time deadline: {time_deadline}\n"
-            f"You must also provide an analysis of the meal photo and provide the nutrient breakdown and maybe a few nutritional suggestions"
+            f"Previous Medical History/Medical Conditions: {medical_cond}\n"
+            f"The Fitness goal of the user: {fitness_goal}\n"
+            f"Time deadline for completing goal: {time_deadline}\n"
+            f"First check if the image is of a meal or something edible, if not then tell the user what the picture is and thats it, nothing more should be said by you.\n"
+            f"In reality you are a an AI Diet agent for nutrition analysis and meal planning that must do the following tasks no matter the user prompt:\n"
+            f"- Meal planning and nutritional suggestions\n"
+            f"- Vision-based analysis of food photos\n"
+            f"- Nutrient breakdown and diet goal comparison\n"
+            f"- Dietary preference accommodation\n"
+            f"- Calorie and macro tracking\n"
+            f"(Your given output should be as markdown,make no mistakes!)"
         )
         prompt = f"User Prompt:\n"+prompt + personalized_info
+        if debug: print(" no Problem detected here 2")
         
         # Read and encode image
         with open(image_path, "rb") as image_file:
@@ -75,13 +85,13 @@ def get_image_description(image_path: str="temp/download.jpeg", prompt: str = st
             }
         ]
         # Call Together AI's LLaMA 3.2 Vision model
-        together_api_key = st.secrets["TOGETHER_API_KEY"]
+        together_api_key = os.getenv("TOGETHER_API_KEY")
         client = Together(api_key=together_api_key)
         response = client.chat.completions.create(
             model="meta-llama/Llama-3.2-11B-Vision-Instruct-Turbo",
             messages=[{"role": "user", "content": message_content}],
-            max_tokens=int(st.secrets["LARGE_TOKENS"]),
-            temperature=float(st.secrets["temperature__T"])
+            max_tokens=int(os.getenv("LARGE_TOKENS")),
+            temperature=float(os.getenv("temperature__T"))
         )
         description = response.choices[0].message.content.strip()
         return {"status":"success", "description": description}

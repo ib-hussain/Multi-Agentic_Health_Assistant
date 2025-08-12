@@ -81,7 +81,7 @@ def connect_db():
     return conn, cur
 def close_db(conn, cur):
     try:
-        cur.execute(last19477491_query)
+        # cur.execute(last19477491_query)
         try:
             export_path = r"C:\Users\Ibrahim\Downloads\Internship\Multi-Agentic_Health_Assistant\data\\"
             # cur.execute(f"""
@@ -92,7 +92,7 @@ def close_db(conn, cur):
             # if debug: print(f"Exported")
         except Exception as e:
             if debug: print("Error during export:", e)
-            conn.commit()
+            # conn.commit()
     except Exception as e:
         if debug: print("Error during export or view:", e)
     finally:
@@ -183,6 +183,46 @@ def user_registration(
         raise e
     finally:
         close_db(conn, cur)
+def get_fitness_goal_diet_gender_age_time_deadline(user_id: int):
+    conn, cur = connect_db()
+    try:
+        cur.execute("SELECT fitness_goal, diet_pref, (user_information).gender, (user_information).age, medical_conditions, time_deadline FROM user_profile WHERE id = %s;", (user_id,))
+        result = cur.fetchone()
+        result2 =  result+(conn, cur)
+        return result2
+    except Exception as e:  
+        if debug: print("Error fetching one of fitness goal, diet preferences, gender, age, medical conditions and time deadline:", e)
+        return tuple('Get into better shape', 'any', 'Female', 18.0, " ", 90 )
+def daily_height_weight_diet_hist(user_id: int, conn, cur):
+    try:
+        cur.execute("""
+                    SELECT height, weight, diet_history
+                    FROM daily_stats 
+                    WHERE id = %s AND days_done = (
+                        SELECT MAX(days_done) 
+                        FROM daily_stats 
+                        WHERE id = %s
+                    );
+                """, (user_id, user_id))
+        result = cur.fetchone()
+        if debug: print(result)
+        if not result:
+            cur.execute("""
+                    SELECT (user_information).height, (user_information).weight, diet_pref 
+                    FROM user_profile 
+                    WHERE id = %s;
+                """, (user_id,))
+            result = cur.fetchone()
+            if debug: print(result)
+        close_db(conn, cur)
+        return result
+    except Exception as e:  
+        if debug: print("Error fetching one of height, weight, diet history:", e)
+        return tuple(1.700, 66.400, ' ')
+    finally:
+        close_db(conn, cur)
+
+
 def change_everything(
     name: str,
     new_age: float,
@@ -202,7 +242,6 @@ def change_everything(
     try:
         # Convert gender boolean to string once
         gender_value = 'Female' if new_gender else 'Male'
-        
         # Single query to update all fields at once
         cur.execute("""
             UPDATE user_profile
@@ -215,7 +254,6 @@ def change_everything(
             WHERE (user_information).name = %s;
         """, (name, new_age, gender_value, new_height, new_weight, 
               new_pref, days, new_goal, notes, condition, name))
-        
         # Single commit for all changes
         conn.commit()
         
@@ -296,17 +334,6 @@ def get_user_profile_by_id(user_id: int):
         return None
     finally:
         close_db(conn, cur)
-def get_fitness_goal_diet_gender_age_time_deadline(user_id: int):
-    conn, cur = connect_db()
-    try:
-        cur.execute("SELECT fitness_goal, diet_pref, (user_information).gender, (user_information).age, time_deadline FROM user_profile WHERE id = %s;", (user_id,))
-        result = cur.fetchone()
-        return result
-    except Exception as e:  
-        if debug: print("Error fetching fitness goal, diet preferences, gender, age, and time deadline:", e)
-        return None
-    finally:
-        close_db(conn, cur)
 
 
 
@@ -363,75 +390,6 @@ def get_daily_stats_by_id(user_id: int):
     finally:
         close_db(conn, cur)
 # other_storage table functions
-def get_picture_analysis(user_id: int):
-    conn, cur = connect_db()
-    try:
-        cur.execute("SELECT picture_analysis FROM other_storage WHERE id = %s;", (user_id,))
-        result = cur.fetchone()
-        if debug: print("Picture analysis fetched:", result)
-        return result[0] if result else None
-    except Exception as e:
-        if debug: print("Error fetching picture analysis:", e)
-        return None
-    finally:
-        close_db(conn, cur)
-def set_picture_analysis(user_id: int, text: str):##maybe promt engineer this later to add something to the standard prompt provided by the llama model
-    conn, cur = connect_db()
-    try:
-        cur.execute("UPDATE other_storage SET picture_analysis = %s WHERE id = %s;", (text, user_id))
-        conn.commit()
-        if debug: print("Picture analysis updated.")
-    except Exception as e:
-        conn.rollback()
-        if debug: print("Error updating picture analysis:", e)
-    finally:
-        close_db(conn, cur)
-def remove_picture_analysis(user_id: int):
-    conn, cur = connect_db()
-    try:
-        cur.execute("UPDATE other_storage SET picture_analysis = NULL WHERE id = %s;", (user_id,))
-        conn.commit()
-        if debug: print("Picture analysis removed.")
-    except Exception as e:
-        conn.rollback()
-        if debug: print("Error removing picture analysis:", e)
-    finally:
-        close_db(conn, cur)
-
-def get_audio_transcript(user_id: int):
-    conn, cur = connect_db()
-    try:
-        cur.execute("SELECT audio_transcript FROM other_storage WHERE id = %s;", (user_id,))
-        result = cur.fetchone()
-        if debug: print("Audio transcript fetched:", result)
-        return result[0] if result else None
-    except Exception as e:
-        if debug: print("Error fetching audio transcript:", e)
-        return None
-    finally:
-        close_db(conn, cur)
-def set_audio_transcript(user_id: int, text: str):
-    conn, cur = connect_db()
-    try:
-        cur.execute("UPDATE other_storage SET audio_transcript = %s WHERE id = %s;", (text, user_id))
-        conn.commit()
-        if debug: print("Audio transcript updated.")
-    except Exception as e:
-        conn.rollback()
-        if debug: print("Error updating audio transcript:", e)
-    finally:
-        close_db(conn, cur)
-def remove_audio_transcript(user_id: int):
-    conn, cur = connect_db()
-    try:
-        cur.execute("UPDATE other_storage SET audio_transcript = NULL WHERE id = %s;", (user_id,))
-        conn.commit()
-        if debug: print("Audio transcript removed.")
-    except Exception as e:
-        conn.rollback()
-        if debug: print("Error removing audio transcript:", e)
-    finally:
-        close_db(conn, cur)
 
 def get_other_storage_by_id(user_id: int):
     conn, cur = connect_db()

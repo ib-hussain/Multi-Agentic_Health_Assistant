@@ -308,7 +308,8 @@ document.addEventListener("DOMContentLoaded", function() {
             throw new Error(error.error || 'Transcription failed');
         }
         const result = await response.json();
-        return result.transcription || "No transcription returned";
+        return result.transcription || `No transcription returned + ${result.message} + ${result.error} + ${result.transcription}`;
+    
     }
 
     function handlePageUnload() {

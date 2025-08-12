@@ -13,7 +13,7 @@ ignore/
 *download.jpg
 *download.jpeg
 *download.ico
-
+sample/
 
 # Ignore virtual environments
 venv/
