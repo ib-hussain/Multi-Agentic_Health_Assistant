@@ -67,8 +67,8 @@ The platform utilises a multi-agent architecture with three specialised LLM agen
 
 ## Installation
 #### The project has 2 branches:
-- One was built with Streamlit to a certain point and incorporates only 1 agent and a faulty UI; this branch was abandoned. <br>
-- The second branch is built with Flask, HTML, CSS, and Vanilla JS. It has a desirable UI and incorporates the agents properly, and is built to a much better extent than the other branch.
+- One was built with Streamlit to a certain point and incorporates only 1 agent and a faulty UI; this branch was abandoned. <a href="https://virtualhealth.streamlit.app/">View Here</a> <br>
+- The second branch is built with Flask, HTML, CSS, and Vanilla JS. It has a desirable UI and incorporates the agents properly, and is built to a much better extent than the other branch. <a href="https://multi-agentic-health-assistant.onrender.com">View Here</a>
 
 1. **Clone the repository:**
 ```bash
@@ -83,10 +83,13 @@ pip install -r requirements.txt
 
 3. **Run the application:**
 ```bash
+Branch -> main:
 streamlit run website.py
+Hosted at: https://virtualhealth.streamlit.app/
 or
+Branch -> flask:
 python app.py
-(depends upon the branch you are on)
+Hosted at: https://multi-agentic-health-assistant.onrender.com
 ```
 
 
