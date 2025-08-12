@@ -1,14 +1,95 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Anaheim&display=swap');
-/* Background (your pastel gradients) */
-body {
-  margin: 0;
-  font-family: 'Manrope', sans-serif;
-  color: #171a1f;
-  background: radial-gradient(
-        circle at 20% 20%,
-        rgba(255, 212, 196, 1) 0%, rgba(255, 237, 188, 1) 30%, rgba(236, 217, 255, 1) 55%, rgba(202, 224, 255, 1) 80% );
-    background-blend-mode: screen; background-size: cover;
-        
-  background-attachment: fixed;
-  min-height: 100vh;
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700&family=Anaheim&display=swap');
+
+/* ==== Blue theme vars ==== */
+:root{
+  --brand-900:#1e3a8a;
+  --brand-700:#1d4ed8;
+  --brand-500:#2563eb;
+  --brand-300:#93c5fd;
+  --brand-200:#bfdbfe;
+  --brand-100:#dbeafe;
+  --ink:#171a1f;
 }
+
+html, body { height: 100%; }
+body{
+  margin:0;
+  font-family:'Manrope', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color:var(--ink);
+  /* same blueish background as chatbot */
+  background: radial-gradient(circle at 20% 20%,
+    rgba(255,212,196,1) 0%,
+    rgba(255,237,188,1) 30%,
+    rgba(236,217,255,1) 55%,
+    rgba(202,224,255,1) 80%);
+  background-attachment:fixed;
+}
+
+/* Layout */
+.pg-wrap{ max-width:1100px; margin:90px auto 40px; padding:0 16px 40px; }
+
+.pg-head{
+  display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap;
+}
+.pg-title{ display:flex; flex-direction:column; gap:6px; }
+.pg-head h1{
+  font-family:'Anaheim', sans-serif; /* special font only for the big heading */
+  font-size:36px; margin:0; color:#1f2a44; letter-spacing:.2px;
+}
+.pg-head .sub{ margin:0; opacity:.8; }
+.pg-head .btn{ margin-left:auto; }
+
+/* Cards */
+.cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+
+.card{
+  background:rgba(200,230,255,.72);
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:18px;
+  box-shadow:0 10px 28px rgba(0,0,0,.06);
+  overflow:hidden;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.card-head{
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+  padding:14px 16px; border-bottom:1px solid rgba(0,0,0,.06);
+}
+.card-head h3{ margin:0; font-weight:800; font-size:16px; color:#1f2a44; }
+.pill{
+  display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:700;
+  background:var(--brand-100); color:#1e40af; border:1px solid var(--brand-300);
+}
+.chart-wrap{ padding:10px 12px 14px; }
+
+/* Table */
+.table-card{ margin-top:18px; }
+.table-wrap{ width:100%; overflow-x:auto; }
+table{ width:100%; border-collapse:collapse; font-size:14px; }
+thead th{ text-align:left; padding:12px 14px; background:rgba(255,255,255,.7); color:#2b3446; font-weight:800; }
+tbody td{ padding:10px 14px; border-top:1px solid rgba(0,0,0,.06); }
+tbody tr:hover{ background:rgba(255,255,255,.65); }
+
+/* Calendar heat */
+.heat-card{ margin-top:18px; } /* add space under the records container */
+.heat-grid{ padding:14px; display:grid; grid-template-columns:repeat(10,1fr); gap:10px; }
+.day{
+  border-radius:10px; aspect-ratio:1/1; border:1px solid rgba(0,0,0,.06);
+  box-shadow:0 6px 16px rgba(0,0,0,.05);
+  display:flex; align-items:center; justify-content:center;
+  font-size:10px; color:#1f2a44; opacity:.9;
+}
+.day .date{ pointer-events:none; }
+.legend{ display:flex; gap:10px; font-size:12px; opacity:.85; }
+.legend .swatch{ display:inline-block; width:14px; height:14px; border-radius:4px; margin-right:6px; border:1px solid rgba(0,0,0,.06); }
+.legend .swatch.lo{ background:#e5f0ff; }
+.legend .swatch.md{ background:var(--brand-300); }
+.legend .swatch.hi{ background:var(--brand-500); }
+
+/* Buttons + errors */
+.btn{ border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75); padding:8px 14px; border-radius:999px; font-weight:800; cursor:pointer; }
+.btn.ghost:hover{ background:#fff; }
+.error{ margin:14px 16px 0; padding:10px 12px; border-radius:12px; border:1px solid #c7e0ff; background:#eef6ff; color:#1e3a8a; }
+
+/* Responsive */
+@media (max-width:980px){ .cards{ grid-template-columns:1fr; } }

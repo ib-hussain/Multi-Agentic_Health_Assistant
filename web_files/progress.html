@@ -1,21 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link rel="icon" type="image/png"
-            href="favicon.png" />
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Virtual Health Assistant - Daily Progress</title>
-        <!-- Fonts -->
-        <link
-            href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Anaheim&display=swap"
-            rel="stylesheet" />
-        <!-- Styles -->
-        <link rel="stylesheet" href="progress.css" />
-    </head>
-    <body>
-        <script src="navbar.js"></script>
+  <head>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Virtual Health Assistant – Daily Progress</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700&family=Anaheim&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="progress.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3"></script>
+  </head>
+  <body>
+    <script src="navbar.js"></script>
 
-        <script src="progress.js"></script>
-    </body>
+    <main class="pg-wrap">
+      <header class="pg-head">
+        <div class="pg-title">
+          <h1>Daily Progress</h1>
+          <p class="sub"><br>Review your daily stats and trends.<br></br></p>
+        </div>
+        <button id="reload-btn" class="btn ghost">Reload from server</button>
+      </header>
+
+      <!-- CHARTS -->
+      <section class="cards charts">
+        <article class="card">
+          <div class="card-head">
+            <h3>Weight Trend</h3>
+            <span id="weight-last" class="pill">–</span>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="weightChart" height="120"></canvas>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h3>Activity Trend</h3>
+            <span id="activity-last" class="pill">–</span>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="activityChart" height="120"></canvas>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h3>Progression towards goal</h3>
+            <span id="plan-last" class="pill">–</span>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="planChart" height="120"></canvas>
+          </div>
+        </article>
+      </section>
+
+      <!-- TABLE -->
+      <section class="card table-card">
+        <div class="card-head">
+          <h3>Daily Records</h3>
+          <span id="row-count" class="pill">0 days</span>
+        </div>
+
+        <div id="error-box" class="error" hidden></div>
+
+        <div id="table-wrap" class="table-wrap">
+          <table id="progress-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Condition</th>
+                <th>Activity</th>
+                <th>Days Done</th>
+                <th>Days Left</th>
+                <th>Height (m)</th>
+                <th>Weight (kg)</th>
+                <th>Diet</th>
+              </tr>
+            </thead>
+            <tbody id="progress-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- CALENDAR HEAT -->
+      <section class="card heat-card">
+        <div class="card-head">
+          <h3>Last 30 Days – Activity Heat</h3>
+          <div class="legend">
+            <span><i class="swatch lo"></i>low</span>
+            <span><i class="swatch md"></i>med</span>
+            <span><i class="swatch hi"></i>high</span>
+          </div>
+        </div>
+        <div id="heat-grid" class="heat-grid"></div>
+      </section>
+    </main>
+
+    <script src="progress.js"></script>
+  </body>
 </html>

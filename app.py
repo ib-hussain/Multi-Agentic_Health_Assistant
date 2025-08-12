@@ -1,6 +1,7 @@
 # library includes #################################################################################################################################
 import os
-from datetime import time as dt_time, datetime
+from datetime import time as dt_time
+from datetime import datetime 
 from decimal import Decimal
 from flask import (
     Flask, jsonify, request, send_from_directory,
@@ -13,7 +14,7 @@ from tempfile import NamedTemporaryFile
 # header includes  #################################################################################################################################
 from data.database_postgres import (
     get_id, user_registration,
-    get_user_profile_by_id, change_everything       
+    get_user_profile_by_id, change_everything, get_daily_stats_by_id       
 )
 from temp.audio import transcribe_audio as transcript
 from chatbots.diet import get_image_description
@@ -24,7 +25,8 @@ app.secret_key = 'your-secret-key-here'  # Important for sessions
 def _to_float(x):
     return float(x) if isinstance(x, Decimal) else x
 def _to_time_str(t):
-    if isinstance(t, dt_time):
+    from datetime import time, datetime
+    if isinstance(t, time):
         return t.strftime("%H:%M")
     if isinstance(t, datetime):
         return t.strftime("%H:%M")
@@ -32,6 +34,15 @@ def _to_time_str(t):
         # handles "07:00:00" or "07:00"
         return t[:5] if ":" in t else t
     return str(t)
+def _cell_json(x):
+  from datetime import date, datetime, time
+  if isinstance(x, (date, datetime)):
+      return x.isoformat()[:10]
+  if isinstance(x, time):
+      return x.strftime("%H:%M")
+  if isinstance(x, Decimal):
+      return float(x)
+  return x
 def _jsonable_profile(p):
     return {
         "success": True,
@@ -393,6 +404,20 @@ def api_update_profile():
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
 
+@app.route("/api/progress", methods=["GET"])
+def api_progress():
+    user_id = session.get("user_id")
+    if user_id is None:
+        return jsonify({"success": False, "error": "Not authenticated"}), 401
+    try:
+        rows = get_daily_stats_by_id(user_id) or []
+        rows = [[_cell_json(c) for c in row] for row in rows]
+        return jsonify({"success": True, "rows": rows})
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
+# issues:
+# add chat storage function in the chatbot, rest is great
 from multiprocessing import Process
 def return_and_call(result1):
     # # Start a new process
