@@ -8,6 +8,8 @@ from tempfile import NamedTemporaryFile
 from data.database_postgres import get_id, user_registration
 from temp.audio import transcribe_audio as transcript
 from chatbots.diet import get_image_description
+from chatbots.reasoning import respond
+
 
 app = Flask(__name__)
 app.secret_key = 'your-secret-key-here'  # Important for sessions
@@ -191,7 +193,6 @@ def upload_image():
     # Prefer session; fall back to optional form field
     user_id = session.get('user_id')
     if user_id is None:
-        # allow explicit user_id if frontend wants to pass it
         user_id = request.form.get('user_id', type=int)
     if user_id is None:
         return jsonify({'success': False, 'error': 'User not authenticated'}), 401
@@ -203,7 +204,7 @@ def upload_image():
     temp_dir = os.path.join(os.getcwd(), 'temp')
     os.makedirs(temp_dir, exist_ok=True)
     save_path_abs = os.path.join(temp_dir, f'download.{ext}')
-    save_path_rel = f'temp/download.{ext}'  # what we pass to your function to match its expected style
+    save_path_rel = f'temp/download.{ext}'
 
     try:
         f.save(save_path_abs)
@@ -211,12 +212,10 @@ def upload_image():
         if get_image_description is None:
             return jsonify({'success': False, 'error': 'get_image_description not configured'}), 404
 
-        # Call user's function
         try:
-            result = get_image_description(save_path_rel, prompt , int(user_id))
+            result = get_image_description(save_path_rel, prompt, int(user_id))
         except TypeError:
-            # In case the function only accepts positional args
-            result = get_image_description(save_path_rel, prompt , int(user_id))
+            result = get_image_description(save_path_rel, prompt, int(user_id))
 
         if not isinstance(result, dict):
             return jsonify({'success': False, 'error': 'Invalid response from get_image_description'}), 405
@@ -228,8 +227,38 @@ def upload_image():
 
     except Exception as e:
         return jsonify({'success': False, 'error': f'Image processing failed: {str(e)}'}), 407
+# ---------- NEW: text-only respond(prompt) returning markdown ----------
+@app.route('/api/respond', methods=['POST'])
+def api_respond():
+    """
+    Expects JSON: { "prompt": "<text>" }
+    Calls respond(prompt) which returns markdown string.
+    Returns { success: True, markdown: "<md>" } or { success: False, error: "<msg>" }.
+    """
+    if not request.is_json:
+        return jsonify({'success': False, 'error': 'JSON body required'}), 400
+    data = request.get_json(silent=True) or {}
+    prompt = (data.get('prompt') or '').strip()
+    if respond is None:
+        return jsonify({'success': False, 'error': 'respond function not configured'}), 500
+    try:
+        markdown = respond(prompt)
+    except TypeError:
+        # If the function signature is different, try positional
+        markdown = respond(prompt)
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+    if not isinstance(markdown, str):
+        return jsonify({'success': False, 'error': 'respond() did not return a string'}), 500
+    return jsonify({'success': True, 'markdown': markdown})
 
-
+from multiprocessing import Process
+def return_and_call(result1):
+    # # Start a new process
+    # p = Process(target=function_name , args=(your_args,))
+    # p.start()
+    # Return immediately
+    return result1
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
     

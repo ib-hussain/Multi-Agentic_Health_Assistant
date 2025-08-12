@@ -22,7 +22,7 @@ def get_image_description(image_path: str="temp/download.jpeg", prompt: str = " 
     """
     try:
         # Get user's fitness data
-        fitness_goal, diet_pref, gender, age, medical_cond, time_deadline, conn, cur   = get_fitness_goal_diet_gender_age_time_deadline(user_id)
+        fitness_goal, diet_pref, gender, name, age, medical_cond, time_deadline, conn, cur   = get_fitness_goal_diet_gender_age_time_deadline(user_id)
         if debug: print("no Problem detected here 0")
         height, weight, diet_history = daily_height_weight_diet_hist(user_id,conn, cur)
         if debug: print("no Problem detected here 1")
@@ -34,6 +34,7 @@ def get_image_description(image_path: str="temp/download.jpeg", prompt: str = " 
         # Build personalized prompt
         personalized_info = (
             f"User Information:\n"
+            f"Name: {name}\n"
             f"Diet preferences: {diet_pref}\n"
             f"Age: {age}\n"
             f"User Weight: {height}\n"#change this to daily stats table
@@ -43,13 +44,13 @@ def get_image_description(image_path: str="temp/download.jpeg", prompt: str = " 
             f"The Fitness goal of the user: {fitness_goal}\n"
             f"Time deadline for completing goal: {time_deadline}\n"
             f"First check if the image is of a meal or something edible, if not then tell the user what the picture is and thats it, nothing more should be said by you.\n"
-            f"In reality you are a an AI Diet agent for nutrition analysis and meal planning that must do the following tasks no matter the user prompt:\n"
+            f"You are a AI Diet agent for nutrition analysis and meal planning that must do the following tasks, no matter what:\n"
             f"- Meal planning and nutritional suggestions\n"
             f"- Vision-based analysis of food photos\n"
             f"- Nutrient breakdown and diet goal comparison\n"
             f"- Dietary preference accommodation\n"
             f"- Calorie and macro tracking\n"
-            f"(Your given output should be as markdown,make no mistakes!)"
+            f"(Your given output should be properly formatted markdown, addressed to the user, make no mistakes!)"
         )
         prompt = f"User Prompt:\n"+prompt + personalized_info
         if debug: print(" no Problem detected here 2")
@@ -94,6 +95,7 @@ def get_image_description(image_path: str="temp/download.jpeg", prompt: str = " 
             temperature=float(os.getenv("temperature__T"))
         )
         description = response.choices[0].message.content.strip()
+        print(description)
         return {"status":"success", "description": description}
     except Exception as e:
         return {"status":"error", "message": str(e)}

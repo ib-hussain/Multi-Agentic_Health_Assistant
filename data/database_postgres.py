@@ -8,7 +8,7 @@ import streamlit as st
 import psycopg2
 from datetime import datetime, timedelta, time
 import os
-debug = bool(st.secrets["DEBUGGING_MODE"])
+debug = True  
 
 # issues:
 # use the other storage table to store old chats of user in some form so that they can be loaded later
@@ -80,28 +80,32 @@ def connect_db():
     cur = conn.cursor()
     return conn, cur
 def close_db(conn, cur):
-    try:
+    cur.close()
+    conn.close()
+    if debug: print("Database connection closed.")
+    # try:
         # cur.execute(last19477491_query)
-        try:
-            export_path = r"C:\Users\Ibrahim\Downloads\Internship\Multi-Agentic_Health_Assistant\data\\"
-            # cur.execute(f"""
-            # {"--" if debug else""}COPY user_profile TO '{export_path}user_profile.csv' WITH CSV HEADER;
-            # {"--" if debug else""}COPY daily_stats TO '{export_path}daily_stats.csv' WITH CSV HEADER;
-            # {"--" if debug else""}COPY other_storage TO '{export_path}other_storage.csv' WITH CSV HEADER;
-            # """)
-            # if debug: print(f"Exported")
-        except Exception as e:
-            if debug: print("Error during export:", e)
-            # conn.commit()
-    except Exception as e:
-        if debug: print("Error during export or view:", e)
-    finally:
-        cur.close()
-        conn.close()
-        if debug: print("Database connection closed.")
+    #     try:
+    #         export_path = r"C:\Users\Ibrahim\Downloads\Internship\Multi-Agentic_Health_Assistant\data\\"
+    #         # cur.execute(f"""
+    #         # {"--" if debug else""}COPY user_profile TO '{export_path}user_profile.csv' WITH CSV HEADER;
+    #         # {"--" if debug else""}COPY daily_stats TO '{export_path}daily_stats.csv' WITH CSV HEADER;
+    #         # {"--" if debug else""}COPY other_storage TO '{export_path}other_storage.csv' WITH CSV HEADER;
+    #         # """)
+    #         # if debug: print(f"Exported")
+    #     except Exception as e:
+    #         if debug: print("Error during export:", e)
+    #         # conn.commit()
+    # except Exception as e:
+    #     if debug: print("Error during export or view:", e)
+    # finally:
+    #     cur.close()
+    #     conn.close()
+    #     if debug: print("Database connection closed.")
     # cur.close()
     # conn.close()
     # if debug: print("Database connection closed.")
+# Login:
 def get_id(name: str, password: str):
     conn, cur = connect_db()
     try:
@@ -123,7 +127,7 @@ def get_id(name: str, password: str):
         return None
     finally:
         close_db(conn, cur)
-#functions ----------------------------------------------------------------------------------------------
+# Signup:
 def user_registration(
     name: str,
     Age: float,
@@ -139,9 +143,8 @@ def user_registration(
     password: str = '12345678'):
     conn, cur = connect_db()
     if gender=="female": gender = "Female"
-    if gender=='female': gender = "Female"
     if gender=="male": gender = "Male"
-    if gender=='male': gender = 'Male'
+    else: gender = "Female"
     try:
         # Convert time strings to time objects
         time_objects = None
@@ -183,10 +186,11 @@ def user_registration(
         raise e
     finally:
         close_db(conn, cur)
+# Diet Agent:
 def get_fitness_goal_diet_gender_age_time_deadline(user_id: int):
     conn, cur = connect_db()
     try:
-        cur.execute("SELECT fitness_goal, diet_pref, (user_information).gender, (user_information).age, medical_conditions, time_deadline FROM user_profile WHERE id = %s;", (user_id,))
+        cur.execute("SELECT fitness_goal, diet_pref, (user_information).gender, (user_information).name, (user_information).age, medical_conditions, time_deadline FROM user_profile WHERE id = %s;", (user_id,))
         result = cur.fetchone()
         result2 =  result+(conn, cur)
         return result2
@@ -223,69 +227,7 @@ def daily_height_weight_diet_hist(user_id: int, conn, cur):
         close_db(conn, cur)
 
 
-def change_everything(
-    name: str,
-    new_age: float,
-    new_gender: bool, 
-    new_weight: float, 
-    new_height: float, 
-    new_pref: str, 
-    days: int, 
-    new_goal: str, 
-    notes: str, 
-    condition: str):
-    conn, cur = connect_db()
-    if gender=="female": gender = "Female"
-    if gender=='female': gender = "Female"
-    if gender=="male": gender = "Male"
-    if gender=='male': gender = 'Male'
-    try:
-        # Convert gender boolean to string once
-        gender_value = 'Female' if new_gender else 'Male'
-        # Single query to update all fields at once
-        cur.execute("""
-            UPDATE user_profile
-            SET user_information = ROW(%s, %s, %s, %s, %s),
-                diet_pref = %s,
-                time_deadline = %s,
-                fitness_goal = %s,
-                mental_health_background = %s,
-                medical_conditions = %s
-            WHERE (user_information).name = %s;
-        """, (name, new_age, gender_value, new_height, new_weight, 
-              new_pref, days, new_goal, notes, condition, name))
-        # Single commit for all changes
-        conn.commit()
-        
-        if debug: 
-            print("All user profile fields updated successfully.")
-            
-    except Exception as e:
-        conn.rollback()
-        if debug: 
-            print("Error updating user profile:", e)
-        raise  # Re-raise the exception to maintain error handling behavior
-    finally:
-        close_db(conn, cur)
-# user_information table functions
-
-def change_name(old_name: str, new_name: str):
-    conn, cur = connect_db()
-    try:
-        cur.execute("""
-            UPDATE user_profile
-            SET user_information = ROW(%s, (user_information).age, (user_information).gender,
-                                       (user_information).height, (user_information).weight)
-            WHERE (user_information).name = %s;
-        """, (new_name, old_name))
-        conn.commit()
-        if debug: print("Name changed successfully.")
-    except Exception as e:
-        conn.rollback()
-        if debug: print("Error changing name:", e)
-    finally:
-        close_db(conn, cur)
-
+# Profile Management: 
 def get_user_profile_by_id(user_id: int):
     conn, cur = connect_db()
     try:
@@ -312,7 +254,6 @@ def get_user_profile_by_id(user_id: int):
             if debug: print("No user found with that ID.")
             return None
         profile = {
-            "id": result[0],
             "name": result[1],
             "age": result[2],
             "gender": result[3],
@@ -328,6 +269,7 @@ def get_user_profile_by_id(user_id: int):
         }
         if debug:
             print("User profile fetched:", profile)
+        close_db(conn, cur)
         return profile
     except Exception as e:
         if debug: print("Error fetching user profile:", e)
@@ -335,73 +277,224 @@ def get_user_profile_by_id(user_id: int):
     finally:
         close_db(conn, cur)
 
-
-
-def parse_time_string(time_str):
-    return datetime.strptime(time_str, "%H:%M").time()
-def add_20_minutes(time_obj):
-    dt = datetime.combine(datetime.today(), time_obj) + timedelta(minutes=20)
-    return dt.time()
-def change_time_available(name: str, start_time: str):
+# not good:
+def change_everything(
+    name: str,
+    new_age: float,
+    new_gender: bool, 
+    new_weight: float, 
+    new_height: float, 
+    new_pref: str, 
+    days: int, 
+    new_goal: str, 
+    notes: str, 
+    condition: str):
     conn, cur = connect_db()
     try:
-        t1 = parse_time_string(start_time)
-        t2 = add_20_minutes(t1)
-        arr = [[t1.strftime('%H:%M:%S'), None, None],
-               [t2.strftime('%H:%M:%S'), None, None]] 
+        # Convert gender boolean to string once
+        gender_value = 'Female' if new_gender else 'Male'
+        # Single query to update all fields at once
         cur.execute("""
             UPDATE user_profile
-            SET time_arr = %s
+            SET user_information = ROW(%s, %s, %s, %s, %s),
+                diet_pref = %s,
+                time_deadline = %s,
+                fitness_goal = %s,
+                mental_health_background = %s,
+                medical_conditions = %s
             WHERE (user_information).name = %s;
-        """, (arr, name))
+        """, (name, new_age, gender_value, new_height, new_weight, 
+              new_pref, days, new_goal, notes, condition, name))
+        # Single commit for all changes
         conn.commit()
-        if debug: print("Time availability changed successfully.")
+        if debug: 
+            print("All user profile fields updated successfully.")
     except Exception as e:
         conn.rollback()
-        if debug: print("Error updating time availability:", e)
+        if debug: 
+            print("Error updating user profile:", e)
+        raise  # Re-raise the exception to maintain error handling behavior
     finally:
         close_db(conn, cur)
 
-# daily_stats table functions
-def insert_daily_stats_entry(user_id: int, activity_level: str, progress_condition: str):
-    conn, cur = connect_db()
+
+# Progress Page: 
+def create_daily_entry(user_id: int, activity_level: str) -> bool:
+    """Creates new daily entry with activity level and today's date, other fields NULL"""
+    conn, cur = None, None
     try:
+        conn, cur = connect_db()
         cur.execute("""
-            SELECT insert_daily_stats(%s, %s, %s);
-        """, (user_id, activity_level, progress_condition))
+            INSERT INTO daily_stats 
+            (id, today_date, activity_level, 
+             height, weight, progress_condition, diet_history, todays_flag)
+            VALUES (%s, CURRENT_DATE, %s, NULL, NULL, NULL, NULL, FALSE)
+            RETURNING entry_id;
+        """, (user_id, activity_level))
         conn.commit()
-        if debug: print(f"Daily stats inserted for user ID {user_id}")
+        if debug: 
+            entry_id = cur.fetchone()[0]
+            print(f"Created new daily entry for user {user_id}, entry ID: {entry_id}")
+        return True
     except Exception as e:
-        conn.rollback()
-        if debug: print("Error inserting daily stats:", e)
+        if conn: conn.rollback()
+        if debug: print(f"Error creating daily entry: {e}")
+        return False
     finally:
         close_db(conn, cur)
-def get_daily_stats_by_id(user_id: int):
-    conn, cur = connect_db()
+def update_height_if_empty(user_id: int, height: float) -> bool:
+    """Updates height only if current value is NULL"""
+    conn, cur = None, None
     try:
-        cur.execute("SELECT * FROM daily_stats WHERE id = %s;", (user_id,))
-        result = cur.fetchone()
-        if debug:
-            print("Daily stats fetched:", result)
-        return result
+        conn, cur = connect_db()
+        cur.execute("""
+            UPDATE daily_stats
+            SET height = %s
+            WHERE id = %s 
+              AND today_date = CURRENT_DATE 
+              AND height IS NULL
+            RETURNING entry_id;
+        """, (height, user_id))
+        updated = cur.rowcount > 0
+        conn.commit()
+        if debug: 
+            if updated:
+                print(f"Height updated for user {user_id}")
+            else:
+                print(f"Height not updated (already set) for user {user_id}")
+        return updated
     except Exception as e:
-        if debug: print("Error fetching daily stats:", e)
-        return None
+        if conn: conn.rollback()
+        if debug: print(f"Error updating height: {e}")
+        return False
     finally:
         close_db(conn, cur)
-# other_storage table functions
+def update_weight_if_empty(user_id: int, weight: float) -> bool:
+    """Updates weight only if current value is NULL"""
+    conn, cur = None, None
+    try:
+        conn, cur = connect_db()
+        cur.execute("""
+            UPDATE daily_stats
+            SET weight = %s
+            WHERE id = %s 
+              AND today_date = CURRENT_DATE 
+              AND weight IS NULL
+            RETURNING entry_id;
+        """, (weight, user_id))
+        updated = cur.rowcount > 0
+        conn.commit()
+        if debug: 
+            if updated:
+                print(f"Weight updated for user {user_id}")
+            else:
+                print(f"Weight not updated (already set) for user {user_id}")
+        return updated
+    except Exception as e:
+        if conn: conn.rollback()
+        if debug: print(f"Error updating weight: {e}")
+        return False
+    finally:
+        close_db(conn, cur)
+def update_progress_if_empty(user_id: int, progress_condition: str) -> bool:
+    """Updates progress condition only if current value is NULL"""
+    conn, cur = None, None
+    try:
+        conn, cur = connect_db()
+        cur.execute("""
+            UPDATE daily_stats
+            SET progress_condition = %s
+            WHERE id = %s 
+              AND today_date = CURRENT_DATE 
+              AND progress_condition IS NULL
+            RETURNING entry_id;
+        """, (progress_condition, user_id))
+        updated = cur.rowcount > 0
+        conn.commit()
+        if debug: 
+            if updated:
+                print(f"Progress updated for user {user_id}")
+            else:
+                print(f"Progress not updated (already set) for user {user_id}")
+        return updated
+    except Exception as e:
+        if conn: conn.rollback()
+        if debug: print(f"Error updating progress: {e}")
+        return False
+    finally:
+        close_db(conn, cur)
+def complete_entry_if_empty(user_id: int, diet_history: str) -> bool:
+    """Completes entry by setting diet history and flag, only if currently NULL/FALSE"""
+    conn, cur = None, None
+    try:
+        conn, cur = connect_db()
+        cur.execute("""
+            UPDATE daily_stats
+            SET diet_history = %s, 
+                todays_flag = TRUE
+            WHERE id = %s 
+              AND today_date = CURRENT_DATE 
+              AND (diet_history IS NULL OR todays_flag = FALSE)
+            RETURNING entry_id;
+        """, (diet_history, user_id))
+        updated = cur.rowcount > 0
+        conn.commit()
+        if debug: 
+            if updated:
+                print(f"Entry completed for user {user_id}")
+            else:
+                print(f"Entry already completed for user {user_id}")
+        return updated
+    except Exception as e:
+        if conn: conn.rollback()
+        if debug: print(f"Error completing entry: {e}")
+        return False
+    finally:
+        close_db(conn, cur)
+# Perfect:
+def get_daily_stats_by_id(user_id: int) -> list[list]:
+    """
+    Fetch all daily stats for a user, ordered by days_done (ascending).
+    Returns 2D list in specified order excluding entry_id, id, and todays_flag.
+    Args:
+        user_id: The user ID to fetch stats for
+        debug: Whether to print debug messages
+    Returns:
+        List of rows in this order:
+        [today_date, progress_condition, activity_level, days_done, 
+         days_left, height, weight, diet_history]
+        Returns empty list if no results or error occurs
+    """
+    try:
+        conn, cur = connect_db()
+        # Query with columns in specified order, excluding todays_flag
+        query = """
+        SELECT 
+            today_date, progress_condition, activity_level, 
+            days_done, days_left, height, weight, diet_history
+        FROM daily_stats 
+        WHERE id = %s
+        ORDER BY days_done ASC;
+        """
+        cur.execute(query, (user_id,))
+        rows = cur.fetchall()
+        if debug:
+            print(f"Fetched {len(rows)} rows for user {user_id}")
+            for row in rows:
+                print(row)
+        # Convert each row tuple to a list
+        return [list(row) for row in rows]
+    except Exception as e:
+        if debug:
+            print(f"Error fetching daily stats for user {user_id}: {e}")
+        return []  # Return empty list on error (not [[], []])
+    finally:
+        close_db(conn, cur)
 
+
+# other_storage table functions
 def get_other_storage_by_id(user_id: int):
     conn, cur = connect_db()
-    try:
-        cur.execute("SELECT * FROM other_storage WHERE id = %s;", (user_id,))
-        result = cur.fetchone()
-        if debug:
-            print("Other storage fetched:", result)
-        return result
-    except Exception as e:
-        if debug: print("Error fetching other storage:", e)
-        return None
-    finally:
-        close_db(conn, cur)
+    # this has nothing
+    close_db(conn, cur)
 #functions ----------------------------------------------------------------------------------------------

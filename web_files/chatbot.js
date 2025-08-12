@@ -53,16 +53,14 @@ document.addEventListener("DOMContentLoaded", function() {
         const form = new FormData();
         form.append('file', file, `upload.${ext}`);
         form.append('prompt', promptText || ' ');
-        // If you ever want to pass user_id explicitly instead of relying on session:
-        // form.append('user_id', window.USER_ID || '');
+        // Optional: form.append('user_id', window.USER_ID || '');
 
         const res = await fetch('/api/upload-image', { method: 'POST', body: form });
         if (!res.ok) {
             const err = await res.json().catch(()=>({}));
             throw new Error(err.error || 'Image upload failed');
         }
-        const data = await res.json();
-        return data; // {success, description?, message?, ext}
+        return await res.json(); // {success, description?, error?, ext}
     }
 
     // ----- MP3 upload flow (save + transcribe, no chat send) -----
@@ -119,30 +117,43 @@ document.addEventListener("DOMContentLoaded", function() {
         let imageURL = null;
         try {
             if (hasImage) {
+                // Show user's message + image immediately
                 showSpinnerOn(attachImageBtn);
-                imageURL = URL.createObjectURL(pendingImageFile); // local preview immediately
-                // Show user's message + image
+                imageURL = URL.createObjectURL(pendingImageFile);
                 addMessageWithImage(message, imageURL, 'user-message');
 
-                // Ask backend to save and describe (returns markup)
+                // Ask backend to save & describe (returns markup)
                 const typingIndicator = addTypingIndicator();
                 const server = await uploadImage(pendingImageFile, message);
                 typingIndicator.remove();
 
                 if (server.success) {
-                    // Display returned markup as bot message (parseMarkdown handles it)
-                    addMessage(server.description, 'bot-message');
+                    addMessage(server.description || '', 'bot-message'); // markup
                 } else {
-                    addMessage(`Error: ${server.message || 'Unable to describe image.'}`, 'bot-message');
+                    addMessage(`Error: ${server.error || 'Unable to describe image.'}`, 'bot-message');
                 }
             } else {
-                // Pure text flow (no image): keep your simple bot
+                // Pure text: call /api/respond which uses respond(prompt) and returns markdown
                 addMessage(message, 'user-message');
                 const typingIndicator = addTypingIndicator();
-                setTimeout(() => {
-                    typingIndicator.remove();
-                    addMessage(getBotResponse(message), 'bot-message');
-                }, 800);
+
+                const res = await fetch('/api/respond', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: message })
+                });
+
+                typingIndicator.remove();
+
+                if (!res.ok) {
+                    const err = await res.json().catch(()=>({}));
+                    addMessage(`Error: ${err.error || 'Failed to get response'}`, 'bot-message');
+                } else {
+                    const data = await res.json();
+                    // prefer "markdown" field; fall back to "description" for consistency
+                    const md = data.markdown || data.description || '';
+                    addMessage(md, 'bot-message');
+                }
             }
         } catch (err) {
             addMessage(`Send failed: ${err.message}`, 'bot-message');
@@ -308,8 +319,7 @@ document.addEventListener("DOMContentLoaded", function() {
             throw new Error(error.error || 'Transcription failed');
         }
         const result = await response.json();
-        return result.transcription || `No transcription returned + ${result.message} + ${result.error} + ${result.transcription}`;
-    
+        return result.transcription || "No transcription returned";
     }
 
     function handlePageUnload() {
@@ -377,16 +387,105 @@ document.addEventListener("DOMContentLoaded", function() {
         scrollToBottom();
     }
 
-    function parseMarkdown(text) {
-        let html = text
-            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-            .replace(/\*(.*?)\*/g, '<em>$1</em>')
-            .replace(/`(.*?)`/g, '<code>$1</code>')
-            .replace(/\n\n/g, '</p><p>')
-            .replace(/\n/g, '<br>');
-        html = html.replace(/^\* (.*$)/gim, '<li>$1</li>');
-        html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
-        if (!html.startsWith('<')) html = '<p>' + html + '</p>';
+    function parseMarkdown(md) {
+        if (!md) return "";
+        md = String(md).replace(/\r\n/g, "\n");
+
+        const lines = md.split("\n");
+        let html = "";
+        let inUl = false, inOl = false, inP = false;
+
+        function closeLists() {
+            if (inUl) { html += "</ul>"; inUl = false; }
+            if (inOl) { html += "</ol>"; inOl = false; }
+        }
+        function closeP() {
+            if (inP) { html += "</p>"; inP = false; }
+        }
+        function escapeHtml(s) {
+            return s
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+        }
+        function inlineFormat(txt) {
+            // escape, then add inline tags
+            txt = escapeHtml(txt);
+
+            // code spans
+            txt = txt.replace(/`([^`]+)`/g, "<code>$1</code>");
+
+            // bold (**bold**)
+            txt = txt.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+
+            // italics (*italics*) – avoid interfering with bold already converted
+            // (ensure asterisk isn't part of a word boundary)
+            txt = txt.replace(/(^|[^*])\*(?!\s)([^*]+?)\*(?!\w)/g, "$1<em>$2</em>");
+
+            return txt;
+        }
+
+        for (let i = 0; i < lines.length; i++) {
+            const raw = lines[i];
+            const t = raw.trim();
+
+            // blank line -> break paragraph and lists
+            if (t === "") {
+                closeP();
+                closeLists();
+                continue;
+            }
+
+            // Heading style 1: **Title** on its own line
+            let mHeadingBold = t.match(/^\*\*(.+?)\*\*$/);
+            if (mHeadingBold) {
+                closeP(); closeLists();
+                html += `<h3>${inlineFormat(mHeadingBold[1])}</h3>`;
+                continue;
+            }
+
+            // Heading style 2: #, ##, ### ...
+            let mAtx = t.match(/^(#{1,6})\s+(.*)$/);
+            if (mAtx) {
+                const level = Math.min(6, mAtx[1].length);
+                closeP(); closeLists();
+                html += `<h${level}>${inlineFormat(mAtx[2])}</h${level}>`;
+                continue;
+            }
+
+            // Ordered list: "1. item"
+            let mOl = t.match(/^(\d+)\.\s+(.*)$/);
+            if (mOl) {
+                closeP();
+                if (!inOl) { closeLists(); html += "<ol>"; inOl = true; }
+                html += `<li>${inlineFormat(mOl[2])}</li>`;
+                continue;
+            }
+
+            // Unordered list: "* item" or "- item"
+            let mUl = t.match(/^(\*|-)\s+(.*)$/);
+            if (mUl) {
+                closeP();
+                if (!inUl) { closeLists(); html += "<ul>"; inUl = true; }
+                html += `<li>${inlineFormat(mUl[2])}</li>`;
+                continue;
+            }
+
+            // Paragraph (merge consecutive lines with <br>)
+            if (!inP) {
+                closeLists();
+                html += "<p>";
+                inP = true;
+                html += inlineFormat(t);
+            } else {
+                html += "<br>" + inlineFormat(t);
+            }
+        }
+
+        // tidy up
+        closeP();
+        closeLists();
+
         return html;
     }
 
