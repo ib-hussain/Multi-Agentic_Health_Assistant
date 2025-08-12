@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: virtual-health-assistant
+    runtime: python
+    region: singapore
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3

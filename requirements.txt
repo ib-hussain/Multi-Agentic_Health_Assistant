@@ -23,10 +23,8 @@ nltk
 matplotlib
 seaborn
 imageio_ffmpeg
-os
 datetime
 decimal
 werkzeug
-psycopg2
 flask
 tempfile
