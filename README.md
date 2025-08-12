@@ -41,7 +41,7 @@ The platform utilises a multi-agent architecture with three specialised LLM agen
 
 ## 🌟 Key Features
 
-**Unified Web Interface:** Streamlit-based frontend with intuitive navigation  
+**Unified Web Interface:** Streamlit/Flask based frontend with intuitive navigation  
 **Multi-Modal AI:** Integration of text and vision models for comprehensive analysis  
 **Personalised Recommendations:** Tailored advice based on individual profiles and goals  
 **Persistent Memory:** Secure storage of user interactions and progress  
@@ -65,7 +65,10 @@ The platform utilises a multi-agent architecture with three specialised LLM agen
 - [together.ai](https://www.together.ai/) API key 
 - Basic understanding of health and wellness concepts
 
-### Installation
+## Installation
+#### The project has 2 branches:
+- One was built with Streamlit to a certain point and incorporates only 1 agent and a faulty UI; this branch was abandoned. <br>
+- The second branch is built with Flask, HTML, CSS, and Vanilla JS. It has a desirable UI and incorporates the agents properly, and is built to a much better extent than the other branch.
 
 1. **Clone the repository:**
 ```bash
@@ -83,6 +86,7 @@ pip install -r requirements.txt
 streamlit run website.py
 or
 python app.py
+(depends upon the branch you are on)
 ```
 
 
