@@ -1,4 +1,4 @@
-// web_files/profile.js — complete rewrite
+// web_files/profile.js — sanitize + no-fake-change detection
 
 document.addEventListener("DOMContentLoaded", () => {
   // ---------- Elements
@@ -34,30 +34,62 @@ document.addEventListener("DOMContentLoaded", () => {
   const hiddenTimes  = document.getElementById("time-array");
   const FIRST_SELECT = document.querySelector('.time-hour[data-index="0"]');
 
-  // password toggle buttons (stay usable even in view mode)
-  document.querySelectorAll(".toggle-pass").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const input = btn.parentElement.querySelector("input");
-      const isPass = input.type === "password";
-      input.type = isPass ? "text" : "password";
-      btn.textContent = isPass ? "Hide" : "Show";
-    });
-  });
-
   // ---------- State
   let editMode = false;
   let loadedProfile = null;
+  let baselineNorm = null;           // normalized snapshot to compare changes
   let timeSlots = [null, null, null]; // values like "07:00"
-  let activeSlots = 1;                // how many <select> groups exist (1..3)
-  let usedHours = new Set();          // "07", "10", etc.
+  let activeSlots = 1;
+  let usedHours = new Set();
 
   // ---------- Utils
   const HOURS = ["06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23"];
 
+  // trim-only sanitizer (don’t collapse inner spaces; just strip edges)
+  const cleanStr = (s) => (s ?? "").trim();
+  const normNum  = (n) => {
+    const x = Number(n);
+    return Number.isFinite(x) ? +x.toFixed(3) : null;
+  };
+  const hhFromAny = (t) => {
+    if (!t) return "";
+    const s = String(t);
+    const m = s.match(/(\d{1,2}):/);
+    return m ? m[1].padStart(2,"0") : "";
+  };
+  const normTimes = (arr) =>
+    (arr || [])
+      .map(hhFromAny)
+      .filter(Boolean)
+      .map(h => `${h}:00`)
+      .sort(); // order-insensitive comparison
+
+  // Build a normalized object for reliable equality check
+  function normalizeFromData(d) {
+    return {
+      name: cleanStr(d.name),
+      age: normNum(d.age),
+      gender: String(d.gender || "").toLowerCase(),
+      height: normNum(d.height),
+      weight: normNum(d.weight),
+      fitness_goal: cleanStr(d.fitness_goal || d.goal),
+      diet_pref: String(d.diet_pref || "any").toLowerCase(),
+      time_deadline: parseInt(d.time_deadline ?? 0, 10) || 0,
+      mental_health_background: cleanStr(d.mental_health_background || d.mental_health),
+      medical_conditions: cleanStr(d.medical_conditions),
+      time_arr: normTimes(d.time_arr),
+      password: cleanStr(d.password || d.new_password || "")
+    };
+  }
+
+  function sameNormalized(a, b) {
+    return JSON.stringify(a) === JSON.stringify(b);
+  }
+
   async function fetchJSON(url, options) {
     const res = await fetch(url, options);
     let data = null;
-    try { data = await res.json(); } catch { /* html error page etc. */ }
+    try { data = await res.json(); } catch {}
     if (!res.ok) {
       const msg = (data && (data.error || data.message)) || `Request failed (${res.status})`;
       throw new Error(msg);
@@ -93,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setDisabled(addTimeBtn, !editMode);
     document.querySelectorAll(".btn-remove-time").forEach(btn => setDisabled(btn, !editMode));
 
-    // make password fields required only in edit mode
+    // require password only during edit/save
     [passEl, pass2El].forEach(el => {
       if (editMode) el.setAttribute("required","required");
       else el.removeAttribute("required");
@@ -105,14 +137,15 @@ document.addEventListener("DOMContentLoaded", () => {
     cancelBtn.style.display = editMode ? "inline-block" : "none";
   }
 
-  function hhFromAny(t) {
-    // Accept "07:00", "07:00:00", Date-like string
-    if (!t) return "";
-    const s = String(t);
-    const m = s.match(/(\d{1,2}):/);
-    if (!m) return "";
-    return m[1].padStart(2,"0");
-  }
+  // Password toggles (works in view mode too)
+  document.querySelectorAll(".toggle-pass").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const input = btn.parentElement.querySelector("input");
+      const isPass = input.type === "password";
+      input.type = isPass ? "text" : "password";
+      btn.textContent = isPass ? "Hide" : "Show";
+    });
+  });
 
   function buildOptions(select) {
     const current = select.value;
@@ -132,7 +165,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function resyncAllSelects() {
     document.querySelectorAll(".time-hour").forEach(buildOptions);
-    // reapply selected values
     document.querySelectorAll(".time-hour").forEach((sel, i) => {
       const curr = timeSlots[i] ? timeSlots[i].slice(0,2) : "";
       if (curr) sel.value = curr;
@@ -186,7 +218,6 @@ document.addEventListener("DOMContentLoaded", () => {
     groupEl.remove();
     activeSlots--;
 
-    // keep indices compact (0..activeSlots-1) for consistency
     document.querySelectorAll(".time-hour").forEach((sel, i) => sel.dataset.index = String(i));
     document.querySelectorAll(".btn-remove-time").forEach((btn, i) => btn.dataset.index = String(i));
 
@@ -199,9 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
     timeSlots = [null, null, null];
     activeSlots = 1;
 
-    // Remove extra groups (keep first)
     document.querySelectorAll(".time-slot-group").forEach((g, i) => { if (i > 0) g.remove(); });
-    // Remove stray remove buttons if any
     document.querySelectorAll(".btn-remove-time").forEach(btn => btn.remove());
 
     FIRST_SELECT.value = "";
@@ -225,12 +254,10 @@ document.addEventListener("DOMContentLoaded", () => {
     mhEl.value   = profile.mental_health_background || "";
     medEl.value  = profile.medical_conditions || "";
 
-    // prefill password into BOTH fields (as requested)
     const pwd = profile.password || "";
     passEl.value = pwd;
     pass2El.value = pwd;
 
-    // times
     resetTimeUI();
     (profile.time_arr || []).slice(0,3).forEach((t, i) => {
       if (i > 0) addTimeSlot();
@@ -246,6 +273,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     resyncAllSelects();
   }
+
+  // sanitize on blur so trailing-only spaces don’t stick around visibly
+  [nameEl, goalEl, mhEl, medEl].forEach(el => {
+    el.addEventListener("blur", () => {
+      const v = cleanStr(el.value);
+      if (v !== el.value) el.value = v;
+    });
+  });
+  [ageEl, heightEl, weightEl, deadlineEl].forEach(el => {
+    el.addEventListener("blur", () => { el.value = cleanStr(el.value); });
+  });
 
   // ---------- Event wiring
   FIRST_SELECT.addEventListener("change", onTimeChange);
@@ -268,9 +306,15 @@ document.addEventListener("DOMContentLoaded", () => {
     clearError();
     const errors = [];
 
+    // collect sanitized values (trimmed so spaces-only become empty)
+    const nameVal = cleanStr(nameEl.value);
+    const goalVal = cleanStr(goalEl.value);
+    const mhVal   = cleanStr(mhEl.value);
+    const medVal  = cleanStr(medEl.value);
+    const p1 = cleanStr(passEl.value);
+    const p2 = cleanStr(pass2El.value);
+
     // Required password in edit mode
-    const p1 = passEl.value.trim();
-    const p2 = pass2El.value.trim();
     if (!p1 || !p2) errors.push("Password and confirmation are required.");
     if (p1 && p2) {
       if (p1 !== p2) errors.push("Passwords do not match.");
@@ -279,36 +323,48 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!/[0-9]/.test(p1)) errors.push("Password must contain at least one number.");
     }
 
-    if (!nameEl.value.trim()) errors.push("Name is required.");
-    if (!ageEl.value) errors.push("Age is required.");
-    if (!heightEl.value) errors.push("Height is required.");
-    if (!weightEl.value) errors.push("Weight is required.");
-    if (!deadlineEl.value) errors.push("Goal deadline is required.");
+    if (!nameVal) errors.push("Name is required.");
+    if (!cleanStr(ageEl.value)) errors.push("Age is required.");
+    if (!cleanStr(heightEl.value)) errors.push("Height is required.");
+    if (!cleanStr(weightEl.value)) errors.push("Weight is required.");
+    if (!cleanStr(deadlineEl.value)) errors.push("Goal deadline is required.");
 
     let selectedTimes = JSON.parse(hiddenTimes.value || "[]");
     if (!selectedTimes.length && loadedProfile?.time_arr?.length) {
-      // if user didn't touch times, fall back to existing profile times
       selectedTimes = loadedProfile.time_arr;
     }
     if (!selectedTimes.length) errors.push("Select at least one workout time.");
 
     if (errors.length) { showError(errors); return; }
 
+    // Build payload from sanitized values
     const payload = {
-      name: nameEl.value.trim(),
+      name: nameVal,
       age: parseFloat(ageEl.value),
       gender: genderEl.value, // 'female' | 'male'
       height: parseFloat(heightEl.value),
       weight: parseFloat(weightEl.value),
-      fitness_goal: goalEl.value.trim(),
+      fitness_goal: goalVal,
       diet_pref: prefEl.value,
       time_deadline: parseInt(deadlineEl.value, 10),
-      mental_health: mhEl.value.trim() || null,
-      medical_conditions: medEl.value.trim() || null,
+      mental_health: mhVal || null,
+      medical_conditions: medVal || null,
       time_arr: selectedTimes,
       new_password: p1
     };
 
+    // ---- No fake change detection (ignores trailing/leading spaces)
+    const currentNorm = normalizeFromData({
+      ...payload,
+      password: payload.new_password
+    });
+    if (baselineNorm && sameNormalized(currentNorm, baselineNorm)) {
+      alert("No changes detected.");
+      switchMode(false);
+      return;
+    }
+
+    // proceed with save
     const prev = saveBtn.textContent;
     saveBtn.disabled = true;
     saveBtn.textContent = "Saving...";
@@ -320,7 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify(payload)
       });
 
-      // Keep local copy in sync (so cancel/view shows updated values)
+      // Update local model + baseline to sanitized values
       loadedProfile = {
         ...loadedProfile,
         name: payload.name,
@@ -331,11 +387,12 @@ document.addEventListener("DOMContentLoaded", () => {
         fitness_goal: payload.fitness_goal,
         diet_pref: payload.diet_pref,
         time_deadline: payload.time_deadline,
-        mental_health_background: payload.mental_health,
-        medical_conditions: payload.medical_conditions,
-        time_arr: payload.time_arr,
+        mental_health_background: payload.mental_health || "",
+        medical_conditions: payload.medical_conditions || "",
+        time_arr: normTimes(payload.time_arr),
         password: payload.new_password
       };
+      baselineNorm = normalizeFromData(loadedProfile);
 
       populate(loadedProfile);
       switchMode(false);
@@ -353,7 +410,8 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const data = await fetchJSON("/api/profile");
       loadedProfile = data;
-      populate(data);
+      baselineNorm = normalizeFromData(loadedProfile);
+      populate(loadedProfile);
       switchMode(false); // view-first
     } catch (err) {
       showError(err.message);
