@@ -1,21 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link rel="icon" type="image/png"
-            href="favicon.png" />
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Virtual Health Assistant - Profile</title>
-        <!-- Fonts -->
-        <link
-            href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Anaheim&display=swap"
-            rel="stylesheet" />
-        <!-- Styles -->
-        <link rel="stylesheet" href="profile.css" />
-    </head>
-    <body>
-        <script src="navbar.js"></script>
+  <head>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Virtual Health Assistant - Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Anaheim&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="profile.css" />
+  </head>
+  <body>
+    <script src="navbar.js"></script>
 
-        <script src="profile.js"></script>
-    </body>
+    <div class="container">
+      <div class="logo">
+        <h1>Your Profile</h1>
+      </div>
+
+      <form id="profile-form" novalidate>
+        <!-- Basic Information -->
+        <div class="form-section">
+          <h2 class="section-title">Basic Information</h2>
+
+          <div class="form-group full-width">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Your name" required disabled />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="password">New Password</label>
+              <div class="password-field">
+                <!-- required only while editing (set by JS) -->
+                <input type="password" id="password" placeholder="New password" minlength="4" maxlength="10" disabled />
+                <button type="button" class="toggle-pass" >Show</button>
+              </div>
+            </div>
+            <div class="form-group half-width">
+              <label for="confirm-password">Confirm New Password</label>
+              <div class="password-field">
+                <input type="password" id="confirm-password" placeholder="Confirm new password" disabled />
+                <button type="button" class="toggle-pass" >Show</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="age">Age</label>
+              <input type="number" id="age" min="1" max="120" step="0.1" required disabled />
+            </div>
+            <div class="form-group half-width">
+              <label for="gender">Gender</label>
+              <select id="gender" required disabled>
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="weight">Weight (kg)</label>
+              <input type="number" id="weight" min="20" max="500" step="0.1" required disabled />
+            </div>
+            <div class="form-group half-width">
+              <label for="height">Height (m)</label>
+              <input type="number" id="height" min="0.5" max="3" step="0.001" required disabled />
+            </div>
+          </div>
+        </div>
+
+        <!-- Goals & Preferences -->
+        <div class="form-section">
+          <h2 class="section-title">Goals & Preference</h2>
+
+          <div class="form-group full-width">
+            <label for="fitness-goal">Fitness Goal</label>
+            <textarea id="fitness-goal" maxlength="90" placeholder="Get into better shape" disabled></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="diet-pref">Dietary Preference</label>
+              <select id="diet-pref" required disabled>
+                <option value="any">Any</option>
+                <option value="vegan">Vegan</option>
+                <option value="vegetarian">Vegetarian</option>
+                <option value="pescatarian">Pescatarian</option>
+                <option value="carnivore">Carnivore</option>
+                <option value="balanced">Balanced</option>
+                <option value="both">Both</option>
+              </select>
+            </div>
+            <div class="form-group half-width">
+              <label for="goal-deadline">Goal Deadline (days)</label>
+              <input type="number" id="goal-deadline" min="1" max="365" required disabled />
+            </div>
+          </div>
+        </div>
+
+        <!-- Schedule -->
+        <div class="form-section">
+          <h2 class="section-title">Workout Times</h2>
+          <label>Preferred Workout Times</label>
+          <div class="time-slots-container">
+            <div class="time-slot-group">
+              <select class="time-hour" data-index="0" disabled>
+                <option value="" disabled selected>Select hour</option>
+              </select>
+              <span class="time-range-indicator">20 min session</span>
+            </div>
+            <button type="button" id="add-time-slot" class="btn-add-time" disabled>+ Add Another Time</button>
+          </div>
+          <input type="hidden" id="time-array" />
+        </div>
+
+        <!-- Health -->
+        <div class="form-section">
+          <h2 class="section-title">Health History</h2>
+          <div class="form-group full-width">
+            <label for="mental-health">Mental Health Notes</label>
+            <textarea id="mental-health" placeholder="Any mental health conditions from past or present..." disabled></textarea>
+          </div>
+          <div class="form-group full-width">
+            <label for="medical-conditions">Medical Conditions</label>
+            <textarea id="medical-conditions" placeholder="Any medical conditions you may have..." disabled></textarea>
+          </div>
+        </div>
+
+        <div id="form-error" class="form-error" style="display:none"></div>
+
+        <!-- Actions -->
+        <div class="actions">
+          <button type="button" class="btn btn-secondary" id="edit-btn">Edit Profile</button>
+          <button type="submit" class="btn btn-primary" id="save-btn" style="display:none">Save Changes</button>
+          <button type="button" class="btn btn-secondary" id="cancel-btn" style="display:none">Cancel</button>
+        </div>
+
+        <div class="logout-wrap">
+          <button type="button" id="logout-btn" class="btn btn-logout">Logout</button>
+        </div>
+      </form>
+    </div>
+
+    <script src="profile.js"></script>
+  </body>
 </html>

@@ -4,15 +4,51 @@ import psycopg2
 from psycopg2.extras import RealDictCursor
 import os
 from tempfile import NamedTemporaryFile
+from datetime import time, datetime
+from decimal import Decimal
 # header includes  #################################################################################################################################
-from data.database_postgres import get_id, user_registration
+from data.database_postgres import (
+    get_id, user_registration,
+    get_user_profile_by_id, change_everything       
+)
 from temp.audio import transcribe_audio as transcript
 from chatbots.diet import get_image_description
 from chatbots.reasoning import respond
 
+# issues:
+# remember to handle the empty spaces checks 
+
+def _to_float(x):
+    return float(x) if isinstance(x, Decimal) else x
+def _to_time_str(t):
+    if isinstance(t, time):
+        return t.strftime("%H:%M")
+    if isinstance(t, datetime):
+        return t.strftime("%H:%M")
+    if isinstance(t, str):
+        # handles "07:00:00" or "07:00"
+        return t[:5] if ":" in t else t
+    return str(t)
+def _jsonable_profile(p):
+    return {
+        "success": True,
+        "name": p.get("name") or "",
+        "age": _to_float(p.get("age")),
+        "gender": p.get("gender"),
+        "height": _to_float(p.get("height")),
+        "weight": _to_float(p.get("weight")),
+        "fitness_goal": p.get("fitness_goal"),
+        "diet_pref": p.get("diet_pref"),
+        "time_arr": [_to_time_str(t) for t in (p.get("time_arr") or [])],
+        "mental_health_background": p.get("mental_health_background"),
+        "medical_conditions": p.get("medical_conditions"),
+        "time_deadline": _to_float(p.get("time_deadline")),
+        "password": p.get("password") or ""   # <-- add this line
+    }
 
 app = Flask(__name__)
 app.secret_key = 'your-secret-key-here'  # Important for sessions
+
 # Serve static files from web_files directory
 @app.route('/web_files/<path:filename>')
 def serve_static(filename):
@@ -251,6 +287,16 @@ def api_respond():
     if not isinstance(markdown, str):
         return jsonify({'success': False, 'error': 'respond() did not return a string'}), 500
     return jsonify({'success': True, 'markdown': markdown})
+@app.route('/api/profile', methods=['GET'])
+def api_get_profile():
+    user_id = session.get('user_id')
+    if user_id is None:
+        return jsonify({'success': False, 'error': 'Not authenticated'}), 401
+    profile = get_user_profile_by_id(user_id)
+    if not profile:
+        return jsonify({'success': False, 'error': 'Profile not found'}), 404
+    return jsonify(_jsonable_profile(profile))
+
 
 from multiprocessing import Process
 def return_and_call(result1):

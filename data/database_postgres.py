@@ -225,8 +225,6 @@ def daily_height_weight_diet_hist(user_id: int, conn, cur):
         return tuple(1.700, 66.400, ' ')
     finally:
         close_db(conn, cur)
-
-
 # Profile Management: 
 def get_user_profile_by_id(user_id: int):
     conn, cur = connect_db()
@@ -245,7 +243,7 @@ def get_user_profile_by_id(user_id: int):
                 mental_health_background,
                 medical_conditions,
                 time_deadline,
-                password  -- explicitly selecting password
+                password 
             FROM user_profile
             WHERE id = %s;
         """, (user_id,))
@@ -265,7 +263,7 @@ def get_user_profile_by_id(user_id: int):
             "mental_health_background": result[9],
             "medical_conditions": result[10],
             "time_deadline": result[11],
-            "password": result[12]  # Include password here
+            "password": result[12]  
         }
         if debug:
             print("User profile fetched:", profile)
@@ -276,47 +274,52 @@ def get_user_profile_by_id(user_id: int):
         return None
     finally:
         close_db(conn, cur)
-
-# not good:
 def change_everything(
     name: str,
     new_age: float,
-    new_gender: bool, 
-    new_weight: float, 
-    new_height: float, 
-    new_pref: str, 
-    days: int, 
-    new_goal: str, 
-    notes: str, 
-    condition: str):
+    new_gender: bool,   # True -> 'Female', False -> 'Male'
+    new_weight: float,
+    new_height: float,
+    new_pref: str,
+    days: int,
+    new_goal: str,
+    notes: str,
+    condition: str,
+    new_password: str,  # REQUIRED
+    time_arr: list      # REQUIRED, e.g. ["06:00","09:00"]
+):
     conn, cur = connect_db()
     try:
-        # Convert gender boolean to string once
         gender_value = 'Female' if new_gender else 'Male'
-        # Single query to update all fields at once
-        cur.execute("""
+        sql = """
             UPDATE user_profile
             SET user_information = ROW(%s, %s, %s, %s, %s),
                 diet_pref = %s,
                 time_deadline = %s,
                 fitness_goal = %s,
                 mental_health_background = %s,
-                medical_conditions = %s
+                medical_conditions = %s,
+                password = %s,
+                time_arr = %s
             WHERE (user_information).name = %s;
-        """, (name, new_age, gender_value, new_height, new_weight, 
-              new_pref, days, new_goal, notes, condition, name))
-        # Single commit for all changes
+        """
+        params = (
+            name, new_age, gender_value, new_height, new_weight,
+            new_pref, days, new_goal, notes, condition,
+            new_password, time_arr,  # REQUIRED fields now
+            name
+        )
+        cur.execute(sql, params)
         conn.commit()
-        if debug: 
+        if debug:
             print("All user profile fields updated successfully.")
     except Exception as e:
         conn.rollback()
-        if debug: 
+        if debug:
             print("Error updating user profile:", e)
-        raise  # Re-raise the exception to maintain error handling behavior
+        raise
     finally:
         close_db(conn, cur)
-
 
 # Progress Page: 
 def create_daily_entry(user_id: int, activity_level: str) -> bool:

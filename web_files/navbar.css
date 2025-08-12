@@ -1,119 +1,182 @@
-.navbar {
+/* navbar.css – complete rewrite */
+
+/* ---------- Theme tokens ---------- */
+:root{
+  --text: #171a1f;
+  --brand: #171a1f;
+  --purple: #462c5f;
+  --purple-200: #e0d2ee;
+  --purple-tint: rgba(124,94,169,0.18);
+  --chip-bg: rgba(255,255,255,0.55);
+  --chip-border: rgba(23,26,31,0.18);
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+img { display: block; }
+
+/* ---------- Top navbar ---------- */
+.navbar{
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  height: 60px;
+  z-index: 1000;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: transparent;
+
+  background: transparent;
+  color: var(--text);
   padding: 15px 0;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-  height: 60px;
-  box-sizing: border-box;
-  color: #171a1f;
   font-family: 'Anaheim', sans-serif;
-  font-weight: bold;
-  /* Add these new properties */
+  font-weight: 700;
+
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  transition: background-color 0.3s ease;
+  transition: background-color .3s ease;
 }
 
-.navbar-brand {
-    color: #171a1f;
-    font-family: 'Anaheim', sans-serif; /* Font family */
-    font-size: 28px; /* Font size */
-    font-weight:bolder;
-    position: absolute;
-    left: 20px;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    transition: all 0.3s
-}
-.navbar-logo {
-    /* height: 36px;
-    width: auto;
-    object-fit: contain; */
-    height: 36px; /* adjust size to match text */
-    vertical-align: middle;
-    margin-left: 5px; /* space between text and image */
-    transition: all 0.3s
-}
-.navbar-brand:hover , .navbar-brand:active {
-    transform: scale(1.1);
-    transition: transform 0.3s;
-}
-/* Add scroll behavior */
-.navbar.scrolled {
-  background-color: rgba(224, 210, 238, 0.7);
+/* Optional darker background when scrolled (enable via JS if you want) */
+.navbar.scrolled{
+  background-color: rgba(224,210,238,0.7);
 }
 
-.navbar nav {
-    display: flex;
-    gap: 20px;
+/* ---------- Brand (left) ---------- */
+.navbar-brand{
+  position: absolute;
+  left: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  color: var(--brand);
+  text-decoration: none;
+  font-size: 28px;
+  line-height: 1;
+  transition: transform .25s ease;
 }
-.navbar nav a {
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    border-radius: 8px;
-    color: black;
-    text-decoration: none;
-    font-size: 22px;
-    transition: all 0.3s;
-    border: 3px solid transparent;
+.navbar-brand:hover,
+.navbar-brand:active{ transform: scale(1.06); }
+
+.navbar-logo{
+  height: 36px;
+  width: auto;
+  vertical-align: middle;
 }
+
+/* ---------- Center nav links ---------- */
+.navbar nav{
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.navbar nav a{
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 10px;
+
+  color: #000;                 /* default black */
+  text-decoration: none;
+  font-size: 22px;
+  line-height: 1;
+  border: 2px solid transparent;
+  transition: color .2s ease, background-color .2s ease, transform .2s ease, border-color .2s ease;
+}
+
 .navbar nav a:hover,
-.navbar nav a.active {
-    /* transform: scale(1.05);
-    color:  rgb(70, 44, 95);
-    border-color: rgb(224, 210, 238); */
-    transform: scale(1.05);
-    color:  rgb(70, 44, 95);
-    background-color: rgb(224, 210, 238);
+.navbar nav a.active{
+  color: var(--purple);
+  background-color: var(--purple-200);
+  transform: translateY(-1px);
 }
-.header-icons {
-    position: absolute;
-    right: 15px;vertical-align: middle;
-    padding-right: 10px;
-    display: flex;
-    gap: 10%;
-    border-radius:6px;
-    color: black;
-    text-decoration: none;
-    font-size: 22px;
-    transition: all 0.3s;
-    border: 3px solid transparent;
+
+/* ---------- Right-side profile chip ---------- */
+.header-icons{
+  position: absolute;
+  top: 10px;
+  right: 15px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+
+  border: 1.5px solid var(--chip-border);
+  border-radius: 999px;
+  background: transparent;
+  backdrop-filter: saturate(120%) blur(6px);
+  -webkit-backdrop-filter: saturate(120%) blur(6px);
+  box-shadow: 0 1px 0 rgba(0,0,0,.05), 0 2px 8px rgba(0,0,0,.08);
+
+  color: var(--text);
+  transition: border-color .2s ease, background-color .2s ease, color .2s ease, box-shadow .2s ease;
 }
-  /* .icon-circle {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 2px solid #171a1f;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    transition: all 0.3s;
-  } */
-.profile{vertical-align: middle;
-    padding-left: 5px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    border-radius: 5px;
-    color: black;
-    text-decoration: none;
-} 
-.header-icons:hover, .header-icons:active{
-    transform: scale(1.05);
-    color:  rgb(70, 44, 95);
-    border-color: rgb(224, 210, 238);
+
+/* keep chip highlighted both on hover and when JS marks it .active */
+.header-icons:hover,
+.header-icons.active{
+  border-color: #7c5ea9;
+  background-color: var(--purple-tint);
+  color: var(--purple);
+  box-shadow: 0 2px 10px rgba(124,94,169,.25);
 }
-.icon-circle img {vertical-align: middle;
-    width: 24px;
-    height: 24px;
-    object-fit: cover;
-    transition: transform 0.3s;
+
+/* Profile text inside chip */
+.header-icons .profile{
+  color: #000;                 /* default black */
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: .2px;
+  padding: 0 2px;
+}
+
+/* On hover or active, flip to purple */
+.header-icons:hover .profile,
+.header-icons.active .profile,
+.header-icons .profile:hover{
+  color: var(--purple);
+}
+
+/* Avatar circle on the right */
+.icon-circle{
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(124,94,169,0.6);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  text-decoration: none;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.icon-circle img{
+  width: 22px;
+  height: 22px;
+  object-fit: cover;
+}
+.header-icons:hover .icon-circle,
+.header-icons.active .icon-circle{
+  border-color: #7c5ea9;
+}
+
+/* ---------- Responsive tweaks ---------- */
+@media (max-width: 860px){
+  .navbar-brand{ font-size: 22px; }
+  .navbar nav a{ font-size: 18px; padding: 6px 8px; }
+  .header-icons{ padding: 5px 10px; }
+}
+@media (max-width: 560px){
+  .navbar{ height: 56px; }
+  .navbar-brand{ left: 12px; font-size: 20px; }
+  .navbar nav{ gap: 14px; }
+  .navbar nav a{ font-size: 16px; }
+  .icon-circle{ width: 30px; height: 30px; }
+  .icon-circle img{ width: 20px; height: 20px; }
 }

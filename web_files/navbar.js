@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const pageMap = {
             'chatbot': 'chatbot',
             'progress': 'progress',
-            'profile': 'my-profile'
+            'profile': 'profile'
             // Add more mappings as needed
         };
         return pageMap[page] || page;

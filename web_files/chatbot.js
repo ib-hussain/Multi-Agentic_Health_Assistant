@@ -2,15 +2,14 @@ document.addEventListener("DOMContentLoaded", function() {
     // DOM Elements
     const messageForm = document.getElementById('message-form');
     const userInput = document.getElementById('user-input');
+    const DEFAULT_PLACEHOLDER = userInput.placeholder || "Type your message...";
     const sendBtn = document.getElementById('send-btn');
     const recordBtn = document.getElementById('record-btn');
     const chatMessages = document.getElementById('chat-messages');
-
     const attachImageBtn = document.getElementById('attach-image-btn');
     const uploadAudioBtn = document.getElementById('upload-audio-btn');
     const imageInput = document.getElementById('image-input');
     const audioInput = document.getElementById('audio-input');
-
     // State
     let isTyping = false;
     let mediaRecorder;
@@ -19,13 +18,11 @@ document.addEventListener("DOMContentLoaded", function() {
     let audioChunks = [];
     let currentStream;
     let pendingImageFile = null; // image to send with next prompt
-
     // Events
     attachImageBtn.addEventListener('click', () => imageInput.click());
     uploadAudioBtn.addEventListener('click', () => audioInput.click());
     imageInput.addEventListener('change', handleImageSelected);
     audioInput.addEventListener('change', handleAudioSelected);
-
     recordBtn.addEventListener('click', toggleRecording);
     window.addEventListener('beforeunload', handlePageUnload);
     messageForm.addEventListener('submit', handleMessageSubmit);
@@ -34,20 +31,22 @@ document.addEventListener("DOMContentLoaded", function() {
     function handleImageSelected(e) {
         const file = e.target.files[0];
         if (!file) return;
-
         const ext = (file.name.split('.').pop() || '').toLowerCase();
         const allowed = ['png', 'jpg', 'jpeg', 'ico'];
         if (!allowed.includes(ext)) {
+            // show an error as a bot message only if invalid
             addMessage("Unsupported image type. Allowed: png, jpg, jpeg, ico.", 'bot-message');
             imageInput.value = '';
             pendingImageFile = null;
+            attachImageBtn.classList.remove('attached');
+            userInput.placeholder = DEFAULT_PLACEHOLDER;
             return;
         }
-
         pendingImageFile = file;
-        addMessage("Image attached. It will be sent with your next prompt.", 'bot-message');
+        //  show status only in the input bar + visual dot on button
+        userInput.placeholder = "Image attached — add a prompt (optional) and press Send";
+        attachImageBtn.classList.add('attached');
     }
-
     async function uploadImage(file, promptText) {
         const ext = (file.name.split('.').pop() || '').toLowerCase();
         const form = new FormData();
@@ -161,6 +160,8 @@ document.addEventListener("DOMContentLoaded", function() {
             userInput.value = '';
             if (imageURL) URL.revokeObjectURL(imageURL);
             pendingImageFile = null;
+            attachImageBtn.classList.remove('attached');
+            userInput.placeholder = DEFAULT_PLACEHOLDER;
             imageInput.value = '';
             hideSpinnerOn(attachImageBtn);
 
@@ -393,101 +394,94 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const lines = md.split("\n");
         let html = "";
-        let inUl = false, inOl = false, inP = false;
+        const listStack = []; // stack of {type: 'ul'|'ol', indent: number}
+        let inP = false;
 
-        function closeLists() {
-            if (inUl) { html += "</ul>"; inUl = false; }
-            if (inOl) { html += "</ol>"; inOl = false; }
-        }
-        function closeP() {
-            if (inP) { html += "</p>"; inP = false; }
-        }
-        function escapeHtml(s) {
-            return s
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;");
-        }
-        function inlineFormat(txt) {
-            // escape, then add inline tags
+        const escapeHtml = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+        const inlineFormat = txt => {
             txt = escapeHtml(txt);
-
-            // code spans
             txt = txt.replace(/`([^`]+)`/g, "<code>$1</code>");
-
-            // bold (**bold**)
             txt = txt.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
-
-            // italics (*italics*) – avoid interfering with bold already converted
-            // (ensure asterisk isn't part of a word boundary)
             txt = txt.replace(/(^|[^*])\*(?!\s)([^*]+?)\*(?!\w)/g, "$1<em>$2</em>");
-
             return txt;
-        }
+        };
+        const closeParagraph = () => { if (inP) { html += "</p>"; inP = false; } };
+        const closeListsToIndent = (indent) => {
+            while (listStack.length && listStack[listStack.length - 1].indent >= indent) {
+                const { type } = listStack.pop();
+                html += (type === "ul" ? "</ul>" : "</ol>");
+            }
+        };
+        const openListIfNeeded = (type, indent) => {
+            // if same type & indent exists, keep; else open new
+            if (!listStack.length || listStack[listStack.length - 1].indent < indent || listStack[listStack.length - 1].type !== type) {
+                listStack.push({ type, indent });
+                html += (type === "ul" ? "<ul>" : "<ol>");
+            }
+        };
+        const closeAllLists = () => closeListsToIndent(0);
 
         for (let i = 0; i < lines.length; i++) {
             const raw = lines[i];
-            const t = raw.trim();
-
-            // blank line -> break paragraph and lists
-            if (t === "") {
-                closeP();
-                closeLists();
+            if (raw.trim() === "") {
+                closeParagraph();
+                closeAllLists();
                 continue;
             }
 
-            // Heading style 1: **Title** on its own line
-            let mHeadingBold = t.match(/^\*\*(.+?)\*\*$/);
-            if (mHeadingBold) {
-                closeP(); closeLists();
-                html += `<h3>${inlineFormat(mHeadingBold[1])}</h3>`;
+            // Headings: **Title** alone or #, ##, ...
+            const boldHeading = raw.trim().match(/^\*\*(.+?)\*\*$/);
+            if (boldHeading) {
+                closeParagraph(); closeAllLists();
+                html += `<h3>${inlineFormat(boldHeading[1])}</h3>`;
+                continue;
+            }
+            const atx = raw.match(/^(\s*)(#{1,6})\s+(.*)$/);
+            if (atx) {
+                closeParagraph(); closeAllLists();
+                const level = Math.min(6, atx[2].length);
+                html += `<h${level}>${inlineFormat(atx[3].trim())}</h${level}>`;
                 continue;
             }
 
-            // Heading style 2: #, ##, ### ...
-            let mAtx = t.match(/^(#{1,6})\s+(.*)$/);
-            if (mAtx) {
-                const level = Math.min(6, mAtx[1].length);
-                closeP(); closeLists();
-                html += `<h${level}>${inlineFormat(mAtx[2])}</h${level}>`;
+            // Lists: support *, -, + and numbered (with indentation)
+            const liMatch = raw.match(/^(\s*)([*+\-]|\d+\.)\s+(.*)$/);
+            if (liMatch) {
+                const indent = liMatch[1].length; // number of leading spaces
+                const marker = liMatch[2];
+                const content = liMatch[3];
+
+                closeParagraph();
+
+                const isOrdered = /^\d+\.$/.test(marker);
+                const type = isOrdered ? "ol" : "ul";
+
+                // adjust nesting
+                if (!listStack.length || indent > listStack[listStack.length - 1].indent) {
+                    openListIfNeeded(type, indent);
+                } else if (indent < listStack[listStack.length - 1].indent || listStack[listStack.length - 1].type !== type) {
+                    closeListsToIndent(indent + (isOrdered ? 0 : 0));
+                    openListIfNeeded(type, indent);
+                } else {
+                    // same level & type -> nothing to open/close
+                }
+
+                html += `<li>${inlineFormat(content.trim())}</li>`;
                 continue;
             }
 
-            // Ordered list: "1. item"
-            let mOl = t.match(/^(\d+)\.\s+(.*)$/);
-            if (mOl) {
-                closeP();
-                if (!inOl) { closeLists(); html += "<ol>"; inOl = true; }
-                html += `<li>${inlineFormat(mOl[2])}</li>`;
-                continue;
-            }
-
-            // Unordered list: "* item" or "- item"
-            let mUl = t.match(/^(\*|-)\s+(.*)$/);
-            if (mUl) {
-                closeP();
-                if (!inUl) { closeLists(); html += "<ul>"; inUl = true; }
-                html += `<li>${inlineFormat(mUl[2])}</li>`;
-                continue;
-            }
-
-            // Paragraph (merge consecutive lines with <br>)
-            if (!inP) {
-                closeLists();
-                html += "<p>";
-                inP = true;
-                html += inlineFormat(t);
-            } else {
-                html += "<br>" + inlineFormat(t);
-            }
+            // Paragraphs (join consecutive lines with <br>)
+            closeAllLists();
+            if (!inP) { html += "<p>"; inP = true; html += inlineFormat(raw.trim()); }
+            else { html += "<br>" + inlineFormat(raw.trim()); }
         }
 
         // tidy up
-        closeP();
-        closeLists();
-
+        if (inP) html += "</p>";
+        closeAllLists();
         return html;
     }
+
 
     function addTypingIndicator() {
         const typing = document.createElement('div');

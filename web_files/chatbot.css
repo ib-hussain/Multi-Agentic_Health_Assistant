@@ -332,3 +332,18 @@ body {
     width: 24px;
     height: 24px;
 }
+#attach-image-btn.attached {
+    position: relative;
+}
+#attach-image-btn.attached::after {
+    content: "";
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 10px;
+    height: 10px;
+    background: #22c55e;        /* green dot */
+    border: 2px solid #fff;
+    border-radius: 999px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+}
