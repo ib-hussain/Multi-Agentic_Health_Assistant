@@ -148,12 +148,25 @@ body {
     cursor: not-allowed;
     transform: none;
 }
-
+#attach-image-btn:hover,
+#upload-audio-btn:hover,
+#send-btn:hover,
+.send-btn:hover {
+  /* neutral shadow under circular buttons */
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18);
+  transform: none; /* prevent any scale/shift on older styles */
+}
 .send-btn:disabled:hover {
     background-color: rgb(120, 120, 120);
     transform: none;
 }
-
+.send-btn:focus-visible,
+.record-btn:focus-visible {
+  outline: 0;
+  box-shadow:
+    0 0 0 3px rgba(70, 44, 95, 0.35),
+    0 8px 18px rgba(0, 0, 0, 0.16);
+}
 #user-input:disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -286,8 +299,9 @@ body {
 }
 
 .record-btn:hover {
-    background-color: #c0392b;
-    transform: scale(1.05);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18);
+  background-color: #e74c3c; /* keep original mic color */
+  transform: none;           /* disable previous hover scale */
 }
 
 .record-btn.recording svg {
