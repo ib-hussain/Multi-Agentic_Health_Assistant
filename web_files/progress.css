@@ -33,7 +33,7 @@ body{
 }
 .pg-title{ display:flex; flex-direction:column; gap:6px; }
 .pg-head h1{
-  font-family:'Anaheim', sans-serif; /* special font only for the big heading */
+  font-family:'Manrope', sans-serif; /* special font only for the big heading */
   font-size:36px; margin:0; color:#1f2a44; letter-spacing:.2px;
 }
 .pg-head .sub{ margin:0; opacity:.8; }
@@ -69,22 +69,6 @@ table{ width:100%; border-collapse:collapse; font-size:14px; }
 thead th{ text-align:left; padding:12px 14px; background:rgba(255,255,255,.7); color:#2b3446; font-weight:800; }
 tbody td{ padding:10px 14px; border-top:1px solid rgba(0,0,0,.06); }
 tbody tr:hover{ background:rgba(255,255,255,.65); }
-
-/* Calendar heat */
-.heat-card{ margin-top:18px; } /* add space under the records container */
-.heat-grid{ padding:14px; display:grid; grid-template-columns:repeat(10,1fr); gap:10px; }
-.day{
-  border-radius:10px; aspect-ratio:1/1; border:1px solid rgba(0,0,0,.06);
-  box-shadow:0 6px 16px rgba(0,0,0,.05);
-  display:flex; align-items:center; justify-content:center;
-  font-size:10px; color:#1f2a44; opacity:.9;
-}
-.day .date{ pointer-events:none; }
-.legend{ display:flex; gap:10px; font-size:12px; opacity:.85; }
-.legend .swatch{ display:inline-block; width:14px; height:14px; border-radius:4px; margin-right:6px; border:1px solid rgba(0,0,0,.06); }
-.legend .swatch.lo{ background:#e5f0ff; }
-.legend .swatch.md{ background:var(--brand-300); }
-.legend .swatch.hi{ background:var(--brand-500); }
 
 /* Buttons + errors */
 .btn{ border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.75); padding:8px 14px; border-radius:999px; font-weight:800; cursor:pointer; }

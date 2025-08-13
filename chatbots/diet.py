@@ -86,7 +86,7 @@ def get_image_description(image_path: str="temp/download.jpeg", prompt: str = " 
             }
         ]
         # Call Together AI's LLaMA 3.2 Vision model
-        together_api_key = os.getenv("TOGETHER_API_KEY")
+        together_api_key = str(os.getenv("TOGETHER_API_KEY"))
         client = Together(api_key=together_api_key)
         response = client.chat.completions.create(
             model="meta-llama/Llama-3.2-11B-Vision-Instruct-Turbo",

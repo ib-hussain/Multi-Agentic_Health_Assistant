@@ -3,20 +3,14 @@ Database handler for the Multi-Agentic Health Assistant project.
 This header provides functions to interact with the PostgreSQL database,
 including user registration, profile management, daily stats, and other storage functionalities.
 '''
-
-import streamlit as st
 import psycopg2
 from datetime import datetime, timedelta, time
 import os
 debug = True  
-
 # issues:
 # use the other storage table to store old chats of user in some form so that they can be loaded later
-# put a change password function and then put a password changing field in the website.py file
-# put a change time function and field in the interface
 # add some alarm functionality that makes everything happen at the required times and maybe some alarm functionality
 # add some 24 hour cycle routine that puts in changes in the database
-
 last19477491_query = """
 -- user_profile table
 UPDATE user_profile

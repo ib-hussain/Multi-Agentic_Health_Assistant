@@ -118,25 +118,8 @@ function renderAll(rows) {
     data: { labels:["Done","Left"], datasets:[{ label:"Days", data:[done,left], backgroundColor:[barA,barB], borderRadius:6 }] },
     options: { responsive:true, scales:{ y:{ beginAtZero:true } }, plugins:{ legend:{ display:false } } }
   });
-
-  // Heat (last 30) uses activity score
-  renderHeat(parsed.slice(-30));
 }
 
-function renderHeat(days){
-  const grid = document.getElementById("heat-grid");
-  grid.innerHTML = "";
-  const max = Math.max(1, ...days.map(d => d.activityScore || 0));
-  days.forEach(d => {
-    const ratio = (d.activityScore || 0) / max;
-    const cls = ratio > .66 ? "hi" : ratio > .33 ? "md" : "lo";
-    const cell = el("div", { class:`day ${cls}`, style:`background:${heatColor(cls)}` },
-      el("span", { class:"date" }, d.label)
-    );
-    cell.title = `${d.label} — ${titleCase(d.activityStr)}`;
-    grid.appendChild(cell);
-  });
-}
 
 /* utils */
 function parseDate(v){ try{ if (typeof v==="string" && /^\d{4}-\d{2}-\d{2}/.test(v)) return new Date(v); const d=new Date(v); return isNaN(d)?null:d; }catch{ return null; } }
@@ -147,4 +130,4 @@ const titleCase = s => (s||"").split(" ").map(w=>w? w[0].toUpperCase()+w.slice(1
 function el(t, attrs={}, ...kids){ const n=document.createElement(t); for(const [k,v] of Object.entries(attrs)){ if(k==="class") n.className=v; else if(k==="style") n.setAttribute(k,v); else n.setAttribute(k,v); } kids.forEach(c=>n.append(c instanceof Node?c:document.createTextNode(c))); return n; }
 function createOrUpdateChart(inst, id, cfg){ const ctx=document.getElementById(id).getContext("2d"); if(inst) inst.destroy(); return new Chart(ctx,cfg); }
 function baseLineOptions(suf){ return { responsive:true, plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:(ctx)=>`${ctx.parsed.y}${suf?` ${suf}`:''}` } } }, scales:{ x:{ ticks:{ maxRotation:0, autoSkip:true }}, y:{ beginAtZero:false } } }; }
-function heatColor(c){ if(c==="hi") return "#2563eb"; if(c==="md") return "#93c5fd"; return "#e5f0ff"; }
+
