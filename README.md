@@ -2,7 +2,9 @@
 <p align="center">A comprehensive wellness platform powered by AI agents for personalised health management.</p>
 
 <hr />
-
+<p align="center">
+  <img src="data/virtualhealth.png" alt="Virtual Health Assistant" >
+</p>
 
 ## 📋 Overview
 
