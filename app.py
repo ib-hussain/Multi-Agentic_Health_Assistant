@@ -332,7 +332,6 @@ def api_respond():
     if not isinstance(markdown, str):
         return jsonify({'success': False, 'error': 'respond() did not return a string'}), 500
     return jsonify({'success': True, 'markdown': markdown})
-# ---------- Profile API ----------
 @app.route("/api/profile", methods=["GET"])
 def api_get_profile():
     user_id = session.get("user_id")
@@ -403,7 +402,6 @@ def api_update_profile():
         return jsonify({"success": True, "message": "Profile updated"})
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
-
 @app.route("/api/progress", methods=["GET"])
 def api_progress():
     user_id = session.get("user_id")
