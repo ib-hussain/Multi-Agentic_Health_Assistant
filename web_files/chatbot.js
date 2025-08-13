@@ -18,6 +18,27 @@ document.addEventListener("DOMContentLoaded", function() {
     let audioChunks = [];
     let currentStream;
     let pendingImageFile = null; // image to send with next prompt
+    
+    // Auto-resize functionality for textarea
+    function autoResize() {
+        userInput.style.height = 'auto';
+        userInput.style.height = Math.max(70, Math.min(userInput.scrollHeight, 150)) + 'px';
+    }
+    
+    // Initialize auto-resize
+    userInput.addEventListener('input', autoResize);
+    
+    // Handle Enter key behavior
+    userInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && e.shiftKey) {
+            userInput.value += "";
+            autoResize();
+        }else if (e.key === 'Enter' ) {
+            e.preventDefault();
+            messageForm.dispatchEvent(new Event('submit'));
+        }
+    });
+    
     // Events
     attachImageBtn.addEventListener('click', () => imageInput.click());
     uploadAudioBtn.addEventListener('click', () => audioInput.click());
@@ -44,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         pendingImageFile = file;
         //  show status only in the input bar + visual dot on button
-        userInput.placeholder = "Image attached — add a prompt (optional) and press Send";
+        userInput.placeholder = "Image attached, add a prompt (optional) and press Send";
         attachImageBtn.classList.add('attached');
     }
     async function uploadImage(file, promptText) {
@@ -89,6 +110,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             userInput.value = data.transcription || "";
             userInput.focus();
+            autoResize(); // Auto-resize after setting content
             try {
                 const len = userInput.value.length;
                 userInput.setSelectionRange(len, len);
@@ -158,6 +180,7 @@ document.addEventListener("DOMContentLoaded", function() {
             addMessage(`Send failed: ${err.message}`, 'bot-message');
         } finally {
             userInput.value = '';
+            autoResize(); // Reset height after clearing
             if (imageURL) URL.revokeObjectURL(imageURL);
             pendingImageFile = null;
             attachImageBtn.classList.remove('attached');
@@ -236,6 +259,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             userInput.value = transcription || "";
             userInput.focus();
+            autoResize(); // Auto-resize after setting content
             try {
                 const len = userInput.value.length;
                 userInput.setSelectionRange(len, len);
