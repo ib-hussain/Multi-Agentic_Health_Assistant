@@ -14,6 +14,10 @@ pydub
 pinecone-client
 langchain
 torch
+torch --index-url https://download.pytorch.org/whl/cpu
+accelerate
+safetensors
+sentence-transformers
 scikit-learn
 opencv-python-headless
 speechrecognition

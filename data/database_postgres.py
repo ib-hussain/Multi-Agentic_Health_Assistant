@@ -283,7 +283,7 @@ def change_everything(
     condition: str,
     new_password: str,   # REQUIRED
     time_arr: list       # REQUIRED, e.g. ["06:00","09:00"]
-):
+    ):
     """
     Updates ALL profile fields for the given user_id.
     - Uses id in WHERE (so name can change safely).

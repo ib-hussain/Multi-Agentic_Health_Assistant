@@ -14,7 +14,8 @@ ignore/
 *download.jpeg
 *download.ico
 sample/
-
+.hf_cache/
+.cache/
 # Ignore virtual environments
 venv/
 # Ignore Python cache
