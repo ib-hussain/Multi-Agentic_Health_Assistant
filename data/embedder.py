@@ -9,7 +9,7 @@ MAX_LEN  = 32768  # must not exceed the model’s context length
 class M2Embedder:
     def __init__(self, model_id: str = MODEL_ID, max_len: int = MAX_LEN, device: Union[str, torch.device] = None):
         self.max_len = max_len
-        self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
+        self.device = device or "cpu"
 
         # Per model card: use bert-base-uncased tokenizer; trust_remote_code to enable sentence_embedding output
         self.config = BertConfig.from_pretrained(model_id)

@@ -6,61 +6,11 @@ including user registration, profile management, daily stats, and other storage 
 import psycopg2
 from datetime import datetime, timedelta, time
 import os
+import threading
 debug = True  
 # issues:
-# use the other storage table to store old chats of user in some form so that they can be loaded later
 # add some alarm functionality that makes everything happen at the required times and maybe some alarm functionality
 # add some 24 hour cycle routine that puts in changes in the database
-last19477491_query = """
--- user_profile table
-UPDATE user_profile
-SET user_information = ROW('', 18.0, 'Female', 1.700, 66.400)
-WHERE user_information IS NULL;
-UPDATE user_profile
-SET fitness_goal = 'Get into better shape'
-WHERE fitness_goal IS NULL;
-UPDATE user_profile
-SET diet_pref = 'any'
-WHERE diet_pref IS NULL;
-UPDATE user_profile
-SET time_arr = '{{"12:00:00", NULL, NULL}, {"12:20:00", NULL, NULL}}'
-WHERE time_arr IS NULL;
-UPDATE user_profile
-SET mental_health_background = NULL
-WHERE mental_health_background IS NULL;
-UPDATE user_profile
-SET medical_conditions = NULL
-WHERE medical_conditions IS NULL;
-UPDATE user_profile
-SET time_deadline = 90
-WHERE time_deadline IS NULL;
-UPDATE user_profile
-SET password = ''
-WHERE password IS NULL;
-
--- daily_stats table
-UPDATE daily_stats
-SET activity_level = 'active'
-WHERE activity_level IS NULL;
-UPDATE daily_stats
-SET todays_flag = FALSE
-WHERE todays_flag IS NULL;
-UPDATE daily_stats
-SET days_done = 0
-WHERE days_done IS NULL;
-UPDATE daily_stats
-SET progress_condition = 'positive'
-WHERE progress_condition IS NULL;
-
--- other_storage table
-UPDATE other_storage
-SET picture_analysis = ''
-WHERE picture_analysis IS NULL;
-
-UPDATE other_storage
-SET audio_transcript = ''
-WHERE audio_transcript IS NULL;
-"""
 
 def connect_db():
     # Establish connection to PostgreSQL
@@ -219,6 +169,7 @@ def daily_height_weight_diet_hist(user_id: int, conn, cur):
         return tuple(1.700, 66.400, ' ')
     finally:
         close_db(conn, cur)
+
 # Profile Management: 
 def get_user_profile_by_id(user_id: int):
     conn, cur = connect_db()
@@ -268,7 +219,6 @@ def get_user_profile_by_id(user_id: int):
         return None
     finally:
         close_db(conn, cur)
-from datetime import time as dt_time
 def change_everything(
     user_id: int,
     new_name: str,
@@ -289,6 +239,7 @@ def change_everything(
     - Uses id in WHERE (so name can change safely).
     - Coerces "HH:MM" strings to TIME objects for Postgres.
     """
+    from datetime import time as dt_time 
     conn, cur = connect_db()
     try:
         gender_value = 'Female' if new_gender else 'Male'
@@ -503,11 +454,79 @@ def get_daily_stats_by_id(user_id: int) -> list[list]:
         return []  # Return empty list on error (not [[], []])
     finally:
         close_db(conn, cur)
-
-
-# other_storage table functions
-def get_other_storage_by_id(user_id: int):
-    conn, cur = connect_db()
-    # this has nothing
-    close_db(conn, cur)
+# Chat History Storage
+def store_chat_postgres(user_id:int, user_prompt:str, response:str, has_image: bool = False):
+    """Fire-and-forget function to store chat in database without waiting"""
+    def store_chat_thread():
+        try:
+            # Add image indicator to the user prompt if an image was attached
+            final_user_prompt = user_prompt
+            if has_image:
+                final_user_prompt = user_prompt + " [Image Attached]"
+            conn, cur = connect_db()
+            insert_query = """
+                INSERT INTO chat_history (id, user_prompt, system_response, time_entered)
+                VALUES (%s, %s, %s, CURRENT_TIMESTAMP)
+            """
+            cur.execute(insert_query, (user_id, final_user_prompt, response))
+            conn.commit()
+            if debug: print("Chat stored successfully.")
+        except Exception as e:
+            if debug: print(f"Error storing chat: {e}")
+        finally:
+            close_db(conn, cur)
+    # Start the database operation in a separate thread and don't wait for it
+    thread = threading.Thread(target=store_chat_thread, daemon=True)
+    thread.start()
+def get_chat_history_by_date(user_id: int, year: int = None, month: int = None, day: int = None) :
+    """
+    Retrieves chat history for a specific user and date, ordered by time (oldest first).
+    Defaults to today's date if no date parameters are provided.
+    
+    Args:
+        user_id (int): The user ID to fetch chat history for
+        year (int): Year (e.g., 2024) - defaults to current year
+        month (int): Month (1-12) - defaults to current month
+        day (int): Day (1-31) - defaults to current day
+        
+    Returns:
+        List of dictionaries containing chat records with 'time_entered', 'user_prompt', and 'system_response'
+    """
+    try:
+        # Get current date if any parameter is None
+        if year is None or month is None or day is None:
+            today = datetime.now()
+            year = today.year
+            month = today.month
+            day = today.day
+        conn, cur = connect_db()
+        # Construct the query to get chat history for a specific date
+        query = """
+            SELECT time_entered, user_prompt, system_response
+            FROM chat_history
+            WHERE id = %s
+            AND DATE(time_entered) = %s
+            ORDER BY time_entered ASC
+        """
+        target_date = f"{year:04d}-{month:02d}-{day:02d}"
+        cur.execute(query, (user_id, target_date))
+        results = cur.fetchall()
+        chat_history = []
+        for record in results:
+            chat_history.append({
+                'time_entered': record[0],
+                'user_prompt': record[1],
+                'system_response': record[2]
+            })
+        return chat_history
+    except Exception as e:
+        print(f"Error retrieving chat history: {e}")
+        return []
+    finally:
+        close_db(conn, cur)
+# Example usage:
+# history = get_chat_history_by_date(1, 2024, 12, 15)
+# for chat in history:
+#     print(f"User: {chat['user_prompt']}")
+#     print(f"System: {chat['system_response']}")
 #functions ----------------------------------------------------------------------------------------------

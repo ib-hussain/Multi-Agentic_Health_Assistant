@@ -4,7 +4,9 @@ import mimetypes
 from pathlib import Path
 from together import Together
 from typing import Dict, Any
-from data.database_postgres import get_fitness_goal_diet_gender_age_time_deadline, daily_height_weight_diet_hist
+from data.database_postgres import (
+    get_fitness_goal_diet_gender_age_time_deadline, daily_height_weight_diet_hist, store_chat_postgres
+    )
 
 debug = True
 
@@ -23,15 +25,14 @@ def get_image_description(image_path: str="temp/download.jpeg", prompt: str = " 
     try:
         # Get user's fitness data
         fitness_goal, diet_pref, gender, name, age, medical_cond, time_deadline, conn, cur   = get_fitness_goal_diet_gender_age_time_deadline(user_id)
-        if debug: print("no Problem detected here 0")
+        # if debug: print("no Problem detected here 0")
         height, weight, diet_history = daily_height_weight_diet_hist(user_id,conn, cur)
-        if debug: print("no Problem detected here 1")
+        # if debug: print("no Problem detected here 1")
         age = str(age)
         gender = str(gender)
         fitness_goal = str(fitness_goal)
         diet_pref = str(diet_pref)
         time_deadline = str(time_deadline)
-        # Build personalized prompt
         personalized_info = (
             f"User Information:\n"
             f"Name: {name}\n"
@@ -72,7 +73,6 @@ def get_image_description(image_path: str="temp/download.jpeg", prompt: str = " 
                 mime_type = 'image/x-icon'
             else:
                 mime_type = 'image/jpeg'  # Default fallback
-        # Prepare message for vision model with correct MIME type
         message_content = [
             {
                 "type": "image_url",
@@ -85,7 +85,6 @@ def get_image_description(image_path: str="temp/download.jpeg", prompt: str = " 
                 "text": prompt
             }
         ]
-        # Call Together AI's LLaMA 3.2 Vision model
         together_api_key = str(os.getenv("TOGETHER_API_KEY"))
         client = Together(api_key=together_api_key)
         response = client.chat.completions.create(
@@ -95,17 +94,16 @@ def get_image_description(image_path: str="temp/download.jpeg", prompt: str = " 
             temperature=float(os.getenv("temperature__T"))
         )
         description = response.choices[0].message.content.strip()
-        print(description)
+        if debug: print(description)
+        store_chat_postgres(user_id=user_id, user_prompt=prompt, response=description, has_image=True)
         return {"status":"success", "description": description}
     except Exception as e:
         return {"status":"error", "message": str(e)}
-
 # Example usage:
 # result = get_image_description("temp/download.jpeg", user_id=1, prompt = "") 
 def get_diet_info(prompt:str, user_id:int=1) -> Dict[str, Any]:
     """
-    Takes a text prompt and returns diet-related information using LLaMA 3.2.
-    
+    Takes a text prompt and returns diet-related information using openai/gpt-oss-20b
     Args:
         prompt (str): User's text prompt
         user_id (int): User ID for fetching personal data
