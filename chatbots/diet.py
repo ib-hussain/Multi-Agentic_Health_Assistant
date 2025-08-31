@@ -102,3 +102,14 @@ def get_image_description(image_path: str="temp/download.jpeg", prompt: str = " 
 
 # Example usage:
 # result = get_image_description("temp/download.jpeg", user_id=1, prompt = "") 
+def get_diet_info(prompt:str, user_id:int=1) -> Dict[str, Any]:
+    """
+    Takes a text prompt and returns diet-related information using LLaMA 3.2.
+    
+    Args:
+        prompt (str): User's text prompt
+        user_id (int): User ID for fetching personal data
+        
+    Returns:
+        Dict containing 'status' ('success' or 'error') and 'response' or 'message'
+    """

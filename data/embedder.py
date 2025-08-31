@@ -37,6 +37,7 @@ class M2Embedder:
         return emb.detach().cpu()
 
 # ---- usage ----
-# embedder = M2Embedder()
-# vecs = embedder(["hello world", "long text ..."])
-# print(vecs.shape)  # (2, 768)
+# if __name__ == "__main__":
+#     embedder1 = M2Embedder()
+#     vecs = embedder1(["hello world", "long text ..."])
+#     print(vecs.shape)  # (2, 768)

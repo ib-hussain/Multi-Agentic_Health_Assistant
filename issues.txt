@@ -1,0 +1,5 @@
+issues:
+1. handle chat history problems 
+2. enter a field in data base for remembering chats in different rows by dates
+3. embedding and un-embedding should be handled
+4. user information storage by the excercise chatbot
