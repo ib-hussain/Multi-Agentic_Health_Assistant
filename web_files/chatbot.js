@@ -18,13 +18,11 @@ document.addEventListener("DOMContentLoaded", function() {
     let audioChunks = [];
     let currentStream;
     let pendingImageFile = null; // image to send with next prompt
-    
     // Auto-resize functionality for textarea
     function autoResize() {
         userInput.style.height = 'auto';
         userInput.style.height = Math.max(70, Math.min(userInput.scrollHeight, 150)) + 'px';
     }
-    
     // Initialize auto-resize
     userInput.addEventListener('input', autoResize);
     
@@ -68,6 +66,39 @@ document.addEventListener("DOMContentLoaded", function() {
         userInput.placeholder = "Image attached, add a prompt (optional) and press Send";
         attachImageBtn.classList.add('attached');
     }
+    // ===== Chat History Loader =====
+async function loadChatHistory() {
+    try {
+        // Optionally pass ?year=YYYY&month=MM&day=DD
+        const res = await fetch('/api/chat-history');
+        if (!res.ok) return; // silently ignore on failure
+        const data = await res.json();
+        if (!data.success || !Array.isArray(data.history) || data.history.length === 0) return;
+
+        // If there is the default greeting, clear it so we don't duplicate
+        if (chatMessages && chatMessages.children && chatMessages.children.length > 0) {
+            chatMessages.innerHTML = "";
+        }
+
+        // Render history in chronological order
+        for (const rec of data.history) {
+            const userText = (rec.user_prompt || "").trim();
+            const botText  = (rec.system_response || "").trim();
+
+            if (userText) addMessage(userText, 'user-message');
+            if (botText)  addMessage(botText, 'bot-message');
+        }
+
+        // Scroll to bottom after rendering
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'auto' });
+    } catch (_) {
+        // No noisy errors in UI; history is optional
+    }
+}
+
+// Kick off history load after bootstrapping the page
+loadChatHistory();
+
     async function uploadImage(file, promptText) {
         const ext = (file.name.split('.').pop() || '').toLowerCase();
         const form = new FormData();

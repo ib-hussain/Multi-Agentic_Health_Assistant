@@ -14,7 +14,8 @@ from tempfile import NamedTemporaryFile
 # header includes  #################################################################################################################################
 from data.database_postgres import (
     get_id, user_registration,
-    get_user_profile_by_id, change_everything, get_daily_stats_by_id       
+    get_user_profile_by_id, change_everything, get_daily_stats_by_id,
+    get_chat_history_by_date      
 )
 from temp.audio import transcribe_audio as transcript
 from chatbots.diet import get_image_description
@@ -413,9 +414,44 @@ def api_progress():
         return jsonify({"success": True, "rows": rows})
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
+@app.route('/api/chat-history')
+def api_chat_history():
+    """Get chat history for a specific date (defaults to today). Optional ?year=&month=&day="""
+    user_id = session.get('user_id')
+    if user_id is None:
+        return jsonify({"success": False, "error": "Not authenticated"}), 401
+    try:
+        y = request.args.get('year', type=int)
+        m = request.args.get('month', type=int)
+        d = request.args.get('day', type=int)
+        # raw_history = get_chat_history_by_date(user_id, y, m, d)
+        raw_history = get_chat_history_by_date(user_id, 2024, 12, 15)
+        
 
-# issues:
-# add chat storage function in the chatbot, rest is great
+        # Ensure JSON serializable + never None strings
+        history = []
+        for rec in raw_history:
+            t = rec.get('time_entered')
+            history.append({
+                "time_entered": (t.isoformat() if hasattr(t, "isoformat") else str(t)),
+                "user_prompt": rec.get('user_prompt') or "",
+                "system_response": rec.get('system_response') or ""
+            })
+
+        # Build a label reflecting the resolved date
+        from datetime import datetime
+        if y is None or m is None or d is None:
+            today = datetime.now()
+            y, m, d = today.year, today.month, today.day
+
+        return jsonify({
+            "success": True,
+            "history": history,
+            "date": f"{y:04d}-{m:02d}-{d:02d}"
+        })
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
 from multiprocessing import Process
 def return_and_call(result1):
     # # Start a new process
